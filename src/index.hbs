@@ -1,0 +1,796 @@
+<!-- See the LICENSE file at https://github.com/wavesplatform/WavesGUI/blob/master/LICENSE. Removal or modification of this copyright notice is prohibited. -->
+
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Waves Client</title>
+    <link rel="icon" href="{{domain}}/img/favicon.ico" type="image/x-icon"/>
+
+    <script>
+        window.buildIsWeb = {{isWeb}};
+    </script>
+
+    <style>
+        .not-supported-browser {
+            display: none;
+        }
+
+        .connection-problem button.big {
+            width: 224px;
+            background-color: #1f5af6;
+            border: 1px solid #1751ec;
+            color: #fff;
+            border-radius: 4px;
+            height: 54px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .connection-problem button.big:hover {
+            background: #1a4ac8;
+        }
+
+        .connetion-problem__headline {
+            font-family: 'Roboto-Regular', sans-serif;
+            font-size: 34px;
+            line-height: 40px;
+            margin: 10px 0;
+            color: #2d2d2d;
+        }
+
+        .connetion-problem__description {
+            color: #8c8c8c;
+            margin-bottom: 40px;
+            font-size: 17px;
+            line-height: 22px;
+        }
+
+        .connection-problem {
+            display: none;
+            padding-top: 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 90%;
+            margin: 0 auto;
+            height: 100%;
+            font-family: 'Roboto-Regular', sans-serif;
+        }
+
+        .connection-problem > img {
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .connection-problem .waves-logo {
+            width: 100px;
+            height: 21px;
+            background: url(/img/icons/waves_logo.svg) no-repeat;
+            display: block;
+            margin: 0 auto 80px auto;
+        }
+
+        .app-loader.app-loader-transition {
+            animation: loader-transition 4s both;
+        }
+
+        .app-loader {
+            z-index: 10000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: #fff;
+        }
+
+        .app-loader .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #0065D7;
+            transition: width 1s;
+            -webkit-transition: width 1s;
+            -moz-transition: width 1s;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            transform-origin: center;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .loader span {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+
+        .loader span::before {
+            content: '';
+            background-color: #1f5af6;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+            width: 50px;
+            height: 50px;
+            -moz-transform-origin: 100% 100%;
+            -ms-transform-origin: 100% 100%;
+            -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+            -moz-animation: folding 2.5s infinite linear both;
+            -webkit-animation: folding 2.5s infinite linear both;
+            animation: folding 2.5s infinite linear both;
+        }
+
+        .loader .leaf2 {
+            -moz-transform: rotateZ(90deg);
+            -ms-transform: rotateZ(90deg);
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+
+        .loader .leaf2::before {
+            -moz-animation-delay: 0.3s;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+            background-color: #0a49f2;
+        }
+
+        .loader .leaf3 {
+            -moz-transform: rotateZ(270deg);
+            -ms-transform: rotateZ(270deg);
+            -webkit-transform: rotateZ(270deg);
+            transform: rotateZ(270deg);
+        }
+
+        .loader .leaf3::before {
+            -moz-animation-delay: 0.9s;
+            -webkit-animation-delay: 0.9s;
+            animation-delay: 0.9s;
+            background-color: #0a49f2;
+        }
+
+        .loader .leaf4 {
+            -moz-transform: rotateZ(180deg);
+            -ms-transform: rotateZ(180deg);
+            -webkit-transform: rotateZ(180deg);
+            transform: rotateZ(180deg);
+        }
+
+        .loader .leaf4::before {
+            -moz-animation-delay: 0.6s;
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+            background-color: #0942d9;
+        }
+
+        @keyframes loader-transition {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @-moz-keyframes folding {
+            0%, 10% {
+                -moz-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+            25%, 75% {
+                -moz-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+            90%, 100% {
+                -moz-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes folding {
+            0%, 10% {
+                -webkit-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+            25%, 75% {
+                -webkit-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+            90%, 100% {
+                -webkit-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes folding {
+            0%, 10% {
+                -moz-transform: perspective(140px) rotateX(-180deg);
+                -ms-transform: perspective(140px) rotateX(-180deg);
+                -webkit-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+            25%, 75% {
+                -moz-transform: perspective(140px) rotateX(0deg);
+                -ms-transform: perspective(140px) rotateX(0deg);
+                -webkit-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+            90%, 100% {
+                -moz-transform: perspective(140px) rotateY(180deg);
+                -ms-transform: perspective(140px) rotateY(180deg);
+                -webkit-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .app-loader .loader {
+                margin: 0 auto;
+                transform: scale(.8) rotate(45deg);
+            }
+        }
+    </style>
+
+    {{#if isProduction}}
+        <!-- Sentry error logging -->
+        <script src="https://cdn.ravenjs.com/3.22.3/raven.min.js" crossorigin="anonymous"></script>
+        <script>Raven.config('https://edc3970622f446d7aa0c9cb38be44a4f@sentry.io/291068').install();</script>
+    {{/if}}
+
+    <script>
+        window.addEventListener('load', function () {
+            var __interval = setInterval(function () {
+
+                WavesApp = WavesApp || { state: 'loading' };
+
+                switch (WavesApp.state) {
+                    case 'loading':
+                    case 'loadingError':
+                        clearInterval(__interval);
+                        document.querySelector('.app-loader').style.display = 'none';
+                        document.querySelector('.connection-problem').style.display = 'block';
+                        document.querySelector('[name=main]').style.display = 'none';
+                        break;
+                    case 'appRun':
+                        clearInterval(__interval);
+                        var errorModal = document.querySelector('.connection-problem');
+                        if (errorModal.parentNode) {
+                            errorModal.parentNode.removeChild(errorModal);
+                        }
+                        break;
+                }
+            }, 2000);
+        });
+
+        var __controllers = Object.create(null);
+
+        /**
+         * @type {IWavesApp}
+         */
+        var WavesApp = {
+            name: 'Waves Client',
+            version: '{{pack.version}}',
+            type: (window.isDesktop || !window.buildIsWeb) ? 'desktop' : 'web',
+            matcherPriorityList: {{{matcherPriorityList}}},
+            themesConf: {{{themesConf}}},
+            progress: 0,
+            state: 'loading',
+            origin: '{{{origin}}}',
+            localize: {{{langList}}},
+            bankRecipient: '{{{bankRecipient}}}',
+            network: {
+                apiVersion: '{{network.apiVersion}}',
+                code: '{{network.code}}',
+                node: '{{network.node}}',
+                matcher: '{{network.matcher}}',
+                api: '{{network.api}}',
+                coinomat: '{{network.coinomat}}',
+                support: '{{network.support}}',
+                nodeList: '{{network.nodeList}}',
+                scamListUrl: '{{network.scamListUrl}}',
+                explorer: '{{network.explorer}}',
+                featuresConfigUrl: '{{network.featuresConfigUrl}}'
+            },
+            defaultAssets: {
+                WAVES: 'WAVES',
+                EUR: '{{network.assets.EUR}}',
+                USD: '{{network.assets.USD}}',
+                BTC: '{{network.assets.BTC}}',
+                ETH: '{{network.assets.ETH}}',
+                LTC: '{{network.assets.LTC}}',
+                ZEC: '{{network.assets.ZEC}}',
+                BCH: '{{network.assets.BCH}}',
+                DASH: '{{network.assets.DASH}}',
+                TRY: '{{network.assets.TRY}}',
+                XMR: '{{network.assets.XMR}}'
+            },
+
+            ALWAYS_PINNED_ASSETS: ['WAVES'],
+
+            otherAssetsWithIcons: {
+                // TODO @xenohunter : remove that when icons are in @dvshur's service
+                EFYT: '{{network.assets.EFYT}}',
+                WNET: '{{network.assets.WNET}}'
+            },
+            remappedAssetNames: {
+                '{{network.assets.EUR}}': 'Euro',
+                '{{network.assets.USD}}': 'US Dollar',
+                '{{network.assets.TRY}}': 'TRY',
+                '{{network.assets.BTC}}': 'Bitcoin',
+                '{{network.assets.ETH}}': 'Ethereum'
+            },
+            matcherSignInterval: { count: 20, timeType: 'day' },
+            scam: Object.create(null),
+            dex: {
+                resolutions: ['15', '30', '60', '240', '1440'], // TODO : add months
+                defaultResolution: '60'
+            },
+            modules: [],
+            minAliasLength: 4,
+            maxAliasLength: 30,
+            maxAddressLength: 45,
+            maxCoinCount: null,
+            TRANSACTION_TYPES: {
+                EXTENDED: {
+                    SEND: 'send',
+                    RECEIVE: 'receive',
+                    MASS_SEND: 'mass-send',
+                    MASS_RECEIVE: 'mass-receive',
+                    CIRCULAR: 'circular',
+                    ISSUE: 'issue',
+                    REISSUE: 'reissue',
+                    BURN: 'burn',
+                    EXCHANGE_BUY: 'exchange-buy',
+                    EXCHANGE_SELL: 'exchange-sell',
+                    LEASE_IN: 'lease-in',
+                    LEASE_OUT: 'lease-out',
+                    CANCEL_LEASING: 'cancel-leasing',
+                    CREATE_ALIAS: 'create-alias',
+                    DATA: 'data',
+                    SET_SCRIPT: 'set-script',
+                    SCRIPT_CANCEL: 'set-script-cancel',
+                    SPONSORSHIP_START: 'sponsorship-start',
+                    SPONSORSHIP_STOP: 'sponsorship-stop',
+                    SPONSORSHIP_FEE: 'sponsorship-fee',
+                    UNKNOWN: 'unknown'
+                },
+                NODE: {
+                    TRANSFER: 'transfer',
+                    MASS_TRANSFER: 'massTransfer',
+                    ISSUE: 'issue',
+                    REISSUE: 'reissue',
+                    BURN: 'burn',
+                    CREATE_ALIAS: 'createAlias',
+                    LEASE: 'lease',
+                    CANCEL_LEASING: 'cancelLeasing',
+                    EXCHANGE: 'exchange',
+                    DATA: 'data',
+                    SET_SCRIPT: 'setScript',
+                    SPONSORSHIP: 'sponsorship'
+                }
+            },
+            getLocaleData: function () {
+                return WavesApp.localize[i18next.language];
+            },
+            addController: function (name, controller) {
+                __controllers[name] = controller;
+            },
+            getController: function (name) {
+                return __controllers[name];
+            },
+            isWeb: function () {
+                return this.type === 'web';
+            },
+            isDesktop: function () {
+                return this.type === 'desktop';
+            },
+            isProduction: function () {
+            return {{#if isProduction}}true;{{else}}false;{{/if}}
+            },
+            parseJSON: null,
+            stateTree: null,
+            MAX_URL_LENGTH: 1200,
+            sign: {
+                openTimeout: 3000,
+                listenTimeout: 25000,
+                exchangeTimeout: 100000,
+            },
+            reload: function () {
+                if (WavesApp.isDesktop()) {
+                    transfer('reload');
+                } else {
+                    window.location.reload();
+                }
+            }
+        };
+    </script>
+
+    <!-- CSS -->
+
+    {{#if isWeb}}
+        <base href="/">{{/if}}
+
+    <script>
+
+        if (window.isDesktop || !window.buildIsWeb) {
+
+            var __mainListeners = [];
+
+            function listenMainProcessEvent(cb) {
+                __mainListeners.push(cb);
+            }
+
+            function stopListenMainProcessEvent(cb) {
+                for (var i = __mainListeners.length - 1; i >= 0; i--) {
+                    if (__mainListeners[i] === cb) {
+                        __mainListeners.splice(i, 1);
+                    }
+                }
+            }
+
+            function runMainProcessEvent() {
+                var args = Array.prototype.slice.call(arguments);
+                __mainListeners.slice().forEach(function (cb) {
+                    try {
+                        cb.apply(this, args);
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }, this);
+            }
+        }
+
+        Array.prototype.slice.apply(document.querySelectorAll('[rel=stylesheet]'))
+                .filter(function (el) {
+                    return el.getAttribute('theme');
+                })
+                .forEach(function (el) {
+                    el.disabled = el.getAttribute('theme') !== 'default';
+                });
+    </script>
+</head>
+
+<body>
+
+<div class="app-loader">
+    <div class="progress"></div>
+    <div class="loader-wrapper">
+        <div class="loader"><span class="leaf1"></span><span class="leaf2"></span><span class="leaf3"></span><span
+                class="leaf4"></span></div>
+    </div>
+</div>
+
+<div class="connection-problem">
+    <div class="waves-logo"><img src="/img/icons/waves_logo.svg"/></div>
+    <img src="/img/no-preload/connection-error.svg" class="margin-3"/>
+    <div class="headline-1">We couldn't connect to the server</div>
+    <div class="body-1 basic-500">Check your internet connection and try again.</div>
+    <div class="body-1 margin-4 basic-500">
+        <div>If you have been using the Waves Desktop app and refreshing does</div>
+        <div>not help, try reinstalling the app. Download the latest version from</div>
+        <div>the official Waves site.</div>
+    </div>
+    <button class="submit big submit" onclick="WavesApp.reload();">Refresh page</button>
+</div>
+
+<div class="not-supported-browser">
+    <div class="overlay"></div>
+    <div class="not-supported-modal">
+        <i></i>
+        <h2 class="margin-2">Your browser is not supported</h2>
+        <div class="body-2 disabled-600 margin-4">
+            Please update to the latest version of one of the following browsers:
+        </div>
+        <div class="browsers-icons">
+            <div class="browser-icon-block">
+                <img src="/img/no-preload/chrome-icon.svg"/>
+                <div>Chrome</div>
+                <div><a href="https://www.google.com/chrome/index.html" target="_blank">Install or update</a></div>
+            </div>
+            <div class="browser-icon-block">
+                <img src="/img/no-preload/firefox-icon.svg"/>
+                <div>Firefox</div>
+                <div><a href="https://www.mozilla.org/en-US/firefox/" target="_blank">Install or update</a></div>
+            </div>
+            <div class="browser-icon-block">
+                <img src="/img/no-preload/safari-icon.svg"/>
+                <div>Safari</div>
+                <div><a href="https://support.apple.com/downloads/safari" target="_blank">Install or update</a></div>
+            </div>
+            <div class="browser-icon-block">
+                <img src="/img/no-preload/opera-icon.svg"/>
+                <div>Opera</div>
+                <div><a href="http://www.opera.com/" target="_blank">Install or update</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ui-view name="main"></ui-view>
+
+<div class="notifications">
+    <w-container-alert-notification type="notification"></w-container-alert-notification>
+</div>
+
+<!-- JAVASCRIPT -->
+
+<script>
+    window.BigNumber = ds.wavesDataEntities.BigNumber;
+
+    // Signed 64-bit integer.
+    WavesApp.maxCoinsCount = new BigNumber('9223372036854775807');
+
+    WavesApp.device = new MobileDetect(navigator.userAgent);
+
+    (function () {
+        var wrapper = require('worker-wrapper');
+
+        var worker = wrapper.create({
+            libs: ['/node_modules/parse-json-bignumber/dist/parse-json-bignumber.min.js?v' + WavesApp.version]
+        });
+
+        worker.process(function () {
+            self.parse = parseJsonBignumber().parse;
+        });
+
+        var stringify = parseJsonBignumber({ BigNumber: BigNumber }).stringify;
+        WavesApp.parseJSON = function (str) {
+            return worker.process(function (str) {
+                return parse(str);
+            }, str);
+        };
+
+        WavesApp.stringifyJSON = function () {
+            return stringify.apply(this, arguments);
+        };
+    })();
+
+    var isBrowserSupported = (function () {
+
+        var USE_NATIVE_API = [
+            window.Promise,
+            window.fetch,
+            Object.values,
+            Object.assign,
+            Object.getOwnPropertyDescriptor,
+            Object.entries,
+            URL,
+            window.crypto || window.msCrypto
+        ];
+
+        return function () {
+            return USE_NATIVE_API.every(Boolean);
+        };
+    })();
+
+    var notSupportedSelector = '.not-supported-browser';
+
+    if (!isBrowserSupported()) {
+        document.body.querySelector(notSupportedSelector).style.display = 'block';
+    } else {
+        var modal = document.body.querySelector(notSupportedSelector);
+        modal.parentNode.removeChild(modal);
+    }
+
+    if (WavesApp.isDesktop()) {
+        var listenDevTools = false;
+        Mousetrap.bind('i d d q d', function () {
+            if (!listenDevTools) {
+                transfer('addDevToolsMenu');
+                listenDevTools = true;
+            }
+        });
+    }
+
+    Mousetrap.bind('c l e a n a l l', function () {
+        localStorage.clear();
+        if (WavesApp.isDesktop()) {
+            transfer('reload');
+        } else {
+            window.location.reload();
+        }
+    });
+
+    /**
+     * @type {EventSender}
+     */
+    var analytics = eventSender.default.inactive();
+
+    WavesApp.stateTree = new tsUtils.Tree({
+        id: 'root',
+        children: [
+            {
+                id: 'welcome',
+                data: {
+                    url: '/',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            // {
+            //     id: 'sessions',
+            //     data: {
+            //         noLogin: true,
+            //         views: [{ name: 'main' }]
+            //     }
+            // },
+            {
+                id: 'create',
+                data: {
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'restore',
+                data: {
+                    url: '/import/restore',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'ledger',
+                data: {
+                    url: '/import/ledger',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'keeper',
+                data: {
+                    url: '/import/waveskeeper',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'import',
+                data: {
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'desktop',
+                data: {
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'main',
+                data: {
+                    abstract: true,
+                    views: [{ name: 'main', templateUrl: 'modules/app/templates/main.html' }]
+                },
+                children: [
+                    {
+                        id: 'wallet',
+                        data: {
+                            views: [{
+                                name: 'mainContent',
+                                noController: true,
+                                template: '<ui-view name="content"></ui-view>'
+                            }],
+                            redirectTo: 'main.wallet.assets'
+                        },
+                        children: [
+                            { id: 'assets', data: { views: [{ name: 'content' }] } },
+                            { id: 'portfolio', data: { views: [{ name: 'content' }] } },
+                            { id: 'transactions', data: { views: [{ name: 'content' }] } },
+                            { id: 'leasing', data: { views: [{ name: 'content' }] } }
+                        ]
+                    },
+                    {
+                        id: 'dex',
+                        data: {
+                            url: '/dex?assetId1&assetId2',
+                            reloadOnSearch: false,
+                            views: [{ name: 'mainContent' }]
+                        }
+                    },
+                    {
+                        id: 'dex-demo',
+                        data: {
+                            noLogin: true,
+                            controller: 'Dex',
+                            url: '/dex-demo?assetId1&assetId2',
+                            reloadOnSearch: false,
+                            views: [{ name: 'mainContent', templateUrl: 'modules/dex/templates/dex.html' }]
+                        }
+                    },
+                    {
+                        id: 'tokens',
+                        data: {
+                            views: [{ name: 'mainContent' }]
+                        }
+                    }
+                ]
+            }
+        ]
+    });
+
+    /**
+     * @typedef {object} IWavesApp
+     * @property {string} name
+     * @property {string} version
+     * @property {string} type
+     * @property {string} origin
+     * @property {Object.<boolean>} scam
+     * @property {MobileDetect} device
+     * @property {Object.<{separators: {group: string, decimal: string}}>} localize
+     * @property {number} minAliasLength
+     * @property {number} maxAliasLength
+     * @property {number} MAX_URL_LENGTH
+     * @property {string} bankRecipient
+     * @property {number} maxAddressLength
+     * @property {\{count: number, timeType: string\}} matcherSignInterval
+     * @property {BigNumber} maxCoinsCount
+     * @property {typeof WavesApp.TRANSACTION_TYPES} TRANSACTION_TYPES
+     * @property {typeof WavesApp.network} network
+     * @property {typeof WavesApp.defaultAssets} defaultAssets
+     * @property {Array<string>} ALWAYS_PINNED_ASSETS
+     * @property {object} remappedAssetNames
+     * @property {object} dex
+     * @property {Array<string>} dex.resolutions
+     * @property {string} dex.defaultResolution
+     * @property {Array<string>} modules
+     * @property {function():boolean} isWeb
+     * @property {function():boolean} isDesktop
+     * @property {function():boolean} isProduction
+     * @property {Function} addController
+     * @property {Function} getController
+     * @property {function():{name: string, separators: {group: string, decimal: string}}} getLocaleData
+     * @property {function(data: string): Promise<object>} parseJSON
+     * @property {function(data: object, [a], [b]): string} stringifyJSON
+     * @property {Tree} stateTree
+     */
+</script>
+
+</body>
+</html>

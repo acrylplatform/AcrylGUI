@@ -1,0 +1,245 @@
+@import (reference) 'config';
+@import (reference) '../../../app/less/typography';
+
+input[type="checkbox"] {
+  box-shadow: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+}
+
+.input-like {
+  width: 100%;
+  height: @height-control-big;
+  padding: @padding-control-big;
+  font-size: @font-size-control-big;
+  color: @color-disabled-900;
+  background: @color-white;
+  text-align: left;
+  box-shadow: none;
+  appearance: none;
+  -moz-appearance: none;
+  -webkit-appearance: none;
+
+  &.blue {
+    background: @color-basic-200;
+  }
+
+  @media screen and (max-width: 768px) {
+    height: @height-control-big-responsive;
+    padding: @padding-control-big-responsive;
+    font-size: @font-size-control-big-responsive;
+  }
+
+  &::placeholder {
+    color: @color-basic-500;
+  }
+
+  &:not(.embed) {
+    background-color: @color-white;
+    border: 1px solid @color-basic-200;
+    border-radius: @border-radius;
+
+    &.disabled {
+      background: @color-basic-50;
+    }
+  }
+
+  &.tiny {
+    height: @height-control-tiny;
+    padding: @padding-control-tiny;
+    font-size: @font-size-control-tiny;
+
+    &::placeholder {
+      font-size: @font-size-control-tiny;
+    }
+  }
+
+  &.medium {
+    height: @height-control;
+    padding: @padding-control;
+    font-size: @font-size-control;
+  }
+
+  &.small {
+    height: @height-control-small;
+    padding: @padding-control-small;
+    font-size: @font-size-control-small;
+
+    &::placeholder {
+      font-size: @font-size-control-small;
+    }
+  }
+
+  @media screen and (min-width: 769px) {
+    &.big {
+      height: @height-control-big;
+      padding: @padding-control-big;
+      font-size: @font-size-control-big;
+
+      &::placeholder {
+        font-size: @font-size-control-big;
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    &.big {
+      height: @height-control-big-responsive;
+      padding: @padding-control-big-responsive;
+      font-size: @font-size-control-big-responsive;
+
+      &::placeholder {
+        font-size: @font-size-control-big-responsive;
+      }
+    }
+  }
+}
+
+w-input {
+  display: block;
+  width: 100%;
+  transform: translate3d(0, 0, 0);
+
+  .w-input-wrap {
+    position: relative;
+    width: 100%;
+
+    input[type="text"],
+    input[type="password"],
+    input[type="number"],
+    textarea {
+      .input-like();
+
+      &:not(.embed):not(.no-validate) {
+        &:focus, &.focus {
+          background-color: @color-white;
+          color: @color-basic-900;
+          border-color: @color-submit-400;
+        }
+
+        &.disabled {
+          background: @color-basic-50;
+        }
+
+        &.ng-touched {
+          &.ng-valid:not(:focus):not(.focus) {
+            border-color: @color-success-300;
+          }
+          &.ng-invalid:not(:focus):not(.focus) {
+            border-color: @color-error-200;
+          }
+        }
+      }
+
+      &.no-validate:focus,
+      &.embed:focus {
+        border: 1px solid @color-submit-400;
+      }
+
+      &[disabled="disabled"] {
+        background-color: @color-basic-50;
+      }
+    }
+
+    &::after {
+      content: '';
+      display: block;
+      position: absolute;
+      right: 21px;
+      top: 50%;
+      transform: translateY(-50%);
+      background-size: 100% 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+      &::after {
+        top: 14px;
+        transform: translateY(0);
+      }
+    }
+  }
+
+  &[textarea="true"] {
+
+    &.large textarea {
+      min-height: 300px;
+      resize: vertical;
+    }
+
+    &.tall textarea {
+      min-height: 150px;
+    }
+
+    &.normal textarea {
+      min-height: 80px;
+    }
+
+    .w-input-wrap {
+      &::after {
+        display: none;
+      }
+    }
+  }
+
+  &:not(.no-icon) .w-input-wrap {
+    &.input-type-password {
+      input[type="password"] {
+        padding-right: 50px;
+      }
+
+      &::after {
+        background: url(/img/icons/input-password-icon.svg) no-repeat center center;
+        width: 15px;
+        height: 10px;
+      }
+    }
+  }
+
+  &:not(.no-validate-icons) .w-input-wrap {
+    &.input-type-password input[type="password"] {
+      padding-right: 50px;
+    }
+
+    &.valid.touched::after {
+      background: url(/img/icons/input-valid-icon.svg) no-repeat center center;
+      width: 13px;
+      height: 10px;
+    }
+
+    // &.touched.invalid:not(.focused)::after {
+    //   background: url(/img/icons/input-invalid-icon.svg) no-repeat center center;
+    //   width: 11px;
+    //   height: 11px;
+    // }
+  }
+
+  .byte-validator__help {
+    position: absolute;
+    top: -20px;
+    display: none;
+    right: 0;
+    color: @color-basic-500;
+    .footnote-1();
+  }
+
+  div.focused .byte-validator__help {
+    display: block;
+    color: @color-disabled-500;
+  }
+
+  div.touched.invalid .byte-validator__help,
+  div.focused.invalid .byte-validator__help {
+    display: block;
+    color: @color-error-500;
+  }
+
+}
+
+form.ng-submitted {
+  input[type="text"], input[type="password"], input[type="number"], textarea {
+    &.ng-invalid:not(.embed):not(:focus):not(.focus):not(.no-validate) {
+      border-color: @color-error-200;
+    }
+  }
+}

@@ -1,0 +1,120 @@
+<w-step-by-step active-step="$ctrl.step">
+    <w-step>
+        <div class="asset-content">
+            <div class="top-content">
+                <w-asset-logo class="asset-logo-large" asset-id="{{::$ctrl.asset.id}}" size="65"></w-asset-logo>
+
+                <div class="asset-data">
+                    <h4 class="basic-900">{{::$ctrl.asset.name}}</h4>
+                    <div class="body-2 basic-500 one-line"> {{::$ctrl.asset.description}}</div>
+                </div>
+
+                <div class="chart-wrapper">
+                    <linechart ng-if="$ctrl.chartData" options="$ctrl.options" data="$ctrl.chartData"></linechart>
+                    <div class="token-burn__chart-overlay"></div>
+                </div>
+            </div>
+        </div>
+        <div class="token-burn__info">
+
+            <div class="rows">
+                <div class="row row-style flex-row token-burn__info-line">
+                    <div class="footnote-1 disabled-500" w-i18n="modal.token.id"></div>
+                    <div>{{::$ctrl.asset.id}}</div>
+                </div>
+
+                <div class="row row-style flex-row token-burn__info-line">
+                    <div class="footnote-1 disabled-500" w-i18n="modal.token.quantity"></div>
+                    <div>{{::$ctrl.quantity.toFormat($ctrl.asset.precision)}}</div>
+                </div>
+
+                <div class="row row-style flex-row margin-2 token-burn__info-line">
+                    <div class="footnote-1 disabled-500" w-i18n="modal.token.balance"></div>
+                    <div class="bold">
+                        <w-balance money="$ctrl.balance"></w-balance>
+                    </div>
+                </div>
+            </div>
+
+            <form name="burn">
+                <div class="body-2">
+                    <span w-i18n="modal.token.{{::$ctrl.txType}}.label"></span>
+                </div>
+                <w-input-container class="margin-2">
+
+                    <div ng-if="$ctrl.txType === 'reissue'" class="input-like">
+                        <w-input class="embed"
+                                 type="text"
+                                 name="input"
+                                 ng-model="$ctrl.input"
+                                 w-validate
+                                 w-validator-asset="{{::$ctrl.asset}}"
+                                 w-validator-gt="0"
+                                 w-validator-lt="{{::$ctrl.maxCoinsCount}}"
+                                 required></w-input>
+
+                        <div class="select-wrap">
+                            <w-select class="issue-select tiny" ng-model="$ctrl.issue">
+                                <w-option option-type="boolean" value="false">
+                                    <span class="caption-1 basic-900" w-i18n-ns="app.tokens"
+                                          w-i18n="reissuable.false"></span>
+                                </w-option>
+                                <w-option option-type="boolean" value="true">
+                                    <span class="caption-1 basic-900" w-i18n-ns="app.tokens"
+                                          w-i18n="reissuable.true"></span>
+                                </w-option>
+                            </w-select>
+                        </div>
+                    </div>
+
+                    <w-balance-input ng-if="$ctrl.txType === 'burn'" input-classes="big"
+                                     asset-id="$ctrl.asset.id"
+                                     name="input"
+                                     amount="$ctrl.input"
+                                     min="'0'"
+                                     max-balance="$ctrl.balance"></w-balance-input>
+
+                    <w-input-error message="required">
+                        <span w-i18n="modal.token.validation.required"></span>
+                    </w-input-error>
+
+                    <w-input-error message="gt">
+                        <span w-i18n="modal.token.validation.gt0"></span>
+                    </w-input-error>
+
+                    <w-input-error message="lt">
+                        <span w-i18n="modal.token.validation.maxValueCount"></span>
+                    </w-input-error>
+
+                    <w-input-error message="lte">
+                        <span w-i18n="modal.token.validation.lteMaxBalance"></span>
+                    </w-input-error>
+
+                    <w-input-error message="asset">
+                        <span w-i18n="modal.token.validation.invalidPrecision"
+                              params="{precision: $ctrl.precision}"></span>
+                    </w-input-error>
+
+                </w-input-container>
+
+                <div class="footnote-1 margin-2">
+                    <div ng-class="{'error-400': $ctrl.noFee}"
+                         class="disabled-500"
+                         w-i18n="modal.token.fee"
+                         params="{fee: $ctrl.fee}"></div>
+                    <div class="error-400" ng-if="$ctrl.noFee" w-i18n="modal.token.validation.noMoney"></div>
+                </div>
+
+                <w-sign-button disabled="burn.$invalid || $ctrl.noFee"
+                               on-click="$ctrl.getSignable()"
+                               on-success="$ctrl.next()">
+                    <span w-i18n="button.continue"></span>
+                </w-sign-button>
+            </form>
+        </div>
+    </w-step>
+    <w-step>
+        <w-confirm-transaction signable="$ctrl.signable"
+                               on-click-back="$ctrl.step = $ctrl.step - 1"></w-confirm-transaction>
+    </w-step>
+</w-step-by-step>

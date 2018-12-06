@@ -1,0 +1,15 @@
+<div ng-click="$ctrl.toggleActions()" class="click-area">
+    <div class="dots">
+        <div class="dot"></div>
+        <div class="dot"></div>
+        <div class="dot"></div>
+    </div>
+</div>
+<div ng-if="$ctrl.expanded"
+     class="{{::$ctrl.DROP_DOWN_CLASS}}"
+     ng-class="{
+        'open-up': $ctrl.openUp
+     }"
+     ng-mouseleave="$ctrl.onMouseLeave()"
+     ng-mouseenter="$ctrl.onMouseEnter()"
+     ng-transclude></div>

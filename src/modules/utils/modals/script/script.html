@@ -1,0 +1,10 @@
+<w-step-by-step active-step="$ctrl.step">
+    <w-step>
+        <w-script-tx-form on-success="$ctrl.nextStep(signable)"
+                          state="$ctrl.activeState"></w-script-tx-form>
+    </w-step>
+    <w-step>
+        <w-confirm-transaction signable="$ctrl.signable"
+                               on-click-back="$ctrl.onClickBack()"></w-confirm-transaction>
+    </w-step>
+</w-step-by-step>

@@ -1,0 +1,642 @@
+@import (reference) 'config';
+@import (reference) '../../../app/less/typography';
+@import (reference) 'icons';
+
+.dex-layout {
+  &__createorder {
+    .mask {
+      background: @mask-default;
+      position: absolute;
+      left: 0;
+      right: 0;
+      bottom: 0;
+      opacity: .5;
+      height: 100%;
+      z-index: 5;
+      display: none;
+    }
+  }
+}
+
+w-button.inactive-order-button {
+  width: 100%;
+  & > *:not(.transparent):disabled {
+    width: 100%;
+    background-color: @color-basic-50;
+    border: 0 none;
+    color: @color-basic-500;
+  }
+}
+
+w-create-order {
+  display: block;
+  width: 100%;
+  max-height: 100%;
+  overflow: hidden;
+
+  .note-plate {
+    position: relative;
+    background: @color-basic-50;
+    border: 1px dashed @color-basic-200;
+    padding: 6px 14px;
+    border-radius: @border-radius;
+    font-family: 'Roboto-Medium', sans-serif;
+  }
+
+  .split-half {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+
+    .flex {
+      display: flex;
+      justify-content: flex-end;
+
+      & > span {
+        margin-left: 20px;
+        height: 13px;
+      }
+    }
+  }
+
+  .underline {
+    cursor: pointer;
+
+    &::after {
+      content: '';
+      border-bottom: 1px solid @color-basic-200;
+      display: block;
+      position: relative;
+      top: -1px;
+    }
+  }
+
+  .underline-dashed {
+    cursor: pointer;
+    position: relative;
+
+    &:hover {
+      &::after {
+        content: '';
+        border-bottom: 1px dashed @color-disabled-400;
+        display: block;
+        position: absolute;
+        bottom: 0;
+        width: 100%;
+        height: 1px;
+      }
+    }
+  }
+
+  .expiration {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin: 7px 0;
+    min-height: 25px;
+
+    & > div {
+      margin-left: 7px;
+      font-size: @font-size-caption-2;
+      color: @color-disabled-600;
+
+      &:first-child {
+        flex-grow: 1;
+        margin-left: 0;
+      }
+    }
+
+    w-select {
+      flex-grow: 0;
+
+      .select {
+        min-width: 82px;
+
+        .title {
+          padding: 2px 25px 2px 10px;
+          border: 1px solid transparent;
+          font-size: @font-size-caption-2;
+
+          &::after {
+            right: 9px;
+            top: 10px;
+            background-size: 80%;
+            background-repeat: no-repeat;
+            background-position: center left;
+          }
+        }
+
+        .select-list {
+          flex-direction: column-reverse;
+
+          w-option {
+            &.active::after {
+              content: '';
+              display: block;
+              position: absolute;
+              right: 9px;
+              top: 50%;
+              width: 10px;
+              height: 5px;
+              transform: translateY(-50%);
+              background-image: @arrow-select-icon;
+              background-size: 80%;
+              background-repeat: no-repeat;
+              background-position: center left;
+            }
+
+            .option {
+              padding: 0 25px 0 10px;
+              line-height: 20px;
+              font-size: @font-size-caption-2;
+              text-align: left;
+            }
+          }
+        }
+
+        &.expanded {
+          .title {
+            border: 1px solid @color-basic-100;
+          }
+
+          .select-list {
+            margin-top: 22px;
+          }
+        }
+      }
+    }
+  }
+
+  .icon-close {
+    position: absolute;
+    top: 0;
+    display: none;
+    height: 30px;
+    width: 30px;
+    right: 15px;
+    background-size: 10px;
+    background-position: center;
+  }
+
+  .create-order {
+    position: relative;
+
+    input {
+      color: @color-disabled-900;
+      background: @color-white;
+    }
+
+    .head {
+      align-items: center;
+      width: 100%;
+      padding: 0 16px;
+      height: 30px;
+      position: relative;
+      display: none;
+      border-bottom: 1px solid @color-disabled-100;
+    }
+
+    .body {
+      .choice {
+        display: none;
+        flex-direction: row;
+        position: relative;
+        z-index: 2;
+        text-transform: uppercase;
+        background-color: @color-white;
+
+        .choose {
+          width: 50%;
+          flex-grow: 1;
+          height: 50px;
+          padding-top: 8px;
+          text-align: center;
+          cursor: pointer;
+          color: @white-only;
+
+          .name {
+            font-size: @font-size-caption-2;
+            text-transform: uppercase;
+          }
+
+          .price {
+            .footnote-2();
+          }
+
+          &.sell {
+            background: @color-error-400;
+          }
+
+          &.buy {
+            background: @color-submit-400;
+          }
+
+          &.inactive {
+            background: black;
+          }
+        }
+
+        .middle {
+          width: 70px;
+          padding-top: 15px;
+          text-align: center;
+        }
+      }
+
+      .making-order {
+        .create-order-notification {
+          z-index: 1;
+        }
+
+        .areas {
+          display: flex;
+          flex-direction: row;
+          position: relative;
+          z-index: 3;
+
+          .area {
+            width: 50%;
+            flex-grow: 1;
+            height: 38px;
+            color: @color-disabled-400;
+            border-bottom: 1px solid @color-basic-100;
+            cursor: pointer;
+            background: @color-white;
+            text-align: center;
+            border-top: 2px solid @color-white;
+
+            .name {
+              line-height: 32px;
+              text-transform: uppercase;
+            }
+
+            &:first-child {
+              border-right: 1px solid @color-basic-100;
+            }
+
+            .spread {
+              position: absolute;
+              left: 50%;
+              transform: translate(-50%, 50px);
+              margin-top: -12px;
+
+              span {
+                display: block;
+                text-align: center;
+              }
+
+              .spread-label {
+                font-size: 9px;
+              }
+            }
+          }
+        }
+
+        .fields {
+          padding: 6px 25px 17px;
+          background: @color-white;
+
+          .field-label {
+            margin-top: 8px;
+            padding-bottom: 4px;
+          }
+
+          .field-fee {
+            margin: 13px 0;
+
+            span:last-child {
+              margin-left: 5px;
+            }
+          }
+
+          w-input-container.invalid {
+            .input-like:not(.embed) {
+              border: 1px solid @color-error-200;
+            }
+          }
+
+          w-input-container.invalid {
+            .input-like:not(.embed) {
+              border: 1px solid @color-error-200;
+            }
+          }
+
+          .input-like {
+            padding: 0;
+            display: flex;
+            align-items: center;
+            border-radius: @border-radius / 2;
+
+            w-input {
+              display: block;
+              width: 50%;
+
+              input {
+                height: 28px;
+                border: none;
+              }
+            }
+
+            .asset-name-wrap {
+              position: relative;
+              height: 100%;
+              width: 50%;
+              padding: 6px 11px;
+              background-color: @color-disabled-50;
+              border-top-right-radius: @border-radius;
+              border-bottom-right-radius: @border-radius;
+              text-align: right;
+            }
+          }
+
+          .summary {
+            display: flex;
+            padding-top: 14px;
+            padding-bottom: 25px;
+            justify-content: space-between;
+          }
+
+          .place-order {
+            width: 100%;
+            color: @white-only;
+            border: none;
+            height: 36px;
+            border-radius: @border-radius / 2;
+          }
+        }
+
+        &.buy {
+
+          .areas .area.buy {
+            border-top: 2px solid @color-submit-400;
+            border-bottom: 1px solid @color-white;
+            cursor: default;
+            opacity: 1;
+          }
+
+          button.place-order {
+            background: @color-submit-400;
+            &:hover {
+              background: @color-submit-600;
+            }
+            &:active {
+              background: @color-submit-700;
+            }
+            &[disabled] {
+              background: @color-submit-400;
+              opacity: 0.3;
+            }
+          }
+        }
+
+        &.sell {
+
+          .areas .area.sell {
+            border-top: 2px solid @color-error-400;
+            border-bottom: 1px solid @color-white;
+            cursor: default;
+            opacity: 1;
+          }
+
+          button.place-order {
+            background: @color-error-400;
+            &:hover {
+              background: @color-error-600;
+            }
+            &:active {
+              background: @color-error-700;
+            }
+            &[disabled] {
+              background: @color-error-400;
+              opacity: 0.3;
+            }
+          }
+        }
+
+        .price {
+          font-size: @font-size-caption-2;
+          line-height: 12px;
+
+          span.link {
+            color: @color-disabled-900;
+            font-size: @font-size-caption-2;
+            line-height: 13px;
+            height: auto;
+
+            &.active {
+              color: @color-disabled-600;
+            }
+          }
+        }
+
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1024px) {
+  w-layout {
+    .dex-layout {
+      .dex-layout {
+        &__createorder {
+          margin-left: -5px;
+          margin-right: -5px;
+          width: calc(100% ~'+ 10px');
+          height: 80px;
+          max-height: none;
+          min-height: auto;
+          position: absolute;
+          bottom: -5px;
+          z-index: 7;
+          box-shadow: @shadow-dex-open;
+
+          .dex-layout {
+            &__block {
+              width: 100%;
+              position: absolute;
+              z-index: 8;
+              bottom: 0;
+              height: 80px;
+            }
+          }
+
+          &.expanded {
+            z-index: 7;
+            height: calc(100% ~'+ 10px');
+            top: -5px;
+
+            .dex-layout {
+              &__block {
+                height: 350px;
+              }
+            }
+
+            .mask {
+              display: block;
+            }
+
+            .head {
+              .icon-close {
+                display: block;
+              }
+            }
+
+            .body {
+              .making-order {
+
+                .areas {
+                  display: none;
+                }
+
+                .choice {
+                  display: flex;
+                  border-bottom: 1px solid @color-disabled-100;
+
+                  .buy {
+                    background: @color-white;
+                    flex-basis: 50%;
+                    text-align: left;
+                    padding-left: 25px;
+                  }
+
+                  .sell {
+                    background: @color-white;
+                    flex-basis: 50%;
+                    text-align: right;
+                    padding-right: 25px;
+                  }
+
+                  .middle {
+                    position: absolute;
+                    left: 50%;
+                    top: 0;
+                    color: @color-submit-400;
+                    height: 49px;
+                    width: 80px;
+                    transform: translate(-50%, 0);
+                  }
+
+                }
+
+                &.buy {
+                  .buy {
+                    background: rgba(31, 90, 245, 0.1);
+                    .price {
+                      span {
+                        color: @color-submit-400;
+                      }
+                    }
+
+                    .name {
+                      color: @color-submit-400;
+                    }
+                  }
+
+                  .sell {
+                    .price {
+                      span {
+                        color: @color-basic-900;
+                      }
+                    }
+                    .name {
+                      color: @color-basic-500;
+                    }
+                  }
+                }
+
+                &.sell {
+                  .buy {
+                    .price {
+                      span {
+                        color: @color-basic-900;
+                      }
+                    }
+                    .name {
+                      color: @color-basic-500;
+                    }
+                  }
+
+                  .sell {
+                    background: rgba(239, 72, 41, 0.1);
+                    .price {
+                      span {
+                        color: @color-error-500;
+                      }
+                    }
+
+                    .name {
+                      color: @color-error-500;
+                    }
+                  }
+
+                  .middle {
+                    color: @color-error-500;
+                  }
+                }
+
+              }
+            }
+          }
+
+          w-create-order {
+            .create-order {
+
+              .body {
+                .making-order {
+                  .create-order-notification {
+                    z-index: 1;
+                  }
+                }
+              }
+
+              .expandable {
+                display: block;
+              }
+
+              .head {
+                display: flex;
+              }
+
+              .body {
+                .making-order {
+                  .choice {
+                    display: flex;
+
+                    .price {
+                      span {
+                        color: @white-only;
+                      }
+                    }
+                  }
+
+                  .areas {
+                    display: none;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+
+}
+
+@media screen and (max-width: 659px) {
+  w-layout {
+    .dex-layout {
+      .dex-layout {
+        &__createorder {
+          position: fixed;
+          box-shadow: @shadow-create-order;
+
+          &.expanded {
+            bottom: 0;
+            top: auto;
+          }
+        }
+      }
+    }
+  }
+}

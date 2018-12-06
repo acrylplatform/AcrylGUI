@@ -1,0 +1,20 @@
+<div class="block-wrapper">
+    <div class="block-title">
+        <div ng-if="$ctrl.hasSearch" class="has-search">
+            <w-input placeholder="directives.watchlist.placeholders.coin"
+                     ng-model="$ctrl.search"
+                     ng-focus="$ctrl.focused = true"
+                     ng-blur="$ctrl.focused = false"
+                     w-i18n-attr="placeholder"></w-input>
+        </div>
+        <div class="basic-700 footnote-2 dex-block-title"
+             ng-click="$ctrl.onClickTitle()">
+            {{$ctrl.title}}
+        </div>
+        <div ng-if="$ctrl.canCollapse"
+             ng-click="$ctrl.toggleCollapse()"
+             class="dex-block-top-btn"><i class="collapse"></i></div>
+        <div ng-click="$ctrl.scrollToSpread()" class="dex-block-top-btn"><i class="tospread"></i></div>
+    </div>
+    <div ng-if="!$ctrl.collapsed" class="dex-block-content" ng-transclude></div>
+</div>

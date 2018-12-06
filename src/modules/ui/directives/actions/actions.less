@@ -1,0 +1,92 @@
+@import (reference) 'config';
+
+w-actions {
+  display: block;
+  height: 16px;
+  width: 4px;
+  position: absolute;
+  right: 30px;
+  top: 50%;
+  margin-top: -8px;
+  cursor: pointer;
+
+  .actions-container {
+    z-index: 2;
+    min-width: 215px;
+    display: block;
+    position: absolute;
+    right: 0;
+    top: 0;
+    margin-bottom: 10px;
+    padding: 17px 0;
+    background-color: @color-white;
+    box-shadow: @shadow-buttons-default;
+    border-radius: @border-radius;
+
+    &.open-up {
+      top: auto;
+      bottom: 0;
+    }
+
+    .action {
+      padding: 8px 20px;
+
+      a {
+        color: @color-disabled-900;
+      }
+
+      &:hover {
+        background-color: @color-basic-50;
+      }
+    }
+
+    &.expanded {
+      display: block;
+    }
+  }
+
+  .click-area {
+    display: flex;
+    justify-content: center;
+    width: 24px;
+    height: 16px;
+    cursor: pointer;
+
+    .dots {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      height: 100%;
+
+      .dot {
+        width: 4px;
+        height: 4px;
+        border-radius: 100%;
+        background-color: @color-basic-500;
+      }
+    }
+
+    .dots.white.horizontal {
+        flex-direction: row;
+        width: 30px;
+
+        .dot {
+          background-color: @color-white;
+        }
+    }
+  }
+}
+
+@media screen and (max-width: 659px) {
+  .smart-table {
+    &__mode-large {
+      .smart-table__w-tbody {
+        w-actions {
+          right: 10px;
+          top: 39px;
+          width: 24px;
+        }
+      }
+    }
+  }
+}

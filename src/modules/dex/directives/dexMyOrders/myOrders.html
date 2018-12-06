@@ -1,0 +1,116 @@
+<w-loader ng-if="$ctrl.pending"></w-loader>
+
+<w-smart-table ng-if="!$ctrl.pending"
+               class="smart-table"
+               data="$ctrl.orders"
+               header-info="$ctrl.headers">
+
+    <div class="order-permission-error error js-order-notification">
+        <i class="icon"></i><span w-i18n="directives.myOrders.noPermissionCancelOrder"></span>
+    </div>
+
+    <div ng-if="$ctrl.hasScript"
+         w-i18n="directives.myOrders.withScript"
+         class="centered">
+    </div>
+
+    <w-empty-block ng-if="!$ctrl.orders.length && !$ctrl.isDemo && !$ctrl.loadingError && !$ctrl.hasScript && $ctrl.hasScript"></w-empty-block>
+    <w-error-block ng-if="$ctrl.loadingError"></w-error-block>
+
+    <div class="sign-in-message" ng-if="$ctrl.isDemo">
+        <a ui-sref="welcome" class="link" w-i18n="directives.demo.signIn"></a>
+        <span w-i18n="directives.demo.or"></span>
+        <a ui-sref="create" class="link" w-i18n="directives.demo.createAccount"></a>
+        <span w-i18n="directives.demo.to.openorders"></span>
+    </div>
+
+    <div class="order-row" ng-if="!$ctrl.loadingError && !$ctrl.hasScript" ng-repeat="order in $data track by order.id">
+        <w-table-row class="{{::order.type}}"
+                     ng-class="{'new-order': order.isNew, 'can-expand': !!order.exchange.length}">
+            <w-table-cell>
+                <span ng-class="{underline: !$ctrl.isSelected(order)}"
+                      ng-click="$ctrl.setPair(order)">
+                    <a href="#">{{::order.pair}}</a>
+                </span>
+            </w-table-cell>
+            <w-table-cell>
+                <span w-i18n="directives.myOrders.orderType.{{::order.type}}"></span>
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.time"></span></span>
+                {{ ::order.timestamp | date:'MM-dd HH:mm:ss' }}
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.price"></span></span>
+                <w-balance short-mode="::true" money="::order.price"></w-balance>
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.amount"></span></span>
+                <w-balance short-mode="::true" money="::order.amount"></w-balance>
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.total"></span></span>
+                <w-balance short-mode="::true" money="::order.total"></w-balance>
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.fee"></span></span>
+                0.003
+            </w-table-cell>
+            <w-table-cell ng-click="$ctrl.toggleDetails(order)">
+                <div class="status">
+                    <div class="progress-precents">
+                        {{$ctrl.round(order.percent)}}%
+                    </div>
+                    <div class="progress-bar">
+                        <div class="progress-fill" style="width: {{order.percent}}%"></div>
+                    </div>
+                    <div class="circle-holder">
+                        <div class="circle-loader"
+                             ng-class="{over50: order.progress > 0.5}">
+                            <span>{{$ctrl.round(order.percent)}}%</span>
+                            <div class="left-half-clipper">
+                                <div class="first50-bar"></div>
+                                <div class="value-bar"
+                                     style="transform: rotate({{order.progress * 360}}deg)">
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </w-table-cell>
+            <w-table-cell ng-if="$ctrl.orders.length">
+                <div ng-click="$ctrl.dropOrder(order)"
+                     w-i18n="directives.myOrders.cancel"
+                     class="stop"></div>
+            </w-table-cell>
+        </w-table-row>
+        <w-table-row class="order-details"
+                     ng-if="order.exchange.length && $ctrl.shownOrderDetails[order.id]"
+                     ng-repeat="tx in order.exchange track by tx.id">
+            <w-table-cell></w-table-cell>
+            <w-table-cell></w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.time"></span>:</span>
+                {{ ::tx.timestamp | date:'MM-dd HH:mm:ss' }}
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.price"></span>:</span>
+                <w-balance short-mode="::true" money="::tx.price"></w-balance>
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.amount"></span>:</span>
+                <w-balance short-mode="::true" money="::tx.amount"></w-balance>
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.total"></span>:</span>
+                <w-balance short-mode="::true" money="::tx.total"></w-balance>
+            </w-table-cell>
+            <w-table-cell>
+                <span class="cell-label"><span w-i18n="directives.myOrders.fee"></span>:</span>
+                <w-balance short-mode="::true" money="::tx.userFee"></w-balance>
+            </w-table-cell>
+            <w-table-cell></w-table-cell>
+            <w-table-cell ng-if="$ctrl.orders.length"></w-table-cell>
+        </w-table-row>
+    </div>
+</w-smart-table>
