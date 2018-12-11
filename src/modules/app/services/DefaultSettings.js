@@ -40,12 +40,13 @@
                     termsAccepted: true,
                     baseAssetId: WavesApp.defaultAssets.USD,
                     events: Object.create(null),
-                    lng: 'en',
+                    lng: 'ru',
                     send: {
                         defaultTab: 'singleSend'
                     },
                     pinnedAssetIdList: [
                         WavesApp.defaultAssets.WAVES,
+                        WavesApp.defaultAssets.ACRYL,
                         WavesApp.defaultAssets.BTC,
                         WavesApp.defaultAssets.ETH,
                         WavesApp.defaultAssets.USD,
@@ -61,9 +62,10 @@
                         activeState: 'assets',
                         assets: {
                             chartMode: 'month',
-                            activeChartAssetId: WavesApp.defaultAssets.WAVES,
+                            activeChartAssetId: WavesApp.defaultAssets.ACRYL,
                             chartAssetIdList: [
                                 WavesApp.defaultAssets.WAVES,
+                                WavesApp.defaultAssets.ACRYL,
                                 WavesApp.defaultAssets.BTC,
                                 WavesApp.defaultAssets.ETH
                             ]
@@ -79,13 +81,13 @@
                     dex: {
                         chartCropRate: 1.5,
                         assetIdPair: {
-                            amount: WavesApp.defaultAssets.WAVES,
+                            amount: WavesApp.defaultAssets.ACRYL,
                             price: WavesApp.defaultAssets.BTC
                         },
                         watchlist: {
                             showOnlyFavorite: false,
                             favourite: [
-                                [WavesApp.defaultAssets.WAVES, WavesApp.defaultAssets.BTC]
+                                [WavesApp.defaultAssets.ACRYL, WavesApp.defaultAssets.BTC]
                             ],
                             activeTab: 'all',
                             list: Object.values(WavesApp.defaultAssets)
