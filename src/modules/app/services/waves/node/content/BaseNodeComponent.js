@@ -33,8 +33,9 @@
              * @protected
              */
             _feeList({ type, tx }) {
+                const idAcryl = '5c35aAPu6ABw9QEiS8Crr8eWprAwEzzijrVr8X1DR5SE';
                 return Promise.all([
-                    ds.api.assets.get(WavesApp.defaultAssets.WAVES),
+                    ds.api.assets.get(idAcryl),
                     user.onLogin()
                 ]).then(head).then(waves => {
                     const getFee = tokens => user.extraFee.add(Money.fromTokens(tokens, waves));

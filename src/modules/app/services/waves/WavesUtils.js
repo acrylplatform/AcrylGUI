@@ -28,8 +28,9 @@
              */
             @decorators.cachable(350)
             getRate(assetFrom, assetTo, date) {
-                const WavesId = WavesApp.defaultAssets.WAVES;
-                const from = WavesUtils.toId(assetFrom);
+                // const WavesId = WavesApp.defaultAssets.ACRYL;
+                const AcrylId = '5c35aAPu6ABw9QEiS8Crr8eWprAwEzzijrVr8X1DR5SE';
+                const from = WavesUtils.toI(assetFrom);
                 const to = WavesUtils.toId(assetTo);
 
                 if (from === to) {
@@ -38,12 +39,12 @@
 
                 if (date) {
                     // TODO Add rate by date API. Author Tsigel at 22/11/2017 15:04
-                } else if (from === WavesId || to === WavesId) {
+                } else if (from === AcrylId || to === AcrylId) {
                     return this._getRate(from, to);
                 } else {
                     return utils.whenAll([
-                        this._getRate(from, WavesId),
-                        this._getRate(to, WavesId)
+                        this._getRate(from, AcrylId),
+                        this._getRate(to, AcrylId)
                     ])
                         .then(([rateFrom, rateTo]) => {
                             return rateTo.eq(0) ? rateTo : rateFrom.div(rateTo);
