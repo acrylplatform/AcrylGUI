@@ -438,8 +438,8 @@
                 const address = item ? item.address : this.address;
                 try {
                     this.networkError = false;
-                    WavesApp.defaultAssets.ACRYL = '5c35aAPu6ABw9QEiS8Crr8eWprAwEzzijrVr8X1DR5SE';
-                    waves = await ds.api.assets.get(WavesApp.defaultAssets.ACRYL);
+                    const idAcryl = '5c35aAPu6ABw9QEiS8Crr8eWprAwEzzijrVr8X1DR5SE';
+                    waves = await ds.api.assets.get(idAcryl);
                 } catch (e) {
                     this.networkError = true;
                     throw new Error('Can\'t get Waves asset');

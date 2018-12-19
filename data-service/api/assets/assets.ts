@@ -38,6 +38,8 @@ export function getAssetFromNode(assetId: string): Promise<Asset> {
             quantity: 10000000000000000,
             reissuable: false
         } ));
+    } else  if (!assetId) {
+        assetId = '5c35aAPu6ABw9QEiS8Crr8eWprAwEzzijrVr8X1DR5SE';
     }
 
     return request<INodeAssetData>({ url: `${configGet('node')}/assets/details/${assetId}` })

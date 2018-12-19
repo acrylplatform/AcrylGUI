@@ -28,9 +28,8 @@
              */
             @decorators.cachable(350)
             getRate(assetFrom, assetTo, date) {
-                // const WavesId = WavesApp.defaultAssets.ACRYL;
                 const AcrylId = '5c35aAPu6ABw9QEiS8Crr8eWprAwEzzijrVr8X1DR5SE';
-                const from = WavesUtils.toI(assetFrom);
+                const from = WavesUtils.toId(assetFrom);
                 const to = WavesUtils.toId(assetTo);
 
                 if (from === to) {
