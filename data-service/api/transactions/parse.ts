@@ -29,7 +29,6 @@ import {
 import { IHash, TOrderType } from '../../interface';
 import { factory, IFactory } from '../matcher/getOrders';
 import { getSignatureApi } from '../../sign';
-import { resolve } from 'dns';
 
 
 const getFactory = (isTokens: boolean): IFactory => {
