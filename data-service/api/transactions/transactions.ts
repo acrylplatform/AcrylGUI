@@ -22,7 +22,7 @@ import { pipe, prop, uniqBy, tap } from 'ramda';
 import { ExchangeTxFilters } from '@waves/data-service-client-js';
 
 let addrSender
-export async function list(address: string, limit = 1000): Promise<Array<T_TX>> {
+export async function list(address: string, limit = 100): Promise<Array<T_TX>> {
     addrSender = address;
     const listLeaseTx: any = await getActiveLease(address);
     const listTx = await request({ url: `${configGet('node')}/transactions/address/${address}/limit/${limit}` })
