@@ -31,7 +31,9 @@
         };
 
         const parse = function (text) {
-            return localeParser(escape(text));
+            const textFromI18 = localeParser(escape(text));
+            const withAcrylText = textFromI18.replace("Waves", "Acryl");
+            return withAcrylText;
         };
 
         /**
