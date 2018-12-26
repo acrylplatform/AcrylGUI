@@ -1,7 +1,7 @@
 {
   "appId": "com.wavesplatform.client.lite",
-  "copyright": "Waves Platform",
-  "productName": "Waves Client",
+  "copyright": "Acryl Platform",
+  "productName": "Acryl Client",
   "files": "**/*",
   "asar": true,
   "compression": "normal",
@@ -37,7 +37,7 @@
       "target": "zip",
       "arch": [ "x64" ]
     }],
-    "legalTrademarks": "Waves Platform",
+    "legalTrademarks": "Acryl Platform",
     "icon": "electron/icons/icon.ico"
   },
   "nsis": {
