@@ -1,0 +1,46 @@
+{
+  "password": {
+    "error": "Onjuist wachtwoord!"
+  },
+  "passwordForm": {
+    "back": "ga terug",
+    "description": "Beveilig uw account met een nieuw wachtwoord of",
+    "importAccounts": "Accounts importeren",
+    "login": "Inloggen",
+    "title": "Beveilig uw account"
+  },
+  "restore": {
+    "beta": {
+      "accountTitle": "Adres / Accountnaam",
+      "buttons": {
+        "cancel": "Ga terug",
+        "copy": "Seed kopiëren",
+        "restore": "Seed herstellen"
+      },
+      "noUsers": {
+        "description": "{div}[We hebben geen opgeslagen accounts gevonden. Ga terug naar de]{div}[[client.wavesplatform.com](https://client.wavesplatform.com]",
+        "title": "Geen opgeslagen accounts"
+      },
+      "passwordTitle": "Wachtwoord",
+      "placeholders": {
+        "password": "Wachtwoord"
+      },
+      "step1Description": "Als u alleen uw wachtwoord heeft, maar niet uw SEED, kunt u deze pagina gebruiken om een een opgeslagen account te herstellen.",
+      "step2Description": "Bewaar uw SEED heel goed. Als u het verliest, heeft u op geen enkele manier toegang tot uw account.",
+      "title": "Seed herstellen"
+    }
+  },
+  "seedForm": {
+    "address": "Adres",
+    "back": "Ga terug",
+    "continue": "Ga verder",
+    "create": "Maak een nieuw account aan",
+    "description": "Inloggen in uw account kan hier beneden of",
+    "or": "of",
+    "placeholder": "Uw seed zijn de 15 woorden die u heeft genoteerd toen u uw account aanmaakte",
+    "saveUserData": "Houd mij ingelogd op deze computer",
+    "seedTitle": "Uw account seed",
+    "title": "Welkom terug",
+    "tosaved": "naar een opgeslagen account"
+  }
+}

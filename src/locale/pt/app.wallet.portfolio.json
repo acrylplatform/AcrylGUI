@@ -1,0 +1,31 @@
+{
+  "allactive": "Todos os ativos ({span}[{{count}}])",
+  "burn": "Queimar Token",
+  "deposit": "Depositar",
+  "dex": "Abrir na DEX",
+  "info": "Informações do Ativo",
+  "list": {
+    "actions": "Ações",
+    "ask": "Ask",
+    "balance": "Saldo",
+    "bid": "Bid",
+    "change": "Variação em 24h",
+    "inOrders": "Em ordens",
+    "mirror": "Valor, {span.currency}[{{currency}}]",
+    "name": "Nome do Ativo",
+    "rate": "Preço, {span.currency}[{{currency}}]"
+  },
+  "pin": "Fixar",
+  "portfolio": {
+    "filter": "Procurar"
+  },
+  "qr": "Seu Endereço",
+  "receive": "Receber",
+  "reissue": "Token Reemissível",
+  "send": "Enviar",
+  "spam": "Spam",
+  "spamselect": "Spam ({span}[{{count}}])",
+  "tospam": "Esconder",
+  "unpin": "Remover",
+  "unspam": "Mostrar"
+}

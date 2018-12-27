@@ -1,0 +1,37 @@
+{
+  "Unpin": "Odepnij",
+  "addAsset": "Dodaj instrument",
+  "chart": {
+    "intervals": {
+      "all": "Wszystko",
+      "day": "1D",
+      "hour": "1G",
+      "month": "1M",
+      "week": "1T",
+      "year": "1R"
+    }
+  },
+  "directives": {
+    "asset": {
+      "anyTx": " ",
+      "deposit": "Deponuj",
+      "ofTotalBalance": "Wycena portfela {{totalBalance}}",
+      "receive": "Otrzymaj",
+      "send": "Wyślij"
+    },
+    "balance": {
+      "actions": {
+        "assetInfo": "Informacja na temat instrumentu",
+        "copyAssetId": "Kopiuj ID instrumentu"
+      }
+    }
+  },
+  "price": "CENA {{currency}}",
+  "qr": "Twój Adres",
+  "send": "Wyślij",
+  "since": {
+    "day": "OD OSTATNIEGO DNIA",
+    "month": "OD OSTATNIEGO MIESIĄCA",
+    "week": "OD OSTATNIEGO TYGODNIA"
+  }
+}
