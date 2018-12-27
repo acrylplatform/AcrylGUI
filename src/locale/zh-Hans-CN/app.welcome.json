@@ -1,0 +1,50 @@
+{
+  "infoTooltip": "重要信息",
+  "newUser": {
+    "from": "从备份",
+    "getStarted": "开始使用",
+    "import": "导入帐户",
+    "or": "或",
+    "restore": "恢复帐户",
+    "slides": [
+      {
+        "description": "参与成为快速增长加密世界里的一部分。 唯一能够访问您的数字资产是您",
+        "title": "开始使用区块链"
+      },
+      {
+        "description": "简单轻松，安全储存、管理和接收数字资产余额的利息。",
+        "title": "智能数字钱包"
+      },
+      {
+        "description": "安全快捷地交易。 使用内建去中心化交易所直接进行交易，您可以完全掌控您的资产，可以避免资产托管于第三方交易所的风险。",
+        "title": "内建去中心化交易所"
+      },
+      {
+        "description": "发行属于您的代币。 代币可以结合用于您的企业中，不仅可以作为指定货币，还可以作为分布式投票、评级系统或忠诚计划。",
+        "title": "创建代币功能"
+      }
+    ]
+  },
+  "openViaDesktop": "我愿意通过桌面版打开链接",
+  "password": {
+    "error": "密码不正确！"
+  },
+  "userList": {
+    "addNew": "添加一个帐号",
+    "address": "地址 / 用户名",
+    "buttons": {
+      "login": "登入"
+    },
+    "create": "创建新的帐号",
+    "frombackup": "备份",
+    "import": "导入帐户",
+    "password": "密码",
+    "placeholders": {
+      "password": "密码"
+    },
+    "restore": "恢复帐户",
+    "subTitle": "请重新登录或",
+    "subTitleSession": "您的访问已经中断。",
+    "title": "登录"
+  }
+}

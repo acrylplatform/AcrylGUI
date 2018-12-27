@@ -1,0 +1,46 @@
+{
+  "infoTooltip": "Önemli bilgilendirme",
+  "newUser": {
+    "from": " ",
+    "getStarted": "Haydi başlayalım!",
+    "or": "veya",
+    "restore": "Hesabı geri yükle",
+    "slides": [
+      {
+        "description": "Kripto para dünyasının hızla büyüyen alanına hoşgeldiniz. Kripto paralarınıza erişebilecek tek kişi sizsiniz.",
+        "title": "Blok zincirinin bir parçası olun"
+      },
+      {
+        "description": "Dijital varlıklarınızı kolay ve güvenli bir şekilde saklayın, yönetin veya kiralayın!",
+        "title": "Cüzdan"
+      },
+      {
+        "description": "Hızlı ve güvenli bir şekilde takas yapın! Waves Platform merkezsiz borsasında işlem yaparak kripto paralarınız üzerinde tam hakimiyete sahip olursunuz.",
+        "title": "Merkezsiz Borsa"
+      },
+      {
+        "description": "Üreteceğiniz kripto paralarınızı merkezsiz oylamalar, derecelendirme sistemleri veya sadakat programları gibi amaçlar için de kullanabilirsiniz.",
+        "title": "Kendi Kripto Paranızı Yaratın"
+      }
+    ]
+  },
+  "password": {
+    "error": "Hatalı parola"
+  },
+  "userList": {
+    "addNew": "Hesap ekle",
+    "address": "Adres / hesap adı",
+    "buttons": {
+      "login": "Giriş Yap"
+    },
+    "create": "Yeni bir hesap oluşturun",
+    "frombackup": " ",
+    "password": "Parola",
+    "placeholders": {
+      "password": "Parola"
+    },
+    "restore": "Hesabı geri yükle",
+    "subTitle": "Tekrar giriş yapın veya",
+    "title": "Giriş yapın"
+  }
+}

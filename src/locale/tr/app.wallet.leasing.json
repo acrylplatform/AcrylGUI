@@ -1,0 +1,19 @@
+{
+  "leased": "Kiralanmış",
+  "leasedIn": "Kiralanmış",
+  "description": {
+    "text2": "Kiralama işlemini dilediğiniz zaman iptal edebilirsiniz. İptal işlemi saniyeler içerisinde gerçekleşir.",
+    "text3": "Üretim bakiyesi 1000 Blok sonra güncellenecektir.",
+    "title": "Kiralamadan Önce..",
+    "text1": "Sadece kiralanmamış WAVES'lerinizi transfer veya takas edebilirsiniz. Kiralanmış miktarlar başka bir adrese gönderilemez veya takas amacı ile kullanılamaz."
+  },
+  "chart": {
+    "available": "Kullanılabilir",
+    "create": "Kiralamaya başla",
+    "leased": "Kiralanmış",
+    "title": "WAVES Bakiyesi"
+  },
+  "title": "Kiralama işlemleri",
+  "available": "Kullanılabilir",
+  "nodeListLink": "Node’ların listesi"
+}
