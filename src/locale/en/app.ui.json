@@ -70,7 +70,7 @@
     "success": "Your transaction is on the way!",
     "wavesKeeperUnconfirmed": {
       "description": "Please try again. If the error persists, please submit a ticket to [support](https://support.wavesplatform.com)",
-      "header": "You did not confirm the request using Waves Keeper"
+      "header": "You did not confirm the request using Acryl Keeper"
     }
   },
   "copyError": "Cannot copy! Your browser may be outdated",
@@ -91,9 +91,9 @@
       "confirmRequestKeeper": {
         "cancel": "Cancel",
         "errorDescription": "Please try again. If the error persists, please submit a ticket to [support](https://support.wavesplatform.com)",
-        "errorHeader": "You did not confirm the request using Waves Keeper",
+        "errorHeader": "You did not confirm the request using Acryl Keeper",
         "sign": "Retry",
-        "waiting": "Waiting for confirmation from Waves Keeper..."
+        "waiting": "Waiting for confirmation from Acryl Keeper..."
       },
       "confirmRequestLedger": {
         "cancel": "Cancel",
