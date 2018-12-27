@@ -14,7 +14,7 @@
   "modal": {
     "set_protocol_error": {
       "close": "Close",
-      "message": "Can't set default protocol for launch waves client. Links from browser temporally not supported!",
+      "message": "Can't set default protocol for launch Acryl client. Links from browser temporally not supported!",
       "report": "Report",
       "title": "Set open protocol error"
     }
