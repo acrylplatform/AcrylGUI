@@ -1,0 +1,62 @@
+{
+  "count": "토큰 총수량",
+  "create": "발행",
+  "description": "토큰 설명",
+  "directives": {
+    "sign": {
+      "confirmRequestLedger": {
+        "waiting": "Ledger Nano S의 승인을 기다리고 있습니다..."
+      }
+    }
+  },
+  "fee": "수수료 1 WAVES",
+  "help": {
+    "name": "라틴 문자만 사용하세요"
+  },
+  "helpIcon": {
+    "demicals": "발행할 토큰의 소수점 자리를 설정하는 항목입니다.",
+    "totalTokens": {
+      "headline": "토큰 총 발행량을 설정하는 항목입니다.",
+      "notReissuable": "재발행 불가 선택 시 현 단계에 설정한 수량이 총 발행량으로 영구 설정되며 향후 변경이 불가능합니다.",
+      "reissuable": "재발행 가능 선택 시 향후 추가적으로 토큰을 발행할 수 있으며 추가 발행 시 총 발행량이 변경됩니다."
+    }
+  },
+  "modal": {
+    "title": "{{name}} 생성",
+    "titleSuccess": "{{name}} 생성 완료"
+  },
+  "name": "토큰 명칭",
+  "notifications": {
+    "isNotCreated": "토큰이 발행되지 않았습니다"
+  },
+  "pageTitle": "토큰 발행",
+  "placeholders": {
+    "description": "토큰 설명 항목은 추후 수정이 불가능합니다",
+    "precision": "소수점 자릿수 0에서 8사이"
+  },
+  "precision": "소수점 자릿수",
+  "preview": "미리보기",
+  "reissuable": {
+    "false": "재발행 불가",
+    "true": "재발행 가능"
+  },
+  "success": {
+    "description": "{{amount}} {{name}}를 발행했습니다",
+    "done": "포트폴리오 열기",
+    "title": "트랜잭션이 진행중입니다!"
+  },
+  "validators": {
+    "byte": {
+      "gte": "토큰 명칭을 4에서 16바이트 내로 입력하세요",
+      "lte": "토큰 명칭을 4에서 16바이트 내로 입력하세요"
+    },
+    "descriptionLen": "입력된 설명이 1,000 바이트를 넘었습니다. 1,000 바이트 내로 입력하세요.",
+    "maxValueCount": "입력한 숫자가 너무 큽니다",
+    "maxValuePrecision": "잘못된 숫자를 입력했습니다. 0에서 8사이의 숫자를 입력하세요",
+    "minValueCount": "입력한 숫자가 0보다 커야 합니다",
+    "minValuePrecision": "잘못된 숫자를 입력했습니다. 0에서 8사이의 숫자를 입력하세요",
+    "noMoney": "트랜잭션 수수료를 지불할 잔액이 부족합니다",
+    "precisionCount": "토큰 총수량에 입력된 소수점 자릿수 보다 더 많은 소수점 자릿수를 입력할 수 없습니다",
+    "required": "필수 입력 항목입니다"
+  }
+}

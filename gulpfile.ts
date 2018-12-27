@@ -41,6 +41,7 @@ const taskHash = {
 
 const tmpJsPath = join(__dirname, 'dist', 'tmp', 'js');
 const tmpCssPath = join(__dirname, 'dist', 'tmp', 'css');
+const localPath = join(__dirname, 'dist', 'locales');
 const vendorName = 'vendors.js';
 const bundleName = 'bundle.js';
 const templatesName = 'templates.js';
@@ -261,6 +262,10 @@ task('concat-develop-vendors', function () {
         .pipe(gulp.dest(tmpJsPath));
 });
 
+task('copy-locale', function () {
+    return gulp.src('src/locale/**/*').pipe(gulp.dest('dist/locale'));
+});
+
 task('downloadLocales', ['concat-develop-sources'], function (done) {
     const path = join(tmpJsPath, bundleName);
 
@@ -273,16 +278,16 @@ task('downloadLocales', ['concat-develop-sources'], function (done) {
         modules.push('electron');
 
         const load = name => {
-            const langs = Object.keys(meta.langList);
-
-            return Promise.all(langs.map(lang => {
+            const langs = Object.keys(meta.langList); 
+           return true;
+            /* return Promise.all(langs.map(lang => {
                 const url = `https://locize.wvservices.com/30ffe655-de56-4196-b274-5edc3080c724/latest/${lang}/${name}`;
                 const out = join('dist', 'locale', lang, `${name}.json`);
 
                 return download(url, out)
                     .then(() => console.log(`Module ${lang} ${name} loaded!`))
                     .catch(() => console.error(`Error load module with name ${name}!`));
-            }));
+            })); */
         };
         return Promise.all(modules.map(load));
     }).then(() => done());
@@ -434,6 +439,7 @@ task('data-service', function () {
 
 task('all', [
     'clean',
+    'copy-locale',
     'data-service',
     'templates',
     'concat',

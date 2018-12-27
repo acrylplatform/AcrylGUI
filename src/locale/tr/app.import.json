@@ -1,0 +1,13 @@
+{
+  "LedgerClient": "Ledger Nano S\n",
+  "back": "Geri dön",
+  "importAccount": "Hesapları içeri aktar",
+  "importAccountInfo": "Hesapların nereden aktarılacağını seç",
+  "ledgerDescription": "Hesapları Ledger Nano S'den içeri aktar",
+  "or": "Veya",
+  "selectButton": "Seç",
+  "wavesLiteClient": "Waves Lite Client",
+  "wavesLiteClientDescription": "Hesapları Waves Lite Client'ten içeri aktar",
+  "wavesSeedClient": "Anahtar kelimeleri yedekle",
+  "wavesSeedClientDescription": "Hesapları anahtar kelimelerden içeri aktar"
+}

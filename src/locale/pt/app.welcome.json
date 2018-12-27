@@ -1,0 +1,50 @@
+{
+  "infoTooltip": "Informação importante",
+  "newUser": {
+    "from": "por backup",
+    "getStarted": "Vamos Começar",
+    "import": "Importar contas",
+    "or": "ou",
+    "restore": "Restaurar conta",
+    "slides": [
+      {
+        "description": "Faça parte desta comunidade em grande expansão no mundo das criptomoedas. Você é a única pessoa que pode acessar suas criptomoedas.",
+        "title": "Vamos iniciar no Blockchain"
+      },
+      {
+        "description": "Armazene, gerencie e receba juros sobre seu saldo de ativos digitais, de forma fácil e segura.",
+        "title": "Carteira"
+      },
+      {
+        "description": "Negocie com rapidez e segurança. Você mantém o controle total sobre seus fundos ao negociá-los em nossa exchange descentralizada.",
+        "title": "Exchange Descentralizada"
+      },
+      {
+        "description": "Crie seus próprios tokens. Eles podem ser integrados à sua empresa, não apenas como uma moeda interna, mas também como um token para votação descentralizada, como um sistema de classificação ou programa de fidelidade.",
+        "title": "Criar Token"
+      }
+    ]
+  },
+  "openViaDesktop": "Desejo abrir os links através do aplicativo Desktop",
+  "password": {
+    "error": "Senha Incorreta!"
+  },
+  "userList": {
+    "addNew": "Adicionar uma conta",
+    "address": "Endereço / Nome da conta",
+    "buttons": {
+      "login": "Entrar"
+    },
+    "create": "Criar uma nova conta",
+    "frombackup": "por backup",
+    "import": "Importar contas",
+    "password": "Senha",
+    "placeholders": {
+      "password": "Senha"
+    },
+    "restore": "Restaurar conta",
+    "subTitle": "A sessão foi encerrada automaticamente. Entre novamente ou",
+    "subTitleSession": "A sessão foi encerrada automaticamente.",
+    "title": "Entrar"
+  }
+}

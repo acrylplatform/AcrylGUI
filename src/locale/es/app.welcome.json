@@ -1,0 +1,49 @@
+{
+  "infoTooltip": "Información importante",
+  "newUser": {
+    "from": "desde un backup",
+    "getStarted": "Empezar",
+    "import": "Importar cuentas",
+    "or": "o",
+    "restore": "Recuperar cuenta",
+    "slides": [
+      {
+        "description": "Forma parte de un área de rápido crecimiento en el mundo de la criptografía. Eres la única persona que puede acceder a tus activos criptográficos.",
+        "title": "Сomienza con el Blockchain"
+      },
+      {
+        "description": "Almacena, gestiona y recibe intereses en el saldo de tus activos digitales de forma fácil y segura.",
+        "title": "Billetera (Wallet)"
+      },
+      {
+        "description": "Comercia de forma rápida y segura. Tus fondos están bajo tu total control cuando comercias en nuestro Intercambio Descentralizado (DEX).",
+        "title": "DEX - Intercambio Descentralizado"
+      },
+      {
+        "description": "Emite tus propios tokens. Pueden ser integrados en tus negocios no solo como una moneda interna sino como un token para votaciones descentralizadas, como un sistema de puntuación o como un programa de lealtad.",
+        "title": "Emisor de Token/Activos"
+      }
+    ]
+  },
+  "password": {
+    "error": "¡Contraseña incorrecta!"
+  },
+  "userList": {
+    "addNew": "Añadir una cuenta",
+    "address": "Dirección / Nombre de la cuenta",
+    "buttons": {
+      "login": "Iniciar sesión"
+    },
+    "create": "crear una nueva cuenta",
+    "frombackup": "desde un backup",
+    "import": "Importar cuentas",
+    "password": "Contraseña",
+    "placeholders": {
+      "password": "Contraseña"
+    },
+    "restore": "Recuperar cuenta",
+    "subTitle": "Entra de nuevo o",
+    "subTitleSession": "La sesión ha sido terminada automáticamente. ",
+    "title": "Registrarse"
+  }
+}

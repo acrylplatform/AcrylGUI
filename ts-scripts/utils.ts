@@ -287,22 +287,11 @@ export function route(connectionType: TConnection, buildType: TBuild, type: TPla
         }
 
         if (url.indexOf('/locales') === 0) {
-            const [lang, ns] = url.replace('/locales/', '')
-                .replace(/\?.*/, '')
-                .replace('.json', '')
-                .split('/');
-
-            get(`https://locize.wvservices.com/30ffe655-de56-4196-b274-5edc3080c724/latest/${lang}/${ns}`, (response) => {
-                let data = new Buffer('');
-
-                // A chunk of data has been recieved.
-                response.on('data', (chunk: Buffer) => {
-                    data = Buffer.concat([data, chunk]);
+            const url1 = url.replace('locales', 'locale');
+                readFile(join(__dirname, `./../dist/`, url1), 'utf8')
+                .then((template) => {                 
+                    res.end(template);
                 });
-                response.on('end', () => {
-                    res.end(data);
-                });
-            });
             return null;
         }
 
