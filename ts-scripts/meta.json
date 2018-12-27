@@ -55,62 +55,6 @@
         "group": " ",
         "decimal": "."
       }
-    },
-    "ko": {
-      "name": "Ko",
-      "separators": {
-        "group": ",",
-        "decimal": "."
-      }
-    },
-    "zh-Hans-CN": {
-      "name": "Zh",
-      "separators": {
-        "group": ",",
-        "decimal": "."
-      }
-    },
-    "tr": {
-      "name": "Tr",
-      "separators": {
-        "group": " ",
-        "decimal": "."
-      }
-    },
-    "nl": {
-      "name": "Nl",
-      "separators": {
-        "group": ",",
-        "decimal": "."
-      }
-    },
-    "hi": {
-      "name": "Hi",
-      "separators": {
-        "group": ",",
-        "decimal": "."
-      }
-    },
-    "es": {
-      "name": "Es",
-      "separators": {
-        "group": ",",
-        "decimal": "."
-      }
-    },
-    "pt": {
-      "name": "Pt",
-      "separators": {
-        "group": ",",
-        "decimal": "."
-      }
-    },
-    "pl": {
-      "name": "Pl",
-      "separators": {
-        "group": ",",
-        "decimal": "."
-      }
     }
   },
   "electronScripts": [
