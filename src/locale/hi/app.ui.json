@@ -1,0 +1,173 @@
+{
+  "amount": "राशि",
+  "balanceInput": {
+    "max": "अधि."
+  },
+  "confirmGatewayTransaction": {
+    "back": "वापस",
+    "confirm": "पुष्टि करें",
+    "fieldAddress": "लक्षित पता",
+    "fieldAmount": "राशि",
+    "fieldFee": "फीस",
+    "fieldGatewayAddress": "गेटवे पता",
+    "fieldGatewayFee": "गेटवे फीस",
+    "success": "आपका लेनदेन होने वाला है!",
+    "warningText": "आप {{name}} ब्लॉकचेन को धन भेजने वाले हैं।",
+    "warningTitle": "बाहरी ब्लॉकचेन लेनदेन"
+  },
+  "confirmTransaction": {
+    "back": "वापस जाएं",
+    "confirm": "पुष्टि करें",
+    "description": {
+      "burn": "आपने {{quantityStr}} {{name}} जला दिए",
+      "cancel-leasing": "आपने एक लीज़िंग लेनदेन रद्द किया",
+      "circular": "आपने {{amount, money-currency}} खुद को भेजे",
+      "create-alias": "आपने एक उपनाम बनाया",
+      "issue": "आपने {{quantityStr}} {{name}} जनरेट किए",
+      "lease-out": "आपने {{amount, money-currency}} लीज़ की",
+      "mass-send": "आपने {{totalAmount, money-currency}} भेजे\"",
+      "reissue": "आपने अतिरिक्त {{quantityStr}} {{name}} जनरेट किए\"",
+      "send": "आपने {{amount, money-currency}} भेजे"
+    },
+    "details": "विवरण देखें",
+    "redirect": "आपको {{referrer}} पर रीडायरेक्ट किया जाएगा",
+    "send": {
+      "errors": {
+        "balance": {
+          "invalid": "अपर्याप्त फंड"
+        },
+        "recipient": {
+          "invalid": "प्राप्तकर्ता पता अमान्य है"
+        }
+      }
+    },
+    "success": "आपका लेनदेन होने वाला है!"
+  },
+  "copyError": "कॉपी नहीं कर सकता! आपका ब्राउज़र पुराना हो सकता है",
+  "copySuccess": "ये डेटा कॉपी किया है",
+  "emptyBlocks": {
+    "title": "यहां कुछ नहीं है..."
+  },
+  "errorBlocks": {
+    "title": "कुछ गलत हुआ..."
+  },
+  "modal": {
+    "token": {
+      "warning": {
+        "header": "आप सहमत हैं कि:",
+        "text": "{div.line}[I) आप टोकन को किन्ही धोखाधड़ी वाले प्रयोजनों के लिए उपयोग नहीं करेंगे;]\n{div.line}[II)उपयोगकर्ताओं को बहकाने के उद्देश्य से आप किसी मौजूदा क्रिप्टोकरेंसी या विख्यात कंपनी के नाम को पूरी तरह से या आंशिक रूप से डुप्लीकेट नहीं करेंगे;]\n{div.line}[III)उपयोगकर्ताओं को बहकाने के उद्देश्य से आप राज्यों या दूसरी प्रशासनिक इकाइयों या म्युनिसिपल संस्थानों के नामों को टोकन के नाम के लिए उपयोग नहीं करेंगे।]",
+        "textWarning": "इन बिंदुओं का पालन करने में विफल रहने पर आपके टोकन को स्पैम के रूप में वर्गीकृत कर दिया जाएगा, और केवल ID की खोज के लिए ही उपलब्ध होगा।"
+      }
+    }
+  },
+  "password": {
+    "minLength": "कम से कम {{minLength}} वर्णों का होना चाहिए",
+    "name": "खाते का नाम",
+    "repeat": "पासवर्ड पुष्टि करें\"",
+    "secure": "सुरक्षित पासवर्ड",
+    "title": "अपने खाते को नए पासवर्ड से सुरक्षित करें",
+    "warn": "आसान, कोई अंक या चिंह्न जोड़ें"
+  },
+  "recipient": "प्राप्तकर्ता",
+  "transaction": {
+    "actions": {
+      "cancelLeasing": "लीज़िंग रद्द करें",
+      "copyTxData": "सारा TX डेटा कॉपी करें",
+      "copyTxId": "TX ID कॉपी करें",
+      "showTx": "TX जानकारी"
+    },
+    "amounts": {
+      "burn": "–{{amount}} {{name}}",
+      "cancel-leasing": "{{amount}} {{name}}",
+      "circular": "{{amount}} {{name}}",
+      "exchange-buy": "{{sign}}{{amount}} {{name}}",
+      "exchange-sell": "{{sign}}{{amount}} {{name}}",
+      "issue": "{{amount}} {{name}}",
+      "lease-in": "{{amount}} {{name}}",
+      "lease-out": "{{amount}} {{name}}",
+      "mass-receive": "+{{amount}} {{name}}",
+      "mass-send": "–{{amount}} {{name}}",
+      "receive": "+{{amount}} {{name}}",
+      "reissue": "+{{amount}} {{name}}",
+      "send": "–{{amount}} {{name}}"
+    },
+    "confirmed": {
+      "false": "अपुष्ट",
+      "true": "पूर्ण"
+    },
+    "headers": {
+      "activeLeasing": "अब सक्रिय",
+      "burn": "{{Name}} टोकन जलाना",
+      "cancel-leasing": "लीज़िंग रद्द की",
+      "circular": "स्वयं-ट्रांसफर किया {{name}}",
+      "create-alias": "उपनाम बनाया",
+      "exchange-amount": "{{amountAsset}}/{{priceAsset}}",
+      "exchange-buy": "एक्सचेंज खरीद: {{amountAsset}}/{{priceAsset}}",
+      "exchange-sell": "एक्सचेंज सेल: {{amountAsset}}/{{priceAsset}}",
+      "issue": "{{Name}} टोकन जनरेशन",
+      "lease-in": "आने वाली लीज़िंग",
+      "lease-out": "लीज़िंग शुरु की",
+      "mass-receive": "{{Name}} प्राप्त किया",
+      "mass-send": "{{Name}} भेजा",
+      "receive": "{{Name}} प्राप्त किया",
+      "reissue": "{{Name}} टोकन पुनः जारी करना",
+      "send": "{{Name}} भेजा",
+      "spam": "स्पैम",
+      "unknown": "अज्ञात लेनदेन"
+    },
+    "modals": {
+      "assetId": "ID",
+      "attachment": "संलग्न संदेश",
+      "cancelTx": "TX",
+      "confirmations": "पुष्टिकरण",
+      "description": "विवरण",
+      "fee": "फीस",
+      "from": "से",
+      "height": "लॉक करें",
+      "massSend": {
+        "showAll": {
+          "false": "सभी ({{Count}}) दिखाएं",
+          "true": "पहले 3 लेनदेन दिखाएं"
+        },
+        "totalAmount": "कुल राशि"
+      },
+      "numberOfRecipients": "राप्तकर्ताओं की संख्या",
+      "price": "{{name}} मूल्य",
+      "to": "को",
+      "txId": "TXID",
+      "type": "प्रकार",
+      "viewTransactionKey": "लेनदेन",
+      "viewTransactionValue": "लेनदेन देखें"
+    },
+    "notifications": {
+      "closed": "लीज़िंग पहले पहले ही रद्द की गयी",
+      "closedSuccess": "लीज़िंग रद्द करना पूर्ण"
+    },
+    "reissuable": {
+      "false": "फिर जारी ना करने योग्य",
+      "true": "फिर जारी करने योग्य"
+    },
+    "subheaders": {
+      "burn": "{{time}}",
+      "cancel-leasing": "{{time}}{span.locale-address}[, लेनदेन {{transactionId}}]",
+      "circular": "{{time}}{span.locale-address}[, पते पर {{address}}]",
+      "create-alias": "{{time}}, {{alias}}",
+      "exchange-buy": "{{time}}",
+      "exchange-sell": "{{time}}",
+      "issue": "{{time}}",
+      "lease-in": "{{time}}{span.locale-address}[, पते से {{address}}]",
+      "lease-out": "{{time}}{span.locale-address}[, पते को {{address}}]",
+      "mass-receive": "{{time}}{span.locale-address}[, पते से {{address}}]",
+      "mass-send": "{{time}}",
+      "receive": "{{time}}{span.locale-address}[, पते से {{address}}]",
+      "reissue": "{{time}}",
+      "send": "{{time}}{span.locale-address}[, पते को {{address}}]",
+      "unknown": "{{time}}"
+    }
+  },
+  "transactionList": {
+    "noTransactionsDescription": "आपके पास कोई लेनदेन नहीं हैं\"",
+    "noTransactionsTitle": "यहां कुछ नहीं..."
+  },
+  "whitespace": "&nbsp;"
+}

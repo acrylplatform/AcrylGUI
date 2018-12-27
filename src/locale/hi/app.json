@@ -1,0 +1,68 @@
+{
+  "EXK2jJo1PbL9CUNr5FSedw6cueZH5MUCDXNhR1WQEZa4": {
+    "description": "अलोहा फंकी सिक्का, किन्ही अच्छे व बुरे प्रयोजनो के लिए ;)"
+  },
+  "back": "वापस",
+  "button": {
+    "cancel": "रद्द करें",
+    "continue": "जारी रखें"
+  },
+  "date": {
+    "month": [
+      "जन",
+      "फर",
+      "मार्च",
+      "अप्रैल",
+      "मई",
+      "जून",
+      "जुलाई",
+      "अगस्त",
+      "सित",
+      "अक्टू",
+      "नव",
+      "दिस"
+    ]
+  },
+  "fee": "{{money, money-fee}}",
+  "header": {
+    "assets": "एसेट्स",
+    "dex": "DEX",
+    "leasing": "लीज़िंग",
+    "portfolio": "पोर्टफोलियो",
+    "tokens": "\"टोकन",
+    "transactions": "लेन-देन",
+    "wallet": "वॉलेट"
+  },
+  "inputs": {
+    "errors": {
+      "required": "यह क्षेत्र जरूरी है!"
+    }
+  },
+  "leftmenu": {
+    "login": "लॉगिन",
+    "logout": "लॉग आउट करें",
+    "settings": "सेटिंग्स"
+  },
+  "matcher": {
+    "orders": {
+      "statuses": {
+        "canceled": "रद्द",
+        "filled": "भरा ({{percent}}%)",
+        "opened": "खोला गया"
+      }
+    }
+  },
+  "modal": {
+    "enterPassword": {
+      "ok": "ठीक है",
+      "title": "पासवर्ड दर्ज करें"
+    }
+  },
+  "money-currency": "{{money, money-currency}}\n",
+  "number": {
+    "short": {
+      "million": "M",
+      "thousand": "k."
+    }
+  }
+}

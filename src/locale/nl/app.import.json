@@ -1,0 +1,16 @@
+{
+  "KeeperClient": "Waves Keeper",
+  "LedgerClient": "Ledger Nano S",
+  "back": "Ga terug",
+  "importAccount": "Accounts importeren",
+  "importAccountInfo": "Selecteer waar u accounts wilt importeren",
+  "keeperDescription": "Importeer account vanuit Waves Keeper",
+  "keeperForm": "Installeer",
+  "ledgerDescription": "Accounts importeren van uw Ledger Nano S",
+  "or": "OF",
+  "selectButton": "Selecteer",
+  "wavesLiteClient": "Waves Lite Client",
+  "wavesLiteClientDescription": "Accounts importeren van de Waves Lite Client",
+  "wavesSeedClient": "Backup SEED regel",
+  "wavesSeedClientDescription": "Account importeren van een back-up SEED"
+}

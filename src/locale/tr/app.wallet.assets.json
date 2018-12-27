@@ -1,0 +1,35 @@
+{
+  "addAsset": "Kripto para ekle",
+  "chart": {
+    "intervals": {
+      "all": "Tümü",
+      "day": "1 Gün",
+      "hour": "1 Saat",
+      "month": "1 Ay",
+      "week": "1 Hafta",
+      "year": "1 Sene"
+    }
+  },
+  "directives": {
+    "asset": {
+      "deposit": "Yatır",
+      "ofTotalBalance": "toplam bakiye {{totalBalance}}",
+      "receive": "Al",
+      "send": "Gönder"
+    },
+    "balance": {
+      "actions": {
+        "assetInfo": "Kripto para bilgisi",
+        "copyAssetId": "Kripto para ID'sini kopyala"
+      }
+    }
+  },
+  "price": "{{currency}} FİYATI",
+  "qr": "Adresiniz",
+  "send": "Gönder",
+  "since": {
+    "day": "DÜNDEN BERİ",
+    "month": "GEÇEN AYDAN BERİ",
+    "week": "GEÇEN HAFTADAN BERİ"
+  }
+}
