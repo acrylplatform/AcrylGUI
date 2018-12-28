@@ -602,7 +602,7 @@
       "signErrorKeeper": "U heeft het verzoek van Waves Keeper niet bevestigd",
       "signErrorText": "U hebt het verzoek op uw Ledger Nano S niet bevestigd",
       "signErrorTextImportKeeper": "Login met Waves Keeper met {{address}} adres, en ververs dan de pagina om door te gaan.",
-      "signErrorTextKeeper": "Probeer alstublieft opnieuw. Als deze error aanhoudt maak dan een ticket op [Support](https://support.wavesplatform.com/)",
+      "signErrorTextKeeper": "Probeer alstublieft opnieuw. Als deze error aanhoudt maak dan een ticket op [Support](https://support.acrylplatform.com/)",
       "txId": "TXID"
     },
     "sponsorship": {

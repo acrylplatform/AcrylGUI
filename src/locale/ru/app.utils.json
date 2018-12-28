@@ -546,7 +546,7 @@
       "signErrorKeeper": "Вы не подтвердили запрос Acryl Keeper",
       "signErrorText": "Вы не подтвердили запрос на Ledger Nano S",
       "signErrorTextImportKeeper": "Войдите в Acryl Keeper с адресом {{address}}, а затем обновите страницу, чтобы продолжить.",
-      "signErrorTextKeeper": "Пожалуйста, попробуйте еще раз. Если ошибка повториться, напишите в [Поддержку](https://support.wavesplatform.com/)"
+      "signErrorTextKeeper": "Пожалуйста, попробуйте еще раз. Если ошибка повториться, напишите в [Поддержку](https://support.acrylplatform.com/)"
     },
     "sponsorship": {
       "amountPerTx": "Цена транзакции (за 0.001 ACRYL)",
