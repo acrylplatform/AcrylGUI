@@ -104,7 +104,7 @@
         .loader-wrapper {
             position: fixed;
             left: 50%;
-            top: 50%;
+            top: 50%; 
             margin-top: -150px;
             transform-origin: center;
             transform: translateX(-50%);
@@ -133,13 +133,14 @@
 
         .loader span::before {
             content: '';
-            background-color: #1f5af6;
+            background-color: #FF5E39; // for preloader color
             position: absolute;
             left: 0;
             top: 0;
             display: block;
             width: 50px;
             height: 50px;
+            border-radius: 50%;
             -moz-transform-origin: 100% 100%;
             -ms-transform-origin: 100% 100%;
             -webkit-transform-origin: 100% 100%;
@@ -160,7 +161,7 @@
             -moz-animation-delay: 0.3s;
             -webkit-animation-delay: 0.3s;
             animation-delay: 0.3s;
-            background-color: #0a49f2;
+            background-color: #FF5E39;  // for preloader color
         }
 
         .loader .leaf3 {
@@ -174,7 +175,7 @@
             -moz-animation-delay: 0.9s;
             -webkit-animation-delay: 0.9s;
             animation-delay: 0.9s;
-            background-color: #0a49f2;
+            background-color: #FF5E39;  // for preloader color
         }
 
         .loader .leaf4 {
@@ -188,7 +189,7 @@
             -moz-animation-delay: 0.6s;
             -webkit-animation-delay: 0.6s;
             animation-delay: 0.6s;
-            background-color: #0942d9;
+            background-color: #FF5E39;  // for preloader color
         }
 
         @keyframes loader-transition {
