@@ -609,7 +609,7 @@
       "signErrorKeeper": "You did not confirm the request using Acryl Keeper",
       "signErrorText": "You did not confirm the request on your Ledger Nano S",
       "signErrorTextImportKeeper": "Sign in to Acryl Keeper with address {{address}},\nand then refresh page to continue.",
-      "signErrorTextKeeper": "Please try again. If the error persists, please create a ticket to [Support](https://support.wavesplatform.com/)",
+      "signErrorTextKeeper": "Please try again. If the error persists, please create a ticket to [Support](https://support.acrylplatform.com/)",
       "txId": "TXID"
     },
     "sponsorship": {

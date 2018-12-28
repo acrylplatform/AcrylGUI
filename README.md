@@ -1,6 +1,6 @@
 # Waves Client
 
-[**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.wavesplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
+[**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.acrylplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
 
 [![Waves App Promo](https://raw.githubusercontent.com/wavesplatform/WavesGUI/dev/README_IMG_01.png)](https://wavesplatform.com/product)
 
@@ -31,7 +31,7 @@ Keep up with the latest news and articles, and find out all about events happeni
 * [Community Portal](https://wavescommunity.com/)
 * [Waves Docs](https://docs.wavesplatform.com/)
 * [Waves Blog](https://blog.wavesplatform.com/)
-* [Support](https://support.wavesplatform.com/)
+* [Support](https://support.acrylplatform.com/)
 
 ##
 

@@ -68,7 +68,7 @@
     "sign": "Подписать",
     "success": "Ваша транзакция отправлена!",
     "wavesKeeperUnconfirmed": {
-      "description": "Пожалуйста, попробуйте еще раз. Если ошибка повторится, обратитесь в  [Поддержку](https://support.wavesplatform.com/)",
+      "description": "Пожалуйста, попробуйте еще раз. Если ошибка повторится, обратитесь в  [Поддержку](https://support.acrylplatform.com/)",
       "header": "Вы не подтвердили запрос Acryl Keeper"
     }
   },
@@ -88,7 +88,7 @@
     "sign": {
       "confirmRequestKeeper": {
         "cancel": "Отменить",
-        "errorDescription": "Пожалуйста, попробуйте еще раз. Если ошибка повторится, обратитесь в  [Поддержку](https://support.wavesplatform.com/)",
+        "errorDescription": "Пожалуйста, попробуйте еще раз. Если ошибка повторится, обратитесь в  [Поддержку](https://support.acrylplatform.com/)",
         "errorHeader": "Вы не подтвердили запрос Acryl Keeper",
         "sign": "Повторить",
         "waiting": "Ожидаем подтверждения через Acryl Keeper..."
