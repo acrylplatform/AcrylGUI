@@ -21,14 +21,35 @@ import { TRANSACTION_TYPE_NUMBER } from '@waves/signature-generator';
 import { pipe, prop, uniqBy, tap } from 'ramda';
 import { ExchangeTxFilters } from '@waves/data-service-client-js';
 
-
-export function list(address: string, limit = 100): Promise<Array<T_TX>> {
-    return request({ url: `${configGet('node')}/transactions/address/${address}/limit/${limit}` })
+let addrSender
+export async function list(address: string, limit = 100): Promise<Array<T_TX>> {
+    addrSender = address;
+    const listLeaseTx: any = await getActiveLease(address);
+    const listTx = await request({ url: `${configGet('node')}/transactions/address/${address}/limit/${limit}` })
         .then(pipe(
             prop('0'),
             uniqBy(prop('id')) as any,
         ))
-        .then(transactions => parseTx(transactions as any, false));
+        .then(async (transactions) => {
+            if (listLeaseTx) {
+                return await parseTx(transactions as any, false, false, addrSender, listLeaseTx)
+            }
+        })
+    return listTx;
+}
+
+async function getActiveLease(addrSender: string): Promise<any> {
+    let lease;
+    const leaseActive = await request({ url: `${configGet('node')}/leasing/active/${addrSender}` })
+        .then(pipe(
+            prop('0'),
+            uniqBy(prop('id')) as any,
+        )).
+        then((leaseTx) => {
+            lease = leaseTx;
+            return lease;
+        });
+    return leaseActive;
 }
 
 export function getExchangeTxList(options: ExchangeTxFilters = Object.create(null)): Promise<Array<IExchange>> {

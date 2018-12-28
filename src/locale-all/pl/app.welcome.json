@@ -1,0 +1,50 @@
+{
+  "infoTooltip": "Ważne informacje",
+  "newUser": {
+    "from": "z kopii zapasowej",
+    "getStarted": "Zacznij",
+    "import": "Import konta",
+    "or": "albo",
+    "restore": "Odzyskaj konto",
+    "slides": [
+      {
+        "description": "Stań się częścią szybko rozwijającego się obszaru świata kryptografii. Jesteś jedyną osobą, która ma dostęp do twoich aktywów.",
+        "title": "Rozpocznij z Blockchain"
+      },
+      {
+        "description": "Magazynuj, zarządzaj i otrzymuj odsetki z salda zasobów cyfrowych, łatwo i bezpiecznie.",
+        "title": "Portfel"
+      },
+      {
+        "description": "Handluj szybko i bezpiecznie. Zachowujesz pełną kontrolę nad swoimi funduszami handlując nimi na naszej zdecentralizowanej giełdzie.",
+        "title": "Zdecentralizowana Giełda"
+      },
+      {
+        "description": "Emituj swoje własne tokeny.\nMożna je zintegrować z firmą nie tylko jako walutą wewnętrzną, ale także jako token do zdecentralizowanego głosowania, jako system ocen lub program lojalnościowy.",
+        "title": "Emituj Token"
+      }
+    ]
+  },
+  "openViaDesktop": "Chciałbym zawsze otwierać linki za pomocą aplikacji internetowej.",
+  "password": {
+    "error": "Błędne hasło!"
+  },
+  "userList": {
+    "addNew": "Dodaj konto",
+    "address": "Adres / Nazwa konta",
+    "buttons": {
+      "login": "Zaloguj się"
+    },
+    "create": "Utwórz nowe konto",
+    "frombackup": "z kopii zapasowej",
+    "import": "Import konta",
+    "password": "Hasło",
+    "placeholders": {
+      "password": "Hasło"
+    },
+    "restore": "Odzyskaj konto",
+    "subTitle": "Zaloguj się znowu lub",
+    "subTitleSession": "Sesja została automatycznie zakończona. ",
+    "title": "Zaloguj się"
+  }
+}
