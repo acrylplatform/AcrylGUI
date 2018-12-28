@@ -72,7 +72,7 @@
     "sign": "Onderteken",
     "success": "Uw transactie is verzonden!",
     "wavesKeeperUnconfirmed": {
-      "description": "Probeer alstublieft opnieuw. Indien de error aanhoudt maak dan een ticket aan bij [support](https://support.wavesplatform.com)",
+      "description": "Probeer alstublieft opnieuw. Indien de error aanhoudt maak dan een ticket aan bij [support](https://support.acrylplatform.com/)",
       "header": "U heeft het verzoek niet via Waves Keeper bevestigd"
     }
   },
@@ -93,7 +93,7 @@
     "sign": {
       "confirmRequestKeeper": {
         "cancel": "Annuleer",
-        "errorDescription": "Probeer het opnieuw. Als het probleem aanhoudt maak alstublieft een ticket aan bij [support](https://support.wavesplatform.com)",
+        "errorDescription": "Probeer het opnieuw. Als het probleem aanhoudt maak alstublieft een ticket aan bij [support](https://support.acrylplatform.com/)",
         "errorHeader": "U heeft het verzoek niet bevestigd met Waves Keeper",
         "sign": "Probeer opnieuw",
         "waiting": "Wachten op bevestiging van Waves Keeper..."

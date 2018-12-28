@@ -583,7 +583,7 @@
       "signErrorKeeper": "Brak potwierdzenia z Waves Keeper",
       "signErrorText": "Nie potwierdziłeś żądania na swoim urządzeniu.",
       "signErrorTextImportKeeper": "Zaloguj się do Waves Kepper pod adresem {{address}}, a następnie odśwież stronę, aby kontynuować. ",
-      "signErrorTextKeeper": "Proszę spróbuj ponownie. Jeśli błąd będzie się powtarzał, utwórz zgłoszenie do [Wsparcie] (https://support.wavesplatform.com/) ",
+      "signErrorTextKeeper": "Proszę spróbuj ponownie. Jeśli błąd będzie się powtarzał, utwórz zgłoszenie do [Wsparcie] (https://support.acrylplatform.com/) ",
       "txId": "TXID"
     },
     "sponsorship": {

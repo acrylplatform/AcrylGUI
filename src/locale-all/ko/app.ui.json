@@ -69,7 +69,7 @@
     "sign": "서명",
     "success": "트랜잭션이 진행 중입니다!",
     "wavesKeeperUnconfirmed": {
-      "description": "다시 시도하세요. 오류가 지속되면 [서포트](https://support.wavesplatform.com)에 티켓을 제출하세요.",
+      "description": "다시 시도하세요. 오류가 지속되면 [서포트](https://support.acrylplatform.com)에 티켓을 제출하세요.",
       "header": "Waves Keeper 사용 요청을 승인하지 않았습니다"
     }
   },
@@ -90,7 +90,7 @@
     "sign": {
       "confirmRequestKeeper": {
         "cancel": "취소",
-        "errorDescription": "다시 시도하세요. 오류가 지속되면 [서포트](https://support.wavesplatform.com)에 티켓을 제출하세요.",
+        "errorDescription": "다시 시도하세요. 오류가 지속되면 [서포트](https://support.acrylplatform.com)에 티켓을 제출하세요.",
         "errorHeader": "Waves Keeper 사용 요청을 승인하지 않았습니다",
         "sign": "재시도",
         "waiting": "Waves Keeper의 승인을 기다리는 중입니다..."
