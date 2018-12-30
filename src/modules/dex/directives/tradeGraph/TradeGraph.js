@@ -17,7 +17,7 @@
             dataset: ORDERS_TYPES.bids,
             key: 'amount',
             label: 'Bids',
-            color: '#5a81ea',
+            color: '#f6bd6c',
             type: ['line', 'area']
         }
     };
