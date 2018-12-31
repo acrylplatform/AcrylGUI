@@ -18,7 +18,7 @@
         "restore": "सीड रीस्टोर करें"
       },
       "noUsers": {
-        "description": "{Div}[हमें सहेजा हुआ कोई भी खाता नहीं मिला। वापस जाएं]{div}[[client.wavesplatform.com](https://client.wavesplatform.com]",
+        "description": "{Div}[हमें सहेजा हुआ कोई भी खाता नहीं मिला। वापस जाएं]{div}[[client.acrylplatform.com](https://client.acrylplatform.com]",
         "title": "कोई खाता नहीं सहेजा"
       },
       "passwordTitle": "पासवर्ड",

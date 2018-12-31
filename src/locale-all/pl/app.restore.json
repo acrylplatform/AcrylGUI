@@ -18,7 +18,7 @@
         "restore": "Odzyskaj słowa zapasowe"
       },
       "noUsers": {
-        "description": "{div}[Nie znaleźliśmy żadnego zapisanego konta.]{div}[[client.wavesplatform.com](https://client.wavesplatform.com]",
+        "description": "{div}[Nie znaleźliśmy żadnego zapisanego konta.]{div}[[client.acrylplatform.com](https://client.acrylplatform.com]",
         "title": "Brak zapisanych kont"
       },
       "passwordTitle": "Hasło",
