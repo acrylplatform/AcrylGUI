@@ -14,14 +14,14 @@
             <g id="Rectangle-Copy"
                transform="translate(66.000000, 56.000000) rotate(-45.000000) translate(-66.000000, -56.000000) ">
                 <use fill="#2D2D2D" fill-rule="evenodd" xlink:href="#path-1"></use>
-                <rect stroke="#5A81EA" stroke-width="3" x="28.5" y="18.5" width="75" height="75"></rect>
+                <rect stroke="#f6bd6c" stroke-width="3" x="28.5" y="18.5" width="75" height="75"></rect>
             </g>
             <g id="Rectangle"
                transform="translate(56.000000, 56.000000) rotate(-45.000000) translate(-56.000000, -56.000000) ">
                 <use fill="#2D2D2D" fill-rule="evenodd" xlink:href="#path-2"></use>
-                <rect stroke="#5A81EA" stroke-width="3" x="18.5" y="18.5" width="75" height="75"></rect>
+                <rect stroke="#f6bd6c" stroke-width="3" x="18.5" y="18.5" width="75" height="75"></rect>
             </g>
-            <rect id="Rectangle-Copy-2" fill="#5A81EA"
+            <rect id="Rectangle-Copy-2" fill="#f6bd6c"
                   transform="translate(56.000000, 56.000000) rotate(45.000000) translate(-56.000000, -56.000000) "
                   x="42" y="42" width="28" height="28"></rect>
         </g>
