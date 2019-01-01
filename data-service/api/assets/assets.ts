@@ -27,9 +27,9 @@ export function get(assets: string | Array<string>): Promise<any> {
 export function getAssetFromNode(assetId: string): Promise<Asset> {
     if (assetId === WAVES_ID) {
         return Promise.resolve( new Asset({
-            ticker: 'ACRYL',
-            id: 'ACRYL',
-            name: 'Acryl',
+            ticker: 'WAVES',
+            id: 'WAVES',
+            name: 'Waves',
             precision: 8,
             description: '',
             height: 0,
