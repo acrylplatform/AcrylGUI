@@ -18,7 +18,7 @@
         "restore": "Restore Seed"
       },
       "noUsers": {
-        "description": "{div}[We have not found any saved accounts. Return to the]{div}[[client.acrylplatform.com](https://client.acrylplatform.com]",
+        "description": "{div}[We have not found any saved accounts. Return to the]{div}[[client.wavesplatform.com](https://client.wavesplatform.com]",
         "title": "No accounts saved"
       },
       "passwordTitle": "Password",
