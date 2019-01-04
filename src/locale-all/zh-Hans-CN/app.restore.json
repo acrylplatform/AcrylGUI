@@ -18,7 +18,7 @@
         "restore": "恢复Seed助记词"
       },
       "noUsers": {
-        "description": "{div}[我们没有找到任何已保存的帐户. 返回]{div}[[client.acrylplatform.com](https://client.acrylplatform.com]",
+        "description": "{div}[我们没有找到任何已保存的帐户. 返回]{div}[[client.wavesplatform.com](https://client.wavesplatform.com]",
         "title": "没有保存的帐户"
       },
       "passwordTitle": "密码",

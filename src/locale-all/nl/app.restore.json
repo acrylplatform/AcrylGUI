@@ -18,7 +18,7 @@
         "restore": "Seed herstellen"
       },
       "noUsers": {
-        "description": "{div}[We hebben geen opgeslagen accounts gevonden. Ga terug naar de]{div}[[client.acrylplatform.com](https://client.acrylplatform.com]",
+        "description": "{div}[We hebben geen opgeslagen accounts gevonden. Ga terug naar de]{div}[[client.wavesplatform.com](https://client.wavesplatform.com]",
         "title": "Geen opgeslagen accounts"
       },
       "passwordTitle": "Wachtwoord",

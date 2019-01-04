@@ -18,7 +18,7 @@
         "restore": "Seed'i geri yükle"
       },
       "noUsers": {
-        "description": "{div}[Kayıtlı bir hesap bulunamadı. Şu adrese geri dönün]{div}[[client.acrylplatform.com](https://client.acrylplatform.com]",
+        "description": "{div}[Kayıtlı bir hesap bulunamadı. Şu adrese geri dönün]{div}[[client.wavesplatform.com](https://client.wavesplatform.com]",
         "title": "Hesap kaydedilmedi"
       },
       "passwordTitle": "Parola",
