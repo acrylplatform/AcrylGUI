@@ -27,9 +27,9 @@ export function get(assets: string | Array<string>): Promise<any> {
 export function getAssetFromNode(assetId: string): Promise<Asset> {
     if (assetId === WAVES_ID) {
         return Promise.resolve( new Asset({
-            ticker: 'WAVES',
+            ticker: 'ACRYL',
             id: 'WAVES',
-            name: 'Waves',
+            name: 'Acryl',
             precision: 8,
             description: '',
             height: 0,
@@ -39,7 +39,6 @@ export function getAssetFromNode(assetId: string): Promise<Asset> {
             reissuable: false
         } ));
     }
-
     return request<INodeAssetData>({ url: `${configGet('node')}/assets/details/${assetId}` })
         .then((data) => new Asset({
             id: data.assetId,
