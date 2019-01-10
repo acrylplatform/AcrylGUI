@@ -25,3 +25,4 @@ WavesGUI.iml
 /data-service-dist
 package-lock.json
 npm-debug.log
+.vscode/
