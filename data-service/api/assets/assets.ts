@@ -25,7 +25,7 @@ export function get(assets: string | Array<string>): Promise<any> {
 }
 
 export function getAssetFromNode(assetId: string): Promise<Asset> {
-    if (assetId === WAVES_ID) {
+    if (assetId === WAVES_ID || !assetId) {
         return Promise.resolve( new Asset({
             ticker: 'ACRYL',
             id: 'WAVES',

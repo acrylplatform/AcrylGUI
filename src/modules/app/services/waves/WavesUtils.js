@@ -236,7 +236,8 @@
                 return ds.api.pairs.get(fromId, toId)
                     .then((pair) => {
                         const amountId = pair.amountAsset.id;
-                        const priceId = pair.priceAsset.id;
+                        let priceId = pair.priceAsset.id;
+                        priceId = (priceId === 'WAVES') ? 'ACRYL' : priceId;
                         const path = `${WavesApp.network.api}/candles/${amountId}/${priceId}`;
 
                         return ds.fetch(`${path}?timeStart=${from}&timeEnd=${to}&interval=${interval}m`)
