@@ -226,7 +226,7 @@
                 return waves.node.assets.getBtcUsdFromCoinMarket()
                     .then((data) => {
                         if (data) {
-                            this.btcPrice = +data;
+                            this.btcPrice = Math.round(+data).toFixed(2);
                             return this.btcPrice;
                         }
                     });
