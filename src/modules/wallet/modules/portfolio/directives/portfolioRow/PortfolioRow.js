@@ -287,8 +287,8 @@
                 change24Node.innerHTML = '—';
                 change24Node.classList.remove('minus');
                 change24Node.classList.remove('plus');
-                this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = '—';
-                this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = '—';
+                // this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = '—';
+                // this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = '—';
 
                 return null;
             }
@@ -303,13 +303,13 @@
                     change24Node.innerHTML = `${change24.toFixed(2)}%`;
                 });
 
-            this.waves.utils.getRate(balance.asset.id, baseAssetId)
+           /*  this.waves.utils.getRate(balance.asset.id, baseAssetId)
                 .then(rate => {
                     const baseAssetBalance = balance.available.getTokens().times(rate).toFormat(2);
 
-                    this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = rate.toFixed(2);
-                    this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = baseAssetBalance;
-                });
+                    // this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = rate.toFixed(2);
+                    // this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = baseAssetBalance;
+                }); */
 
             const startDate = this.utils.moment().add().day(-7);
             this.waves.utils.getRateHistory(balance.asset.id, baseAssetId, startDate).then((values) => {

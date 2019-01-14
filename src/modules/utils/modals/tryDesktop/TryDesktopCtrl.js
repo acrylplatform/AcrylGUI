@@ -15,7 +15,7 @@
                  */
                 this.save = false;
                 const url = new URL(locationHref);
-                const href = `waves://${url.pathname}${url.search}${url.hash}`.replace('///', '//');
+                const href = `acryl://${url.pathname}${url.search}${url.hash}`.replace('///', '//');
 
                 $element.find('a').attr('href', href);
             }
