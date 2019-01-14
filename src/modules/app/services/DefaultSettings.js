@@ -45,7 +45,7 @@
                         defaultTab: 'singleSend'
                     },
                     pinnedAssetIdList: [
-                        WavesApp.defaultAssets.WAVES,
+                        // WavesApp.defaultAssets.WAVES,
                         WavesApp.defaultAssets.ACRYL,
                         WavesApp.defaultAssets.BTC,
                         WavesApp.defaultAssets.ETH,
@@ -64,7 +64,7 @@
                             chartMode: 'month',
                             activeChartAssetId: WavesApp.defaultAssets.ACRYL,
                             chartAssetIdList: [
-                                WavesApp.defaultAssets.WAVES,
+                                // WavesApp.defaultAssets.WAVES,
                                 WavesApp.defaultAssets.ACRYL,
                                 WavesApp.defaultAssets.BTC,
                                 WavesApp.defaultAssets.ETH

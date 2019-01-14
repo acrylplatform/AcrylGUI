@@ -76,7 +76,7 @@
     "tryDesktop": {
       "cancel": "Continue with web",
       "label": "Remember my choice and do not remind me again",
-      "message": "We recommend you use the Acryl desktop app. If you don't have this, you can download it from the [official site](https://wavesplatform.com).",
+      "message": "We recommend you use the Acryl desktop app. If you don't have this, you can download it from the [official site](https://acrylplatform.com).",
       "title": "Use the Acryl desktop app",
       "try": "Open desktop app"
     }

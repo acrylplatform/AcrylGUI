@@ -35,7 +35,7 @@
       },
       "expiration": "Expiration",
       "fee": "Fee {{fee}} ACRYL",
-      "hasScript": "Cancel [script](https://docs.wavesplatform.com/en/waves-client/advanced_features/script_transaction.html) to trade",
+      "hasScript": "Cancel [script](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html) to trade",
       "last": "Last",
       "notPermitted": "Order creation is temporarily unavailable",
       "notifications": {
@@ -108,7 +108,7 @@
       "time": "Time",
       "total": "Total",
       "type": "Type",
-      "withScript": "You cannot use the exchange while a [script](https://docs.wavesplatform.com/en/waves-client/advanced_features/script_transaction.html) is installed on your account"
+      "withScript": "You cannot use the exchange while a [script](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html) is installed on your account"
     },
     "noChartDataMessage": "{div}[Not enough bids and asks]{div}[to create market depth chart]",
     "noChartDataTitle": "Nothing Here…",
@@ -153,7 +153,7 @@
       "helpIcon": {
         "AssetId1AssetId2": "Asset1 ID / Asset2 ID",
         "assetId": "Asset ID",
-        "description": "You can find out more about searching assets [here](https://docs.wavesplatform.com/en/waves-client/waves-dex/start-trading-on-the-waves-dex.html)",
+        "description": "You can find out more about searching assets [here](https://docs.acrylplatform.com/en/acryl-client/acryl-dex/start-trading-on-the-acryl-dex.html)",
         "header": "You can search by:",
         "name": "Name",
         "name1Name2": "Name1 / Name2"
