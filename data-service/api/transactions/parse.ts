@@ -1,5 +1,5 @@
 import { Asset, AssetPair, BigNumber, Money } from '@waves/data-entities';
-import { libs, TRANSACTION_TYPE_NUMBER, WAVES_ID } from '@waves/signature-generator';
+import { libs, TRANSACTION_TYPE_NUMBER } from '@waves/signature-generator';
 import { get } from '../assets/assets';
 import {
     IBurn,
@@ -29,6 +29,8 @@ import {
 import { IHash, TOrderType } from '../../interface';
 import { factory, IFactory } from '../matcher/getOrders';
 import { getSignatureApi } from '../../sign';
+
+const WAVES_ID = 'ACRYL';
 
 const getFactory = (isTokens: boolean): IFactory => {
     if (isTokens) {
