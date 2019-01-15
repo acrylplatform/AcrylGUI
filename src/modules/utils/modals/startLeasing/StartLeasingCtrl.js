@@ -24,7 +24,8 @@
                  * @type {string}
                  */
                 this.title = i18n.translate('modal.startLease.title', 'app.utils');
-                this.assetId = WavesApp.defaultAssets.WAVES;
+                // this.assetId = WavesApp.defaultAssets.ACRYL;
+                this.assetId = '5c35aAPu6ABw9QEiS8Crr8eWprAwEzzijrVr8X1DR5SE';
                 this.recipient = '';
                 this.amount = null;
 
