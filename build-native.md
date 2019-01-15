@@ -9,7 +9,7 @@ We use code signing to prevent malware injections and verify publisher prior to 
 
 ## Environment
 
-To start with, you have to be able to build waves wallet on your machine. Have a look at [readme](README.md) to setup build environment.
+To start with, you have to be able to build Acryl wallet on your machine. Have a look at [readme](README.md) to setup build environment.
 
 To make prerequisites installation easier it makes sense to set up [Homebrew](https://brew.sh/).
 To be able to build platform-specific binaries, do the following.
