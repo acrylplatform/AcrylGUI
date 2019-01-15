@@ -55,6 +55,18 @@
                 });
             }
 
+
+            getBtcUsdFromCoinMarket() {
+                return ds.fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=usd')
+                    .then((data) => {
+                        let price;
+                        if (data.length) {
+                            price = data[0].price_usd;
+                        }
+                        return price;
+                    });
+            }
+
             /**
              * Get Asset info
              * @param {string} assetId

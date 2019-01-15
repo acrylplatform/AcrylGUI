@@ -55,7 +55,7 @@
              * Get api for current balance from another balance
              * @param {string|Asset} assetFrom
              * @param {string|Asset} assetTo
-             * @return {Promise<WavesUtils.rateApi>}
+             * @return {Promise<WavesUtilsApi>}
              */
             getRateApi(assetFrom, assetTo) {
                 return utils.whenAll([
