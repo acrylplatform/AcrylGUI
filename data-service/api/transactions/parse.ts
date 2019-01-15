@@ -30,7 +30,6 @@ import { IHash, TOrderType } from '../../interface';
 import { factory, IFactory } from '../matcher/getOrders';
 import { getSignatureApi } from '../../sign';
 
-
 const getFactory = (isTokens: boolean): IFactory => {
     if (isTokens) {
         return {

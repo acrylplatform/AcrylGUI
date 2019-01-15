@@ -1,4 +1,4 @@
-<!-- See the LICENSE file at https://github.com/wavesplatform/WavesGUI/blob/master/LICENSE. Removal or modification of this copyright notice is prohibited. -->
+<!-- See the LICENSE file at https://github.com/acrylplatform/AcrylGUIprivate/blob/master/LICENSE. Removal or modification of this copyright notice is prohibited. -->
 
 <!DOCTYPE html>
 <html ng-app="app">
@@ -336,20 +336,20 @@
                 featuresConfigUrl: '{{network.featuresConfigUrl}}'
             },
             defaultAssets: {
-                WAVES: 'WAVES',
-                EUR: '{{network.assets.EUR}}',
+                WAVES: 'ACRYL',
+                // EUR: '{{network.assets.EUR}}',
                 USD: '{{network.assets.USD}}',
                 BTC: '{{network.assets.BTC}}',
-                ETH: '{{network.assets.ETH}}',
-                LTC: '{{network.assets.LTC}}',
-                ZEC: '{{network.assets.ZEC}}',
-                BCH: '{{network.assets.BCH}}',
-                DASH: '{{network.assets.DASH}}',
-                TRY: '{{network.assets.TRY}}',
-                XMR: '{{network.assets.XMR}}'
+                ETH: '{{network.assets.ETH}}'
+                // LTC: '{{network.assets.LTC}}',
+                // ZEC: '{{network.assets.ZEC}}',
+                // BCH: '{{network.assets.BCH}}',
+                // DASH: '{{network.assets.DASH}}',
+                // TRY: '{{network.assets.TRY}}',
+                // XMR: '{{network.assets.XMR}}'
             },
 
-            ALWAYS_PINNED_ASSETS: ['WAVES'],
+            ALWAYS_PINNED_ASSETS: ['ACRYL'],
 
             otherAssetsWithIcons: {
                 // TODO @xenohunter : remove that when icons are in @dvshur's service
@@ -510,9 +510,9 @@
     <div class="headline-1">We couldn't connect to the server</div>
     <div class="body-1 basic-500">Check your internet connection and try again.</div>
     <div class="body-1 margin-4 basic-500">
-        <div>If you have been using the Waves Desktop app and refreshing does</div>
+        <div>If you have been using the Acryl Desktop app and refreshing does</div>
         <div>not help, try reinstalling the app. Download the latest version from</div>
-        <div>the official Waves site.</div>
+        <div>the official Acryl site.</div>
     </div>
     <button class="submit big submit" onclick="WavesApp.reload();">Refresh page</button>
 </div>

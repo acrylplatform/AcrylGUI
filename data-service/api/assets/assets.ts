@@ -1,8 +1,8 @@
 import { Asset, Money, BigNumber } from '@waves/data-entities';
 import { get as configGet, getDataService } from '../../config';
 import { request } from '../../utils/request';
-import { IBalanceItem, assetsApi } from './interface';
 import { WAVES_ID } from '@waves/signature-generator';
+import { IBalanceItem, assetsApi } from './interface';
 import { assetStorage } from '../../utils/AssetStorage';
 import { clearTransferFee, normalizeAssetId, setTransferFeeItem, toArray, toHash } from '../../utils/utils';
 import { isEmpty } from 'ts-utils';
@@ -25,11 +25,11 @@ export function get(assets: string | Array<string>): Promise<any> {
 }
 
 export function getAssetFromNode(assetId: string): Promise<Asset> {
-    if (assetId === WAVES_ID) {
+    if (assetId === WAVES_ID || !assetId) {
         return Promise.resolve( new Asset({
-            ticker: 'WAVES',
-            id: 'WAVES',
-            name: 'Waves',
+            ticker: 'ACRYL',
+            id: 'ACRYL',
+            name: 'Acryl',
             precision: 8,
             description: '',
             height: 0,
@@ -38,8 +38,8 @@ export function getAssetFromNode(assetId: string): Promise<Asset> {
             quantity: 10000000000000000,
             reissuable: false
         } ));
-    }
-
+    } 
+      
     return request<INodeAssetData>({ url: `${configGet('node')}/assets/details/${assetId}` })
         .then((data) => new Asset({
             id: data.assetId,

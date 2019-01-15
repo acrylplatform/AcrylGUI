@@ -1,4 +1,4 @@
-{
+acryl{
   "create": {
     "order": {
       "failed": "Что-то пошло не так",
@@ -33,7 +33,7 @@
       },
       "expiration": "Действителен",
       "fee": "Комис. {{fee}} ACRYL",
-      "hasScript": "Отмените [скрипт](https://docs.wavesplatform.com/en/waves-client/advanced_features/script_transaction.html) чтобы торговать\n",
+      "hasScript": "Отмените [скрипт](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html) чтобы торговать\n",
       "notPermitted": "Создание ордера временно недоступно",
       "notifications": {
         "error": {
@@ -105,7 +105,7 @@
       "time": "Время",
       "total": "Итого",
       "type": "Тип",
-      "withScript": "Вы не можете пользоваться обменом, пока на ваш аккаунт установлен [скрипт](https://docs.wavesplatform.com/en/waves-client/advanced_features/script_transaction.html)"
+      "withScript": "Вы не можете пользоваться обменом, пока на ваш аккаунт установлен [скрипт](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html)"
     },
     "noChartDataMessage": "{div}[Недостаточно данных для]{div}[построения графика глубины рынка.] ",
     "noChartDataTitle": "Нет данных…",
@@ -150,7 +150,7 @@
       "helpIcon": {
         "AssetId1AssetId2": "ID Ассета1 / ID Ассета2",
         "assetId": "ID Ассета",
-        "description": "Больше информации вы можете найти [здесь](https://docs.wavesplatform.com/ru/waves-client/waves-dex/start-trading-on-the-waves-dex.html)",
+        "description": "Больше информации вы можете найти [здесь](https://docs.acrylplatform.com/ru/acryl-client/acryl-dex/start-trading-on-the-acryl-dex.html)",
         "header": "Вы можете искать по:",
         "name": "Имя",
         "name1Name2": "Имя1 / Имя2"

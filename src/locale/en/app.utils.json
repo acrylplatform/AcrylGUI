@@ -30,7 +30,7 @@
         "required": "This field is required"
       },
       "fee": "Fee {{fee, money-currency}}",
-      "ideLink": "Script can be developed with [Acryl Ride IDE](https://ide.wavesplatform.com/)",
+      "ideLink": "Script can be developed with [Acryl Ride IDE](https://ide.acrylplatform.com/)",
       "ok": "Sign",
       "textAreaTitle": "Script",
       "warning": {
@@ -327,7 +327,7 @@
       },
       "bankSuccessHeader": "You were redirected to the IDNow.eu for verification.",
       "bankSuccessText": "After you go through the verification you will receive an email with further instructions.",
-      "bankVerifiedPlateDescription": "Before you withdraw your funds, we recommend you look at the [instructions](https://docs.wavesplatform.com/en/waves-client/transfers-and-gateways/eur-usd-transfers.html) and [limits and transaction fees](https://coinomat.com/limits.php).",
+      "bankVerifiedPlateDescription": "Before you withdraw your funds, we recommend you look at the [instructions](https://docs.acrylplatform.com/en/acryl-client/transfers-and-gateways/eur-usd-transfers.html) and [limits and transaction fees](https://coinomat.com/limits.php).",
       "bankVerifiedPlateHeader": "Your funds are now available for withdrawal to a bank account.",
       "card": {
         "continue": "Continue",
@@ -442,7 +442,7 @@
       "icoWarning": "Do not withdraw {{assetName}} to an ICO. We will not credit your account with tokens from that sale.",
       "idNumber": {
         "helpIcon": {
-          "description": "You can find out more about withdrawing money to a bank account [here](https://docs.wavesplatform.com/en/waves-client/transfers-and-gateways/eur-usd-transfers.html).",
+          "description": "You can find out more about withdrawing money to a bank account [here](https://docs.acrylplatform.com/en/acryl-client/transfers-and-gateways/eur-usd-transfers.html).",
           "title": "Your ID number is a unique number assigned to each user after confirming a bank account with Coinomat."
         }
       },
@@ -475,7 +475,7 @@
         "fee": "Transaction Fee {{fee, money-currency}}"
       },
       "notVerifiedHeader": "You have not been verified.",
-      "notVerifiedText": "Withdrawal to a bank account is only available to verified users. You can find out more about sending and receiving fiat money [here](https://docs.wavesplatform.com/en/waves-client/transfers-and-gateways/eur-usd-transfers.html).",
+      "notVerifiedText": "Withdrawal to a bank account is only available to verified users. You can find out more about sending and receiving fiat money [here](https://docs.acrylplatform.com/en/acryl-client/transfers-and-gateways/eur-usd-transfers.html).",
       "or": "or",
       "placeholderRecipient": "Paste or scan an address",
       "recipient": "Recipient",
@@ -703,7 +703,7 @@
       },
       "step3": {
         "backButton": "Go Back",
-        "cell1": "Always check the URL: [https://client.wavesplatform.com](https://client.wavesplatform.com)",
+        "cell1": "Always check the URL: [https://client.acrylplatform.com](https://client.acrylplatform.com)",
         "cell2": "Do not use browsers that have extensions or plugins to access your account.",
         "cell3": "Do not open emails or links from unknown senders.",
         "cell4": "Regularly update your operating system.",
@@ -745,15 +745,15 @@
         "1_0_0-beta_39": "{span.line}[1. A spam filter has been added to Settings.]{span.line}[2. Additional minor bugs have been fixed.]",
         "1_0_0-beta_40": "{span.line}[1. Monero gateway has been launched.]",
         "1_0_0-beta_42": "{span.line}[1. Spanish language support added.]{span.line}[2. You can use the Client without saving account details by default.]{span.line}[3. Spam tokens are now marked in the Transaction page.]{span.line}[4. Additional minor bugs have been fixed.]",
-        "1_0_0-beta_47": "{span.line}[1. Completely new DEX UI.]{span.line}[2. Faster and more stable Client.]{span.line}[3. Alias functionality is available again.]{span.line}[4. Some minor bugs have been fixed.]{span.line}[5. Take part in our competitions by making a [video](https://forum.wavesplatform.com/t/contest-best-waves-dex-video-review/822) or writing an [article](https://forum.wavesplatform.com/t/contest-for-the-writers-waves-dex-overview/835).]",
+        "1_0_0-beta_47": "{span.line}[1. Completely new DEX UI.]{span.line}[2. Faster and more stable Client.]{span.line}[3. Alias functionality is available again.]{span.line}[4. Some minor bugs have been fixed.]{span.line}[5. Take part in our competitions by making a [video](https://forum.acrylplatform.com/t/contest-best-acryl-dex-video-review/822) or writing an [article](https://forum.acrylplatform.com/t/contest-for-the-writers-acryl-dex-overview/835).]",
         "1_0_0-beta_50": "{span.line}[1. You can now burn any tokens you hold in your account.]{span.line}[2. Additional minor bugs have been fixed.]",
-        "1_0_10": "{span.line}[1. Sponsorship transaction support added. [Read more](https://docs.wavesplatform.com/en/waves-client/assets-management/sponsored-transaction.html)]\n{span.line}[2. Polish and Portuguese languages support added.]",
+        "1_0_10": "{span.line}[1. Sponsorship transaction support added. [Read more](https://docs.acrylplatform.com/en/acryl-client/assets-management/sponsored-transaction.html)]\n{span.line}[2. Polish and Portuguese languages support added.]",
         "1_0_14": "{span.line}[1. Fixed bug with using Sponsored Asset without Acryl balance.]\n{span.line}[2. Fixed bug with 30 days expiration orders.]\n{span.line}[3. Some other minor bugs.]",
         "1_0_15": "{span.line}[1. Issues with confirmation on Ledger have been fixed.]\n{span.line}[2. Increased waiting time for confirmation from Ledger.]\n{span.line}[3. Detailed information has been added to Error messages.]",
         "1_0_18": "{span.line}[1. You can now set a script for your account.]\n{span.line}[2. Additional minor bugs have been fixed.]",
         "1_0_21": "{span.line}[1. Fixed authorisation confirmation via Ledger.]\n{span.line}[2. Numerous minor bugs fixed.]",
         "1_0_22": "{span.line}[1. Added advanced features to work with scripted accounts.]",
-        "1_0_25": "{span.line}[1. [Acryl Keeper](https://chrome.google.com/webstore/detail/waves-keeper/lpilbniiabackdjcionkobglmddfbcjo?hl=en) support has been added.]",
+        "1_0_25": "{span.line}[1. [Acryl Keeper](https://chrome.google.com/webstore/detail/acryl-keeper/lpilbniiabackdjcionkobglmddfbcjo?hl=en) support has been added.]",
         "1_0_27": "{span.line}[1. Added \"My assets\" category in Portfolio.]\n{span.line}[2. Minor bugs have been fixed.]",
         "1_0_28": "{span.line}[1. Added pairing function to import existing accounts to mobile.]\n{span.line}[2. Minor bugs have been fixed.]",
         "1_0_29": "{span.line}[1. QR code generation using Cyrillic alphabet has been fixed.]\n{span.line}[2. Tooltip for watchlist search has been added.]\n{span.line}[3. Further cosmetic fixes. ]\n",

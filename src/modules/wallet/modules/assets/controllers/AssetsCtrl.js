@@ -68,6 +68,8 @@
                  * @type {string}
                  */
                 this.changePercent = '0.00';
+
+                this.btcPrice = 0;
                 /**
                  * @type {boolean}
                  */
@@ -113,6 +115,7 @@
                 });
 
                 this.observe(['interval', 'intervalCount', 'activeChartAssetId'], this._onChangeInterval);
+                this._getBtcPrice();
             }
 
             openScriptModal() {
@@ -217,6 +220,16 @@
             _getChartBalances() {
                 return waves.node.assets.balanceList(this.chartAssetIdList)
                     .then((list) => list.map(({ available }) => available));
+            }
+
+            _getBtcPrice() {
+                return waves.node.assets.getBtcUsdFromCoinMarket()
+                    .then((data) => {
+                        if (data) {
+                            this.btcPrice = Math.round(+data).toFixed(2);
+                            return this.btcPrice;
+                        }
+                    });
             }
 
             /**

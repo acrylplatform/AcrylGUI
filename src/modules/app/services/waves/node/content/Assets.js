@@ -42,7 +42,7 @@
              */
             @decorators.cachable(5)
             info(assetId) {
-                if (assetId === WavesApp.defaultAssets.WAVES) {
+                if (assetId === WavesApp.defaultAssets.ACRYL) {
                     return this.getAsset(assetId);
                 }
 
@@ -53,6 +53,18 @@
                     Assets._updateAsset(asset, assetData);
                     return asset;
                 });
+            }
+
+
+            getBtcUsdFromCoinMarket() {
+                return ds.fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=usd')
+                    .then((data) => {
+                        let price;
+                        if (data.length) {
+                            price = data[0].price_usd;
+                        }
+                        return price;
+                    });
             }
 
             /**
@@ -79,7 +91,7 @@
              * @return {JQuery.jqXHR}
              */
             search(query) {
-                return $.get(`https://api.wavesplatform.com/assets/search/${encodeURIComponent(query)}`, (data) => {
+                return $.get(`https://api.acrylplatform.com/assets/search/${encodeURIComponent(query)}`, (data) => {
                     return data.map((item) => {
                         item.name = WavesApp.remappedAssetNames[item.id] || item.name;
                         return item;
