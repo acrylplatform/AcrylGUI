@@ -30,7 +30,7 @@
      * @return {PortfolioCtrl}
      */
     const controller = function (Base, $scope, waves, utils, modalManager, user,
-                                 eventManager, createPoll, gatewayService, $state, stService, visibleService) {
+        eventManager, createPoll, gatewayService, $state, stService, visibleService) {
 
         class PortfolioCtrl extends Base {
 
@@ -104,14 +104,14 @@
                                 valuePath: 'item.inOrders',
                                 sort: true
                             },
-                            {
-                                id: 'mirror',
-                                title: { literal: 'list.mirror', params: { currency: mirror.displayName } }
-                            },
-                            {
-                                id: 'rate',
-                                title: { literal: 'list.rate', params: { currency: mirror.displayName } }
-                            },
+                            /* {
+                                 id: 'mirror',
+                                 title: { literal: 'list.mirror', params: { currency: mirror.displayName } }
+                             },
+                             {
+                                 id: 'rate',
+                                 title: { literal: 'list.rate', params: { currency: mirror.displayName } }
+                             }, */
                             {
                                 id: 'change24',
                                 title: { literal: 'list.change' }
