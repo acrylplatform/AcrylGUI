@@ -1,7 +1,6 @@
 import { Asset, Money, BigNumber } from '@waves/data-entities';
 import { get as configGet, getDataService } from '../../config';
 import { request } from '../../utils/request';
-import { WAVES_ID } from '@waves/signature-generator';
 import { IBalanceItem, assetsApi } from './interface';
 import { assetStorage } from '../../utils/AssetStorage';
 import { clearTransferFee, normalizeAssetId, setTransferFeeItem, toArray, toHash } from '../../utils/utils';
@@ -9,6 +8,7 @@ import { isEmpty } from 'ts-utils';
 import { IHash } from '../../interface';
 
 const MAX_ASSETS_IN_REQUEST = 30;
+const WAVES_ID = 'ACRYL';
 
 export function get(id: string): Promise<Asset>;
 export function get(idList: Array<string>): Promise<Array<Asset>>;

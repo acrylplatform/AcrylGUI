@@ -1,5 +1,4 @@
 import { Asset, AssetPair, BigNumber, Money, OrderPrice } from '@waves/data-entities';
-import { WAVES_ID } from '@waves/signature-generator';
 import { IHash, IMoneyFactory, IPriceMoneyFactory } from '../../interface';
 import { coinsMoneyFactory, normalizeAssetId, normalizeTime, priceMoneyFactory, toHash } from '../../utils/utils';
 import { Signal } from 'ts-utils';
@@ -8,6 +7,7 @@ import { get as configGet } from '../../config';
 import { get as getAsset } from '../assets/assets';
 import { api, IOrder } from './interface';
 
+const WAVES_ID = 'ACRYL';
 let signatureData: ISignatureData;
 let timer = null;
 
