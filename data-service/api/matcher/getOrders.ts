@@ -6,8 +6,8 @@ import { request } from '../../utils/request';
 import { get as configGet } from '../../config';
 import { get as getAsset } from '../assets/assets';
 import { api, IOrder } from './interface';
-
-const WAVES_ID = 'ACRYL';
+import { WAVES_ID } from '@waves/signature-generator';
+// const WAVES_ID = 'ACRYL';
 let signatureData: ISignatureData;
 let timer = null;
 

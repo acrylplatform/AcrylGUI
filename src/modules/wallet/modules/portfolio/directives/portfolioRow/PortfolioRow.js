@@ -303,7 +303,7 @@
                     change24Node.innerHTML = `${change24.toFixed(2)}%`;
                 });
 
-           /*  this.waves.utils.getRate(balance.asset.id, baseAssetId)
+            /*  this.waves.utils.getRate(balance.asset.id, baseAssetId)
                 .then(rate => {
                     const baseAssetBalance = balance.available.getTokens().times(rate).toFormat(2);
 

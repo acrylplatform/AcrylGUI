@@ -2,8 +2,8 @@ import { IAssetPair, IHash } from '../interface';
 import { BigNumber, Asset, Money, AssetPair, OrderPrice } from '@waves/data-entities';
 import { get } from '../api/assets/assets';
 import { get as configGet, timeDiff } from '../config';
-
-const WAVES_ID = 'ACRYL';
+import { WAVES_ID } from '@waves/signature-generator';
+// const WAVES_ID = 'ACRYL';
 
 export function normalizeTime(time: number): number;
 export function normalizeTime(time: Date): Date;
