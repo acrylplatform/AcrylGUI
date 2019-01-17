@@ -29,8 +29,8 @@ import {
 import { IHash, TOrderType } from '../../interface';
 import { factory, IFactory } from '../matcher/getOrders';
 import { getSignatureApi } from '../../sign';
-
-const WAVES_ID = 'ACRYL';
+import { WAVES_ID } from '@waves/signature-generator';
+// const WAVES_ID = 'ACRYL';
 
 const getFactory = (isTokens: boolean): IFactory => {
     if (isTokens) {

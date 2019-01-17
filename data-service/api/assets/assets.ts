@@ -6,9 +6,10 @@ import { assetStorage } from '../../utils/AssetStorage';
 import { clearTransferFee, normalizeAssetId, setTransferFeeItem, toArray, toHash } from '../../utils/utils';
 import { isEmpty } from 'ts-utils';
 import { IHash } from '../../interface';
+import { WAVES_ID } from '@waves/signature-generator';
 
 const MAX_ASSETS_IN_REQUEST = 30;
-const WAVES_ID = 'ACRYL';
+// const WAVES_ID = 'ACRYL';
 
 export function get(id: string): Promise<Asset>;
 export function get(idList: Array<string>): Promise<Array<Asset>>;
@@ -28,7 +29,7 @@ export function getAssetFromNode(assetId: string): Promise<Asset> {
     if (assetId === WAVES_ID || !assetId) {
         return Promise.resolve( new Asset({
             ticker: 'ACRYL',
-            id: 'ACRYL',
+            id: 'WAVES',
             name: 'Acryl',
             precision: 8,
             description: '',

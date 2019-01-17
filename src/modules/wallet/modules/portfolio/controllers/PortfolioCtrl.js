@@ -30,7 +30,7 @@
      * @return {PortfolioCtrl}
      */
     const controller = function (Base, $scope, waves, utils, modalManager, user,
-        eventManager, createPoll, gatewayService, $state, stService, visibleService) {
+                                 eventManager, createPoll, gatewayService, $state, stService, visibleService) {
 
         class PortfolioCtrl extends Base {
 
