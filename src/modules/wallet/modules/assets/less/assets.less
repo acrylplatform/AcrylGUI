@@ -1,6 +1,10 @@
 @import (reference) 'config';
 @import (reference) 'icons';
 
+@asset-block-narrow: calc(~"25% - " @padding-main-layout);
+@asset-block-wide: calc(~"33.3% - " @padding-main-layout);
+@asset-block-wide50: calc(~"50% - " @padding-main-layout);
+@asset-block-full: calc(~"100% - " @padding-main-layout);
 @toolbar-radio-line-height: 57.5px;
 
 .main.wallet.assets {
@@ -50,7 +54,9 @@
     }
 
     .chart-rate {
-      height: 394px;
+      justify-content: space-evenly;
+      display: flex;
+      align-items: center;
       box-sizing: border-box;
       background-color: @color-white;
       position: relative;
@@ -58,7 +64,7 @@
       box-shadow: @shadow-type-1;
 
       .toggler {
-        display: none;
+        display: flex;
       }
 
       .toolbar {
@@ -82,8 +88,7 @@
         }
       }
 
-      .chart-info {
-        min-height: 95px;
+      .chart-info { 
         display: flex;
         flex-direction: row;
         align-items: center;
@@ -101,6 +106,55 @@
           text-align: center;
           font-weight: normal;
         }
+      }
+      .miner {
+        display: flex;
+        flex-direction: row; 
+        @media screen and (max-width: 1300px) {
+          flex-basis: @asset-block-wide;
+          max-width: @asset-block-wide;
+        }
+        @media screen and (max-width: 1024px) {
+          flex-basis: @asset-block-wide50;
+          max-width: @asset-block-wide50;
+        }
+        @media screen and (max-width: 560px) {
+          flex-basis: @asset-block-full;
+          max-width: @asset-block-full;
+        }
+        /* ----------- iPad Pro ----------- */
+        /* Portrait and Landscape */
+        @media only screen 
+        and (min-width: 1024px) 
+        and (max-height: 1366px) 
+        and (-webkit-min-device-pixel-ratio: 1.5) {
+        }
+
+        /* Portrait */
+        @media only screen 
+        and (min-width: 1024px) 
+        and (max-height: 1366px) 
+        and (orientation: portrait) 
+        and (-webkit-min-device-pixel-ratio: 1.5) {
+        }
+
+        /* Landscape */
+        @media only screen 
+        and (min-width: 1024px) 
+        and (max-height: 1366px) 
+        and (orientation: landscape) 
+        and (-webkit-min-device-pixel-ratio: 1.5) {
+
+        }
+      }
+
+      .miner-img {
+        background-image: @miner;
+        background-position: center center;
+        background-size: 100%;
+        width: 30vh;
+        height: 45vh;
+        background-repeat: no-repeat;
       }
 
       .chart-wrapper {
@@ -224,10 +278,10 @@ i.toggler {
         display: block;
       }
 
-      .chart-info,
+      /* .chart-info,
       .chart-wrapper {
         display: none;
-      }
+      } */
 
       &.active {
 
