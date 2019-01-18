@@ -357,8 +357,6 @@
 
                     this.activateCryptocurrencyTab();
                     this.activateInvoiceTab();
-                    this.activateCardTab();
-                    this.activateBankTab();
 
                     this.initForSingleAsset();
                 });
