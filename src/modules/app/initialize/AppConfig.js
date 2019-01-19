@@ -80,7 +80,7 @@
                                             return `${value.getTokens().toFixed()}
                                                 ${(value.asset.displayName === 'WAVES') ?
         'ACRYL' :
-        value.asset.displayName}`;
+        value.asset.displayName}`; // linter only 8 intend
                                         } else {
                                             return '';
                                         }
