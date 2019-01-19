@@ -77,15 +77,20 @@
                                         return value && value.getTokens().toFixed() || '';
                                     case 'money-currency':
                                         if (value) {
-                                            return `${value.getTokens().toFixed()} ${value.asset.displayName}`;
+                                            return `${value.getTokens().toFixed()}
+                                                ${(value.asset.displayName === 'WAVES') ?
+        'ACRYL' :
+        value.asset.displayName}`;
                                         } else {
                                             return '';
                                         }
                                     case 'money-fee':
                                         return (
                                             value &&
-                                            `${value.getTokens().toFixed()} ${value.asset.displayName}` ||
-                                            ''
+                                            `${value.getTokens().toFixed()}
+                                             ${(value.asset.displayName === 'WAVES') ?
+                                                'ACRYL' :
+                                                value.asset.displayName}` || ''
                                         );
                                     case 'BigNumber':
                                         return value && value.toFixed() || '';
