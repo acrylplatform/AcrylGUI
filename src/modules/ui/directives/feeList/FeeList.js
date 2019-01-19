@@ -47,6 +47,7 @@
                     if (!(this.fee && find(this.feeList, item => item.asset.id === this.fee.asset.id))) {
                         const fee = this.balanceHash && Object.keys(this.balanceHash).length && list.find(item => {
                             const balance = this.balanceHash[item.asset.id];
+                            item.asset.displayName = 'ACRYL';
                             return balance && balance.gte(item);
                         });
                         this.fee = fee || this.feeList[0];
@@ -89,7 +90,7 @@
                     return null;
                 }
 
-                const wavesFee = list.find(item => item.asset.id === 'ACRYL');
+                const wavesFee = list.find(item => item.asset.id === 'WAVES');
                 const filteredList = list.filter((fee) => {
                     const feeBalance = this.balanceHash[fee.asset.id];
                     return !(!hasBalances || !feeBalance || feeBalance.lt(fee));
@@ -97,7 +98,7 @@
 
 
                 if (!filteredList.length) {
-                    filteredList.push(wavesFee);
+                    wavesFee.filteredList.push(wavesFee);
                 }
 
                 this.feeList = filteredList;

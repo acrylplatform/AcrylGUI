@@ -13,7 +13,7 @@
                             </div>
                             <div>
                                 <w-balance money="$ctrl.balance"></w-balance>
-                                <span>&nbsp{{$ctrl.balance.asset.displayName}}</span>
+                                <span>&nbsp{{($ctrl.balance.asset.displayName === "WAVES") ? "ACRYL" : $ctrl.balance.asset.displayName}}</span>
                             </div>
                         </div>
                     </div>
