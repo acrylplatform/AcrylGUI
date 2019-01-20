@@ -119,8 +119,7 @@
       "scamListUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv",
       "assets": {
         "USD": "G14ASpskd7RWNhmSTFcchhCti4XPQgDVUZFtfvEoR5BP",
-        "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy",
-        "ETH": "DcGYqrdbyBsdJtgHh66Ygo4hPxUes4BKLYkrwZyE24Xs"
+        "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
       }
     },
     "mainnet": {
@@ -136,8 +135,7 @@
       "scamListUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv",
       "assets": {
         "USD": "G14ASpskd7RWNhmSTFcchhCti4XPQgDVUZFtfvEoR5BP",
-        "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy",
-        "ETH": "DcGYqrdbyBsdJtgHh66Ygo4hPxUes4BKLYkrwZyE24Xs"
+        "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
       }
     }
   }

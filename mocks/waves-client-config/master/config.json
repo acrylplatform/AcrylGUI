@@ -1,13 +1,13 @@
 {
   "PERMISSIONS": {
     "CAN_TRANSFER_COINOMAT": [
-      "BTC",
-      "ETH",
-      "LTC",
-      "ZEC",
-      "BCH",
-      "DASH",
-      "XMR"
+      "BTC"
+//      "ETH",
+//      "LTC",
+//      "ZEC",
+//      "BCH",
+//      "DASH",
+//      "XMR"
     ],
     "CAN_TRANSFER_TRANSACTION": true,
     "CAN_MASS_TRANSFER_TRANSACTION": true,
