@@ -22,7 +22,7 @@
                 user.onLogin().then(() => {
 
                     if (!user.getSetting('withScam')) {
-                        this.stopScam();
+                        // this.stopScam();
                     }
                 });
             }
@@ -159,7 +159,7 @@
              * @private
              */
             _getScamAssetList() {
-                return ds.fetch(`${user.getSetting('scamListUrl')}?${WavesApp.version}-${Date.now()}`)
+                /*  return ds.fetch(`${user.getSetting('scamListUrl')}?${WavesApp.version}-${Date.now()}`)
                     .then((text) => {
                         const papa = require('papaparse');
                         const hash = Object.create(null);
@@ -169,7 +169,7 @@
                             }
                         });
                         return hash;
-                    });
+                    }); */
             }
 
             /**
