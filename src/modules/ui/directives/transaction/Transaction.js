@@ -163,6 +163,8 @@
 
                 if (tx.amount && tx.amount instanceof ds.wavesDataEntities.Money) {
                     const asset = tx.amount.asset;
+
+                    asset.id = (asset.id === 'WAVES') ? 'ACRYL' : asset.id;
                     const amount = `Amount: ${tx.amount.toFormat()} ${asset.name} (${asset.id})`;
                     message += `\n${amount}`;
                 }
@@ -181,7 +183,8 @@
                     message += '\n\nDATA END\n\n';
                 }
 
-                const fee = `Fee: ${tx.fee.toFormat()} ${tx.fee.asset.name} (${tx.fee.asset.id})`;
+                const feeCurrency = (tx.fee.asset.id === 'WAVES') ? 'ACRYL' : tx.fee.asset.id;
+                const fee = `Fee: ${tx.fee.toFormat()} ${tx.fee.asset.name} (${feeCurrency})`;
                 message += `\n${fee}`;
 
                 return message;
