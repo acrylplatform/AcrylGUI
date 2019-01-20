@@ -174,7 +174,7 @@
                 this.node = WavesApp.network.node;
                 this.matcher = WavesApp.network.matcher;
                 this.withScam = false;
-                this.scamListUrl = WavesApp.network.scamListUrl;
+                // this.scamListUrl = WavesApp.network.scamListUrl;
             }
 
             showPairingWithMobile() {
