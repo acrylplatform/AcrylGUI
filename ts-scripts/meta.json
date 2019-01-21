@@ -125,7 +125,7 @@
       "apiVersion": "v0",
       "code": "A",
       "node": "https://nodes.acrylplatform.com",
-      "matcher": "https://nodes.acrylplatform.com/matcher",
+      "matcher": "https://matcher.acrylplatform.com/matcher",
       "api": "https://api.acrylplatform.com",
       "explorer": "https://explorer.acrylplatform.com",
       "coinomat": "https://localhost:8080/coinomat",
