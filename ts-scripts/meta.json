@@ -109,29 +109,29 @@
     "testnet": {
       "apiVersion": "v0",
       "code": "K",
-      "node": "https://nodestestnet.acrylplatform.com",
+      "node": "https://nodes.acrylplatform.com",
       "matcher": "https://nodestestnet.acrylplatform.com/matcher",
       "api": "https://apitestnet.acrylplatform.com",
-      "explorer": "https://testnet.acrylexplorer.com",
+      "explorer": "https://explorertestnet.acrylplatform.com",
       "coinomat": "https://localhost:8080/coinomat",
       "support": "https://support.acrylplatform.com",
-      "nodeList": "http://dev.pywaves.org/testnet/generators/",
-      "scamListUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv",
+      "nodeList": "FIND USAGE AND REMOVE",
+      "scamListUrl": "FIND USAGE AND REMOVE",
       "assets": {
         "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
       }
     },
     "mainnet": {
       "apiVersion": "v0",
-      "code": "K",
-      "node": "https://nodestestnet.acrylplatform.com",
-      "matcher": "https://nodestestnet.acrylplatform.com/matcher",
-      "api": "https://apitestnet.acrylplatform.com",
-      "explorer": "https://testnet.acrylsexplorer.com",
+      "code": "A",
+      "node": "https://nodes.acrylplatform.com",
+      "matcher": "https://nodes.acrylplatform.com/matcher",
+      "api": "https://api.acrylplatform.com",
+      "explorer": "https://explorer.acrylplatform.com",
       "coinomat": "https://localhost:8080/coinomat",
       "support": "https://support.acrylplatform.com",
-      "nodeList": "http://dev.pyacryl.org/testnet/generators/",
-      "scamListUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Waves%20Community.csv",
+      "nodeList": "FIND USAGE AND REMOVE",
+      "scamListUrl": "FIND USAGE AND REMOVE",
       "assets": {
         "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
       }
