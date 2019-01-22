@@ -123,7 +123,7 @@
                     return null;
                 }
                 ds.moneyFromTokens('0', this.assetId).then((money) => {
-                    this.asset = money.asset;
+                    this.asset = (money.asset === 'WAVES') ? 'ACRYL' : money.asset;
                     if (!this.amount) {
                         this.amount = money;
                     }
