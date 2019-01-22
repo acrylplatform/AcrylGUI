@@ -25,6 +25,7 @@
                 /**
                  * @private
                  */
+                // ToDo SEARCH HERE!!!
                 this.defaults = {
                     advancedMode: false,
                     network: WavesApp.network,
@@ -38,36 +39,37 @@
                     savePassword: true,
                     hasBackup: true,
                     termsAccepted: true,
-                    baseAssetId: WavesApp.defaultAssets.USD,
+                    // baseAssetId: WavesApp.defaultAssets.USD,
+                    baseAssetId: WavesApp.defaultAssets.BTC,
+                    assetsOracle: WavesApp.oracle,
                     events: Object.create(null),
                     lng: 'ru',
                     send: {
                         defaultTab: 'singleSend'
                     },
+                    orderLimit: 0.05,
                     pinnedAssetIdList: [
                         WavesApp.defaultAssets.WAVES,
-                        WavesApp.defaultAssets.ACRYL,
                         WavesApp.defaultAssets.BTC,
-                        WavesApp.defaultAssets.ETH,
-                        WavesApp.defaultAssets.USD,
-                        WavesApp.defaultAssets.EUR,
-                        WavesApp.defaultAssets.LTC,
-                        WavesApp.defaultAssets.ZEC,
-                        WavesApp.defaultAssets.BCH,
-                        WavesApp.defaultAssets.TRY,
-                        WavesApp.defaultAssets.DASH,
-                        WavesApp.defaultAssets.XMR
+                        // WavesApp.defaultAssets.ETH,
+                        // WavesApp.defaultAssets.USD,
+                        // WavesApp.defaultAssets.EUR
+                        // WavesApp.defaultAssets.LTC,
+                        // WavesApp.defaultAssets.ZEC,
+                        // WavesApp.defaultAssets.BCH,
+                        // WavesApp.defaultAssets.TRY,
+                        // WavesApp.defaultAssets.DASH,
+                        // WavesApp.defaultAssets.XMR
                     ],
                     wallet: {
                         activeState: 'assets',
                         assets: {
                             chartMode: 'month',
-                            activeChartAssetId: WavesApp.defaultAssets.ACRYL,
+                            activeChartAssetId: WavesApp.defaultAssets.WAVES,
                             chartAssetIdList: [
                                 WavesApp.defaultAssets.WAVES,
-                                WavesApp.defaultAssets.ACRYL,
-                                WavesApp.defaultAssets.BTC,
-                                WavesApp.defaultAssets.ETH
+                                WavesApp.defaultAssets.BTC
+                                // WavesApp.defaultAssets.ETH
                             ]
                         },
                         transactions: {
@@ -81,13 +83,13 @@
                     dex: {
                         chartCropRate: 1.5,
                         assetIdPair: {
-                            amount: WavesApp.defaultAssets.ACRYL,
+                            amount: WavesApp.defaultAssets.WAVES,
                             price: WavesApp.defaultAssets.BTC
                         },
                         watchlist: {
                             showOnlyFavorite: false,
                             favourite: [
-                                [WavesApp.defaultAssets.ACRYL, WavesApp.defaultAssets.BTC]
+                                [WavesApp.defaultAssets.WAVES, WavesApp.defaultAssets.BTC]
                             ],
                             activeTab: 'all',
                             list: Object.values(WavesApp.defaultAssets)

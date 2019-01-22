@@ -2,9 +2,9 @@
     'use strict';
 
     const SEPA_GATEWAYS = {
-        [WavesApp.defaultAssets.USD]: 'USD',
-        [WavesApp.defaultAssets.EUR]: 'EUR',
-        [WavesApp.defaultAssets.TRY]: 'TRY'
+        // [WavesApp.defaultAssets.USD]: 'USD',
+        // [WavesApp.defaultAssets.EUR]: 'EUR',
+        // [WavesApp.defaultAssets.TRY]: 'TRY'
     };
 
     const KNOWLEDGE_BASE = `${WavesApp.network.support}/forums/2-knowledge-base/topics`;

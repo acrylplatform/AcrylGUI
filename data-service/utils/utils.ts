@@ -1,9 +1,8 @@
 import { IAssetPair, IHash } from '../interface';
+import { WAVES_ID } from '@waves/signature-generator';
 import { BigNumber, Asset, Money, AssetPair, OrderPrice } from '@waves/data-entities';
 import { get } from '../api/assets/assets';
 import { get as configGet, timeDiff } from '../config';
-import { WAVES_ID } from '@waves/signature-generator';
-// const WAVES_ID = 'ACRYL';
 
 export function normalizeTime(time: number): number;
 export function normalizeTime(time: Date): Date;
@@ -38,7 +37,7 @@ export function normalizeAssetPair(assetPair: IAssetPair): IAssetPair {
 }
 
 export function normalizeUrl(url: string): string {
-    const urlObject = new URL(url);
+    const urlObject = new URL(url, document.location.origin);
     const parts = [
         urlObject.host,
         urlObject.pathname,

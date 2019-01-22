@@ -1,5 +1,5 @@
 import { Asset, AssetPair, BigNumber, Money } from '@waves/data-entities';
-import { libs, TRANSACTION_TYPE_NUMBER } from '@waves/signature-generator';
+import { libs, TRANSACTION_TYPE_NUMBER, WAVES_ID } from '@waves/signature-generator';
 import { get } from '../assets/assets';
 import {
     IBurn,
@@ -29,8 +29,7 @@ import {
 import { IHash, TOrderType } from '../../interface';
 import { factory, IFactory } from '../matcher/getOrders';
 import { getSignatureApi } from '../../sign';
-import { WAVES_ID } from '@waves/signature-generator';
-// const WAVES_ID = 'ACRYL';
+
 
 const getFactory = (isTokens: boolean): IFactory => {
     if (isTokens) {
@@ -45,18 +44,16 @@ const getFactory = (isTokens: boolean): IFactory => {
 
 
 // TODO Remove is tokens flag after support Dima's api
-export function parseTx(
-    transactions: Array<T_API_TX>, isUTX: boolean, isTokens?: boolean, address?: string,
-    leaseTx?: Array<txApi.ILease>): Promise<Array<T_TX>> {
+// ToDo fix leasing if many tx's
+export function parseTx(transactions: Array<T_API_TX>, isUTX: boolean, isTokens?: boolean): Promise<Array<T_TX>> {
     const hash = Object.create(null);
     hash[WAVES_ID] = true;
     transactions.forEach((tx) => getAssetsHashFromTx(tx, hash));
     const api = getSignatureApi();
-    let addSender;
-    api.getAddress().then((addressSender) => addSender = addressSender)
+
     return Promise.all([
-        get(Object.keys(hash)).then((assets) =>
-            toHash(assets, 'id')), api && api.getPublicKey() && api.getAddress() || Promise.resolve(null)
+        get(Object.keys(hash)).then((assets) => toHash(assets, 'id')),
+        api && api.getPublicKey() || Promise.resolve(null)
     ])
         .then(([hash, sender]) => {
             return transactions.map((transaction) => {
@@ -74,7 +71,7 @@ export function parseTx(
                     case TRANSACTION_TYPE_NUMBER.EXCHANGE:
                         return parseExchangeTx(transaction, hash, isUTX, isTokens, sender);
                     case TRANSACTION_TYPE_NUMBER.LEASE:
-                        return parseLeasingTx(transaction, hash, isUTX, addSender, leaseTx);
+                        return parseLeasingTx(transaction, hash, isUTX);
                     case TRANSACTION_TYPE_NUMBER.CANCEL_LEASING:
                         return parseCancelLeasingTx(transaction, hash, isUTX);
                     case TRANSACTION_TYPE_NUMBER.CREATE_ALIAS:
@@ -203,26 +200,12 @@ export function getExchangeTxMoneys(factory: IFactory, tx: txApi.IExchange, asse
     return { price, amount, total };
 }
 
-export function parseLeasingTx(
-    tx: txApi.ILease, assetsHash: IHash<Asset>, isUTX: boolean, address?: string,
-    leaseTx?: Array<txApi.ILease>): ILease {
+export function parseLeasingTx(tx: txApi.ILease, assetsHash: IHash<Asset>, isUTX: boolean): ILease {
     const amount = new Money(tx.amount, assetsHash[WAVES_ID]);
     const fee = new Money(tx.fee, assetsHash[WAVES_ID]);
     const recipient = normalizeRecipient(tx.recipient);
-    let isActive = (tx.status) ? tx.status === 'active' :
-        ((tx.sender === address) ? true : false);
+    const isActive = tx.status === 'active';
     return { ...tx, amount, fee, isUTX, recipient, isActive };
-}
-
-function isActiveLease(txFromTransactionReq: txApi.ILease, leaseTx: Array<txApi.ILease>, address: string): boolean {
-    if (leaseTx) {
-        const currTx = leaseTx.find((tx) => tx.id === txFromTransactionReq.id);
-        if (currTx) {
-            return currTx.sender === address;
-        }
-    } else {
-        return false;
-    }
 }
 
 export function parseCancelLeasingTx(tx: txApi.ICancelLeasing, assetsHash: IHash<Asset>, isUTX: boolean): ICancelLeasing {

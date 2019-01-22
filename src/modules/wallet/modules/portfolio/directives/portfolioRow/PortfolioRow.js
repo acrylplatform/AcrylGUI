@@ -2,22 +2,24 @@
     'use strict';
 
     const Handlebars = require('handlebars');
+    const { STATUS_LIST } = require('@waves/oracle-data');
+    const { path } = require('ramda');
 
     // TODO @xenohunter : remove that when icons are in @dvshur's service
     const ASSET_IMAGES_MAP = {
         [WavesApp.defaultAssets.WAVES]: '/img/assets/waves.svg',
         [WavesApp.defaultAssets.BTC]: '/img/assets/bitcoin.svg',
-        [WavesApp.defaultAssets.ETH]: '/img/assets/ethereum.svg',
-        [WavesApp.defaultAssets.LTC]: '/img/assets/ltc.svg',
-        [WavesApp.defaultAssets.ZEC]: '/img/assets/zec.svg',
-        [WavesApp.defaultAssets.EUR]: '/img/assets/euro.svg',
-        [WavesApp.defaultAssets.USD]: '/img/assets/usd.svg',
-        [WavesApp.defaultAssets.DASH]: '/img/assets/dash.svg',
-        [WavesApp.defaultAssets.BCH]: '/img/assets/bitcoin-cash.svg',
-        [WavesApp.defaultAssets.TRY]: '/img/assets/try.svg',
-        [WavesApp.defaultAssets.XMR]: '/img/assets/xmr.svg',
-        [WavesApp.otherAssetsWithIcons.EFYT]: '/img/assets/efyt.svg',
-        [WavesApp.otherAssetsWithIcons.WNET]: '/img/assets/wnet.svg'
+        // [WavesApp.defaultAssets.ETH]: '/img/assets/ethereum.svg',
+        // [WavesApp.defaultAssets.LTC]: '/img/assets/ltc.svg',
+        // [WavesApp.defaultAssets.ZEC]: '/img/assets/zec.svg',
+        // [WavesApp.defaultAssets.EUR]: '/img/assets/euro.svg',
+        // [WavesApp.defaultAssets.USD]: '/img/assets/usd.svg',
+        // [WavesApp.defaultAssets.DASH]: '/img/assets/dash.svg',
+        // [WavesApp.defaultAssets.BCH]: '/img/assets/bitcoin-cash.svg',
+        // [WavesApp.defaultAssets.TRY]: '/img/assets/try.svg',
+        // [WavesApp.defaultAssets.XMR]: '/img/assets/xmr.svg',
+        // [WavesApp.otherAssetsWithIcons.EFYT]: '/img/assets/efyt.svg',
+        // [WavesApp.otherAssetsWithIcons.WNET]: '/img/assets/wnet.svg'
     };
 
     const COLORS_MAP = {
@@ -202,9 +204,13 @@
                 let balance = this.balance;
                 const firstAssetChar = this.balance.asset.name.slice(0, 1);
                 const canPayFee = list.find(item => item.asset.id === this.balance.asset.id) && !this._isWaves;
+                const data = ds.dataManager.getOracleAssetData(this.balance.asset.id);
+                const logo = data && data.logo;
 
                 const html = template({
-                    assetIconPath: ASSET_IMAGES_MAP[this.balance.asset.id],
+                    isVerified: data && data.status === STATUS_LIST.VERIFIED,
+                    isGateway: data && data.status === 3,
+                    assetIconPath: logo || ASSET_IMAGES_MAP[this.balance.asset.id],
                     firstAssetChar,
                     canBurn: !this._isWaves,
                     canReissue: this._isMyAsset && this.balance.asset.reissuable,
@@ -262,19 +268,23 @@
         }
 
         _getCanShowDex() {
+            const statusPath = ['assets', this.balance.asset.id, 'status'];
+
             return this.balance.isPinned ||
                 this._isMyAsset ||
                 this.balance.asset.isMyAsset ||
                 this.balance.asset.id === WavesApp.defaultAssets.WAVES ||
                 this.gatewayService.getPurchasableWithCards()[this.balance.asset.id] ||
                 this.gatewayService.getCryptocurrencies()[this.balance.asset.id] ||
-                this.gatewayService.getFiats()[this.balance.asset.id];
+                this.gatewayService.getFiats()[this.balance.asset.id] ||
+                path(statusPath, ds.dataManager.getOracleData()) === STATUS_LIST.VERIFIED;
 
         }
 
         /**
          * @private
          */
+        // Todo edit assets row data here if needed
         _onUpdateBalance() {
             this._updateBalances();
             this._initSpamState();
@@ -287,8 +297,8 @@
                 change24Node.innerHTML = '—';
                 change24Node.classList.remove('minus');
                 change24Node.classList.remove('plus');
-                // this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = '—';
-                // this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = '—';
+                this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = '—';
+                this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = '—';
 
                 return null;
             }
@@ -303,13 +313,13 @@
                     change24Node.innerHTML = `${change24.toFixed(2)}%`;
                 });
 
-            /*  this.waves.utils.getRate(balance.asset.id, baseAssetId)
+            this.waves.utils.getRate(balance.asset.id, baseAssetId)
                 .then(rate => {
                     const baseAssetBalance = balance.available.getTokens().times(rate).toFormat(2);
 
-                    // this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = rate.toFixed(2);
-                    // this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = baseAssetBalance;
-                }); */
+                    this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = rate.toFixed(2);
+                    this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = baseAssetBalance;
+                });
 
             const startDate = this.utils.moment().add().day(-7);
             this.waves.utils.getRateHistory(balance.asset.id, baseAssetId, startDate).then((values) => {

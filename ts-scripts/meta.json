@@ -1,7 +1,7 @@
 {
   "vendors": [
+    "node_modules/@waves/oracle-data/dist/oracle-data.min.js",
     "node_modules/parse-json-bignumber/dist/parse-json-bignumber.min.js",
-    "node_modules/@waves/assets-pairs-order/dist/browser.js",
     "node_modules/worker-wrapper/dist/WorkerWrapper.min.js",
     "node_modules/handlebars/dist/handlebars.min.js",
     "node_modules/ramda/dist/ramda.min.js",
@@ -55,6 +55,62 @@
         "group": " ",
         "decimal": "."
       }
+    },
+    "ko": {
+      "name": "Ko",
+      "separators": {
+        "group": ",",
+        "decimal": "."
+      }
+    },
+    "zh-Hans-CN": {
+      "name": "Zh",
+      "separators": {
+        "group": ",",
+        "decimal": "."
+      }
+    },
+    "tr": {
+      "name": "Tr",
+      "separators": {
+        "group": " ",
+        "decimal": "."
+      }
+    },
+    "nl": {
+      "name": "Nl",
+      "separators": {
+        "group": ",",
+        "decimal": "."
+      }
+    },
+    "hi": {
+      "name": "Hi",
+      "separators": {
+        "group": ",",
+        "decimal": "."
+      }
+    },
+    "es": {
+      "name": "Es",
+      "separators": {
+        "group": ",",
+        "decimal": "."
+      }
+    },
+    "pt": {
+      "name": "Pt",
+      "separators": {
+        "group": ",",
+        "decimal": "."
+      }
+    },
+    "pl": {
+      "name": "Pl",
+      "separators": {
+        "group": ",",
+        "decimal": "."
+      }
     }
   },
   "electronScripts": [
@@ -103,26 +159,32 @@
         "postinstall": "node_modules/.bin/electron-rebuild --force"
       }
     },
-    "server": "client.wavesplatform.com"
+    "server": "desktop.acrylplatform.com"
   },
   "configurations": {
     "testnet": {
+      "oracle": "",
       "apiVersion": "v0",
       "code": "K",
-      "node": "https://nodes.acrylplatform.com",
+      "bankRecipient": "",
+      "node": "https://nodestestnet.acrylplatform.com",
       "matcher": "https://nodestestnet.acrylplatform.com/matcher",
       "api": "https://apitestnet.acrylplatform.com",
       "explorer": "https://explorertestnet.acrylplatform.com",
       "coinomat": "https://localhost:8080/coinomat",
       "support": "https://support.acrylplatform.com",
-      "nodeList": "FIND USAGE AND REMOVE",
-      "scamListUrl": "FIND USAGE AND REMOVE",
+      "nodeList": "",
+      "scamListUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Acryl%20Community.csv",
+      "origin": "https://testnet.acrylplatform.com",
+      "featuresConfigUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-client-config/master/testnet.config.json",
       "assets": {
         "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
       }
     },
     "mainnet": {
+      "oracle":  "",
       "apiVersion": "v0",
+      "bankRecipient": "",
       "code": "A",
       "node": "https://nodes.acrylplatform.com",
       "matcher": "https://matcher.acrylplatform.com/matcher",
@@ -130,8 +192,10 @@
       "explorer": "https://explorer.acrylplatform.com",
       "coinomat": "https://localhost:8080/coinomat",
       "support": "https://support.acrylplatform.com",
-      "nodeList": "FIND USAGE AND REMOVE",
-      "scamListUrl": "FIND USAGE AND REMOVE",
+      "nodeList": "",
+      "scamListUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Acryl%20Community.csv",
+      "origin": "https://client.acrylplatform.com",
+      "featuresConfigUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-client-config/master/config.json",
       "assets": {
         "BTC": "68X83bfvSSQauL81fcfqA3Vne9s4y2BRAG36DGRcv4V2"
       }

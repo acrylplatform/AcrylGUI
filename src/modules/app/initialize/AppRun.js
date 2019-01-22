@@ -3,6 +3,7 @@
 (function () {
     'use strict';
 
+    const locationHref = location.href;
     const tsUtils = require('ts-utils');
 
     const PROGRESS_MAP = {
@@ -68,6 +69,7 @@
         $rootScope.isDesktop = isDesktop;
         $rootScope.isNotDesktop = !isDesktop;
         $rootScope.isPhone = isPhone;
+        $rootScope.isNotPhone = !isPhone;
         $rootScope.isTablet = isTablet;
 
         if (isPhone) {
@@ -133,6 +135,27 @@
 
             _initTryDesktop() {
                 return Promise.resolve(true);
+
+                // if (!isDesktop || WavesApp.isDesktop()) {
+                //     return Promise.resolve(true);
+                // }
+                //
+                // const url = new URL(locationHref);
+                // const href = `acryl://${url.pathname}${url.search}${url.hash}`.replace('///', '//');
+                //
+                // return storage.load('openClientMode').then(clientMode => {
+                //     switch (clientMode) {
+                //         case 'desktop':
+                //             window.open(href);
+                //             return this._runDesktop();
+                //         case 'web':
+                //             return Promise.resolve(true);
+                //         default:
+                //             return modalManager.showTryDesktopModal()
+                //                 .then(() => this._runDesktop())
+                //                 .catch(() => true);
+                //     }
+                // });
             }
 
             _runDesktop() {
@@ -495,6 +518,7 @@
         'decorators',
         'waves',
         'ModalRouter',
+        'configService',
         'whatsNew'
     ];
 
@@ -506,5 +530,6 @@
  * @property {boolean} $rootScope.Scope#isDesktop
  * @property {boolean} $rootScope.Scope#isNotDesktop
  * @property {boolean} $rootScope.Scope#isPhone
+ * @property {boolean} $rootScope.Scope#isNotPhone
  * @property {boolean} $rootScope.Scope#isTablet
  */

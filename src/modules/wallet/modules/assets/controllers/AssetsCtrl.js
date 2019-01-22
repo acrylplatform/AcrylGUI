@@ -69,7 +69,8 @@
                  */
                 this.changePercent = '0.00';
 
-                this.btcPrice = 0;
+                //ToDo edit btc price getting
+                // this.btcPrice = 0;
                 /**
                  * @type {boolean}
                  */
@@ -115,7 +116,8 @@
                 });
 
                 this.observe(['interval', 'intervalCount', 'activeChartAssetId'], this._onChangeInterval);
-                this._getBtcPrice();
+                //ToDo edit btc price getting
+                // this._getBtcPrice();
             }
 
             openScriptModal() {
@@ -222,15 +224,16 @@
                     .then((list) => list.map(({ available }) => available));
             }
 
-            _getBtcPrice() {
-                return waves.node.assets.getBtcUsdFromCoinMarket()
-                    .then((data) => {
-                        if (data) {
-                            this.btcPrice = Math.round(+data).toFixed(2);
-                            return this.btcPrice;
-                        }
-                    });
-            }
+            //ToDo edit btc price getting
+            // _getBtcPrice() {
+            //     return waves.node.assets.getBtcUsdFromCoinMarket()
+            //         .then((data) => {
+            //             if (data) {
+            //                 this.btcPrice = Math.round(+data).toFixed(2);
+            //                 return this.btcPrice;
+            //             }
+            //         });
+            // }
 
             /**
              * @return {Promise}

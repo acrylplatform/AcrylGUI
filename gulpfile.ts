@@ -278,7 +278,7 @@ task('downloadLocales', ['concat-develop-sources'], function (done) {
         modules.push('electron');
 
         const load = name => {
-            const langs = Object.keys(meta.langList); 
+            const langs = Object.keys(meta.langList);
            return true;
             /* return Promise.all(langs.map(lang => {
                 const url = `https://locize.wvservices.com/30ffe655-de56-4196-b274-5edc3080c724/latest/${lang}/${name}`;
