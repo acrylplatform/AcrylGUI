@@ -30,14 +30,20 @@
              * @return {string}
              */
             get priceDisplayName() {
-                return this.priceBalance && ((this.priceBalance.asset.displayName === "WAVES") ? "ACRYL" : this.priceBalance.asset.displayName) || '';
+                return this.priceBalance &&
+                    ((this.priceBalance.asset.displayName === 'WAVES') ?
+                        'ACRYL' :
+                        this.priceBalance.asset.displayName) || '';
             }
 
             /**
              * @return {string}
              */
             get amountDisplayName() {
-                return this.amountBalance && ((this.amountBalance.asset.displayName === "WAVES") ? "ACRYL" : this.amountBalance.asset.displayName) || '';
+                return this.amountBalance &&
+                    ((this.amountBalance.asset.displayName === 'WAVES') ?
+                        'ACRYL' :
+                        this.amountBalance.asset.displayName) || '';
             }
 
             get loaded() {

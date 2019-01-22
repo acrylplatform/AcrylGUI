@@ -9,7 +9,7 @@
      * @param {app.utils} utils
      */
 
-    //ToDo edit whats new
+    // ToDo edit whats new
     const factory = function (notification, user, migration, utils) {
 
         const MIGRATION_LIST = [
