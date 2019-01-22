@@ -19,7 +19,6 @@
 *.pfx
 **/**/.DS_Store
 WavesGUI.iml
-/.cache-download
 /data-service/**/*.js
 /data-service/**/*.js.map
 /data-service-dist

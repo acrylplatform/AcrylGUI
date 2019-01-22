@@ -8,6 +8,8 @@
      * @param {Migration} migration
      * @param {app.utils} utils
      */
+
+    //ToDo edit whats new
     const factory = function (notification, user, migration, utils) {
 
         const MIGRATION_LIST = [
@@ -26,7 +28,10 @@
             '1.0.25',
             '1.0.27',
             '1.0.28',
-            '1.0.29'
+            '1.0.29',
+            '1.0.30',
+            '1.0.32',
+            '1.0.33'
         ];
 
         /**

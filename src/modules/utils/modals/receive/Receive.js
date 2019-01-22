@@ -4,27 +4,27 @@
     const DEFAULT_LINK = '#';
 
     const FIAT_CODES = {
-        [WavesApp.defaultAssets.USD]: 'USD',
-        [WavesApp.defaultAssets.EUR]: 'EURO'
+        // [WavesApp.defaultAssets.USD]: 'USD',
+        // [WavesApp.defaultAssets.EUR]: 'EURO'
     };
 
     // TODO : move this to the related gateway service
     // TODO : keep only IDs here
     const FIAT_LIST = [
-        {
-            name: 'USD',
-            assetId: WavesApp.defaultAssets.USD,
-            fiatCode: FIAT_CODES[WavesApp.defaultAssets.USD],
-            min: '30',
-            max: '50'
-        },
-        {
-            name: 'EUR',
-            assetId: WavesApp.defaultAssets.EUR,
-            fiatCode: FIAT_CODES[WavesApp.defaultAssets.EUR],
-            min: '30',
-            max: '50'
-        }
+        // {
+        //     name: 'USD',
+        //     assetId: WavesApp.defaultAssets.USD,
+        //     fiatCode: FIAT_CODES[WavesApp.defaultAssets.USD],
+        //     min: '30',
+        //     max: '50'
+        // },
+        // {
+        //     name: 'EUR',
+        //     assetId: WavesApp.defaultAssets.EUR,
+        //     fiatCode: FIAT_CODES[WavesApp.defaultAssets.EUR],
+        //     min: '30',
+        //     max: '50'
+        // }
     ];
 
     /**
@@ -357,6 +357,8 @@
 
                     this.activateCryptocurrencyTab();
                     this.activateInvoiceTab();
+                    this.activateCardTab();
+                    this.activateBankTab();
 
                     this.initForSingleAsset();
                 });

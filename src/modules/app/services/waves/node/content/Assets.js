@@ -22,7 +22,7 @@
                 user.onLogin().then(() => {
 
                     if (!user.getSetting('withScam')) {
-                        // this.stopScam();
+                        this.stopScam();
                     }
                 });
             }
@@ -42,7 +42,7 @@
              */
             @decorators.cachable(5)
             info(assetId) {
-                if (assetId === WavesApp.defaultAssets.ACRYL) {
+                if (assetId === WavesApp.defaultAssets.WAVES) {
                     return this.getAsset(assetId);
                 }
 
@@ -55,17 +55,17 @@
                 });
             }
 
-
-            getBtcUsdFromCoinMarket() {
-                return ds.fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=usd')
-                    .then((data) => {
-                        let price;
-                        if (data.length) {
-                            price = data[0].price_usd;
-                        }
-                        return price;
-                    });
-            }
+            // ToDo reconfigure BTC/USD price
+            // getBtcUsdFromCoinMarket() {
+            //     return ds.fetch('https://api.coinmarketcap.com/v1/ticker/bitcoin/?convert=usd')
+            //         .then((data) => {
+            //             let price;
+            //             if (data.length) {
+            //                 price = data[0].price_usd;
+            //             }
+            //             return price;
+            //         });
+            // }
 
             /**
              * Get Asset info
@@ -91,7 +91,7 @@
              * @return {JQuery.jqXHR}
              */
             search(query) {
-                return $.get(`https://api.acrylplatform.com/assets/search/${encodeURIComponent(query)}`, (data) => {
+                return $.get(`${WavesApp.network.api}/assets/search/${encodeURIComponent(query)}`, (data) => {
                     return data.map((item) => {
                         item.name = WavesApp.remappedAssetNames[item.id] || item.name;
                         return item;
@@ -159,7 +159,7 @@
              * @private
              */
             _getScamAssetList() {
-                /*  return ds.fetch(`${user.getSetting('scamListUrl')}?${WavesApp.version}-${Date.now()}`)
+                return ds.fetch(`${user.getSetting('scamListUrl')}?${WavesApp.version}-${Date.now()}`)
                     .then((text) => {
                         const papa = require('papaparse');
                         const hash = Object.create(null);
@@ -169,7 +169,7 @@
                             }
                         });
                         return hash;
-                    }); */
+                    });
             }
 
             /**

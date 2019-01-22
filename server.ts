@@ -10,6 +10,7 @@ import { readFile } from 'fs-extra';
 import { join } from 'path';
 import * as fs from 'fs';
 import * as qs from 'querystring';
+import * as opn from 'opn';
 
 const ip = require('my-local-ip')();
 
@@ -56,14 +57,15 @@ const handler = function (req, res) {
 function createMyServer(port) {
 
     const server = createSecureServer({ key: privateKey, cert: certificate });
+    const url = `https://localhost:${port}`;
 
     server.addListener('request', request);
     server.listen(port);
-
     console.log(`Listen port ${port}...`);
     console.log('Available urls:');
 
-    console.log(`https://localhost:${port}`);
+    console.log(url);
+    opn(url);
 }
 
 function createSimpleServer({ port = 8000 }) {
@@ -160,9 +162,7 @@ function coinomat(req, res, next): boolean {
         response_json = (data.amount * 0.32258064) as any;
     }
 
-    const cType = typeof response_json === 'string' || path === 'limits.php'
-        ? 'text/html; charset=utf-8;'
-        : 'application/json; charset=utf-8;';
+    const cType = 'application/json; charset=utf-8;';
     res.setHeader('Content-Type', cType);
     res.end(JSON.stringify(response_json));
     return false;

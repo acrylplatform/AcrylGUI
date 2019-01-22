@@ -199,7 +199,8 @@ export function prepareHTML(param: IPrepareHTMLOptions): Promise<string> {
                 },
                 network: networks[param.connection],
                 themesConf: JSON.stringify(themesConf),
-                langList: JSON.stringify(meta.langList)
+                langList: JSON.stringify(meta.langList),
+                oracle: meta.configurations[param.connection].oracle
             });
 
             return replaceStyles(fileTpl, param.styles);
@@ -288,10 +289,26 @@ export function route(connectionType: TConnection, buildType: TBuild, type: TPla
 
         if (url.indexOf('/locales') === 0) {
             const url1 = url.replace('locales', 'locale');
-                readFile(join(__dirname, `./../dist/`, url1), 'utf8')
-                .then((template) => {                 
+            readFile(join(__dirname, `./../dist/`, url1), 'utf8')
+                .then((template) => {
                     res.end(template);
                 });
+            // const [lang, ns] = url.replace('/locales/', '')
+            //     .replace(/\?.*/, '')
+            //     .replace('.json', '')
+            //     .split('/');
+            //
+            // get(`https://locize.wvservices.com/30ffe655-de56-4196-b274-5edc3080c724/latest/${lang}/${ns}`, (response) => {
+            //     let data = new Buffer('');
+            //
+            //     // A chunk of data has been recieved.
+            //     response.on('data', (chunk: Buffer) => {
+            //         data = Buffer.concat([data, chunk]);
+            //     });
+            //     response.on('end', () => {
+            //         res.end(data);
+            //     });
+            // });
             return null;
         }
 

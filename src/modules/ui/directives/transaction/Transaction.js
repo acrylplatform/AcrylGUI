@@ -64,6 +64,7 @@
             }
 
             sponsoredFee() {
+                this.isScam = false;
             }
 
             sponsored() {
@@ -163,9 +164,8 @@
 
                 if (tx.amount && tx.amount instanceof ds.wavesDataEntities.Money) {
                     const asset = tx.amount.asset;
-
-                    asset.id = (asset.id === 'WAVES') ? 'ACRYL' : asset.id;
-                    const amount = `Amount: ${tx.amount.toFormat()} ${asset.name} (${asset.id})`;
+                    const assetId = (asset.id === 'WAVES') ? 'ACRYL' : asset.id;
+                    const amount = `Amount: ${tx.amount.toFormat()} ${asset.name} (${assetId})`;
                     message += `\n${amount}`;
                 }
 

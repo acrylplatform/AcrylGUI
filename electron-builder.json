@@ -1,6 +1,6 @@
 {
-  "appId": "com.wavesplatform.client.lite",
-  "copyright": "Acryl Platform",
+  "appId": "com.acrylplatform.client.lite",
+  "copyright": "acryl Platform",
   "productName": "Acryl Client",
   "files": "**/*",
   "asar": true,

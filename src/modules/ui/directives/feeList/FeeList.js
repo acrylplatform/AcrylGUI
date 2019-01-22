@@ -47,7 +47,6 @@
                     if (!(this.fee && find(this.feeList, item => item.asset.id === this.fee.asset.id))) {
                         const fee = this.balanceHash && Object.keys(this.balanceHash).length && list.find(item => {
                             const balance = this.balanceHash[item.asset.id];
-                            item.asset.displayName = 'ACRYL';
                             return balance && balance.gte(item);
                         });
                         this.fee = fee || this.feeList[0];
@@ -98,7 +97,7 @@
 
 
                 if (!filteredList.length) {
-                    wavesFee.filteredList.push(wavesFee);
+                    filteredList.push(wavesFee);
                 }
 
                 this.feeList = filteredList;

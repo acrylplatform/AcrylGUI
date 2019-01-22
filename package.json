@@ -5,7 +5,7 @@
   "private": true,
   "repository": {
     "type": "git",
-    "url": "https://github.com/acrylplatform"
+    "url": "https://github.com/acrylplatform/AcrylGUI.git"
   },
   "author": {
     "name": "Acryl Platform",
@@ -37,6 +37,7 @@
     "@types/papaparse": "4.1.33",
     "@types/serve-static": "1.7.32",
     "autoprefixer": "7.1.5",
+    "babel-cli": "^6.26.0",
     "babel-eslint": "8.2.3",
     "babel-plugin-transform-class-properties": "6.24.1",
     "babel-plugin-transform-decorators": "6.24.1",
@@ -71,6 +72,7 @@
     "uglifycss": "0.0.27"
   },
   "scripts": {
+    "start": "node server.js startSimple",
     "postinstall": "sh scripts/postinstall.sh",
     "preversion": "sh scripts/preversion.sh",
     "postversion": "sh scripts/postversion.sh",
@@ -83,8 +85,7 @@
     "electron:osx": "electron-packager ./dist/desktop/mainnet/min/ --icon=./electron/icons/icon.icns --platform=darwin --out=./dist/osx",
     "electron": "gulp all && npm run electron:linux && npm run electron:win && npm run electron:osx",
     "electron-debug": "tsc && gulp electron-debug && node_modules/.bin/electron dist/desktop/electron-debug/ --ignore-ssl-error --no-replace-desktop --inspect",
-    "data-service": "sh scripts/dataservices.sh",
-    "start": "npm run data-service && npm run server"
+    "data-service": "sh scripts/dataservices.sh"
   },
   "dependencies": {
     "@types/ramda": "0.25.34",
@@ -92,7 +93,8 @@
     "@waves/assets-pairs-order": "4.0.0",
     "@waves/data-entities": "^1.6.4",
     "@waves/data-service-client-js": "^0.9.0",
-    "@waves/event-sender": "0.4.4",
+    "@waves/event-sender": "^0.4.4",
+    "@waves/oracle-data": "^0.0.6",
     "@waves/signature-adapter": "^3.1.1",
     "@waves/signature-generator": "^1.0.8",
     "@waves/waves-browser-bus": "0.0.7",
@@ -111,6 +113,7 @@
     "mousetrap": "1.6.1",
     "n3-charts": "2.0.28",
     "ng-i18next": "1.0.5",
+    "opn": "^5.4.0",
     "papaparse": "4.3.7",
     "parse-json-bignumber": "^0.1.2",
     "qrcode": "1.3.2",

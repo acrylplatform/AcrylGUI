@@ -1,13 +1,12 @@
 <div class="wrapper">
 
     <div class="titles-wrap">
-        <a href="#"
-           ng-repeat="tab in $ctrl.tabs track by tab.value"
+        <div ng-repeat="tab in $ctrl.tabs track by tab.value"
            class="title"
            ng-class="{'active': $ctrl.activeTab === tab.value}"
            ng-click="$ctrl.chooseTab(tab.value)">
             <span w-i18n="{{::tab.name}}"></span>
-        </a>
+        </div>
 
         <w-select ng-model="$ctrl.dropDownId" ng-class="{'active': $ctrl.isActiveSelect}">
             <w-option ng-repeat="option in $ctrl.dropDown track by option.id"
@@ -91,11 +90,11 @@
                 <div>
                     <a href="#"
                        ng-click="$ctrl.showAssetInfo($event, pair.amountAsset)"
-                       class="basic-700">{{::pair.amountAsset.id}}</a> <span>/</span>
+                       class="basic-700">{{::pair.pairNamesAmount}}</a> <span>/</span>
                 </div>
                 <a href="#"
                    ng-click="$ctrl.showAssetInfo($event, pair.priceAsset)"
-                   class="basic-700">{{::pair.priceAsset.id}}</a>
+                   class="basic-700">{{::pair.pairNamesPrice}}</a>
             </w-table-cell>
         </w-table-row>
     </w-smart-table>

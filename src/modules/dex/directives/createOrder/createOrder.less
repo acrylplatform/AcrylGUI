@@ -20,11 +20,15 @@
 
 w-button.inactive-order-button {
   width: 100%;
-  & > *:not(.transparent):disabled {
+  & > *:not(.transparent) {
     width: 100%;
     background-color: @color-basic-50;
     border: 0 none;
+    cursor: default;
     color: @color-basic-500;
+    &:hover {
+      color: @color-basic-500;
+    }
   }
 }
 
@@ -98,7 +102,7 @@ w-create-order {
     & > div {
       margin-left: 7px;
       font-size: @font-size-caption-2;
-      color: @color-disabled-600;
+      color: @color-basic-500;
 
       &:first-child {
         flex-grow: 1;
@@ -342,7 +346,7 @@ w-create-order {
               height: 100%;
               width: 50%;
               padding: 6px 11px;
-              background-color: @color-disabled-50;
+              background-color: @color-basic-50;
               border-top-right-radius: @border-radius;
               border-bottom-right-radius: @border-radius;
               text-align: right;

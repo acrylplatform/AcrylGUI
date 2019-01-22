@@ -2,7 +2,7 @@
     'use strict';
 
 
-    const DROP_DOWN_ORDER_LIST = ['ETH', 'BCH', 'LTC', 'USD', 'EUR'];
+    const DROP_DOWN_ORDER_LIST = [];
     const DROP_DOWN_LIST = [];
 
     DROP_DOWN_ORDER_LIST.forEach((name) => {
@@ -24,10 +24,11 @@
      * @param {IPollCreate} createPoll
      * @param {JQuery} $element
      * @param {ModalManager} modalManager
+     * @param {ConfigService} configService
      * @returns {WatchList}
      */
     const controller = function (Base, $scope, utils, waves, stService, PromiseControl, createPoll, $element,
-                                 modalManager) {
+                                 modalManager, configService) {
 
         const R = require('ramda');
         const ds = require('data-service');
@@ -63,7 +64,7 @@
                  */
                 this.tabs = [
                     { name: 'directives.watchlist.all', value: 'all' },
-                    { name: 'WAVES', value: WavesApp.defaultAssets.WAVES },
+                    { name: 'ACRYL', value: WavesApp.defaultAssets.WAVES },
                     { name: 'BTC', value: WavesApp.defaultAssets.BTC }
                 ];
                 /**
@@ -536,10 +537,11 @@
              * @private
              */
             _getPairList() {
+                const defaultAssets = configService.get('SETTINGS.DEX.WATCH_LIST_PAIRS') || [];
                 const favorite = (this._favourite || []).map(p => p.sort());
                 const chosen = [this._assetIdPair.amount, this._assetIdPair.price].sort();
                 const searchIdList = Object.keys(this._searchAssetsHash);
-                const idList = R.uniq(this._assetsIds.concat(searchIdList, Object.values(WavesApp.defaultAssets)));
+                const idList = R.uniq(this._assetsIds.concat(searchIdList, defaultAssets));
                 const other = WatchList._getAllCombinations(idList);
                 return R.uniq(favorite.concat(other, [chosen]));
             }
@@ -669,8 +671,10 @@
                                 .then(infoList => infoList.map((data, i) => ({
                                     ...data,
                                     pairNames:
-                                        `${pairs[i].amountAsset.displayName} / ${pairs[i].priceAsset.displayName}`,
-                                    pairIdList: [pairs[i].amountAsset.id, pairs[i].priceAsset.id]
+                                        `${(pairs[i].amountAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].amountAsset.displayName} / ${(pairs[i].priceAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].priceAsset.displayName}`,
+                                    pairIdList: [pairs[i].amountAsset.id, pairs[i].priceAsset.id],
+                                    pairNamesAmount: `${(pairs[i].amountAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].amountAsset.id}`,
+                                    pairNamesPrice: `${(pairs[i].priceAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].priceAsset.id}`
                                 })))
                                 .catch(() => pairs.map(WatchList._getEmptyPairData));
                         });
@@ -684,8 +688,10 @@
                 return {
                     amountAsset: pair.amountAsset,
                     priceAsset: pair.priceAsset,
-                    pairNames: `${pair.amountAsset.displayName} / ${pair.priceAsset.displayName}`,
+                    pairNames: `${(pair.amountAsset.displayName === 'WAVES') ? 'ACRYL' : pair.amountAsset.displayName} / ${(pair.priceAsset.displayName === 'WAVES') ? 'ACRYL' : pair.priceAsset.displayName}`,
                     pairIdList: [pair.amountAsset.id, pair.priceAsset.id],
+                    pairNamesAmount: `${(pair.amountAsset.displayName === 'WAVES') ? 'ACRYL' : pair.amountAsset.id}`,
+                    pairNamesPrice: `${(pair.priceAsset.displayName === 'WAVES') ? 'ACRYL' : pair.priceAsset.id}`,
                     id: [pair.amountAsset.id, pair.priceAsset.id].sort().join(),
                     lastPrice: null,
                     firstPrice: null,
@@ -729,7 +735,8 @@
         'PromiseControl',
         'createPoll',
         '$element',
-        'modalManager'
+        'modalManager',
+        'configService'
     ];
 
     angular.module('app.dex')
