@@ -69,7 +69,7 @@
                  */
                 this.changePercent = '0.00';
 
-                //ToDo edit btc price getting
+                // ToDo edit btc price getting
                 // this.btcPrice = 0;
                 /**
                  * @type {boolean}
@@ -116,7 +116,7 @@
                 });
 
                 this.observe(['interval', 'intervalCount', 'activeChartAssetId'], this._onChangeInterval);
-                //ToDo edit btc price getting
+                // ToDo edit btc price getting
                 // this._getBtcPrice();
             }
 
@@ -224,7 +224,7 @@
                     .then((list) => list.map(({ available }) => available));
             }
 
-            //ToDo edit btc price getting
+            // ToDo edit btc price getting
             // _getBtcPrice() {
             //     return waves.node.assets.getBtcUsdFromCoinMarket()
             //         .then((data) => {

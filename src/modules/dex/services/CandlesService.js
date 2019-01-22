@@ -1,7 +1,8 @@
 /* eslint-disable no-console */
 (function () {
     'use strict';
-//ToDo SOME interesting about candles you can find here
+
+    // ToDo SOME interesting about candles you can find here
     const POLL_DELAY = 400;
 
     /**

@@ -671,10 +671,19 @@
                                 .then(infoList => infoList.map((data, i) => ({
                                     ...data,
                                     pairNames:
-                                        `${(pairs[i].amountAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].amountAsset.displayName} / ${(pairs[i].priceAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].priceAsset.displayName}`,
+                                        `${(pairs[i].amountAsset.displayName === 'WAVES') ?
+                                            'ACRYL' :
+                                            pairs[i].amountAsset.displayName} /
+                                            ${(pairs[i].priceAsset.displayName === 'WAVES') ?
+                                        'ACRYL' :
+                                        pairs[i].priceAsset.displayName}`,
                                     pairIdList: [pairs[i].amountAsset.id, pairs[i].priceAsset.id],
-                                    pairNamesAmount: `${(pairs[i].amountAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].amountAsset.id}`,
-                                    pairNamesPrice: `${(pairs[i].priceAsset.displayName === 'WAVES') ? 'ACRYL' : pairs[i].priceAsset.id}`
+                                    pairNamesAmount: `${(pairs[i].amountAsset.displayName === 'WAVES') ?
+                                        'ACRYL' :
+                                        pairs[i].amountAsset.id}`,
+                                    pairNamesPrice: `${(pairs[i].priceAsset.displayName === 'WAVES') ?
+                                        'ACRYL' :
+                                        pairs[i].priceAsset.id}`
                                 })))
                                 .catch(() => pairs.map(WatchList._getEmptyPairData));
                         });
@@ -688,7 +697,11 @@
                 return {
                     amountAsset: pair.amountAsset,
                     priceAsset: pair.priceAsset,
-                    pairNames: `${(pair.amountAsset.displayName === 'WAVES') ? 'ACRYL' : pair.amountAsset.displayName} / ${(pair.priceAsset.displayName === 'WAVES') ? 'ACRYL' : pair.priceAsset.displayName}`,
+                    pairNames: `${(pair.amountAsset.displayName === 'WAVES') ?
+                        'ACRYL' :
+                        pair.amountAsset.displayName} / ${(pair.priceAsset.displayName === 'WAVES') ?
+                        'ACRYL' :
+                        pair.priceAsset.displayName}`,
                     pairIdList: [pair.amountAsset.id, pair.priceAsset.id],
                     pairNamesAmount: `${(pair.amountAsset.displayName === 'WAVES') ? 'ACRYL' : pair.amountAsset.id}`,
                     pairNamesPrice: `${(pair.priceAsset.displayName === 'WAVES') ? 'ACRYL' : pair.priceAsset.id}`,

@@ -50,7 +50,7 @@
                     orderLimit: 0.05,
                     pinnedAssetIdList: [
                         WavesApp.defaultAssets.WAVES,
-                        WavesApp.defaultAssets.BTC,
+                        WavesApp.defaultAssets.BTC
                         // WavesApp.defaultAssets.ETH,
                         // WavesApp.defaultAssets.USD,
                         // WavesApp.defaultAssets.EUR

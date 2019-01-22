@@ -3,10 +3,10 @@
 
     const DEFAULT_LINK = '#';
 
-    const FIAT_CODES = {
+    /* const FIAT_CODES = {
         // [WavesApp.defaultAssets.USD]: 'USD',
         // [WavesApp.defaultAssets.EUR]: 'EURO'
-    };
+    }; */
 
     // TODO : move this to the related gateway service
     // TODO : keep only IDs here
