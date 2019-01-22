@@ -19,7 +19,7 @@ export const FIRST_OPEN_SIZES = {
     }
 };
 
-export const PROTOCOL = 'waves://';
+export const PROTOCOL = 'acryl://';
 
 export const ARGV_FLAGS = {
     IGNORE_SSL_ERROR: '--ignore-ssl-error',

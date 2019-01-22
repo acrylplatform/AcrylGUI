@@ -143,7 +143,7 @@
                 const priceId = symbolInfo._wavesData.priceAsset.id;
                 const interval = CandlesService._normalizeInterval(resolution);
 
-                const path = `${WavesApp.network.api}/candles/${amountId}/${priceId}`;
+                const path = `${WavesApp.network.api}/${WavesApp.network.apiVersion}/candles/${amountId}/${priceId}`;
                 return Promise.all([
                     ds.fetch(`${path}?timeStart=${from}&timeEnd=${to}&interval=${interval}`),
                     ds.api.pairs.get(amountId, priceId)

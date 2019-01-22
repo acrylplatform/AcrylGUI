@@ -1,6 +1,6 @@
 {
   "appId": "com.acrylplatform.client.lite",
-  "copyright": "acryl Platform",
+  "copyright": "Acryl Platform",
   "productName": "Acryl Client",
   "files": "**/*",
   "asar": true,
@@ -20,7 +20,7 @@
       "target": "zip",
       "arch": [ "x64" ]
     }],
-    "executableName": "waves-client"
+    "executableName": "acryl-client"
   },
   "mac": {
     "category": "public.app-category.finance",
