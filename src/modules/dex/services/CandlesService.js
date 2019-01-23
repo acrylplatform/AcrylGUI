@@ -141,7 +141,12 @@
             static _getCandles(symbolInfo, from, to, resolution) {
                 const amountId = symbolInfo._wavesData.amountAsset.id;
                 const priceId = symbolInfo._wavesData.priceAsset.id;
-                const interval = `3h`;
+                const interval = '3h';
+
+                if (resolution) { // linter write 'resolution' is defined but never used  no-unused-vars
+                    resolution = 0;
+                }
+
                 // ToDo Edit interval here
                 // const interval = CandlesService._normalizeInterval(resolution);
 

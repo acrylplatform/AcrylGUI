@@ -21,7 +21,7 @@
       height: 312px;
 
       .slide {
-        text-align: center;
+        text-align: center;        
       }
 
       .slide-icon-0 {
@@ -50,12 +50,7 @@
         width: 132px;
         height: 112px;
         margin: 0 auto 45px;
-      }
-
-      .slide-description {
-        width: 358px;
-        height: 60px;
-      }
+      }      
     }
 
     w-carousel-dots, w-button.submit, .or {
@@ -154,7 +149,7 @@
     .center {
       text-align: center;
       margin: 0 auto 50px;
-      width: 380px;
+      width: 320px;
     }
 
     .password-placeholder {
@@ -211,4 +206,18 @@
       width: 100%;
     }
   }
+}
+
+@media screen and (max-width: 320px) {
+  .slide-description {
+    width: 300px;
+    word-wrap: break-word;
+    font-size: 12px;
+    margin-left: 10px;
+    padding-left: 20px;
+    }
+
+  .slide-title{
+    font-size: 30px;
+  }  
 }
