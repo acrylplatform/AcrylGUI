@@ -237,6 +237,7 @@
                     .then((pair) => {
                         const amountId = pair.amountAsset.id;
                         const priceId = pair.priceAsset.id;
+
                         const path = `${WavesApp.network.api}/${WavesApp.network.apiVersion}
                             /candles/${amountId}/${priceId}`;
 
