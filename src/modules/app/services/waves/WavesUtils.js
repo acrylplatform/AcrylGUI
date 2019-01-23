@@ -230,10 +230,11 @@
              * @private
              */
             _getRateHistory(fromId, toId, from, to) {
-                const minuteTime = 1000 * 60;
-                const interval = `3h`;
+                // const minuteTime = 1000 * 60;
+                const interval = '3h';
                 // ToDo Edit interval here
-                // const interval = Math.round((to.getDate().getTime() - from.getDate().getTime()) / (200 * minuteTime));
+                /*  const interval = Math.round((to.getDate().getTime()
+                 - from.getDate().getTime()) / (200 * minuteTime)); */
 
                 return ds.api.pairs.get(fromId, toId)
                     .then((pair) => {
