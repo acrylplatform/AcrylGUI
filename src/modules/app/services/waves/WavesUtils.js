@@ -231,16 +231,17 @@
              */
             _getRateHistory(fromId, toId, from, to) {
                 const minuteTime = 1000 * 60;
-                const interval = Math.round((to.getDate().getTime() - from.getDate().getTime()) / (200 * minuteTime));
+                const interval = `3h`;
+                // ToDo Edit interval here
+                // const interval = Math.round((to.getDate().getTime() - from.getDate().getTime()) / (200 * minuteTime));
 
                 return ds.api.pairs.get(fromId, toId)
                     .then((pair) => {
                         const amountId = pair.amountAsset.id;
                         const priceId = pair.priceAsset.id;
-                        const path = `${WavesApp.network.api}/${WavesApp.network.apiVersion}/candles/
-                            ${amountId}/${priceId}`;
-
-                        return ds.fetch(`${path}?timeStart=${from}&timeEnd=${to}&interval=${interval}m`)
+                        const addver = `${WavesApp.network.api}/${WavesApp.network.apiVersion}`;
+                        const path = `${addver}/candles/${amountId}/${priceId}`;
+                        return ds.fetch(`${path}?timeStart=${from}&timeEnd=${to}&interval=${interval}`)
                             .then((data) => {
                                 const list = data.candles;
 

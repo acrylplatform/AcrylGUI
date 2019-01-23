@@ -141,7 +141,9 @@
             static _getCandles(symbolInfo, from, to, resolution) {
                 const amountId = symbolInfo._wavesData.amountAsset.id;
                 const priceId = symbolInfo._wavesData.priceAsset.id;
-                const interval = CandlesService._normalizeInterval(resolution);
+                const interval = `3h`;
+                // ToDo Edit interval here
+                // const interval = CandlesService._normalizeInterval(resolution);
 
                 const path = `${WavesApp.network.api}/${WavesApp.network.apiVersion}/candles/${amountId}/${priceId}`;
                 return Promise.all([
