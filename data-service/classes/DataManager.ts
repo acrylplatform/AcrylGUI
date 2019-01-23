@@ -60,7 +60,7 @@ export class DataManager {
         };
 
         const descriptionHash = {
-            WAVES: { en: 'Waves is a blockchain ecosystem that offers comprehensive and effective blockchain-based tools for businesses, individuals and developers. Waves Platform offers unprecedented throughput and flexibility. Features include the LPoS consensus algorithm, Waves-NG protocol and advanced smart contract functionality.' }
+            WAVES: { en: 'Acryl is a blockchain ecosystem that offers comprehensive and effective blockchain-based tools for businesses, individuals and developers. Acryl Platform offers unprecedented throughput and flexibility. Features include the LPoS consensus algorithm, Acryl-NG protocol and advanced smart contract functionality.' }
         };
 
         const gatewayAsset = {

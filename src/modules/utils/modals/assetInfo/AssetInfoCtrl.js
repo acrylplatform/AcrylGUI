@@ -41,7 +41,8 @@
                 this.isGateway = path(['status'], data) === 3;
 
                 // this.ticker = path(['ticker'], data); // TODO STEP 2
-                this.ticker = asset.ticker; // TODO STEP 2
+                this.ticker = (asset.ticker === 'WAVES') ? 'ACRYL' : asset.ticker; // TODO STEP 2
+                this.idName = (asset.id === 'WAVES') ? 'ACRYL' : asset.id;
                 this.link = path(['link'], data);
                 this.email = path(['email'], data);
                 this.provider = this.isVerified && path(['provider'], data) || null;
