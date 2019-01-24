@@ -22,8 +22,11 @@
         <w-table-cell>
             <span class="cell-label"><span w-i18n="directives.balance.assetId"></span></span>
             <w-copy-wrap info="::balance.asset.id">
-                <span class="underline">
-                    <a ng-click="$ctrl.showAssetInfo(balance.asset)" href="#">{{::balance.asset.id}}</a>
+                <span ng-if="balance.asset.id === 'WAVES'" class="underline">
+                    <a  ng-click="$ctrl.showAssetInfo(balance.asset)" href="#" >ACRYL</a>
+                </span>
+                <span ng-if="balance.asset.id !== 'WAVES'" class="underline">                                          
+                    <a ng-click="$ctrl.showAssetInfo(balance.asset)" href="#" >{{::balance.asset.id}}</a>
                 </span>
             </w-copy-wrap>
         </w-table-cell>
