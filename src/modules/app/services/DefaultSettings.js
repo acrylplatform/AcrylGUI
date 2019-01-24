@@ -67,9 +67,9 @@
                             chartMode: 'month',
                             activeChartAssetId: WavesApp.defaultAssets.WAVES,
                             chartAssetIdList: [
-                                WavesApp.defaultAssets.WAVES,
-                                WavesApp.defaultAssets.BTC
-                                // WavesApp.defaultAssets.ETH
+                                WavesApp.defaultAssets.WAVES
+                                /* WavesApp.defaultAssets.BTC,
+                                WavesApp.defaultAssets.ETH */
                             ]
                         },
                         transactions: {
