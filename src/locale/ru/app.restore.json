@@ -18,7 +18,7 @@
         "restore": "Восстановить Seed"
       },
       "noUsers": {
-        "description": "Вернуться на {div}[[client.wavesplatform.com](https://client.wavesplatform.com)]",
+        "description": "Вернуться на {div}[[client.acrylplatform.com](https://client.acrylplatform.com)]",
         "title": "Нет сохранённых аккаунтов"
       },
       "passwordTitle": "Пароль",

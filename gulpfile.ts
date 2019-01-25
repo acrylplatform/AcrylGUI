@@ -123,6 +123,8 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
                         }),
                         copy(tmpCssPath, join(targetPath, 'css')),
                         copy('LICENSE', join(`${targetPath}`, 'LICENSE')),
+                        copy('src/manifest.json', join(`${targetPath}`, 'manifest.json')),
+                        copy('src/browserconfig.xml', join(`${targetPath}`, 'browserconfig.xml')),
                     ].concat(forCopy)).then(() => {
                         done();
                     }, (e) => {

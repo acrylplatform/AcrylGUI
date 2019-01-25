@@ -1,6 +1,6 @@
 # Acryl Client
 
-[**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.wavesplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
+[**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.acrylplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
 
 [![Acryl App Promo](https://raw.githubusercontent.com/wavesplatform/WavesGUI/dev/README_IMG_01.png)](https://acrylplatform.com/product)
 

@@ -108,6 +108,8 @@ function parseCookie(header = ''): IRequestData {
 
 const handlers = [
     coinomat,
+    manifest,
+    browserconfig,
     wavesClientConfig,
     handler as any
 ];
@@ -123,6 +125,42 @@ function request(req, res) {
     }
 
     next();
+}
+
+function browserconfig(req, res, next) {
+    if (!req.url.includes('browserconfig.xml')) {
+        next();
+        return null;
+    }
+    let response_json = { error: 'oops' };
+
+    const path = join(__dirname, 'src/browserconfig.xml');
+    if (fs.existsSync(path)) {
+        response_json = JSON.parse(fs.readFileSync(path, 'utf8')) || '';
+    }
+
+    const cType = 'text/html; charset=utf-8;';
+    res.setHeader('Content-Type', cType);
+    res.end(JSON.stringify(response_json));
+    return false;
+}
+
+function manifest(req, res, next) {
+    if (!req.url.includes('manifest.json')) {
+        next();
+        return null;
+    }
+    let response_json = { error: 'oops' };
+
+    const path = join(__dirname, 'src/manifest.json');
+    if (fs.existsSync(path)) {
+        response_json = JSON.parse(fs.readFileSync(path, 'utf8')) || '';
+    }
+
+    const cType = 'text/html; charset=utf-8;';
+    res.setHeader('Content-Type', cType);
+    res.end(JSON.stringify(response_json));
+    return false;
 }
 
 function wavesClientConfig(req, res, next) {

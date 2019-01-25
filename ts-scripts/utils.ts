@@ -256,7 +256,7 @@ export function route(connectionType: TConnection, buildType: TBuild, type: TPla
         if (url.includes('/package.json')) {
             res.end(readFileSync(join(__dirname, '..', 'package.json')));
         } else if (isTradingView(url)) {
-            get(`https://client.wavesplatform.com/${url}`, (resp: IncomingMessage) => {
+            get(`https://client.acrylplatform.com/${url}`, (resp: IncomingMessage) => {
                 let data = new Buffer('');
 
                 // A chunk of data has been recieved.
