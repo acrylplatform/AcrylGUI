@@ -166,10 +166,10 @@
 
                 this.observe('shareStat', () => {
                     if (this.shareStat) {
-                        analytics.activate();
+                        // analytics.activate();
                         user.setSetting('shareAnalytics', true);
                     } else {
-                        analytics.deactivate();
+                        // analytics.deactivate();
                         user.setSetting('shareAnalytics', false);
                     }
                 });
