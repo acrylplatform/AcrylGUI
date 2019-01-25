@@ -307,12 +307,12 @@
                 if (!user.getSetting('termsAccepted')) {
                     return modalManager.showTermsAccept(user).then(() => {
                         if (user.getSetting('shareAnalytics')) {
-                            analytics.activate();
+                            // analytics.activate();
                         }
                     })
                         .catch(() => false);
                 } else if (user.getSetting('shareAnalytics')) {
-                    analytics.activate();
+                    // analytics.activate();
                 }
                 return Promise.resolve();
             }
@@ -409,12 +409,13 @@
              * @private
              */
             _onChangeStateSuccess(event, toState, some, fromState) {
-                if (fromState.name) {
+                analytics.push(fromState);
+                /*  if (fromState.name) {
                     analytics.pushPageView(
                         `${AppRun._getUrlFromState(toState)}.${WavesApp.type}`,
                         `${AppRun._getUrlFromState(fromState)}.${WavesApp.type}`
                     );
-                }
+                } */
                 this.activeClasses.forEach((className) => {
                     document.body.classList.remove(className);
                 });
