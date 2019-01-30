@@ -101,6 +101,7 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
 
                     forCopy.push(copy(join('dist', 'locale'), join(targetPath, 'locales')));
                     forCopy.push(copy(join(__dirname, 'tradingview-style'), join(targetPath, 'tradingview-style')));
+                    forCopy.push(copy(join(__dirname, 'trading-view'), join(targetPath, 'trading-view')));
 
                     if (buildName === 'desktop') {
                         const electronFiles = getFilesFrom(join(__dirname, 'electron'), '.js');

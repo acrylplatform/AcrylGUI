@@ -474,6 +474,7 @@ export function isPage(url: string): boolean {
         'loginDaemon',
         'transfer.js',
         'tradingview-style',
+        'trading-view',
         'data-service-dist',
         'locale'
     ];
