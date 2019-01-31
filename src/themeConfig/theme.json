@@ -1,7 +1,7 @@
 {
   "themes": ["default", "black"],
 
-  "default": {
+  "black": {
     "tradingView": {
       "candles": {
         "blue": {
@@ -17,8 +17,8 @@
           "volume1": "rgba(0,200,0,0.3)"
         }
       },
-      "toolbarBg": "#fff",
-      "customCssUrl": "/tradingview-style/style.css",
+      "toolbarBg": "#2d2d2d",
+      "customCssUrl": "/tradingview-style/dark-style.css",
       "OVERRIDES": {
         "scalesProperties.lineColor": "#edf0f4",
         "scalesProperties.textColor": "#4e5c6e",
@@ -50,7 +50,7 @@
 
     "bgColor": "#2d2d2d"
   },
-  "black": {
+  "default": {
     "tradingView": {
 
       "candles": {
@@ -99,6 +99,6 @@
       "seriesColor": "rgba(255,255,255,0.80)"
     },
 
-    "bgColor": "#fff"
+    "bgColor": "#2d2d2d"
   }
 }
