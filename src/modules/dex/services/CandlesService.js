@@ -41,6 +41,8 @@
             }
 
             getBars(symbolInfo, resolution, from, to = (Date.now() / 1000), onHistoryCallback, onErrorCallback) {
+                console.log('symbolInfo :', symbolInfo);
+
                 from = CandlesService.convertToMilliseconds(from);
                 to = CandlesService.convertToMilliseconds(to);
                 const handleCandles = (candles) => {
@@ -139,8 +141,13 @@
             }
 
             static _getCandles(symbolInfo, from, to, resolution) {
+                from = (from === 0) ? 1543656307000 : from;
                 const amountId = symbolInfo._wavesData.amountAsset.id;
                 const priceId = symbolInfo._wavesData.priceAsset.id;
+                const priceIdAcryl = priceId.includes('DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy') ?
+                    priceId.replace('DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy',
+                        '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS') :
+                    priceId;
                 const interval = '3h';
 
                 if (resolution) { // linter write 'resolution' is defined but never used  no-unused-vars
@@ -150,17 +157,34 @@
                 // ToDo Edit interval here
                 // const interval = CandlesService._normalizeInterval(resolution);
 
-                const path = `${WavesApp.network.api}/${WavesApp.network.apiVersion}/candles/${amountId}/${priceId}`;
+                const path = `${WavesApp.network.api}/
+                ${WavesApp.network.apiVersion}/candles/${amountId}/${priceIdAcryl}`;
+
+                const reqParams = `?timeStart=${from}&timeEnd=${to}&interval=${interval}`;
                 return Promise.all([
-                    ds.fetch(`${path}?timeStart=${from}&timeEnd=${to}&interval=${interval}`),
+                    ds.fetch(`${path}${reqParams}`),
                     ds.api.pairs.get(amountId, priceId)
                         .then(pair => waves.matcher.getLastPrice(pair))
                 ])
                     .then(([res, { price }]) => {
-                        const candles = res.candles;
+                        console.log('res :', res);
+                        // const candles = res.data;
+                        // for more candles paste datas from candles.js
+                        const candles = [
+                            {
+                            /*     'time': 1543654800000,
+                                'txsCount': 81,
+                                'volume': 5316.73479356,
+                                'high': 0.00031789,
+                                'low': 0.00031507,
+                                'close': 0.00031509,
+                                'open': 0.00031598 */
+                            }
+                        ];
                         if (candles.length) {
                             candles[candles.length - 1].close = Number(price.toTokens());
                         }
+
                         return candles;
                     });
             }
