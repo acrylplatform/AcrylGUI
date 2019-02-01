@@ -5,3 +5,4 @@ node_modules/
 Gruntfile.js
 karma.conf.js
 hooks/
+src/modules/dex/services/CandlesService.js
