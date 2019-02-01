@@ -141,18 +141,30 @@
             }
 
             static _getCandles(symbolInfo, from, to, resolution) {
-                from = (from === 0) ? 1543656307000 : from;
+                // from = (from === 0) ? 1543656307000 : from;
+                from = (from <= 1543656307000) ? 1543656307000 : from;
                 const amountId = symbolInfo._wavesData.amountAsset.id;
                 const priceId = symbolInfo._wavesData.priceAsset.id;
                 const priceIdAcryl = priceId.includes('DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy') ?
                     priceId.replace('DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy',
                         '8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS') :
                     priceId;
-                const interval = '3h';
-
-                if (resolution) { // linter write 'resolution' is defined but never used  no-unused-vars
-                    resolution = 0;
+                let interval = '1d';
+                if (resolution === 15) {
+                    interval = '15m';
+                } else if (resolution === 30) {
+                    interval = '30m';
+                } else if (resolution === 60) {
+                    interval = '1h';
+                } else if (resolution === 180) {
+                    interval = '3h';
+                }  else if (resolution === 1440) {
+                    interval = '1d';
                 }
+
+                // if (resolution) { // linter write 'resolution' is defined but never used  no-unused-vars
+                //     resolution = 0;
+                // }
 
                 // ToDo Edit interval here
                 // const interval = CandlesService._normalizeInterval(resolution);
