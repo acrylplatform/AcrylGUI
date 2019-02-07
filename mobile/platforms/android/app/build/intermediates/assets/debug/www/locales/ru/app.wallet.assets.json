@@ -1,0 +1,31 @@
+{
+  "Unpin": "Открепить",
+  "addAsset": "Добавить токены",
+  "chart": {
+    "intervals": {
+      "all": "Всё время",
+      "day": "1Д",
+      "hour": "1Ч",
+      "month": "1М",
+      "week": "1Н",
+      "year": "1Г"
+    }
+  },
+  "directives": {
+    "asset": {
+      "anyTx": "JSON",
+      "deposit": "Пополнить",
+      "ofTotalBalance": "из общего баланса {{totalBalance}}",
+      "receive": "Получить",
+      "send": "Отправить"
+    }
+  },
+  "price": "ЦЕНА {{currency}}",
+  "qr": "Ваш адрес",
+  "send": "Отправить",
+  "since": {
+    "day": "ЗА ПОСЛЕДНИЙ ДЕНЬ",
+    "month": "ЗА ПОСЛЕДНИЙ МЕСЯЦ",
+    "week": "ЗА ПОСЛЕДНЮЮ НЕДЕЛЮ"
+  }
+}

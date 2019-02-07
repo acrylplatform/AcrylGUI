@@ -1,0 +1,814 @@
+<!-- See the LICENSE file at https://github.com/acrylplatform/AcrylGUIprivate/blob/master/LICENSE. Removal or modification of this copyright notice is prohibited. -->
+<!-- See the LICENSE file at https://github.com/wavesplatform/WavesGUI/blob/master/LICENSE. Removal or modification of this copyright notice is prohibited. -->
+
+<!DOCTYPE html>
+<html ng-app="app">
+<head>
+    <meta charset="utf-8">
+   <!--  <meta http-equiv="Content-Security-Policy"
+  content="default-src * 'unsafe-inline'; worker-src * data: gap: https://ssl.gstatic.com 'unsafe-inline' 'unsafe-eval';  script-src-elem  * 'unsafe-eval' 'unsafe-inline';
+    img-src * 'unsafe-inline'; style-src * 'unsafe-inline'; font-src * 'unsafe-inline'; connect-src 'self'"> -->
+    <meta name="format-detection" content="telephone=no">
+    <meta name="msapplication-tap-highlight" content="no">
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no">
+    <title>Acryl Client</title>
+    <link rel="icon" href="img/favicon.ico" type="image/x-icon"/>
+    <meta name="robots" content="noindex, nofollow" />
+    <link rel="apple-touch-icon" sizes="180x180" href="img/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="img/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="img/ico/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="img/ico/favicon-16x16.png">
+    <link rel="manifest" href="manifest.json">
+    <link rel="mask-icon" href="img/ico/safari-pinned-tab.svg" color="#ff5940">
+    <meta name="apple-mobile-web-app-title" content="Acryl Client">
+    <meta name="application-name" content="Acryl Client">
+    <meta name="msapplication-TileColor" content="#2d2d2d">
+    <meta name="msapplication-TileImage" content="img/ico/mstile-144x144.png">
+    <meta name="msapplication-config" content="browserconfig.xml">
+    <meta name="theme-color" content="#2d2d2d">
+    <script>
+        window.buildIsWeb = true;
+    </script>
+
+    <style>
+        .not-supported-browser {
+            display: none;
+        }
+
+        .connection-problem button.big {
+            width: 224px;
+            background-color: #1f5af6;
+            border: 1px solid #1751ec;
+            color: #fff;
+            border-radius: 4px;
+            height: 54px;
+            font-size: 17px;
+            font-weight: bold;
+        }
+
+        .connection-problem button.big:hover {
+            background: #1a4ac8;
+        }
+
+        .connection-problem__headline {
+            font-family: 'Roboto-Regular', sans-serif;
+            font-size: 34px;
+            line-height: 40px;
+            margin: 10px 0;
+            color: #2d2d2d;
+        }
+
+        .connection-problem__description {
+            color: #8c8c8c;
+            font-size: 17px;
+            line-height: 22px;
+        }
+
+        .connetion-problem__button {
+            margin-top: 40px;
+        }
+
+        .connection-problem {
+            display: none;
+            padding-top: 40px;
+            text-align: center;
+            width: 100%;
+            max-width: 90%;
+            margin: 0 auto;
+            height: 100%;
+            font-family: 'Roboto-Regular', sans-serif;
+        }
+
+        .connection-problem > img {
+            max-width: 100%;
+            margin-bottom: 30px;
+        }
+
+        .connection-problem .waves-logo {
+            width: 100px;
+            height: 21px;
+            background: url(/img/icons/waves_logo.svg) no-repeat;
+            display: block;
+            margin: 0 auto 80px auto;
+        }
+
+        .app-loader.app-loader-transition {
+            animation: loader-transition 4s both;
+        }
+
+        .app-loader {
+            z-index: 10000;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            align-items: center;
+            background: #2d2d2d;
+        }
+
+        .app-loader .progress {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 0;
+            height: 3px;
+            background-color: #0065D7;
+            transition: width 1s;
+            -webkit-transition: width 1s;
+            -moz-transition: width 1s;
+        }
+
+        .loader-wrapper {
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            margin-top: -150px;
+            transform-origin: center;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 100px;
+            text-align: center;
+        }
+
+        .loader {
+            width: 100px;
+            height: 100px;
+            display: flex;
+            flex-wrap: wrap;
+            -moz-transform: rotate(45deg);
+            -ms-transform: rotate(45deg);
+            -webkit-transform: rotate(45deg);
+            transform: rotate(45deg);
+        }
+
+        .loader span {
+            position: relative;
+            width: 50px;
+            height: 50px;
+            display: inline-block;
+        }
+
+        .loader span::before {
+            content: '';
+            background-color: #FF5E39;
+            position: absolute;
+            left: 0;
+            top: 0;
+            display: block;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            -moz-transform-origin: 100% 100%;
+            -ms-transform-origin: 100% 100%;
+            -webkit-transform-origin: 100% 100%;
+            transform-origin: 100% 100%;
+            -moz-animation: folding 2.5s infinite linear both;
+            -webkit-animation: folding 2.5s infinite linear both;
+            animation: folding 2.5s infinite linear both;
+        }
+
+        .loader .leaf2 {
+            -moz-transform: rotateZ(90deg);
+            -ms-transform: rotateZ(90deg);
+            -webkit-transform: rotateZ(90deg);
+            transform: rotateZ(90deg);
+        }
+
+        .loader .leaf2::before {
+            -moz-animation-delay: 0.3s;
+            -webkit-animation-delay: 0.3s;
+            animation-delay: 0.3s;
+            background-color: #FF5E39;
+        }
+
+        .loader .leaf3 {
+            -moz-transform: rotateZ(270deg);
+            -ms-transform: rotateZ(270deg);
+            -webkit-transform: rotateZ(270deg);
+            transform: rotateZ(270deg);
+        }
+
+        .loader .leaf3::before {
+            -moz-animation-delay: 0.9s;
+            -webkit-animation-delay: 0.9s;
+            animation-delay: 0.9s;
+            background-color: #FF5E39;
+        }
+
+        .loader .leaf4 {
+            -moz-transform: rotateZ(180deg);
+            -ms-transform: rotateZ(180deg);
+            -webkit-transform: rotateZ(180deg);
+            transform: rotateZ(180deg);
+        }
+
+        .loader .leaf4::before {
+            -moz-animation-delay: 0.6s;
+            -webkit-animation-delay: 0.6s;
+            animation-delay: 0.6s;
+            background-color: #FF5E39;
+        }
+
+        @keyframes loader-transition {
+            0% {
+                opacity: 0;
+            }
+            20% {
+                opacity: 1;
+            }
+            80% {
+                opacity: 1;
+            }
+            100% {
+                opacity: 0;
+            }
+        }
+
+        @-moz-keyframes folding {
+            0%, 10% {
+                -moz-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+            25%, 75% {
+                -moz-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+            90%, 100% {
+                -moz-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @-webkit-keyframes folding {
+            0%, 10% {
+                -webkit-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+            25%, 75% {
+                -webkit-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+            90%, 100% {
+                -webkit-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @keyframes folding {
+            0%, 10% {
+                -moz-transform: perspective(140px) rotateX(-180deg);
+                -ms-transform: perspective(140px) rotateX(-180deg);
+                -webkit-transform: perspective(140px) rotateX(-180deg);
+                transform: perspective(140px) rotateX(-180deg);
+                opacity: 0;
+            }
+            25%, 75% {
+                -moz-transform: perspective(140px) rotateX(0deg);
+                -ms-transform: perspective(140px) rotateX(0deg);
+                -webkit-transform: perspective(140px) rotateX(0deg);
+                transform: perspective(140px) rotateX(0deg);
+                opacity: 1;
+            }
+            90%, 100% {
+                -moz-transform: perspective(140px) rotateY(180deg);
+                -ms-transform: perspective(140px) rotateY(180deg);
+                -webkit-transform: perspective(140px) rotateY(180deg);
+                transform: perspective(140px) rotateY(180deg);
+                opacity: 0;
+            }
+        }
+
+        @media screen and (max-width: 768px) {
+            .app-loader .loader {
+                margin: 0 auto;
+                transform: scale(.8) rotate(45deg);
+            }
+        }
+    </style>
+    <script>
+        window.addEventListener('load', function () {
+            var __interval = setInterval(function () {
+
+                WavesApp = WavesApp || { state: 'loading' };
+
+                switch (WavesApp.state) {
+                    case 'loading':
+                    case 'loadingError':
+                        clearInterval(__interval);
+                        document.querySelector('.app-loader').style.display = 'none';
+                        document.querySelector('.connection-problem').style.display = 'block';
+                        document.querySelector('[name=main]').style.display = 'none';
+                        break;
+                    case 'appRun':
+                        clearInterval(__interval);
+                        var errorModal = document.querySelector('.connection-problem');
+                        if (errorModal.parentNode) {
+                            errorModal.parentNode.removeChild(errorModal);
+                        }
+                        break;
+                }
+            }, 2000);
+        });
+
+        var __controllers = Object.create(null);
+
+        /**
+         * @type {IWavesApp}
+         */
+        var WavesApp = {
+            name: 'Acryl Client',
+            version: '1.0.1',
+            type: (window.isDesktop || !window.buildIsWeb) ? 'desktop' : 'web',
+            matcherPriorityList: [
+    "Ft8X1v1LTa1ABafufpaCWyVj8KkaxUWE6xBhW6sNFJck",
+    "Gtb1WRznfchDnTh37ezoDTJ4wcoKaRsKqKjJjy7nm2zU",
+    "DEJbZipbKQjwEiRjx2AqQFucrj5CZ3rAc4ZvFM8nAsoA",
+    "2mX5DzVKWrAJw8iwdJnV2qtoeVG9h5nTDpTqC1wb1WEN",
+    "8LQW8f7P5d5PZM7GtZEBgaqRPGSzS3DfPuiXrURJ4AJS",
+    "WAVES",
+    "zMFqXuoyrn5w17PFurTqxB7GsS71fp9dfk6XFwxbPCy",
+    "474jTeYx2r2Va35794tCScAXWJG9hU2HcgxzMowaZUnu",
+    "HZk1mbfuJpmxU1Fs4AX5MWLVYtctsNcg6e2C6VKqK8zk",
+    "B3uGHFRpSUuGEDWjqB9LWWxafQj8VTvpMucEyoxzws5H",
+    "5WvPKSJXzVE2orvbkJ8wsQmmQKqTv9sGBPksV4adViw3",
+    "BrjUWjndUanm5VsJkbUip8VRYy6LWJePtxya3FNv4TQa"
+],
+            themesConf: {"themes":["default","black"],"black":{"tradingView":{"candles":{"blue":{"upColor":"#5a81ea","downColor":"#e5494d","volume0":"rgba(209,56,60,0.3)","volume1":"rgba(90,129,234,0.3)"},"green":{"upColor":"#39a12c","downColor":"#e5494d","volume0":"rgba(200,0,00,0.3)","volume1":"rgba(0,200,0,0.3)"}},"toolbarBg":"#2d2d2d","customCssUrl":"/tradingview-style/dark-style.css","OVERRIDES":{"scalesProperties.lineColor":"#edf0f4","scalesProperties.textColor":"#4e5c6e","paneProperties.background":"#FFF","paneProperties.gridProperties.color":"#edf0f4","paneProperties.vertGridProperties.color":"#edf0f4","paneProperties.horzGridProperties.color":"#edf0f4","mainSeriesProperties.candleStyle.borderDownColor":"#e5494d","mainSeriesProperties.candleStyle.borderUpColor":"#5a81ea","mainSeriesProperties.hollowCandleStyle.borderDownColor":"#e5494d","mainSeriesProperties.hollowCandleStyle.borderUpColor":"#e5494d","mainSeriesProperties.haStyle.borderDownColor":"#e5494d","mainSeriesProperties.candleStyle.wickUpColor":"rgba(90, 129, 234, 0.5)","mainSeriesProperties.candleStyle.wickDownColor":"rgba(229, 73, 77, 0.5)","mainSeriesProperties.hollowCandleStyle.wickUpColor":"rgba(90, 129, 234, 0.5)","mainSeriesProperties.hollowCandleStyle.wickDownColor":"rgba(229, 73, 77, 0.5)","mainSeriesProperties.haStyle.wickUpColor":"rgba(90, 129, 234, 0.5)","mainSeriesProperties.haStyle.wickDownColor":"rgba(229, 73, 77, 0.5)"}},"wAssetRateChart":{"seriesColor":"#5a81ea"},"TokenChangeModalCtrl":{"seriesColor":"#5a81ea"},"bgColor":"#2d2d2d"},"default":{"tradingView":{"candles":{"blue":{"upColor":"#5a81ea","downColor":"#e5494d","volume0":"rgba(209,56,60,0.3)","volume1":"rgba(90,129,234,0.3)"},"green":{"upColor":"#39a12c","downColor":"#e5494d","volume0":"rgba(200,0,00,0.3)","volume1":"rgba(0,200,0,0.3)"}},"toolbarBg":"#2d2d2d","customCssUrl":"/tradingview-style/dark-style.css","OVERRIDES":{"paneProperties.background":"#2d2d2d","scalesProperties.lineColor":"#424242","scalesProperties.textColor":"#8c8c8c","paneProperties.gridProperties.color":"#424242","paneProperties.vertGridProperties.color":"#424242","paneProperties.horzGridProperties.color":"#424242","mainSeriesProperties.candleStyle.borderDownColor":"#e5494d","mainSeriesProperties.hollowCandleStyle.borderDownColor":"#e5494d","mainSeriesProperties.candleStyle.borderUpColor":"#5a81ea","mainSeriesProperties.haStyle.borderUpColor":"#5a81ea","mainSeriesProperties.hollowCandleStyle.borderUpColor":"#e5494d","mainSeriesProperties.haStyle.borderDownColor":"#e5494d","mainSeriesProperties.candleStyle.wickUpColor":"rgba(90, 129, 234, 0.5)","mainSeriesProperties.candleStyle.wickDownColor":"rgba(229, 73, 77, 0.5)","mainSeriesProperties.hollowCandleStyle.wickUpColor":"rgba(90, 129, 234, 0.5)","mainSeriesProperties.hollowCandleStyle.wickDownColor":"rgba(229, 73, 77, 0.5)","mainSeriesProperties.haStyle.wickUpColor":"rgba(90, 129, 234, 0.5)","mainSeriesProperties.haStyle.wickDownColor":"rgba(229, 73, 77, 0.5)"}},"wAssetRateChart":{"seriesColor":"rgba(255,255,255,0.80)"},"TokenChangeModalCtrl":{"seriesColor":"rgba(255,255,255,0.80)"},"bgColor":"#2d2d2d"}},
+            progress: 0,
+            state: 'loading',
+            origin: 'https://client.acrylplatform.com',
+            localize: {"en":{"name":"En","separators":{"group":",","decimal":"."}},"ru":{"name":"Ru","separators":{"group":" ","decimal":"."}}},
+            bankRecipient: '',
+            network: {
+                apiVersion: 'v0',
+                code: 'A',
+                node: 'https://nodes.acrylplatform.com',
+                matcher: 'https://matcher.acrylplatform.com/matcher',
+                api: 'https://api.acrylplatform.com',
+                coinomat: 'https://localhost:8080/coinomat',
+                support: 'https://support.acrylplatform.com',
+                nodeList: '',
+                scamListUrl: 'https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Acryl%20Community.csv',
+                explorer: 'https://explorer.acrylplatform.com',
+                featuresConfigUrl: 'https://raw.githubusercontent.com/acrylplatform/acryl-client-config/master/config.json'
+            },
+            defaultAssets: {
+                WAVES: 'WAVES',
+                BTC: '68X83bfvSSQauL81fcfqA3Vne9s4y2BRAG36DGRcv4V2'
+            },
+
+            ALWAYS_PINNED_ASSETS: ['WAVES'],
+
+            otherAssetsWithIcons: {
+                // TODO @xenohunter : remove that when icons are in @dvshur's service
+                EFYT: '',
+                WNET: ''
+            },
+            remappedAssetNames: {
+                '68X83bfvSSQauL81fcfqA3Vne9s4y2BRAG36DGRcv4V2': 'Bitcoin'
+            },
+            matcherSignInterval: { count: 20, timeType: 'day' },
+            scam: Object.create(null),
+            dex: {
+                resolutions: ['15', '30', '60', '240', '1440'], // TODO : add months
+                defaultResolution: '60'
+            },
+            modules: [],
+            oracle: '',
+            minAliasLength: 4,
+            maxAliasLength: 30,
+            maxAddressLength: 45,
+            maxCoinCount: null,
+            TRANSACTION_TYPES: {
+                EXTENDED: {
+                    SEND: 'send',
+                    RECEIVE: 'receive',
+                    MASS_SEND: 'mass-send',
+                    MASS_RECEIVE: 'mass-receive',
+                    CIRCULAR: 'circular',
+                    ISSUE: 'issue',
+                    REISSUE: 'reissue',
+                    BURN: 'burn',
+                    EXCHANGE_BUY: 'exchange-buy',
+                    EXCHANGE_SELL: 'exchange-sell',
+                    LEASE_IN: 'lease-in',
+                    LEASE_OUT: 'lease-out',
+                    CANCEL_LEASING: 'cancel-leasing',
+                    CREATE_ALIAS: 'create-alias',
+                    DATA: 'data',
+                    SET_SCRIPT: 'set-script',
+                    SCRIPT_CANCEL: 'set-script-cancel',
+                    SPONSORSHIP_START: 'sponsorship-start',
+                    SPONSORSHIP_STOP: 'sponsorship-stop',
+                    SPONSORSHIP_FEE: 'sponsorship-fee',
+                    UNKNOWN: 'unknown'
+                },
+                NODE: {
+                    TRANSFER: 'transfer',
+                    MASS_TRANSFER: 'massTransfer',
+                    ISSUE: 'issue',
+                    REISSUE: 'reissue',
+                    BURN: 'burn',
+                    CREATE_ALIAS: 'createAlias',
+                    LEASE: 'lease',
+                    CANCEL_LEASING: 'cancelLeasing',
+                    EXCHANGE: 'exchange',
+                    DATA: 'data',
+                    SET_SCRIPT: 'setScript',
+                    SPONSORSHIP: 'sponsorship'
+                }
+            },
+            getLocaleData: function () {
+                return WavesApp.localize[i18next.language];
+            },
+            addController: function (name, controller) {
+                __controllers[name] = controller;
+            },
+            getController: function (name) {
+                return __controllers[name];
+            },
+            isWeb: function () {
+                return this.type === 'web';
+            },
+            isDesktop: function () {
+                return this.type === 'desktop';
+            },
+            isProduction: function () {
+            return true;
+            },
+            parseJSON: null,
+            stateTree: null,
+            MAX_URL_LENGTH: 1200,
+            sign: {
+                openTimeout: 3000,
+                listenTimeout: 25000,
+                exchangeTimeout: 100000,
+            },
+            reload: function () {
+                if (WavesApp.isDesktop()) {
+                    transfer('reload');
+                } else {
+                    window.location.reload();
+                }
+            }
+        };
+    </script>
+
+    <link  rel="stylesheet" href="css/acryl-client-vendor-styles-1.0.1.css">
+<link theme="default" rel="stylesheet" href="css/default-acryl-client-styles-1.0.1.css">
+<link theme="black" rel="stylesheet" href="css/black-acryl-client-styles-1.0.1.css">
+
+        <base href="./">
+
+    <script>
+
+        if (window.isDesktop || !window.buildIsWeb) {
+
+            var __mainListeners = [];
+
+            function listenMainProcessEvent(cb) {
+                __mainListeners.push(cb);
+            }
+
+            function stopListenMainProcessEvent(cb) {
+                for (var i = __mainListeners.length - 1; i >= 0; i--) {
+                    if (__mainListeners[i] === cb) {
+                        __mainListeners.splice(i, 1);
+                    }
+                }
+            }
+
+            function runMainProcessEvent() {
+                var args = Array.prototype.slice.call(arguments);
+                __mainListeners.slice().forEach(function (cb) {
+                    try {
+                        cb.apply(this, args);
+                    } catch (e) {
+                        console.error(e);
+                    }
+                }, this);
+            }
+        }
+
+        Array.prototype.slice.apply(document.querySelectorAll('[rel=stylesheet]'))
+                .filter(function (el) {
+                    return el.getAttribute('theme');
+                })
+                .forEach(function (el) {
+                    el.disabled = el.getAttribute('theme') !== 'black';
+                });
+    </script>
+</head>
+
+<body>
+
+<div class="app-loader">
+    <div class="progress"></div>
+    <div class="loader-wrapper">
+        <div class="loader"><span class="leaf1"></span><span class="leaf2"></span><span class="leaf3"></span><span
+                class="leaf4"></span></div>
+    </div>
+</div>
+
+<div class="connection-problem">
+    <div class="waves-logo"><img src="img/icons/waves_logo.svg"/></div>
+    <img src="img/no-preload/connection-error.svg" class="margin-3"/>
+    <div class="connection-problem__headline">We couldn't connect to the server</div>
+        <div class="connection-problem__description">Check your internet connection and try again.</div>
+        <div class="connection-problem__description">
+            <div>If you have been using the Acryl Desktop app and refreshing does</div>
+            <div>not help, try reinstalling the app. Download the latest version from</div>
+            <div>the official Acryl site.</div>
+        </div>
+    <button class="submit big submit connetion-problem__button" onclick="WavesApp.reload();">Refresh page</button>
+</div>
+
+<div class="not-supported-browser">
+    <div class="overlay"></div>
+    <div class="not-supported-modal">
+        <i></i>
+        <h2 class="margin-2">Your browser is not supported</h2>
+        <div class="body-2 disabled-600 margin-4">
+            Please update to the latest version of one of the following browsers:
+        </div>
+        <div class="browsers-icons">
+            <div class="browser-icon-block">
+                <img src="img/no-preload/chrome-icon.svg"/>
+                <div>Chrome</div>
+                <div><a href="https://www.google.com/chrome/index.html" target="_blank">Install or update</a></div>
+            </div>
+            <div class="browser-icon-block">
+                <img src="img/no-preload/firefox-icon.svg"/>
+                <div>Firefox</div>
+                <div><a href="https://www.mozilla.org/en-US/firefox/" target="_blank">Install or update</a></div>
+            </div>
+            <div class="browser-icon-block">
+                <img src="img/no-preload/safari-icon.svg"/>
+                <div>Safari</div>
+                <div><a href="https://support.apple.com/downloads/safari" target="_blank">Install or update</a></div>
+            </div>
+            <div class="browser-icon-block">
+                <img src="img/no-preload/opera-icon.svg"/>
+                <div>Opera</div>
+                <div><a href="http://www.opera.com/" target="_blank">Install or update</a></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<ui-view name="main"></ui-view>
+
+<div class="notifications">
+    <w-container-alert-notification type="notification"></w-container-alert-notification>
+</div>
+
+<script src="js/acryl-client-web-mainnet-1.0.1.min.js"></script>
+
+<script>
+    window.BigNumber = ds.wavesDataEntities.BigNumber;
+
+    // Signed 64-bit integer.
+    WavesApp.maxCoinsCount = new BigNumber('9223372036854775807');
+
+    WavesApp.device = new MobileDetect(navigator.userAgent);
+
+    (function () {
+        var wrapper = require('worker-wrapper');
+
+        var worker = wrapper.create({
+            libs: ['/node_modules/parse-json-bignumber/dist/parse-json-bignumber.min.js?v' + WavesApp.version]
+        });
+
+        worker.process(function () {
+            self.parse = parseJsonBignumber().parse;
+        });
+
+        var stringify = parseJsonBignumber({ BigNumber: BigNumber }).stringify;
+        WavesApp.parseJSON = function (str) {
+            return worker.process(function (str) {
+                return parse(str);
+            }, str);
+        };
+
+        WavesApp.stringifyJSON = function () {
+            return stringify.apply(this, arguments);
+        };
+    })();
+
+    var isBrowserSupported = (function () {
+
+        var USE_NATIVE_API = [
+            window.Promise,
+            window.fetch,
+            Object.values,
+            Object.assign,
+            Object.getOwnPropertyDescriptor,
+            Object.entries,
+            URL,
+            window.crypto || window.msCrypto
+        ];
+
+        return function () {
+            return USE_NATIVE_API.every(Boolean);
+        };
+    })();
+
+    var notSupportedSelector = '.not-supported-browser';
+
+    if (!isBrowserSupported()) {
+        document.body.querySelector(notSupportedSelector).style.display = 'block';
+    } else {
+        var modal = document.body.querySelector(notSupportedSelector);
+        modal.parentNode.removeChild(modal);
+    }
+
+    if (WavesApp.isDesktop()) {
+        var listenDevTools = false;
+        Mousetrap.bind('i d d q d', function () {
+            if (!listenDevTools) {
+                transfer('addDevToolsMenu');
+                listenDevTools = true;
+            }
+        });
+    }
+
+    Mousetrap.bind('c l e a n a l l', function () {
+        localStorage.clear();
+        if (WavesApp.isDesktop()) {
+            transfer('reload');
+        } else {
+            window.location.reload();
+        }
+    });
+
+    /**
+     * @type {EventSender}
+     */
+    var analytics = []; // eventSender.default.inactive();
+
+    WavesApp.stateTree = new tsUtils.Tree({
+        id: 'root',
+        children: [
+            {
+                id: 'welcome',
+                data: {
+                    url: '/',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            // {
+            //     id: 'sessions',
+            //     data: {
+            //         noLogin: true,
+            //         views: [{ name: 'main' }]
+            //     }
+            // },
+            {
+                id: 'create',
+                data: {
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'restore',
+                data: {
+                    url: '/import/restore',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'ledger',
+                data: {
+                    url: '/import/ledger',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'keeper',
+                data: {
+                    url: '/import/waveskeeper',
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'import',
+                data: {
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'desktop',
+                data: {
+                    noLogin: true,
+                    views: [{ name: 'main' }]
+                }
+            },
+            {
+                id: 'main',
+                data: {
+                    abstract: true,
+                    views: [{ name: 'main', templateUrl: 'modules/app/templates/main.html' }]
+                },
+                children: [
+                    {
+                        id: 'wallet',
+                        data: {
+                            views: [{
+                                name: 'mainContent',
+                                noController: true,
+                                template: '<ui-view name="content"></ui-view>'
+                            }],
+                            redirectTo: 'main.wallet.assets'
+                        },
+                        children: [
+                            { id: 'assets', data: { views: [{ name: 'content' }] } },
+                            { id: 'portfolio', data: { views: [{ name: 'content' }] } },
+                            { id: 'transactions', data: { views: [{ name: 'content' }] } },
+                            { id: 'leasing', data: { views: [{ name: 'content' }] } }
+                        ]
+                    },
+                    {
+                        id: 'dex',
+                        data: {
+                            url: '/dex?assetId1&assetId2',
+                            reloadOnSearch: false,
+                            views: [{ name: 'mainContent' }]
+                        }
+                    },
+                    {
+                        id: 'dex-demo',
+                        data: {
+                            noLogin: true,
+                            controller: 'Dex',
+                            url: '/dex-demo?assetId1&assetId2',
+                            reloadOnSearch: false,
+                            views: [{ name: 'mainContent', templateUrl: 'modules/dex/templates/dex.html' }]
+                        }
+                    },
+                    {
+                        id: 'tokens',
+                        data: {
+                            views: [{ name: 'mainContent' }]
+                        }
+                    }
+                ]
+            }
+        ]
+    });
+
+    /**
+     * @typedef {object} IWavesApp
+     * @property {string} name
+     * @property {string} oracle
+     * @property {string} version
+     * @property {string} type
+     * @property {string} origin
+     * @property {Object.<boolean>} scam
+     * @property {MobileDetect} device
+     * @property {Object.<{separators: {group: string, decimal: string}}>} localize
+     * @property {number} minAliasLength
+     * @property {number} maxAliasLength
+     * @property {number} MAX_URL_LENGTH
+     * @property {string} bankRecipient
+     * @property {number} maxAddressLength
+     * @property {\{count: number, timeType: string\}} matcherSignInterval
+     * @property {BigNumber} maxCoinsCount
+     * @property {typeof WavesApp.TRANSACTION_TYPES} TRANSACTION_TYPES
+     * @property {typeof WavesApp.network} network
+     * @property {typeof WavesApp.defaultAssets} defaultAssets
+     * @property {Array<string>} ALWAYS_PINNED_ASSETS
+     * @property {object} remappedAssetNames
+     * @property {object} dex
+     * @property {Array<string>} dex.resolutions
+     * @property {string} dex.defaultResolution
+     * @property {Array<string>} modules
+     * @property {function():boolean} isWeb
+     * @property {function():boolean} isDesktop
+     * @property {function():boolean} isProduction
+     * @property {Function} addController
+     * @property {Function} getController
+     * @property {function():{name: string, separators: {group: string, decimal: string}}} getLocaleData
+     * @property {function(data: string): Promise<object>} parseJSON
+     * @property {function(data: object, [a], [b]): string} stringifyJSON
+     * @property {Tree} stateTree
+     */
+</script>
+
+</body>
+</html>
