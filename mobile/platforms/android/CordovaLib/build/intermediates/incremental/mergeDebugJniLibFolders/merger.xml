@@ -1,2 +1,2 @@
 <?xml version="1.0" encoding="utf-8"?>
-<merger version="3"><dataSet config="main"><source path="/home/dev/Android/a1.6/platforms/android/CordovaLib/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/home/dev/Android/a1.6/platforms/android/CordovaLib/src/debug/jniLibs"/></dataSet></merger>
+<merger version="3"><dataSet config="main"><source path="/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/platforms/android/CordovaLib/src/main/jniLibs"/></dataSet><dataSet config="debug"><source path="/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/platforms/android/CordovaLib/src/debug/jniLibs"/></dataSet></merger>

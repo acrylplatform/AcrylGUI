@@ -25,3 +25,5 @@ WavesGUI.iml
 package-lock.json
 npm-debug.log
 .vscode/
+mobile/platforms/android/app/build/intermediates/**
+mobile/platforms/android/app/src/main/assets/**
