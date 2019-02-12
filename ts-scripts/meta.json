@@ -112,7 +112,7 @@
       "bankRecipient": "",
       "node": "https://nodestestnet.acrylplatform.com",
       "matcher": "https://nodestestnet.acrylplatform.com/matcher",
-      "api": "https://apitestnet.acrylplatform.com",
+      "api": "https://api.acrylplatform.com",
       "explorer": "https://explorertestnet.acrylplatform.com",
       "coinomat": "https://localhost:8080/coinomat",
       "support": "https://support.acrylplatform.com",

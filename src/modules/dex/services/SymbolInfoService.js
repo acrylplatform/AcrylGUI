@@ -53,9 +53,9 @@
                         waves.node.assets.getAsset(amount.id),
                         waves.node.assets.getAsset(price.id)
                     ]).then(([amountInfo, priceInfo]) => {
-                        const amountName = amountInfo.ticker ? amountInfo.ticker : amountInfo.name;
+                        let amountName = amountInfo.ticker ? amountInfo.ticker : amountInfo.name;
                         const priceName = priceInfo.ticker ? priceInfo.ticker : priceInfo.name;
-
+                        amountName = (amountName === 'WAVES') ? 'ACRYL' : amountName;
                         const ticker = `${amountInfo.id}/${priceInfo.id}`;
                         const symbolName = `${amountName}/${priceName}`;
 

@@ -242,7 +242,7 @@
                         const priceId = pair.priceAsset.id;
                         const addver = `${WavesApp.network.api}/${WavesApp.network.apiVersion}`;
                         const path = `${addver}/candles/${amountId}/${priceId}`;
-                        return ds.fetch(`${path}?timeStart=${from}&timeEnd=${to}&interval=${interval}`)
+                        return ds.fetch(`${path}?timeStart=${from}&timeEnd=${to}&interval=${interval}&oldVersion=true`)
                             .then((data) => {
                                 const list = data.candles;
 
