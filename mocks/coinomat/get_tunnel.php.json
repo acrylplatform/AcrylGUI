@@ -7,7 +7,7 @@
     "xr_fix_tm": "2018-09-05 11:53:34",
     "wallet_from": "3NCKpqzSnHmXhZEmqYy4U6RUKUAJDTxWgWP",
     "wallet_to": "1Hy96URv5rWV3uAu4UqELDmKLn2h6r63ip",
-    "currency_from": "WBTC",
+    "currency_from": "ABTC",
     "currency_to": "BTC",
     "added": "2018-02-06 09:51:45",
     "fee_in": "0.00000000",
@@ -21,7 +21,7 @@
     "in_max": 0.002,
     "fixtm_till": "2018-09-05 12:23:34",
     "uptodate": 1,
-    "currency_from_txt": "WBTC",
+    "currency_from_txt": "ABTC",
     "currency_to_txt": "BTC",
     "in_prec": {
       "dec": 8,

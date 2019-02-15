@@ -106,6 +106,7 @@
       }
     },
     "assetInfo": {
+      "gateway": "Gateway",
       "available": "Available",
       "balance": "Balance",
       "date": "Issue date",
