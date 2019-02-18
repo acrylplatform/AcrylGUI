@@ -5,7 +5,7 @@
   "in_max": 20,
   "fee_in": 0,
   "fee_out": 0.001,
-  "from_txt": "WBTC",
+  "from_txt": "ABTC",
   "to_txt": "BTC",
   "in_prec": {
     "dec": 8,
