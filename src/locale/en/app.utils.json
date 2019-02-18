@@ -403,7 +403,7 @@
       "attachmentLength": "The description is too long",
       "bankAccount": "Bank account",
       "coinomat": {
-        "feeExplanation": "We detected {{assetName}} address and will send your money through Coinomat gateway to that address. Minimum amount is {{min, BigNumber}} {{assetTicker}}, maximum amount is {{max, BigNumber}} {{assetTicker}}.",
+        "feeExplanation": "We detected {{assetName}} address and will send your money through Coinomat gateway to that address. Minimum amount is {{min, BigNumber}} {{assetTicker}}, maximum amount is {{max, BigNumber}} {{assetTicker}}. The withdraw can take up to 24 hours",
         "feeTitle": "Gateway fee is {{fee, BigNumber}} {{assetTicker}}"
       },
       "coinomatLimits": "Minimum $100 USD/EUR, maximum $50,000 USD/EUR",

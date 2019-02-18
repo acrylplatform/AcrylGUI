@@ -348,7 +348,7 @@
       "attachmentLength": "Превышена максимальная длина описания!",
       "bankAccount": "Банковский счёт",
       "coinomat": {
-        "feeExplanation": "Введенный адрес определен как {{assetName}}-адрес, ваши средства будут отправлены на него через шлюз Coinomat. Минимальная сумма перевода — {{min, BigNumber}} {{assetTicker}}, максимальная — {{max, BigNumber}} {{assetTicker}}.",
+        "feeExplanation": "Введенный адрес определен как {{assetName}}-адрес, ваши средства будут отправлены на него через шлюз Coinomat. Минимальная сумма перевода — {{min, BigNumber}} {{assetTicker}}, максимальная — {{max, BigNumber}} {{assetTicker}}. Bывод может проходить до 24-х часов",
         "feeTitle": "Комиссия шлюза - {{fee, BigNumber}} {{assetTicker}}"
       },
       "coinomatLimits": "Минимум $100 USD/EUR, максимум $50,000 USD/EUR",
