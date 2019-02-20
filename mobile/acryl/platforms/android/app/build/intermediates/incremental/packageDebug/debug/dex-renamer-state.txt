@@ -1,4 +1,4 @@
-#Mon Feb 11 12:02:21 EET 2019
+#Wed Feb 20 15:02:19 EET 2019
 base.0=/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/acryl/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
 path.0=classes.dex
 renamed.0=classes.dex

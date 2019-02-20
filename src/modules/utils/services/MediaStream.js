@@ -69,6 +69,7 @@
             create() {
                 return $q((resolve, reject) => {
                     const handler = function (stream) {
+                        // console.log('@@@@stream', stream)
                         resolve(new MediaStream(stream));
                     };
 

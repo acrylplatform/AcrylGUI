@@ -16,7 +16,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="https://client.acrylplatform.com/" />
+    <allow-navigation href="https://min-rctnvgtteb.now.sh/" />
     <platform name="android">
         <allow-intent href="market:*" />
         <icon density="ldpi" src="res/icon/android/android-chrome-36x36.png" />

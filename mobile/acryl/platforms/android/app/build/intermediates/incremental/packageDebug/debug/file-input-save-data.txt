@@ -1,5 +1,5 @@
 #Internal package file, do not edit.
-#Mon Feb 11 12:02:21 EET 2019
+#Wed Feb 20 15:02:19 EET 2019
 17.baseType=DIRECTORY
 4.path=www/plugins/cordova-plugin-network-information/www/network.js
 8.set=ASSET
