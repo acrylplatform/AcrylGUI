@@ -33,6 +33,8 @@
                         </div>
 
                         <w-input-container>
+
+                        <div class="read-address-wrap">
                             <w-input class="big"
                                      type="text"
                                      w-validate
@@ -40,7 +42,9 @@
                                      name="recipient"
                                      ng-model="$ctrl.recipient"
                                      required></w-input>
-
+                            <w-qr-code-read on-read="$ctrl.onReadQrCode(text)" max-width="415"
+                            max-height="310"></w-qr-code-read>
+                        </div>
                         <w-input-error message="wavesAddress">
                             <span w-i18n="modal.send.errors.address"></span>
                         </w-input-error>
@@ -54,13 +58,15 @@
                         <div class="body-2 basic-900" w-i18n="modal.startLease.amount"></div>
 
                 <w-input-container>
-                    <w-balance-input name="amount"
-                                     asset-id="$ctrl.assetId"
-                                     max-balance="$ctrl.balance"
-                                     min="0"
-                                     fee="$ctrl.fee"
-                                     input-classes="big"
-                                     amount="$ctrl.amount"></w-balance-input>
+                                <w-balance-input name="amount"
+                                                asset-id="$ctrl.assetId"
+                                                max-balance="$ctrl.balance"
+                                                min="0"
+                                                fee="$ctrl.fee"
+                                                input-classes="big"
+                                                amount="$ctrl.amount"></w-balance-input>
+
+                            
                     <w-input-error name="amount" message="required">
                         <span w-i18n="inputs.errors.required"></span>
                     </w-input-error>
