@@ -20,9 +20,9 @@
     "cordova": {
         "plugins": {
             "cordova-plugin-whitelist": {},
-            "cordova-plugin-dialogs": {},
+            "cordova-plugin-camera": {},
             "cordova-plugin-network-information": {},
-            "cordova-plugin-camera": {}
+            "cordova-plugin-dialogs": {}
         },
         "platforms": [
             "android",

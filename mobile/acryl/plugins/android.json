@@ -10,13 +10,13 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "acryl.platform.com"
     },
-    "cordova-plugin-dialogs": {
+    "cordova-plugin-camera": {
       "PACKAGE_NAME": "acryl.platform.com"
     },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "acryl.platform.com"
     },
-    "cordova-plugin-camera": {
+    "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "acryl.platform.com"
     }
   },

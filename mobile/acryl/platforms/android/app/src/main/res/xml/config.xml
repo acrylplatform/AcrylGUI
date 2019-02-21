@@ -4,14 +4,14 @@
         <param name="android-package" value="org.apache.cordova.whitelist.WhitelistPlugin" />
         <param name="onload" value="true" />
     </feature>
-    <feature name="Notification">
-        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
+    <feature name="Camera">
+        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
     </feature>
     <feature name="NetworkStatus">
         <param name="android-package" value="org.apache.cordova.networkinformation.NetworkManager" />
     </feature>
-    <feature name="Camera">
-        <param name="android-package" value="org.apache.cordova.camera.CameraLauncher" />
+    <feature name="Notification">
+        <param name="android-package" value="org.apache.cordova.dialogs.Notification" />
     </feature>
     <name>Acryl</name>
     <description>
@@ -28,7 +28,9 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="https://min-rctnvgtteb.now.sh/" />
+    <allow-navigation href="data:*" />
+    <allow-navigation href="https://min-gswfojherr.now.sh/" />
+    <preference name="CRIInjectFirstFiles" />
     <allow-intent href="market:*" />
     <icon density="ldpi" src="res/icon/android/android-chrome-36x36.png" />
     <icon density="mdpi" src="res/icon/android/android-chrome-48x48.png" />

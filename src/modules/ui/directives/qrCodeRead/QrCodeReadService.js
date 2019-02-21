@@ -11,8 +11,8 @@
     const factory = function (mediaStream, Poll) {
 
         const { Signal } = require('ts-utils');
-        const wrapper = require('worker-wrapper');
-
+        // const wrapper = require('worker-wrapper');
+        // const QrCode = require('qrcode-reader');
 
         class QrCodeReadService {
 
@@ -177,7 +177,7 @@
              */
             _removeWorker() {
                 if (this._worker) {
-                    this._worker.terminate();
+                    // this._worker.terminate();
                     this._worker = null;
                 }
 
@@ -204,11 +204,12 @@
                 if (this._worker) {
                     return this;
                 }
-
-                this._worker = wrapper.create(() => new QrCode(), {
+                this._worker = () => new QrCode();
+                /*  this._worker = wrapper.create(() => new QrCode(), {
                     libs: [`/node_modules/qrcode-reader/dist/index.min.js?${WavesApp.version}`]
-                });
+                }); */
                 // .log('this._worker', this._worker);
+                // console.log('this._worker :', this._worker);
                 return this;
             }
 
@@ -293,19 +294,20 @@
 
                 const frame = this._getFrame();
 
-                return this._worker.process((qr, { frame }) => {
-                    return new Promise((resolve) => {
-                        qr.callback = function (error, response) {
-                            if (error) {
-                                resolve(null);
-                            } else {
-                                resolve(response.result);
-                            }
-                        };
-                        qr.decode(frame);
-                    });
-                }, { frame })
-                    .catch((e) => this._dispatchError(e));
+                // return this._worker.process((qr, { frame }) => {
+                return new Promise((resolve) => {
+                    this._worker.callback = function (error, response) {
+                        if (error) {
+                            resolve(null);
+                        } else {
+                            resolve(response.result);
+                        }
+                    };
+                    this._worker.decode(frame);
+                });
+                // }
+                // , { frame })
+                // .catch((e) => this._dispatchError(e));
             }
 
             /**

@@ -7,10 +7,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-dialogs": {
+  "cordova-plugin-camera": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-dialogs"
+      "id": "cordova-plugin-camera@4.0.3"
     },
     "is_top_level": true,
     "variables": {}
@@ -23,10 +23,10 @@
     "is_top_level": true,
     "variables": {}
   },
-  "cordova-plugin-camera": {
+  "cordova-plugin-dialogs": {
     "source": {
       "type": "registry",
-      "id": "cordova-plugin-camera@4.0.3"
+      "id": "cordova-plugin-dialogs"
     },
     "is_top_level": true,
     "variables": {}

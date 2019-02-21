@@ -26,3 +26,7 @@ package-lock.json
 npm-debug.log
 .vscode/
 /mobile/acryl/platforms/android/gradle
+*.jar
+!gradle/wrapper/gradle-wrapper.jar
+mobile/acryl/platforms/android/app/build/
+mobile/acryl/platforms/android/build/
