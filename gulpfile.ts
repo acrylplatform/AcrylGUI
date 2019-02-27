@@ -1,6 +1,7 @@
 import * as gulp from 'gulp';
 import * as concat from 'gulp-concat';
 import * as babel from 'gulp-babel';
+import * as  workboxBuild from 'workbox-build';
 import { exec, execSync } from 'child_process';
 import { download, getAllLessFiles, getFilesFrom, prepareHTML, run, task } from './ts-scripts/utils';
 import { basename, extname, join, sep } from 'path';
@@ -27,6 +28,7 @@ const meta: IMetaJSON = readJSONSync(join(__dirname, 'ts-scripts', 'meta.json'))
 const pack: IPackageJSON = readJSONSync(join(__dirname, 'package.json'));
 const configurations = Object.keys(meta.configurations);
 
+// const SW = getFilesFrom(join(__dirname, 'service-worker'), '.js');
 const SOURCE_FILES = getFilesFrom(join(__dirname, 'src'), '.js');
 const IMAGE_LIST = getFilesFrom(join(__dirname, 'src', 'img'), ['.png', '.svg', '.jpg'], (name, path) => path.indexOf('no-preload') === -1);
 const JSON_LIST = getFilesFrom(join(__dirname, 'src'), '.json');
@@ -102,6 +104,7 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
                     forCopy.push(copy(join('dist', 'locale'), join(targetPath, 'locales')));
                     forCopy.push(copy(join(__dirname, 'tradingview-style'), join(targetPath, 'tradingview-style')));
                     forCopy.push(copy(join(__dirname, 'trading-view'), join(targetPath, 'trading-view')));
+                    // forCopy.push(copy(join(__dirname, 'sw'), join(targetPath, 'sw')));
 
                     if (buildName === 'desktop') {
                         const electronFiles = getFilesFrom(join(__dirname, 'electron'), '.js');
@@ -212,6 +215,16 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
     taskHash.zip.push(`zip-${buildName}`);
 
 });
+
+/* gulp.task('service-worker', () => {
+    return workboxBuild.generateSW({
+      globDirectory: 'build',
+      globPatterns: [
+        '**\/*.{html,json,js,css}',
+      ],
+      swDest: 'modules/app/service-worker.js',
+    });
+  }); */
 
 task('up-version-json', function (done) {
     console.log('new version: ', pack.version);

@@ -109,6 +109,7 @@ function parseCookie(header = ''): IRequestData {
 const handlers = [
     coinomat,
     manifest,
+    sw,
     browserconfig,
     wavesClientConfig,
     handler as any
@@ -116,7 +117,6 @@ const handlers = [
 
 function request(req, res) {
     let index = 0;
-
     function next() {
         index++;
         if (handlers[index - 1]) {
@@ -132,16 +132,16 @@ function browserconfig(req, res, next) {
         next();
         return null;
     }
-    let response_json = { error: 'oops' };
+    let response_xml_as_string = '';
 
     const path = join(__dirname, 'src/browserconfig.xml');
+    console.log('path :', path);
     if (fs.existsSync(path)) {
-        response_json = JSON.parse(fs.readFileSync(path, 'utf8')) || '';
+        response_xml_as_string = fs.readFileSync(path, 'utf8')|| '';
     }
-
     const cType = 'text/html; charset=utf-8;';
-    res.setHeader('Content-Type', cType);
-    res.end(JSON.stringify(response_json));
+    res.setHeader('Content-Type', cType); 
+    res.end(response_xml_as_string);
     return false;
 }
 
@@ -160,6 +160,23 @@ function manifest(req, res, next) {
     const cType = 'text/html; charset=utf-8;';
     res.setHeader('Content-Type', cType);
     res.end(JSON.stringify(response_json));
+    return false;
+}
+
+function sw(req, res, next) {
+    if (!req.url.includes('service-worker.js')) {
+        next();
+        return null;
+    }
+    res.writeHead(200, {'Service-Worker-Allowed':'/', 'Content-Type':'application/javascript'});
+    console.log("%%%req.url", req.url);
+    let response_sw;
+    const path = join(__dirname, 'src/service-worker.js');
+    console.log('###path :', path);
+    if (fs.existsSync(path)) {
+          response_sw =  fs.readFileSync(path, 'utf8') || '';       
+    }
+    res.end(response_sw);
     return false;
 }
 

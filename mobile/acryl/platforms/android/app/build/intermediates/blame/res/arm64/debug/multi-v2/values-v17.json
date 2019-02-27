@@ -1,0 +1,47 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/acryl/platforms/android/app/build/intermediates/incremental/mergeArm64DebugResources/merged.dir/values-v17/values-v17.xml",
+            "map": [
+                {
+                    "source": "/home/dev/.gradle/caches/transforms-1/files-1.1/xwalk_core_library-23.53.589.4.aar/44758444d47f8bc95a106f7fd44fbb10/res/values-v17/styles.xml",
+                    "from": {
+                        "startLines": "12,15,8",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "476,606,232",
+                        "endLines": "14,17,11",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "601,720,471"
+                    },
+                    "to": {
+                        "startLines": "31,34,37",
+                        "startColumns": "4,4,4",
+                        "startOffsets": "1508,1638,1757",
+                        "endLines": "33,36,40",
+                        "endColumns": "12,12,12",
+                        "endOffsets": "1633,1752,1996"
+                    }
+                },
+                {
+                    "source": "/home/dev/.gradle/caches/transforms-1/files-1.1/xwalk_core_library-23.53.589.4.aar/44758444d47f8bc95a106f7fd44fbb10/res/values-v17/styles_03.xml",
+                    "from": {
+                        "startLines": "33,20,37,17,14,9",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "1346,702,1545,562,442,233",
+                        "endLines": "36,32,39,19,16,11",
+                        "endColumns": "12,12,12,12,12,12",
+                        "endOffsets": "1540,1341,1703,697,557,415"
+                    },
+                    "to": {
+                        "startLines": "2,6,19,22,25,28",
+                        "startColumns": "4,4,4,4,4,4",
+                        "startOffsets": "55,254,898,1061,1201,1321",
+                        "endLines": "5,18,21,24,27,30",
+                        "endColumns": "12,12,12,12,12,12",
+                        "endOffsets": "249,893,1056,1196,1316,1503"
+                    }
+                }
+            ]
+        }
+    ]
+}

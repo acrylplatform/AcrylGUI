@@ -147,7 +147,8 @@ export function prepareHTML(param: IPrepareHTMLOptions): Promise<string> {
         readFile(join(__dirname, '../src/index.hbs'), 'utf8') as Promise<string>,
         readJSON(join(__dirname, '../package.json')) as Promise<IPackageJSON>,
         readJSON(join(__dirname, './meta.json')) as Promise<IMetaJSON>,
-        readJSON(join(__dirname, '../src/themeConfig/theme.json'))
+        readJSON(join(__dirname, '../src/themeConfig/theme.json')),
+        readFile(join(__dirname, '../src/service-worker.js'), 'utf8') as Promise<string>,
     ])
         .then(([file, pack, meta, themesConf]) => {
             const { themes } = themesConf;
@@ -467,6 +468,7 @@ export function isPage(url: string): boolean {
         'js',
         'bower_components',
         'node_modules',
+        'sw',
         'ts-scripts',
         'modules',
         'themeConfig',
