@@ -12,7 +12,7 @@ const readArgv = () => {
     dist: argv.dist || './sw/service-worker1.js',
     templatePath: argv.template || './sw/sw-template.js',
     cacheStore: argv.cache || 'acryl',
-    navigationFallback: argv.navigationFallback || './../index.html'
+    navigationFallback: argv.navigationFallback || './index.html'
   };
 }
 
@@ -41,7 +41,7 @@ const generateSWFile = () => {
 
   const template = fs.readFileSync(argv.templatePath, 'utf-8');
   const internalFiles = getFiles(argv.source);
-  const intFilesCorrectPath = internalFiles.map(filePath => './' + filePath);
+  const intFilesCorrectPath = internalFiles.map(filePath => '/' + filePath);
   // intFilesCorrectPath.push('./../service-worker.js');
   const externalFiles = [
     // here you can add some external files that you want to have cached
