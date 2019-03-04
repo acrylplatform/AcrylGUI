@@ -28,9 +28,9 @@
         <icon density="xxxhdpi" src="res/icon/android/android-chrome-192x192.png" />
     </platform>
     <preference name="CRIInjectFirstFiles" />
-    <plugin name="cordova-plugin-camera" spec="^4.0.3" />
     <plugin name="cordova-plugin-network-information" spec="^2.0.1" />
     <plugin name="cordova-plugin-dialogs" spec="^2.0.1" />
+    <plugin name="cordova-plugin-qrscanner" spec="^2.6.0" />
     <engine name="android" spec="^7.1.4" />
     <engine name="ios" spec="^4.5.5" />
 </widget>

@@ -59,5 +59,7 @@
     </dict>
     <key>UIBackgroundModes</key>
     <array/>
+    <key>NSCameraUsageDescription</key>
+    <string>The camera is used to scan QR codes.</string>
   </dict>
 </plist>

@@ -10,15 +10,19 @@
     "cordova-plugin-whitelist": {
       "PACKAGE_NAME": "acryl.platform.com"
     },
-    "cordova-plugin-camera": {
-      "PACKAGE_NAME": "acryl.platform.com"
-    },
     "cordova-plugin-network-information": {
       "PACKAGE_NAME": "acryl.platform.com"
     },
     "cordova-plugin-dialogs": {
       "PACKAGE_NAME": "acryl.platform.com"
+    },
+    "cordova-plugin-qrscanner": {
+      "PACKAGE_NAME": "acryl.platform.com"
     }
   },
-  "dependent_plugins": {}
+  "dependent_plugins": {
+    "cordova-plugin-add-swift-support": {
+      "PACKAGE_NAME": "acryl.platform.com"
+    }
+  }
 }
