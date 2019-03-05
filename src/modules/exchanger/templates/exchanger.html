@@ -1,0 +1,84 @@
+<div w-i18n-ns="app.exchanger" class="exchanger-page">
+    <div class="page-title headline-4 basic-700" w-i18n="pageTitle"></div>
+    <div class="exchanger-page__content">
+        <form class="generate-form" name="$ctrl.createForm" novalidate>
+            
+            <div class="assets">
+                <div>
+                    <div class="body-2 basic-900 relative">
+                        <w-help-icon>
+                            <div class="help-icon__row headline-3">
+                                <span w-i18n="helpIcon.sendDescription"></span>
+                            </div>
+                        </w-help-icon>
+                        &nbsp
+                        <span w-i18n="sendAssets"></span>
+                    </div>
+                    <w-input-container>
+                        <w-input type="text" class="medium" name="precision" ng-model="$ctrl.precision" required
+                            w-validate w-validator-lte="1000000" w-validator-gte="0" w-validator-integer w-validator-number
+                            placeholder="placeholders.precision" w-i18n-attr="placeholder"></w-input>
+
+                        <w-input-error message="lte">
+                            <span w-i18n="validators.minValuePrecision"></span>
+                        </w-input-error>
+                        <w-input-error message="gte">
+                            <span w-i18n="validators.maxValuePrecision"></span>
+                        </w-input-error>
+                        <w-input-error message="required">
+                            <span w-i18n="validators.required"></span>
+                        </w-input-error>
+                        <w-input-error message="integer">
+                            <span w-i18n="validators.required"></span>
+                        </w-input-error>
+                    </w-input-container>
+                </div>
+                <div class="amount-modal-icon"></div>
+
+                <div>
+                    <div class="body-2 basic-900 relative">                        
+                        <w-help-icon>
+                            <div class="help-icon__row headline-3">
+                                <span w-i18n="helpIcon.recieveDescription"></span>
+                            </div>
+                        </w-help-icon>
+                        &nbsp
+                        <span w-i18n="recieveAssets"></span>
+                    </div>
+                    <w-input-container>
+                        <w-input type="text" class="medium" name="precision" ng-model="$ctrl.precision" required
+                            w-validate w-validator-lte="1000000" w-validator-gte="0" w-validator-integer w-validator-number
+                            placeholder="placeholders.precision" w-i18n-attr="placeholder"></w-input>
+
+                        <w-input-error message="lte">
+                            <span w-i18n="validators.minValuePrecision"></span>
+                        </w-input-error>
+                        <w-input-error message="gte">
+                            <span w-i18n="validators.maxValuePrecision"></span>
+                        </w-input-error>
+                        <w-input-error message="required">
+                            <span w-i18n="validators.required"></span>
+                        </w-input-error>
+                        <w-input-error message="integer">
+                            <span w-i18n="validators.required"></span>
+                        </w-input-error>
+                    </w-input-container>
+                </div>
+            </div>
+
+
+            <div class="row">
+                <div ng-class="{'error-400': $ctrl.invalid}" class="footnote-1 basic-500" w-i18n="fee"></div>
+                <div ng-if="$ctrl.invalid" class="error-400" w-i18n="validators.noMoney"></div>
+            </div>
+
+            <div class="row">
+                <w-sign-button disabled="$ctrl.createForm.$invalid || $ctrl.invalid" class="submit long margin-4"
+                    on-success="$ctrl.generate(signable)" on-click="$ctrl.createSignable()">
+                    <span w-i18n-ns="app.exchanger" w-i18n="exchange"></span>
+                </w-sign-button>
+            </div>
+
+        </form>
+    </div>
+</div>

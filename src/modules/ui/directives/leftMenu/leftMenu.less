@@ -114,6 +114,11 @@ w-left-menu {
           display: block;
           background-position: (-@default-icon-size * 2) 0;
         }
+        
+        &.exchanger::after {
+          display: block;
+          background-position: (-@default-icon-size * 2) 0;
+        }
 
         &.settings::after {
           display: block;
@@ -154,6 +159,9 @@ w-left-menu {
           }
           &.tokens::after {
             background-position: (-@default-icon-size * 2) -@default-icon-size;
+          }
+          &.exchanger::after {
+            background-position: (-@default-icon-size * 3) -@default-icon-size;
           }
         }
 

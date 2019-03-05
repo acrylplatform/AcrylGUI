@@ -1,0 +1,60 @@
+{
+    "count": "Total tokens",
+    "exchange": "Обменять",
+    "description": "Description",
+    "directives": {
+      "sign": {
+        "confirmRequestLedger": {
+          "waiting": "Waiting for confirmation on Ledger Nano S…"
+        }
+      }
+    },
+    "sendAssets": "Отдаете",
+    "recieveAssets": "Получаете",
+    "fee": "комиссия DEX (0,003)",
+    "help": {
+      "name": "Please use only Latin letters"
+    },
+    "helpIcon": {
+      "sendDescription": "Введите количество активов которые вы хотите обменять",
+      "recieveDescription": "Расчетное количество по рыночному курсу DEX"
+    },
+    "modal": {
+      "title": "{{name}} Generation",
+      "titleSuccess": "{{name}} Generation Complete"
+    },
+    "name": "Name of your asset",
+    "notifications": {
+      "isNotCreated": "Token has not been created"
+    },
+    "pageTitle": "Быстрый обмен",
+    "placeholders": {
+      "description": "You can not change the description later",
+      "precision": "От 0 до 1000000"
+    },
+    "precision": "Decimals",
+    "preview": "Preview",
+    "reissuable": {
+      "false": "Not reissuable",
+      "true": "Reissuable"
+    },
+    "success": {
+      "description": "You generated {{amount}} {{name}}",
+      "done": "Open Portfolio",
+      "title": "Your transaction is on the way!"
+    },
+    "validators": {
+      "byte": {
+        "gte": "Asset name must be between 4 and 16 bytes long",
+        "lte": "Asset name must be between 4 and 16 bytes long"
+      },
+      "descriptionLen": "The description is too long. It must be no more than 1,000 bytes.",
+      "maxValueCount": "Введенное число слишком большое",
+      "maxValuePrecision": "Невалидное число. Введите число от 0 до 1000000",
+      "minValueCount": "Введенное число должно быть больше 0",
+      "minValuePrecision": "Невалидное число. Введите число от 0 до 1000000",
+      "noMoney": "На Вашем балансе не достаточно средств для оплаты комиссии",
+      "precisionCount": "Total asset count cannot have more decimal places than specified in the Decimals field",
+      "required": "Это поле должно быть заполнено"
+    }
+  }

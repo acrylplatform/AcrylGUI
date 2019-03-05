@@ -1,0 +1,60 @@
+{
+    "count": "Total tokens",
+    "exchange": "Exchange",
+    "description": "Description",
+    "directives": {
+      "sign": {
+        "confirmRequestLedger": {
+          "waiting": "Waiting for confirmation on Ledger Nano S…"
+        }
+      }
+    },
+    "sendAssets": "Send assets",
+    "recieveAssets": "Recieve assets",
+    "fee": "DEX fee (0,003)",
+    "help": {
+      "name": "Please use only Latin letters"
+    },
+    "helpIcon": {
+      "sendDescription": "send description ",
+      "recieveDescription": "recieve description"
+    },
+    "modal": {
+      "title": "{{name}} Generation",
+      "titleSuccess": "{{name}} Generation Complete"
+    },
+    "name": "Name of your asset",
+    "notifications": {
+      "isNotCreated": "Token has not been created"
+    },
+    "pageTitle": "Fast exchange",
+    "placeholders": {
+      "description": "You can not change the description later",
+      "precision": "From 0 to 8"
+    },
+    "precision": "Decimals",
+    "preview": "Preview",
+    "reissuable": {
+      "false": "Not reissuable",
+      "true": "Reissuable"
+    },
+    "success": {
+      "description": "You generated {{amount}} {{name}}",
+      "done": "Open Portfolio",
+      "title": "Your transaction is on the way!"
+    },
+    "validators": {
+      "byte": {
+        "gte": "Asset name must be between 4 and 16 bytes long",
+        "lte": "Asset name must be between 4 and 16 bytes long"
+      },
+      "descriptionLen": "The description is too long. It must be no more than 1,000 bytes.",
+      "maxValueCount": "Entered number is too large",
+      "maxValuePrecision": "Invalid number. Enter number from 0 to 1000000",
+      "minValueCount": "Entered number must be greater than zero",
+      "minValuePrecision": "Invalid number. Enter number from 0 to 1000000",
+      "noMoney": "Your balance is not enough to pay transaction fees",
+      "precisionCount": "Total asset count cannot have more decimal places than specified in the Decimals field",
+      "required": "This field must be filled"
+    }
+  }
