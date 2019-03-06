@@ -4,7 +4,12 @@
         <w-avatar size="30" address="$ctrl.address"></w-avatar>
         <div class="body-1 basic-900 mobile-low-fsize">{{::$ctrl.address}}</div>
     </w-copy-wrap>
-
+    <div class="margin-top-2 margin-3 qr-wrapper" w-toggle-class-container>
+        <div class="center margin-2 body-2" w-i18n="modal.pairing.scanCodeDescription"></div>
+        <w-qr-code size="400" url="$ctrl.address" w-toggle-class="zoomed-in"></w-qr-code>
+        <div class="pointer center footnote-1 margin-top-1 basic-500 margin-3"
+             w-toggle-class="zoomed-in" w-i18n="modal.qr.qrZoomBtn"></div>
+    </div>
     <div class="row">
         <span class="body-2 basic-900 modal-header" w-i18n="modal.account.aliases"></span>
         <w-help-icon>

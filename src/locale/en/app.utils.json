@@ -311,6 +311,7 @@
     },
     "qr": {
       "copyAndShare": "Copy & Share Address",
+      "qrZoomBtn": "Click to zoom in/out",
       "or": "OR",
       "scanQrCode": "Scan QR Code",
       "title": "Share your address",
