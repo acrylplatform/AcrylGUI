@@ -269,6 +269,10 @@ task('copy-locale', function () {
     return gulp.src('src/locale/**/*').pipe(gulp.dest('dist/locale'));
 });
 
+task('copy-android-apk', function () {
+    return gulp.src('mobile/v-2/platforms/android/app/build/outputs/apk/debug/*.apk').pipe(gulp.dest('dist/mobile'));
+});
+
 task('downloadLocales', ['concat-develop-sources'], function (done) {
     const path = join(tmpJsPath, bundleName);
 
@@ -443,6 +447,7 @@ task('data-service', function () {
 task('all', [
     'clean',
     'copy-locale',
+    'copy-android-apk',
     'data-service',
     'templates',
     'concat',

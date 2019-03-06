@@ -24,9 +24,8 @@ WavesGUI.iml
 /data-service-dist
 package-lock.json
 npm-debug.log
-.vscode/
-/mobile/acryl/platforms/android/gradle
-*.jar
-!gradle/wrapper/gradle-wrapper.jar
-mobile/acryl/platforms/android/app/build/
-mobile/acryl/platforms/android/build/
+.vscode/ 
+/mobile/v-2/platforms/android/app/build
+/mobile/v-2/platforms/android/build
+/mobile/v-2/node_modules
+/mobile/v-2/platforms/ios/cordova/node_modules

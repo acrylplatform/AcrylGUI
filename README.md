@@ -24,6 +24,14 @@ npm run server
 
 The server will be launched at [https://localhost:8080](https://localhost:8080).
 
+For build android app run comand:
+
+```
+npm i -g cordova
+npm run deploy-and-apk
+```
+
+
 ## Blockchain for the people
 
 Keep up with the latest news and articles, and find out all about events happening on the [Acryl Platform](https://acrylplatform.com/).
