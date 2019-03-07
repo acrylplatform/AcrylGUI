@@ -15,6 +15,7 @@
         'byteGt',
         'byteGte',
         'number',
+        'decimal',
         'asset',
         'compare',
         'alias',
@@ -31,7 +32,8 @@
             const decimal = WavesApp.getLocaleData().separators.decimal;
             return `\\d*\\${decimal}?\\d*`;
         },
-        INTEGER: '\\d*'
+        INTEGER: '\\d*',
+        DECIMAL: '\\d*\\.?\\d*' || '^((?!(0.00)).)*$'
     };
 
     /**
@@ -192,6 +194,9 @@
                                     break;
                                 case 'number':
                                     this._validators[name] = this._createBigNumberValidator(name);
+                                    break;
+                                case 'decimal':
+                                    this._validators[name] = this._createBigDecimalValidator(name);
                                     break;
                                 case 'alias':
                                 case 'address':
@@ -579,6 +584,23 @@
 
                         _createBigNumberValidator(name) {
                             this._addInputPattern(PATTERNS.NUMBER);
+
+                            return {
+                                name,
+                                handler: () => true,
+                                parser: (value) => {
+                                    if (value === '') {
+                                        return;
+                                    }
+
+                                    return Validate._toBigNumber(value);
+                                },
+                                formatter: Validate._toString
+                            };
+                        }
+
+                        _createBigDecimalValidator(name) {
+                            this._addInputPattern(PATTERNS.DECIMAL);
 
                             return {
                                 name,

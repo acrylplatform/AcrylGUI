@@ -90,7 +90,6 @@
             createSignable() {
                 const precision = Number(this.precision.toString());
                 const quantity = this.count.times(Math.pow(10, precision));
-
                 const tx = waves.node.transactions.createTransaction({
                     type: SIGN_TYPE.ISSUE,
                     name: this.name,

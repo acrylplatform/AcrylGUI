@@ -16,7 +16,7 @@
                     </div>
                     <w-input-container>
                         <w-input type="text" class="medium" name="precision" ng-model="$ctrl.precision" required
-                            w-validate w-validator-lte="1000000" w-validator-gte="0" w-validator-integer w-validator-number
+                            w-validate w-validator-lte="1000000" min="0.01"  w-validator-asset  
                             placeholder="placeholders.precision" w-i18n-attr="placeholder"></w-input>
 
                         <w-input-error message="lte">
@@ -47,7 +47,7 @@
                     </div>
                     <w-input-container>
                         <w-input type="text" class="medium" name="precision" ng-model="$ctrl.precision" required
-                            w-validate w-validator-lte="1000000" w-validator-gte="0" w-validator-integer w-validator-number
+                            w-validate w-validator-lte="1000000" w-validator-gte="0.01" w-validator-asset
                             placeholder="placeholders.precision" w-i18n-attr="placeholder"></w-input>
 
                         <w-input-error message="lte">
