@@ -1,0 +1,26 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/v-3/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-ldrtl-v23/values-ldrtl-v23.xml",
+            "map": [
+                {
+                    "source": "/home/dev/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.1.0.aar/fcedfe4a21635f024e46fb21c2d839c7/res/values-ldrtl-v23/values-ldrtl-v23.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "298",
+                        "endColumns": "112",
+                        "endOffsets": "406"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endColumns": "112",
+                        "endOffsets": "163"
+                    }
+                }
+            ]
+        }
+    ]
+}

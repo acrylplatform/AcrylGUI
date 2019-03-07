@@ -86,8 +86,8 @@
     "electron": "gulp all && npm run electron:linux && npm run electron:win && npm run electron:osx",
     "electron-debug": "tsc && gulp electron-debug && node_modules/.bin/electron dist/desktop/electron-debug/ --ignore-ssl-error --no-replace-desktop --inspect",
     "data-service": "sh scripts/dataservices.sh",
-    "start-gradle": "cd mobile/acryl/platforms/ && gradle wrapper && ./gradlew assembleRelease",
-    "deploy-and-apk": "cd mobile/v-2/ && export ANDROID_HOME=/home/dev/Android/Sdk export PATH=$ANDROID_HOME/platform-tools:$PATH export PATH=$ANDROID_HOME/tools:$PATH export PATH=$ANDROID_HOME/emulator:$PATH export PATH=$ANDROID_HOME/platform-tool/adb:$PATH && cordova build android"  
+    "start-gradle": "cd mobile/v-3/platforms/ && gradle wrapper && ./gradlew assembleRelease",
+    "deploy-and-apk": "cd mobile/v-3/ && export ANDROID_HOME=$( locate -b '\\Sdk' )  export PATH=$ANDROID_HOME/platform-tools:$PATH export PATH=$ANDROID_HOME/tools:$PATH export PATH=$ANDROID_HOME/emulator:$PATH export PATH=$ANDROID_HOME/platform-tool/adb:$PATH && cordova build android"  
   },
   "dependencies": {
     "@types/ramda": "0.25.34",

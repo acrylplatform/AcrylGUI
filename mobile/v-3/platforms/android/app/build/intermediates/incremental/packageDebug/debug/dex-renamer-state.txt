@@ -1,0 +1,4 @@
+#Thu Mar 07 20:39:35 EET 2019
+base.0=/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/v-3/platforms/android/app/build/intermediates/transforms/dexMerger/debug/0
+path.0=classes.dex
+renamed.0=classes.dex
