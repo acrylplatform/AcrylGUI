@@ -1,13 +1,13 @@
 <?xml version='1.0' encoding='utf-8'?>
 <widget id="io.cordova.hellocordova" version="1.0.0" xmlns="http://www.w3.org/ns/widgets" xmlns:cdv="http://cordova.apache.org/ns/1.0">
-    <name>HelloCordova</name>
+    <name>Acryl</name>
     <description>
-        A sample Apache Cordova application that responds to the deviceready event.
+        Acryl wallet
     </description>
     <author email="dev@cordova.apache.org" href="http://cordova.io">
-        Apache Cordova Team
+        Acryl Team
     </author>
-    <content src="index.html" />
+    <content src="https://client.acrylplatform.com/" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
@@ -18,10 +18,18 @@
     <allow-intent href="geo:*" />
     <platform name="android">
         <allow-intent href="market:*" />
+        <icon density="ldpi" src="res/icon/android/android-chrome-36x36.png" />
+        <icon density="mdpi" src="res/icon/android/android-chrome-48x48.png" />
+        <icon density="hdpi" src="res/icon/android/android-chrome-72x72.png" />
+        <icon density="xhdpi" src="res/icon/android/android-chrome-96x96.png" />
+        <icon density="xxhdpi" src="res/icon/android/android-chrome-144x144.png" />
+        <icon density="xxxhdpi" src="res/icon/android/android-chrome-192x192.png" />
     </platform>
     <platform name="ios">
         <allow-intent href="itms:*" />
         <allow-intent href="itms-apps:*" />
     </platform>
+    <plugin name="cordova-plugin-qrscanner" spec="^2.6.0" />
     <engine name="android" spec="^7.1.4" />
+    <engine name="ios" spec="^4.5.5" />
 </widget>
