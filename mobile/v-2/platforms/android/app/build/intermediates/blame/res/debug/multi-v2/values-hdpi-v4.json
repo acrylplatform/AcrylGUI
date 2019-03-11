@@ -1,0 +1,52 @@
+{
+    "logs": [
+        {
+            "outputFile": "/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/v-3/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/dev/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.1.0.aar/fcedfe4a21635f024e46fb21c2d839c7/res/values-hdpi/values-hdpi.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "293",
+                        "endLines": "8",
+                        "endColumns": "13",
+                        "endOffsets": "565"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        },
+        {
+            "outputFile": "/home/dev/Документы/ACRIL/AcrylGUIprivate/mobile/v-2/platforms/android/app/build/intermediates/incremental/mergeDebugResources/merged.dir/values-hdpi-v4/values-hdpi-v4.xml",
+            "map": [
+                {
+                    "source": "/home/dev/.gradle/caches/transforms-1/files-1.1/appcompat-v7-23.1.0.aar/fcedfe4a21635f024e46fb21c2d839c7/res/values-hdpi/values-hdpi.xml",
+                    "from": {
+                        "startLines": "4",
+                        "startColumns": "4",
+                        "startOffsets": "293",
+                        "endLines": "8",
+                        "endColumns": "13",
+                        "endOffsets": "565"
+                    },
+                    "to": {
+                        "startLines": "2",
+                        "startColumns": "4",
+                        "startOffsets": "55",
+                        "endLines": "6",
+                        "endColumns": "13",
+                        "endOffsets": "327"
+                    }
+                }
+            ]
+        }
+    ]
+}
