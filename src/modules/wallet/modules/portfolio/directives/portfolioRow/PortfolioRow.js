@@ -317,7 +317,7 @@
                 .then(rate => {
                     const baseAssetBalance = balance.available.getTokens().times(rate).toFormat(2);
 
-                    this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = rate.toFixed(2);
+                    this.node.querySelector(`.${SELECTORS.EXCHANGE_RATE}`).innerHTML = rate.toFixed(8);
                     this.node.querySelector(`.${SELECTORS.BASE_ASSET_BALANCE}`).innerHTML = baseAssetBalance;
                 });
 
