@@ -15,18 +15,8 @@
                         <span w-i18n="sendAssets"></span>
                     </div>
                     <w-input-container>
-                        <w-input type="text" class="medium"
-                            name="precision"
-                            ng-model="$ctrl.precision"
-                            required
-                            w-validate
-                            w-validator-number
-                            placeholder="placeholders.precision"
-                            w-i18n-attr="placeholder" ></w-input>
-                          
-                       <!--  <w-input-error message="required">
-                            <span w-i18n="validators.required"></span>
-                        </w-input-error>  -->
+                        <w-input type="text" class="medium" name="precision" ng-model="$ctrl.precision" required
+                            w-validate w-validator-number placeholder="placeholders.precision" w-i18n-attr="placeholder"></w-input>
                     </w-input-container>
                 </div>
                 <div class="amount-modal-icon"></div>
@@ -42,16 +32,8 @@
                         <span w-i18n="recieveAssets"></span>
                     </div>
                     <w-input-container>
-                        <w-input type="text" class="medium" name="assetInBtc" ng-model="$ctrl.assetInBtc"
-                        placeholder="placeholders.precision"
+                        <w-input type="text" class="medium" name="assetInBtc" ng-model="$ctrl.assetInBtc" placeholder="placeholders.precision"
                             w-i18n-attr="placeholder" readonly></w-input>
- 
-                       <!--  <w-input-error message="required">
-                            <span w-i18n="validators.required"></span>
-                        </w-input-error> -->
-                       <!--  <w-input-error message="asset">
-                            <span w-i18n="validators.required"></span>
-                        </w-input-error>  -->
                     </w-input-container>
                 </div>
             </div>
@@ -67,8 +49,7 @@
             </div>
 
             <div class="row">
-                <w-sign-button disabled="$ctrl.invalid" class="submit long margin-4"
-                     on-click="$ctrl.createSignable()">
+                <w-sign-button disabled="$ctrl.invalid" class="submit long margin-4" on-click="$ctrl.createSignable()">
                     <span w-i18n-ns="app.exchanger" w-i18n="exchange"></span>
                 </w-sign-button>
             </div>
