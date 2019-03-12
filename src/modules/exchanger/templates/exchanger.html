@@ -15,11 +15,13 @@
                         <span w-i18n="sendAssets"></span>
                     </div>
                     <w-input-container>
-                        <w-input type="text" class="medium" name="precision" ng-model="$ctrl.precision"
-                        required
-                        w-validate
-                        w-validator-asset
-                        placeholder="placeholders.precision"
+                        <w-input type="text" class="medium"
+                            name="precision"
+                            ng-model="$ctrl.precision"
+                            required
+                            w-validate
+                            w-validator-number
+                            placeholder="placeholders.precision"
                             w-i18n-attr="placeholder" ></w-input>
                           
                        <!--  <w-input-error message="required">

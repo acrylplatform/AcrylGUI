@@ -134,6 +134,7 @@
                  * @type {Money}
                  */
                 this.amount = null;
+                this.orderBook = null;
                 /**
                  * @type {Money}
                  */
@@ -209,11 +210,13 @@
                     spreadPoll.ready
                 ]).then(() => {
                     this.amount = this.amountBalance.cloneWithTokens('0');
+                    this.getAskList();
                     if (this.lastTradePrice && this.lastTradePrice.getTokens().gt(0)) {
                         this.price = this.lastTradePrice;
                     } else {
                         this.price = this._getCurrentPrice();
                     }
+                    // console.log('this.orderBook :', this.orderBook);
                 });
 
                 this.observe(['amountBalance', 'type', 'fee', 'priceBalance'], this._updateMaxAmountOrPriceBalance);
@@ -252,20 +255,48 @@
              * @private
              */
             _onChangePrecision({ value }) {
-                const { _coins } = this.priceBalance.cloneWithTokens(String(this.bid.price));
-                const lastAskPrice = (Number(_coins.c[0]) / 10e7);
-                // console.log('value :', value);
                 const amountSubFee = +value - 0.001;
-                // console.log('amountSubFee :', amountSubFee);
-                const changeVolume = (amountSubFee >= 0.001) ? amountSubFee : 0;
-                this.assetInBtc = (changeVolume * lastAskPrice).toFixed(8);
-                // console.log('changeVolume, assetInBtc :', changeVolume, this.assetInBtc);
+                if (amountSubFee > 0) {
+                    const avgPrice = this.defineAvgPrice(amountSubFee);
+                    const changeVolume = (amountSubFee >= 0.001) ? amountSubFee : 0;
+                    this.assetInBtc = (changeVolume * avgPrice).toFixed(8);
+                }
             }
 
-            _onAssetInBtc({ value }) {
-                if (value) {
-                    this.assetInBtc = value;
+            getAskList() {
+                const amountAsset = this._assetIdPair.amount;
+                const priceAsset = this._assetIdPair.price;
+                return waves.matcher.getOrderBook(amountAsset, priceAsset)
+                    .then((orderBook) => {
+                        this.orderBook = orderBook.bids;
+                    });
+            }
+
+            defineAvgPrice(sellVolume) {
+                let avgPrice = 0;
+                let totalSum = 0;
+                let lastAmount = sellVolume;
+
+                const lengthBook = this.orderBook.length;
+
+                for (let i = 0; i < lengthBook; i++) {
+                    if (lastAmount) {
+                        if ((lastAmount - Number(this.orderBook[i].amount)) >= 0) {
+                            lastAmount -= Number(this.orderBook[i].amount);
+                            totalSum += Number(this.orderBook[i].total);
+                        } else {
+                            totalSum += lastAmount * Number(this.orderBook[i].price);
+                            lastAmount = 0;
+                        }
+                    }
                 }
+                avgPrice = (totalSum / sellVolume).toFixed(8);
+                return avgPrice;
+
+            }
+
+            createSignable() {
+                // console.log('this.assetInBtc :this.precision', this.assetInBtc, this.precision);
             }
 
             /**
@@ -610,11 +641,7 @@
         'createPoll',
         '$scope',
         '$element',
-        'notification',
-        'dexDataService',
-        'ease',
-        '$state',
-        'modalManager'];
+        'dexDataService'];
 
     angular.module('app.exchanger')
         .controller('ExchangerCtrl', controller);
