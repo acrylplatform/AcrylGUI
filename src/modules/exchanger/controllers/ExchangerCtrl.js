@@ -240,6 +240,8 @@
             setMaxValue() {
                 const allTokensAmount = Number(this._balance.available.getTokens().c[0]) - 0.01;
                 this.precision = (allTokensAmount >= 0.01) ? allTokensAmount : 0;
+                this.invalid = (this.precision !== 0) ? (this.precision !== 0) : false;
+                this._onChangePrecision(this.precision);
             }
 
             /**
@@ -255,12 +257,22 @@
              * @private
              */
             _onChangePrecision({ value }) {
+                // const allTokensAmount = Number(this._balance.available.getTokens().c[0]);
                 const amountSubFee = +value - 0.001;
+                // console.log('amountSubFee :', amountSubFee, value);
+                // if (+value >= allTokensAmount) {
+
                 if (amountSubFee > 0) {
+                    this.invalid = true;
                     const avgPrice = this.defineAvgPrice(amountSubFee);
                     const changeVolume = (amountSubFee >= 0.001) ? amountSubFee : 0;
                     this.assetInBtc = (changeVolume * avgPrice).toFixed(8);
+                } else {
+                    this.assetInBtc = 0;
+                    this.invalid = false;
                 }
+
+                // }
             }
 
             getAskList() {
@@ -292,7 +304,6 @@
                 }
                 avgPrice = (totalSum / sellVolume).toFixed(8);
                 return avgPrice;
-
             }
 
             createSignable() {
