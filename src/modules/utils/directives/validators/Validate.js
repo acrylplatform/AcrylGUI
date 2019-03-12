@@ -33,7 +33,7 @@
             return `\\d*\\${decimal}?\\d*`;
         },
         INTEGER: '\\d*',
-        DECIMAL: '\\d*\\.?\\d*' || '^((?!(0.00)).)*$'
+        DECIMAL: '\\d*\\.?\\d*'
     };
 
     /**
