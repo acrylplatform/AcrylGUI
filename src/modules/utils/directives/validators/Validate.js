@@ -196,7 +196,7 @@
                                     this._validators[name] = this._createBigNumberValidator(name);
                                     break;
                                 case 'decimal':
-                                    this._validators[name] = this._createBigDecimalValidator(name);
+                                    this._validators[name] = this._createDecimalValidator(name);
                                     break;
                                 case 'alias':
                                 case 'address':
@@ -599,7 +599,7 @@
                             };
                         }
 
-                        _createBigDecimalValidator(name) {
+                        _createDecimalValidator(name) {
                             this._addInputPattern(PATTERNS.DECIMAL);
 
                             return {
@@ -610,7 +610,7 @@
                                         return;
                                     }
 
-                                    return Validate._toBigNumber(value);
+                                    return Validate._toNumber(value);
                                 },
                                 formatter: Validate._toString
                             };
@@ -685,6 +685,14 @@
                         static _toBigNumber(value) {
                             try {
                                 return new BigNumber(utils.parseNiceNumber(value));
+                            } catch (e) {
+                                return null;
+                            }
+                        }
+
+                        static _toNumber(value) {
+                            try {
+                                return Number(value);
                             } catch (e) {
                                 return null;
                             }

@@ -98,7 +98,7 @@
                 return avgPrice;
             }
 
-            createSignable() {
+            createExchange() {
                 this._reset();
                 // console.log('this.assetInBtc :this.precision', this.assetInBtc, this.precision);
             }
@@ -150,12 +150,8 @@
             }
 
             _onChangePrecision({ value }) {
-                // check with real amount
-                // const allTokensAmount = Number(this._balance.available.getTokens().c[0]);
-                const amountSubFee = +value - 0.001;
-                // console.log('amountSubFee :', amountSubFee, value);
+                const amountSubFee = value - 0.001;
                 // if (+value >= allTokensAmount) {
-
                 if (amountSubFee > 0) {
                     this.invalid = true;
                     const avgPrice = this.defineAvgPrice(amountSubFee);
@@ -165,6 +161,7 @@
                     this.assetInBtc = 0;
                     this.invalid = false;
                 }
+                // }
             }
 
         }
