@@ -1,7 +1,7 @@
 <div w-i18n-ns="app.exchanger" class="exchanger-page">
     <div class="page-title headline-4 basic-700" w-i18n="pageTitle"></div>
     <div class="exchanger-page__content">
-        <form class="generate-form" name="$ctrl.createForm" novalidate>
+        <form class="generate-form" name="$ctrl.order"" novalidate>
 
             <div class="assets">
                 <div>
@@ -49,11 +49,19 @@
             </div>
 
             <div class="row">
-                <w-sign-button disabled="$ctrl.invalid" class="submit long margin-4" on-click="$ctrl.createExchange()">
+                <w-sign-button disabled="$ctrl.invalid" class="submit long margin-4" on-click="$ctrl.createExchangeOrder(order)">
                     <span w-i18n-ns="app.exchanger" w-i18n="exchange"></span>
                 </w-sign-button>
             </div>
 
         </form>
+        <div class="create-order-notification js-order-notification">
+            <div ng-if="$ctrl.createOrderFailed">
+                <i class="icon"></i><span w-i18n="create.order.failed"></span>
+            </div>
+            <div ng-if="!$ctrl.createOrderFailed">
+                <i class="icon"></i><span w-i18n="create.order.success"></span>
+            </div>
+        </div>
     </div>
 </div>
