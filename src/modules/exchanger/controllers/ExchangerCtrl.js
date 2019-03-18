@@ -11,6 +11,7 @@
     const controller = function (Base, waves, user, $element, notification, utils, createPoll, $scope) {
 
         const entities = require('@waves/data-entities');
+        const { SIGN_TYPE } = require('@waves/signature-adapter');
         const ds = require('data-service');
 
         class ExchangerCtrl extends Base {
@@ -74,6 +75,16 @@
                         $scope.$digest();
                     });
 
+                this.expirationValues = [
+                    { name: '5min', value: () => utils.moment().add().minute(5).getDate().getTime() },
+                    { name: '30min', value: () => utils.moment().add().minute(30).getDate().getTime() },
+                    { name: '1hour', value: () => utils.moment().add().hour(1).getDate().getTime() },
+                    { name: '1day', value: () => utils.moment().add().day(1).getDate().getTime() },
+                    { name: '1week', value: () => utils.moment().add().week(1).getDate().getTime() },
+                    { name: '30day', value: () => utils.moment().add().day(29).getDate().getTime() }
+                ];
+
+                this.expiration = this.expirationValues[this.expirationValues.length - 1].value;
                 ds.moneyFromTokens('0.003', WavesApp.defaultAssets.WAVES).then((money) => {
                     this.fee = money;
                     $scope.$digest();
@@ -155,45 +166,47 @@
                     .then((matcherPublicKey) => {
                         form.$setUntouched();
                         $scope.$apply();
-                        this.name = matcherPublicKey; // eslinter
-                        /* const data = {
+                        const data = {
                             orderType: this.type,
                             price: this.minSellPrice,
                             amount: this.sellAmount,
                             matcherFee: this.fee,
                             matcherPublicKey
-                        }; */
-                        // const mavAm = this._getMaxAmountForSell();
-                        // const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                        };
+                        /* const mavAm = this._getMaxAmountForSell();
+                        const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`; */
 
-                        /*  this._createTxData(data)
-                            .then((txData) => ds.createOrder(txData))
-                            .then(() => {
-                                notify.addClass('success');
-                                this.createOrderFailed = false;
-                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Success`, pair);
-                                dexDataService.createOrder.dispatch();
-                            })
-                            .catch(e => {
-                                const error = utils.parseError(e);
-                                notification.error({
-                                    ns: 'app.dex',
-                                    title: {
-                                        literal: 'directives.createOrder.notifications.error.title'
-                                    },
-                                    body: {
-                                        literal: error && error.message || error
-                                    }
-                                }, -1);
-                                this.createOrderFailed = true;
-                                notify.addClass('error');
-                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Error`, pair);
-                                    })
-                            .finally(() => {
-                                CreateOrder._animateNotification(notify);
-                            }); */
+                        this._createTxData(data)
+                            .then((txData) => {
+                                this.name = txData;
+                            });
+                        /*  .then((txData) => ds.createOrder(txData))
+                         .then(() => {
+                             notify.addClass('success');
+                             this.createOrderFailed = false;
+                             const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                             analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Success`, pair);
+                             dexDataService.createOrder.dispatch();
+                         })
+                         .catch(e => {
+                             const error = utils.parseError(e);
+                             notification.error({
+                                 ns: 'app.dex',
+                                 title: {
+                                     literal: 'directives.createOrder.notifications.error.title'
+                                 },
+                                 body: {
+                                     literal: error && error.message || error
+                                 }
+                             }, -1);
+                             this.createOrderFailed = true;
+                             notify.addClass('error');
+                             const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                             analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Error`, pair);
+                                 })
+                         .finally(() => {
+                             CreateOrder._animateNotification(notify);
+                         }); */
                     });
             }
 
@@ -242,7 +255,7 @@
             _getMaxAmountForSell() {
                 const fee = this.fee;
                 const balance = this.amountBalance;
-                return balance.safeSub(fee).toNonNegative();
+                return balance.safeSub(fee).toNonNegative()._coins;
             }
 
             _getBalance() {
@@ -265,6 +278,64 @@
                     this.assetInBtc = 0;
                     this.invalid = false;
                 }
+            }
+
+            _createTxData(data) {
+
+                const timestamp = ds.utils.normalizeTime(Date.now());
+                const expiration = ds.utils.normalizeTime(this.expiration());
+                const clone = { ...data, timestamp, expiration };
+
+                const signable = ds.signature.getSignatureApi().makeSignable({
+                    type: SIGN_TYPE.CREATE_ORDER,
+                    data: clone
+                });
+
+                return this._checkOrder(clone)
+                    .then(() => signable.getId())
+                    .then(id => {
+                        const signPromise = signable.getDataForApi();
+                        this.name = id; // eslint tmp
+
+                        if (user.userType === 'seed' || !user.userType) {
+                            return signPromise;
+                        }
+
+                        /*  const transactionData = {
+                            fee: this.fee.toFormat(),
+                            amount: this.amount.toFormat(),
+                            price: this.price.toFormat(),
+                            total: this.totalPrice.toFormat(),
+                            orderType: this.type,
+                            totalAsset: this.totalPrice.asset,
+                            amountAsset: this.amountBalance.asset,
+                            priceAsset: this.priceBalance.asset,
+                            feeAsset: this.fee.asset,
+                            type: this.type,
+                            timestamp,
+                            expiration
+                        };
+                        */
+                        /* const modalPromise = modalManager.showSignByDevice({
+                            userType: user.userType,
+                            promise: signPromise,
+                            mode: 'create-order',
+                            data: transactionData,
+                            id
+                        });
+
+                        return modalPromise
+                            .then(() => signPromise)
+                            .catch(() => {
+                                return modalManager.showSignDeviceError({
+                                    error: 'sign-error',
+                                    userType: user.userType
+                                })
+                                    .then(() => Promise.resolve())
+                                    .catch(() => Promise.reject({ message: 'Your sign is not confirmed!' }))
+                                    .then(() => this._createTxData(data));
+                            }); */
+                    });
             }
 
         }
