@@ -609,7 +609,6 @@
                                     if (value === '') {
                                         return;
                                     }
-
                                     return Validate._toNumber(value);
                                 },
                                 formatter: Validate._toString
@@ -692,7 +691,9 @@
 
                         static _toNumber(value) {
                             try {
-                                return Number(value);
+                                const num = utils.parseNumberWithComa(value);
+                                const inputCount = Number(num);
+                                return inputCount;
                             } catch (e) {
                                 return null;
                             }

@@ -34,6 +34,8 @@
                 this.orderBook = null;
                 this.idDemo = !user.address;
                 this._assetIdPair = null;
+                this.minSellPrice = null;
+                this.sellAmount = null;
                 /*  this.receive(dexDataService.chooseOrderBook, ({ type, price, amount }) => {
                     this.expand(type);
                     switch (type) {
@@ -99,10 +101,12 @@
             }
 
             setMaxValue() {
-                const allTokensAmount = Number(this._balance.available.getTokens().c[0]) - 0.01;
-                this.precision = (allTokensAmount >= 0.01) ? allTokensAmount : 0;
+                const inputSellAmount = Number(this._getMaxAmountForSell()) / 1e8;
+                this.sellAmount = new BigNumber(inputSellAmount, 10).toFormat(8);
+
+                this.precision = (inputSellAmount >= 0.01) ? inputSellAmount : 0;
                 this.invalid = (this.precision !== 0) ? (this.precision !== 0) : false;
-                this._onChangePrecision(this.precision);
+                this._onChangePrecision({ value: this.precision });
             }
 
             getBidList() {
@@ -130,6 +134,7 @@
                             totalSum += lastAmount * Number(this.orderBook[i].price);
                             lastAmount = 0;
                         }
+                        this.minSellPrice = this.orderBook[i].price;
                     }
                 }
                 avgPrice = (totalSum / sellVolume).toFixed(8);
@@ -142,57 +147,54 @@
                 }
 
                 this.type = 'sell';
-                // const form = this.order;
+                const form = this.order;
                 const notify = $element.find('.js-order-notification');
                 notify.removeClass('success').removeClass('error');
 
-                /* return ds.fetch(ds.config.get('matcher'))
+                return ds.fetch(ds.config.get('matcher'))
                     .then((matcherPublicKey) => {
                         form.$setUntouched();
-                        $scope.$apply(); */
-                /* const data = {
-                    orderType: this.type,
-                    price: this.precision,
-                    amount: this.amount,
-                    matcherFee: this.fee,
-                    matcherPublicKey
-                }; */
-                // const mavAm = this._getMaxAmountForSell();
-                // console.log('mavAm :', mavAm);
-                // console.log('#####data :', data);
-                // const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                // console.log('#####pair :', pair);
+                        $scope.$apply();
+                        this.name = matcherPublicKey; // eslinter
+                        /* const data = {
+                            orderType: this.type,
+                            price: this.minSellPrice,
+                            amount: this.sellAmount,
+                            matcherFee: this.fee,
+                            matcherPublicKey
+                        }; */
+                        // const mavAm = this._getMaxAmountForSell();
+                        // const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
 
-                /* this._createTxData(data)
-                    .then((txData) => ds.createOrder(txData))
-                    .then(() => {
-                        notify.addClass('success');
-                        this.createOrderFailed = false;
-                        const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                        analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Success`, pair);
-                        dexDataService.createOrder.dispatch();
-                    })
-                    .catch(e => {
-                        const error = utils.parseError(e);
-                        notification.error({
-                            ns: 'app.dex',
-                            title: {
-                                literal: 'directives.createOrder.notifications.error.title'
-                            },
-                            body: {
-                                literal: error && error.message || error
-                            }
-                        }, -1);
-                        this.createOrderFailed = true;
-                        notify.addClass('error');
-                        const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                        analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Error`, pair);
-
-                    })
-                    .finally(() => {
-                        CreateOrder._animateNotification(notify);
-                    }); */
-                // });
+                        /*  this._createTxData(data)
+                            .then((txData) => ds.createOrder(txData))
+                            .then(() => {
+                                notify.addClass('success');
+                                this.createOrderFailed = false;
+                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Success`, pair);
+                                dexDataService.createOrder.dispatch();
+                            })
+                            .catch(e => {
+                                const error = utils.parseError(e);
+                                notification.error({
+                                    ns: 'app.dex',
+                                    title: {
+                                        literal: 'directives.createOrder.notifications.error.title'
+                                    },
+                                    body: {
+                                        literal: error && error.message || error
+                                    }
+                                }, -1);
+                                this.createOrderFailed = true;
+                                notify.addClass('error');
+                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Error`, pair);
+                                    })
+                            .finally(() => {
+                                CreateOrder._animateNotification(notify);
+                            }); */
+                    });
             }
 
             _onChangeBalance() {
@@ -248,18 +250,21 @@
             }
 
             _onChangePrecision({ value }) {
+
+                const userBalance = this._balance.available.getTokens();
+                value = (userBalance > value) ? value : 0;
                 const amountSubFee = value - 0.001;
-                // if (+value >= allTokensAmount) {
                 if (amountSubFee > 0) {
                     this.invalid = true;
                     const avgPrice = this.defineAvgPrice(amountSubFee);
                     const changeVolume = (amountSubFee >= 0.001) ? amountSubFee : 0;
+                    this.sellAmount = new BigNumber(amountSubFee, 10).toFormat(8);
                     this.assetInBtc = (changeVolume * avgPrice).toFixed(8);
                 } else {
+                    this.precision = 0;
                     this.assetInBtc = 0;
                     this.invalid = false;
                 }
-                // }
             }
 
         }
