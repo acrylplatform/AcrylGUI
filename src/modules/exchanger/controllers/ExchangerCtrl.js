@@ -3,12 +3,21 @@
 
     /**
      * @param Base
-     * @param {$rootScope.Scope} $scope
-     * @param {IPollCreate} createPoll
      * @param {Waves} waves
+     * @param {User} user
+     * @param {app.utils} utils
+     * @param {IPollCreate} createPoll
+     * @param {$rootScope.Scope} $scope
+     * @param {JQuery} $element
+     * @param {INotification} notification
+     * @param {DexDataService} dexDataService
+     * @param {Ease} ease
+     * @param {$state} $state
+     * @param {ModalManager} modalManager
      * @return {ExchangerCtrl}
      */
-    const controller = function (Base, waves, user, $element, notification, utils, createPoll, $scope) {
+    const controller = function (Base, waves, user, utils, createPoll, $scope,
+                                 $element, notification, dexDataService, ease, $state, modalManager) {
 
         const entities = require('@waves/data-entities');
         const { SIGN_TYPE } = require('@waves/signature-adapter');
@@ -16,65 +25,106 @@
 
         class ExchangerCtrl extends Base {
 
+
+            /**
+             * @return {string}
+             */
+            get priceDisplayName() {
+                this.priceBalance.asset.displayName = (this.priceBalance.asset.displayName === 'WAVES') ?
+                    'ACRYL' :
+                    this.priceBalance.asset.displayName;
+                return this.priceBalance && this.priceBalance.asset.displayName || '';
+            }
+
+            /**
+             * @return {string}
+             */
+            get amountDisplayName() {
+                this.amountBalance.asset.displayName = (this.amountBalance.asset.displayName === 'WAVES') ?
+                    'ACRYL' :
+                    this.amountBalance.asset.displayName;
+                return this.amountBalance && this.amountBalance.asset.displayName || '';
+            }
+
+            get loaded() {
+                return this.amountBalance && this.priceBalance;
+            }
+
             constructor() {
-                super($scope);
-
-                this.createForm = null;
-                this.order = null;
-                this.name = '';
-                this.description = '';
-                this.maxCoinsCount = null;
-                this.invalid = false;
-                this.assetInBtc = 0;
-                this._balance = null;
-                this._fee = null;
+                super();
+                /**
+                 * Max amount (with fee)
+                 * @type {Money}
+                 */
+                this.maxAmountBalance = null;
+                /**
+                 * Has price balance for buy amount
+                 * @type {boolean}
+                 */
+                this.canBuyOrder = true;
+                /**
+                 * Amount asset balance
+                 * @type {Money}
+                 */
                 this.amountBalance = null;
-                this.precision = null;
+                /**
+                 * Price asset balance
+                 * @type {Money}
+                 */
                 this.priceBalance = null;
+                /**
+                 * Order type
+                 * @type {string}
+                 */
+                this.type = 'sell';
+                /**
+                 * Max balance in price asset
+                 * @type {Money}
+                 */
+                this.maxPriceBalance = null;
+                /**
+                 * Total price (amount multiply price)
+                 * @type {Money}
+                 */
+                this.totalPrice = null;
+                /**
+                 * @type {Money}
+                 */
                 this.amount = null;
-                this.orderBook = null;
+                /**
+                 * @type {Money}
+                 */
+                this.price = null;
+                /**
+                 * @type {boolean}
+                 */
                 this.idDemo = !user.address;
+                /**
+                 * @type {number}
+                 */
+                this.ERROR_DISPLAY_INTERVAL = 3;
+                /**
+                 * @type {{amount: string, price: string}}
+                 * @private
+                 */
                 this._assetIdPair = null;
-                this.minSellPrice = null;
-                this.sellAmount = null;
-                /*  this.receive(dexDataService.chooseOrderBook, ({ type, price, amount }) => {
-                    this.expand(type);
-                    switch (type) {
-                        case 'sell':
-                            this._onClickSellOrder(price, amount);
-                            break;
-                        default:
-                            throw new Error('Wrong order type!');
-                    }
-                    $scope.$digest();
-                }); */
-
+                /**
+                 * @type {Money}
+                 * @private
+                 */
+                this.lastTradePrice = null;
+                /**
+                 * @type {string}
+                 */
+                this.focusedInputName = null;
+                /**
+                 * @type {[]}
+                 */
                 this.hasScript = user.hasScript();
-                this.syncSettings({
-                    _assetIdPair: 'dex.assetIdPair'
-                });
-
-                const balancesPoll = createPoll(this, this._getBalances, this._setBalances, 1000);
-
-                const poll = createPoll(this, this._getBalance, '_balance', 5000, { isBalance: true, $scope });
-                this.observe('precision', this._onChangePrecision);
-
-                Promise.all([
-                    balancesPoll.ready
-                ]).then(() => {
-                    this.amount = this.amountBalance.cloneWithTokens('0');
-                    this.getBidList();
-                });
-
-                Promise.all([waves.node.getFee({ type: WavesApp.TRANSACTION_TYPES.NODE.ISSUE }), poll.ready])
-                    .then(([money]) => {
-                        this._fee = money;
-                        this.observe(['_balance', '_fee'], this._onChangeBalance);
-
-                        this._onChangeBalance();
-                        $scope.$digest();
-                    });
-
+                /**
+                 *
+                 * @type {boolean}
+                 */
                 this.expirationValues = [
                     { name: '5min', value: () => utils.moment().add().minute(5).getDate().getTime() },
                     { name: '30min', value: () => utils.moment().add().minute(30).getDate().getTime() },
@@ -85,80 +135,173 @@
                 ];
 
                 this.expiration = this.expirationValues[this.expirationValues.length - 1].value;
+
                 ds.moneyFromTokens('0.003', WavesApp.defaultAssets.WAVES).then((money) => {
                     this.fee = money;
                     $scope.$digest();
                 });
+
+                this.receive(dexDataService.chooseOrderBook, ({ type, price, amount }) => {
+                    this.expand(type);
+                    switch (type) {
+                        case 'buy':
+                            this._onClickBuyOrder(price, amount);
+                            break;
+                        case 'sell':
+                            this._onClickSellOrder(price, amount);
+                            break;
+                        default:
+                            throw new Error('Wrong order type!');
+                    }
+                    $scope.$digest();
+                });
+
+                this.syncSettings({
+                    _assetIdPair: 'dex.assetIdPair'
+                });
+
+                /**
+                 * @type {Poll}
+                 */
+                let lastTraderPoll;
+                /**
+                 * @type {Poll}
+                 */
+                const balancesPoll = createPoll(this, this._getBalances, this._setBalances, 1000);
+                /**
+                 * @type {Poll}
+                 */
+                const spreadPoll = createPoll(this, this._getData, this._setData, 1000);
+
+                const lastTradePromise = new Promise((resolve) => {
+                    balancesPoll.ready.then(() => {
+                        lastTraderPoll = createPoll(this, this._getLastPrice, 'lastTradePrice', 1000);
+                        resolve();
+                    });
+                });
+
+                Promise.all([
+                    balancesPoll.ready,
+                    lastTradePromise,
+                    spreadPoll.ready
+                ]).then(() => {
+                    this.amount = this.amountBalance.cloneWithTokens('0');
+                    if (this.lastTradePrice && this.lastTradePrice.getTokens().gt(0)) {
+                        this.price = this.lastTradePrice;
+                    } else {
+                        this.price = this._getCurrentPrice();
+                    }
+                });
+
+                this.observe(['amountBalance', 'type', 'fee', 'priceBalance'], this._updateMaxAmountOrPriceBalance);
+
+                this.observe('_assetIdPair', () => {
+                    this.amount = null;
+                    this.price = null;
+                    this.bid = null;
+                    this.ask = null;
+                    balancesPoll.restart();
+                    spreadPoll.restart();
+                    const form = this.order;
+                    form.$setUntouched();
+                    form.$setPristine();
+                    if (lastTraderPoll) {
+                        lastTraderPoll.restart();
+                    }
+                    this.observeOnce(['bid', 'ask'], utils.debounce(() => {
+                        if (this.type) {
+                            this.amount = this.amountBalance.cloneWithTokens('0');
+                            this.price = this._getCurrentPrice();
+                            $scope.$apply();
+                        }
+                    }));
+                });
+
+                // this.observe(['priceBalance', 'totalPrice'], this._setIfCanBuyOrder);
+
+                this.observe(['amount', 'price', 'type'], this._currentTotal);
+                this.observe('totalPrice', this._currentAmount);
+
+                // TODO Add directive for stop propagation (catch move for draggable)
+                $element.on('mousedown touchstart', '.body', (e) => {
+                    e.stopPropagation();
+                });
             }
 
-            _onClickSellOrder(price, amount) {
-                const amountMoney = this.amountBalance.cloneWithTokens(amount);
-                this._setDirtyAmount(entities.Money.min(amountMoney, this._getMaxAmountForSell()));
-                this._setDirtyPrice(this.priceBalance.cloneWithTokens(price));
+            expand(type) {
+                this.type = type;
+                if (!this.price || this.price.getTokens().eq('0')) {
+                    this.price = this._getCurrentPrice();
+                }
+
+                // todo: refactor after getting rid of Layout-DEX coupling.
+                $element.parent().parent().parent().parent().parent().addClass('expanded');
             }
 
-            _setDirtyAmount(amount) {
-                this.amount = amount;
-                this.order.$setDirty();
+            closeCreateOrder() {
+                // todo: refactor after getting rid of Layout-DEX coupling.
+                $element.parent().parent().parent().parent().parent().removeClass('expanded');
             }
 
             /**
-             * @param {Money} price
-             * @private
+             * @returns {boolean}
              */
-            _setDirtyPrice(price) {
-                this.price = price;
-                this.order.$setDirty();
+            isAmountInvalid() {
+                return this.isDirtyAndInvalid(this.order.amount);
             }
 
-            setMaxValue() {
-                const inputSellAmount = Number(this._getMaxAmountForSell()) / 1e8;
-                this.sellAmount = new BigNumber(inputSellAmount, 10).toFormat(8);
-
-                this.precision = (inputSellAmount >= 0.01) ? inputSellAmount : 0;
-                this.invalid = (this.precision !== 0) ? (this.precision !== 0) : false;
-                this._onChangePrecision({ value: this.precision });
+            /**
+             * @returns {boolean}
+             */
+            isPriceInvalid() {
+                return this.isDirtyAndInvalid(this.order.price);
             }
 
-            getBidList() {
-                const amountAsset = this._assetIdPair.amount;
-                const priceAsset = this._assetIdPair.price;
-                return waves.matcher.getOrderBook(amountAsset, priceAsset)
-                    .then((orderBook) => {
-                        this.orderBook = orderBook.bids;
-                    });
+            /**
+             * @returns {boolean}
+             */
+            isTotalInvalid() {
+                return this.isDirtyAndInvalid(this.order.total);
             }
 
-            defineAvgPrice(sellVolume) {
-                let avgPrice = 0;
-                let totalSum = 0;
-                let lastAmount = sellVolume;
-
-                const lengthBook = this.orderBook.length;
-
-                for (let i = 0; i < lengthBook; i++) {
-                    if (lastAmount) {
-                        if ((lastAmount - Number(this.orderBook[i].amount)) >= 0) {
-                            lastAmount -= Number(this.orderBook[i].amount);
-                            totalSum += Number(this.orderBook[i].total);
-                        } else {
-                            totalSum += lastAmount * Number(this.orderBook[i].price);
-                            lastAmount = 0;
-                        }
-                        this.minSellPrice = this.orderBook[i].price;
-                    }
-                }
-                avgPrice = (totalSum / sellVolume).toFixed(8);
-                return avgPrice;
+            /**
+             * @param field
+             * @returns {boolean}
+             */
+            isDirtyAndInvalid(field) {
+                return field.$touched && field.$invalid;
             }
 
-            createExchangeOrder() {
+            setMaxAmount() {
+                this._setDirtyAmount(this._getMaxAmountForSell());
+            }
+
+            setMaxPrice() {
+                this._setDirtyAmount(this._getMaxAmountForBuy());
+            }
+
+            setBidPrice() {
+                this._setDirtyPrice(this.priceBalance.cloneWithTokens(String(this.bid.price)));
+            }
+
+            setAskPrice() {
+                this._setDirtyPrice(this.priceBalance.cloneWithTokens(String(this.ask.price)));
+            }
+
+            setLastPrice() {
+                this._setDirtyPrice(this.lastTradePrice);
+            }
+
+            /**
+             * @return {*}
+             */
+            createOrder($event) {
                 if (this.idDemo) {
                     return this._showDemoModal();
                 }
 
-                this.type = 'sell';
                 const form = this.order;
+                $event.preventDefault();
                 const notify = $element.find('.js-order-notification');
                 notify.removeClass('success').removeClass('error');
 
@@ -166,63 +309,257 @@
                     .then((matcherPublicKey) => {
                         form.$setUntouched();
                         $scope.$apply();
+
                         const data = {
                             orderType: this.type,
-                            price: this.minSellPrice,
-                            amount: this.sellAmount,
+                            price: this.price,
+                            amount: this.amount,
                             matcherFee: this.fee,
                             matcherPublicKey
                         };
-                        /* const mavAm = this._getMaxAmountForSell();
-                        const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`; */
 
                         this._createTxData(data)
-                            .then((txData) => {
-                                this.name = txData;
+                            .then((txData) => ds.createOrder(txData))
+                            .then(() => {
+                                notify.addClass('success');
+                                this.createOrderFailed = false;
+                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Success`, pair);
+                                dexDataService.createOrder.dispatch();
+                            })
+                            .catch(e => {
+                                const error = utils.parseError(e);
+                                notification.error({
+                                    ns: 'app.dex',
+                                    title: {
+                                        literal: 'directives.createOrder.notifications.error.title'
+                                    },
+                                    body: {
+                                        literal: error && error.message || error
+                                    }
+                                }, -1);
+                                this.createOrderFailed = true;
+                                notify.addClass('error');
+                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Error`, pair);
+
+                            })
+                            .finally(() => {
+                                ExchangerCtrl._animateNotification(notify);
                             });
-                        /*  .then((txData) => ds.createOrder(txData))
-                         .then(() => {
-                             notify.addClass('success');
-                             this.createOrderFailed = false;
-                             const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                             analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Success`, pair);
-                             dexDataService.createOrder.dispatch();
-                         })
-                         .catch(e => {
-                             const error = utils.parseError(e);
-                             notification.error({
-                                 ns: 'app.dex',
-                                 title: {
-                                     literal: 'directives.createOrder.notifications.error.title'
-                                 },
-                                 body: {
-                                     literal: error && error.message || error
-                                 }
-                             }, -1);
-                             this.createOrderFailed = true;
-                             notify.addClass('error');
-                             const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                             analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Error`, pair);
-                                 })
-                         .finally(() => {
-                             CreateOrder._animateNotification(notify);
-                         }); */
                     });
             }
 
-            _onChangeBalance() {
-                this.invalid = (!this._fee || !this._balance) ||
-                    this._balance.available.getTokens().lt(this._fee.getTokens());
+            _checkOrder(orderData) {
+                const isBuy = orderData.orderType === 'buy';
+                const coef = isBuy ? 1 : -1;
+                const limit = 1 + coef * (Number(user.getSetting('orderLimit')) || 0);
+                const price = (new BigNumber(isBuy ? this.ask.price : this.bid.price)).times(limit);
+                const orderPrice = orderData.price.getTokens();
+
+                if (price.isNaN() || price.eq(0)) {
+                    return Promise.resolve();
+                }
+
+                const delta = isBuy ? orderPrice.minus(price) : price.minus(orderPrice);
+
+                if (delta.isNegative()) {
+                    return Promise.resolve();
+                }
+
+                return modalManager.showConfirmOrder({
+                    ...orderData,
+                    orderLimit: Number(user.getSetting('orderLimit')) * 100
+                }).catch(() => {
+                    throw new Error('You have cancelled the creation of this order');
+                });
             }
 
-            /*    _reset() {
-                this.name = '';
-                this.description = '';
-                this.precision = null;
-                this.createForm.$setPristine();
-                this.createForm.$setUntouched();
-            } */
+            _createTxData(data) {
 
+                const timestamp = ds.utils.normalizeTime(Date.now());
+                const expiration = ds.utils.normalizeTime(this.expiration());
+                const clone = { ...data, timestamp, expiration };
+
+                const signable = ds.signature.getSignatureApi().makeSignable({
+                    type: SIGN_TYPE.CREATE_ORDER,
+                    data: clone
+                });
+
+                return this._checkOrder(clone)
+                    .then(() => signable.getId())
+                    .then(id => {
+                        const signPromise = signable.getDataForApi();
+
+                        if (user.userType === 'seed' || !user.userType) {
+                            return signPromise;
+                        }
+
+                        const transactionData = {
+                            fee: this.fee.toFormat(),
+                            amount: this.amount.toFormat(),
+                            price: this.price.toFormat(),
+                            total: this.totalPrice.toFormat(),
+                            orderType: this.type,
+                            totalAsset: this.totalPrice.asset,
+                            amountAsset: this.amountBalance.asset,
+                            priceAsset: this.priceBalance.asset,
+                            feeAsset: this.fee.asset,
+                            type: this.type,
+                            timestamp,
+                            expiration
+                        };
+
+                        const modalPromise = modalManager.showSignByDevice({
+                            userType: user.userType,
+                            promise: signPromise,
+                            mode: 'create-order',
+                            data: transactionData,
+                            id
+                        });
+
+                        return modalPromise
+                            .then(() => signPromise)
+                            .catch(() => {
+                                return modalManager.showSignDeviceError({
+                                    error: 'sign-error',
+                                    userType: user.userType
+                                })
+                                    .then(() => Promise.resolve())
+                                    .catch(() => Promise.reject({ message: 'Your sign is not confirmed!' }))
+                                    .then(() => this._createTxData(data));
+                            });
+                    });
+            }
+
+            _showDemoModal() {
+                return modalManager.showDialogModal({
+                    iconClass: 'open-main-dex-account-info',
+                    message: { literal: 'modal.createOrder.message' },
+                    buttons: [
+                        {
+                            success: false,
+                            classes: 'big',
+                            text: { literal: 'modal.createOrder.cancel' },
+                            click: () => $state.go('create')
+                        },
+                        {
+                            success: true,
+                            classes: 'big submit',
+                            text: { literal: 'modal.createOrder.ok' },
+                            click: () => $state.go('welcome')
+                        }
+                    ]
+                })
+                    .catch(() => null)
+                    .then(() => {
+                        const form = this.order;
+                        this.amount = null;
+                        form.$setUntouched();
+                        form.$setPristine();
+                    });
+            }
+
+            /**
+             * @param {string} price
+             * @param {string} amount
+             * @private
+             */
+            _onClickBuyOrder(price, amount) {
+                const minAmount = this.amountBalance.cloneWithTokens(this.priceBalance.getTokens().div(price));
+                this._setDirtyAmount(entities.Money.min(this.amountBalance.cloneWithTokens(amount), minAmount));
+                this._setDirtyPrice(this.priceBalance.cloneWithTokens(price));
+            }
+
+            /**
+             * @param {string} price
+             * @param {string} amount
+             * @private
+             */
+            _onClickSellOrder(price, amount) {
+                const amountMoney = this.amountBalance.cloneWithTokens(amount);
+                this._setDirtyAmount(entities.Money.min(amountMoney, this._getMaxAmountForSell()));
+                this._setDirtyPrice(this.priceBalance.cloneWithTokens(price));
+            }
+
+            /**
+             * @return {Money}
+             * @private
+             */
+            _getMaxAmountForSell() {
+                const fee = this.fee;
+                const balance = this.amountBalance;
+                return balance.safeSub(fee).toNonNegative();
+            }
+
+            /**
+             * @return {Money}
+             * @private
+             */
+            _getMaxAmountForBuy() {
+                if (!this.price || this.price.getTokens().eq(0)) {
+                    return this.amountBalance.cloneWithTokens('0');
+                }
+
+                const fee = this.fee;
+
+                return this.amountBalance.cloneWithTokens(
+                    this.priceBalance.safeSub(fee)
+                        .toNonNegative()
+                        .getTokens()
+                        .div(this.price.getTokens())
+                        .dp(this.amountBalance.asset.precision)
+                );
+            }
+
+            /**
+             * @return {Promise<Money>}
+             * @private
+             */
+            _getLastPrice() {
+                return ds.api.transactions.getExchangeTxList({
+                    amountAsset: this._assetIdPair.amount,
+                    priceAsset: this._assetIdPair.price,
+                    limit: 1
+                }).then(([tx]) => tx && tx.price || null);
+            }
+
+            /**
+             * @private
+             */
+            _updateMaxAmountOrPriceBalance() {
+                if (!this.amountBalance || !this.fee || !this.priceBalance) {
+                    return null;
+                }
+
+                if (this.type === 'sell') {
+                    this.maxAmountBalance = this._getMaxAmountForSell();
+                    this.maxPriceBalance = null;
+                } else {
+                    this.maxAmountBalance = null;
+                    this.maxPriceBalance = this.priceBalance.safeSub(this.fee).toNonNegative();
+                }
+            }
+
+            /**
+             * @return {Money}
+             * @private
+             */
+            _getCurrentPrice() {
+                switch (this.type) {
+                    case 'sell':
+                        return this.priceBalance.cloneWithTokens(String(this.bid && this.bid.price || 0));
+                    case 'buy':
+                        return this.priceBalance.cloneWithTokens(String(this.ask && this.ask.price || 0));
+                    default:
+                        throw new Error('Wrong type');
+                }
+            }
+
+            /**
+             * @return {Promise<IAssetPair>}
+             * @private
+             */
             _getBalances() {
                 if (!this.idDemo) {
                     return ds.api.pairs.get(this._assetIdPair.amount, this._assetIdPair.price).then((pair) => {
@@ -244,6 +581,10 @@
                 }
             }
 
+            /**
+             * @param data
+             * @private
+             */
             _setBalances(data) {
                 if (data) {
                     this.amountBalance = data.amountBalance;
@@ -252,89 +593,106 @@
                 }
             }
 
-            _getMaxAmountForSell() {
-                const fee = this.fee;
-                const balance = this.amountBalance;
-                return balance.safeSub(fee).toNonNegative()._coins;
-            }
+            /**
+             * @private
+             */
+            _currentTotal() {
+                if (this.focusedInputName === 'total') {
+                    return null;
+                }
 
-            _getBalance() {
-                return waves.node.assets.balance(WavesApp.defaultAssets.WAVES);
-            }
-
-            _onChangePrecision({ value }) {
-
-                const userBalance = this._balance.available.getTokens();
-                value = (userBalance > value) ? value : 0;
-                const amountSubFee = value - 0.001;
-                if (amountSubFee > 0) {
-                    this.invalid = true;
-                    const avgPrice = this.defineAvgPrice(amountSubFee);
-                    const changeVolume = (amountSubFee >= 0.001) ? amountSubFee : 0;
-                    this.sellAmount = new BigNumber(amountSubFee, 10).toFormat(8);
-                    this.assetInBtc = (changeVolume * avgPrice).toFixed(8);
+                if (!this.price || !this.amount) {
+                    this.totalPrice = this.priceBalance.cloneWithTokens('0');
                 } else {
-                    this.precision = 0;
-                    this.assetInBtc = 0;
-                    this.invalid = false;
+                    this.totalPrice = this.priceBalance.cloneWithTokens(
+                        this.price.getTokens().times(this.amount.getTokens())
+                    );
                 }
             }
 
-            _createTxData(data) {
+            /**
+             * @returns {null}
+             * @private
+             */
+            _currentAmount() {
+                if (this.focusedInputName !== 'total') {
+                    return null;
+                }
 
-                const timestamp = ds.utils.normalizeTime(Date.now());
-                const expiration = ds.utils.normalizeTime(this.expiration());
-                const clone = { ...data, timestamp, expiration };
+                if (!this.totalPrice || !this.price || this.price.getTokens().eq('0')) {
+                    return null;
+                }
 
-                const signable = ds.signature.getSignatureApi().makeSignable({
-                    type: SIGN_TYPE.CREATE_ORDER,
-                    data: clone
-                });
+                const amount = this.totalPrice.getTokens().div(this.price.getTokens());
+                this._setDirtyAmount(this.amountBalance.cloneWithTokens(amount));
+            }
 
-                return this._checkOrder(clone)
-                    .then(() => signable.getId())
-                    .then(id => {
-                        const signPromise = signable.getDataForApi();
-                        this.name = id; // eslint tmp
+            /**
+             * @private
+             */
+            _getData() {
+                return waves.matcher.getOrderBook(this._assetIdPair.amount, this._assetIdPair.price)
+                    .then(({ bids, asks, spread }) => {
+                        const [lastAsk] = asks;
+                        const [firstBid] = bids;
 
-                        if (user.userType === 'seed' || !user.userType) {
-                            return signPromise;
-                        }
+                        return { lastAsk, firstBid, spread };
+                    });
+            }
 
-                        /*  const transactionData = {
-                            fee: this.fee.toFormat(),
-                            amount: this.amount.toFormat(),
-                            price: this.price.toFormat(),
-                            total: this.totalPrice.toFormat(),
-                            orderType: this.type,
-                            totalAsset: this.totalPrice.asset,
-                            amountAsset: this.amountBalance.asset,
-                            priceAsset: this.priceBalance.asset,
-                            feeAsset: this.fee.asset,
-                            type: this.type,
-                            timestamp,
-                            expiration
-                        };
-                        */
-                        /* const modalPromise = modalManager.showSignByDevice({
-                            userType: user.userType,
-                            promise: signPromise,
-                            mode: 'create-order',
-                            data: transactionData,
-                            id
+            /**
+             * @param lastAsk
+             * @param firstBid
+             * @param spread
+             * @private
+             */
+            _setData({ lastAsk, firstBid }) {
+                this.bid = firstBid || { price: 0 };
+                this.ask = lastAsk || { price: 0 };
+
+                const sell = Number(this.bid.price);
+                const buy = Number(this.ask.price);
+
+                this.spreadPercent = buy ? (((buy - sell) * 100 / buy) || 0).toFixed(2) : '0.00';
+                $scope.$digest();
+            }
+
+            /**
+             * Set only non-zero amount values
+             * @param {Money} amount
+             * @private
+             */
+            _setDirtyAmount(amount) {
+                this.amount = amount;
+                this.order.$setDirty();
+            }
+
+            /**
+             * @param {Money} price
+             * @private
+             */
+            _setDirtyPrice(price) {
+                this.price = price;
+                this.order.$setDirty();
+            }
+
+            static _animateNotification($element) {
+                return utils.animate($element, { t: 100 }, {
+                    duration: 1200,
+                    step: function (tween) {
+                        const progress = ease.bounceOut(tween / 100);
+                        $element.css('transform', `translate(0, ${-100 + progress * 100}%)`);
+                    }
+                })
+                    .then(() => utils.wait(700))
+                    .then(() => {
+                        return utils.animate($element, { t: 0 }, {
+                            duration: 500,
+                            step: function (tween) {
+                                const progress = ease.linear(tween / 100);
+                                $element.css('transform', `translate(0, ${(-((1 - progress) * 100))}%)`);
+                            }
                         });
-
-                        return modalPromise
-                            .then(() => signPromise)
-                            .catch(() => {
-                                return modalManager.showSignDeviceError({
-                                    error: 'sign-error',
-                                    userType: user.userType
-                                })
-                                    .then(() => Promise.resolve())
-                                    .catch(() => Promise.reject({ message: 'Your sign is not confirmed!' }))
-                                    .then(() => this._createTxData(data));
-                            }); */
                     });
             }
 
@@ -347,11 +705,16 @@
         'Base',
         'waves',
         'user',
-        '$element',
-        'notification',
         'utils',
         'createPoll',
-        '$scope'];
+        '$scope',
+        '$element',
+        'notification',
+        'dexDataService',
+        'ease',
+        '$state',
+        'modalManager'
+    ];
 
     angular.module('app.exchanger')
         .controller('ExchangerCtrl', controller);
