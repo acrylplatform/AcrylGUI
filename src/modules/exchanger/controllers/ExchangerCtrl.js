@@ -533,7 +533,8 @@
                     this.totalPrice = this.priceBalance.cloneWithTokens('0');
                 } else {
                     this.totalPrice = this.priceBalance.cloneWithTokens(
-                        this.price.getTokens().times(this.amount.getTokens())
+                        this._defineAvgPrice(this.amount.getTokens())
+                        // this.price.getTokens().times(this.amount.getTokens())
                     );
                 }
             }
@@ -602,6 +603,28 @@
             _setDirtyPrice(price) {
                 this.price = price;
                 this.order.$setDirty();
+            }
+
+            _defineAvgPrice(sellVolume) {
+                let avgPrice = 0;
+                let totalSum = 0;
+                let lastAmount = sellVolume;
+
+                const lengthBook = this.orderBook.length;
+
+                for (let i = 0; i < lengthBook; i++) {
+                    if (lastAmount) {
+                        if ((lastAmount - Number(this.orderBook[i].amount)) >= 0) {
+                            lastAmount -= Number(this.orderBook[i].amount);
+                            totalSum += Number(this.orderBook[i].total);
+                        } else {
+                            totalSum += lastAmount * Number(this.orderBook[i].price);
+                            lastAmount = 0;
+                        }
+                    }
+                }
+                avgPrice = (totalSum / sellVolume).toFixed(8);
+                return avgPrice;
             }
 
             static _animateNotification($element) {
