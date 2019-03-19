@@ -34,9 +34,10 @@ w-button.inactive-order-button {
 
 .wrap-order {
   display: block;
-  width: 100%;
-  max-height: 100%;
-  overflow: hidden;
+  width: 50%;
+  margin: auto;
+  padding-top: 60px;
+
 
   .note-plate {
     position: relative;
@@ -101,7 +102,7 @@ w-button.inactive-order-button {
 
     & > div {
       margin-left: 7px;
-      font-size: @font-size-caption-2;
+      font-size: @font-size-caption-1;
       color: @color-basic-500;
 
       &:first-child {
@@ -119,7 +120,7 @@ w-button.inactive-order-button {
         .title {
           padding: 2px 25px 2px 10px;
           border: 1px solid transparent;
-          font-size: @font-size-caption-2;
+          font-size: @font-size-caption-1;
 
           &::after {
             right: 9px;
@@ -152,7 +153,7 @@ w-button.inactive-order-button {
             .option {
               padding: 0 25px 0 10px;
               line-height: 20px;
-              font-size: @font-size-caption-2;
+              font-size: @font-size-caption-1;
               text-align: left;
             }
           }
@@ -196,7 +197,6 @@ w-button.inactive-order-button {
       padding: 0 16px;
       height: 30px;
       position: relative;
-      display: none;
       border-bottom: 1px solid @color-disabled-100;
     }
 
@@ -219,7 +219,7 @@ w-button.inactive-order-button {
           color: @white-only;
 
           .name {
-            font-size: @font-size-caption-2;
+            font-size: @font-size-caption-1;
             text-transform: uppercase;
           }
 
@@ -418,12 +418,12 @@ w-button.inactive-order-button {
         }
 
         .price {
-          font-size: @font-size-caption-2;
+          font-size: @font-size-caption-1;
           line-height: 12px;
 
           span.link {
             color: @color-disabled-900;
-            font-size: @font-size-caption-2;
+            font-size: @font-size-caption-1;
             line-height: 13px;
             height: auto;
 
@@ -624,7 +624,13 @@ w-button.inactive-order-button {
 
 }
 
-@media screen and (max-width: 659px) {
+@media screen and (max-width: 659px) { 
+  .wrap-order {
+    padding: 0 10px;
+    width: 100%;
+    max-width: calc(100% ~'- 20px');
+    font-size: @font-size-caption-3;
+  }
   w-layout {
     .dex-layout {
       .dex-layout {

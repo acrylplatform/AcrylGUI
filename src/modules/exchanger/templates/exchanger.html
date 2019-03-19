@@ -1,40 +1,34 @@
 <w-loader ng-if="!$ctrl.loaded"></w-loader>
 
 <div class="wrap-order">
-    <div class="create-order" w-i18n-ns="app.dex" ng-if="$ctrl.loaded">
+    <div class="create-order" w-i18n-ns="app.exchanger" ng-if="$ctrl.loaded">
 
         <div class="head">
             <div class="icon-drag margin-right-1"></div>
             <div class="footnote-2 disabled-900">{{$ctrl.amountDisplayName}} / {{$ctrl.priceDisplayName}}</div>
-            <div class="icon-close" ng-if="$ctrl.step !== 0" ng-click="$ctrl.closeCreateOrder()"></div>
+            <div class="icon-close" ng-if="$ctrl.step !== 0" ng-click="$ctrl.closeCreateOrder()">X</div>
         </div>
 
         <div class="body">
             <div class="making-order" ng-class="$ctrl.type">
-                <div class="create-order-notification js-order-notification">
-                    <div ng-if="$ctrl.createOrderFailed">
-                        <i class="icon"></i><span w-i18n="create.order.failed"></span>
-                    </div>
-                    <div ng-if="!$ctrl.createOrderFailed">
-                        <i class="icon"></i><span w-i18n="create.order.success"></span>
-                    </div>
-                </div>
                 <div class="expandable">
                     <form class="fields" novalidate name="$ctrl.order">
-                        <div class="amount">
-                            <div class="split-half field-label">
-                                <div class="caption-2 basic-600" w-i18n="directives.createOrder.amountField"></div>
-                                <div ng-if="$ctrl.type === 'sell'" ng-click="$ctrl.setMaxAmount()" class="caption-2 disabled-900 underline-dashed">
-                                    <span w-i18n="money-currency" params="{money: $ctrl.maxAmountBalance}"></span>
-                                </div>
+                        <div class="split-half field-label">
+                            <div class="caption-2 basic-600" w-i18n="directives.createOrder.amountField"></div>
+                            <div ng-click="$ctrl.setMaxAmount()">
+                                MAX <span w-i18n="money-currency" params="{money: $ctrl.maxAmountBalance}"></span>
                             </div>
+
+                        </div>
+
+                        <div class="amount">
 
                             <w-input-container ng-class="{'invalid': $ctrl.isAmountInvalid()}">
                                 <div class="input-like tiny">
                                     <w-input tabindex="1" class="tiny embed no-validate-icons" type="text" ng-focus="$ctrl.focusedInputName = 'amount'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validate w-validator-asset="{{$ctrl.amountBalance.asset}}"
-                                        w-validator-lte="{{$ctrl.maxAmountBalance}}" w-validator-gt="0" name="amount"
-                                        ng-model="$ctrl.amount" required></w-input>
+                                        w-validator-lte="{{$ctrl.maxAmountBalance}}" w-validator-gt="{{$ctrl.fee}}"
+                                        name="amount" ng-model="$ctrl.amount" required></w-input>
                                     <div class="asset-name-wrap">
                                         <div class="caption-1 basic-500">{{$ctrl.amountDisplayName}}</div>
                                     </div>
@@ -104,7 +98,7 @@
                             <div w-i18n="directives.createOrder.expiration"></div>
                             <w-select ng-model="$ctrl.expiration" up-direction="true">
                                 <w-option ng-repeat="option in $ctrl.expirationValues track by option.name" value="::option.value">
-                                    <span w-i18n="directives.createOrder.{{::option.name}}" w-i18n-ns="app.dex"></span>
+                                    <span w-i18n="directives.createOrder.{{::option.name}}" w-i18n-ns="app.exchanger"></span>
                                 </w-option>
                             </w-select>
                         </div>
@@ -118,7 +112,6 @@
                                 class="place-order small footnote-3" on-click="$ctrl.createOrder($event, order)">
                                 <span ng-if="$ctrl.type === 'sell'" w-i18n="directives.createOrder.placeSellOrder"
                                     params="{name: $ctrl.amountBalance.asset.displayName}"></span>
-                                <span ng-if="$ctrl.type === 'buy'" w-i18n="directives.createOrder.placeBuyOrder" params="{name: $ctrl.amountBalance.asset.displayName}"></span>
                             </w-button>
                         </w-permit>
                         <w-permit name="CAN_CREATE_ORDER" mode="off">

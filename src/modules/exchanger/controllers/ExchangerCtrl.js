@@ -96,10 +96,6 @@
                  */
                 this.price = null;
                 /**
-                 * @type {boolean}
-                 */
-                this.idDemo = !user.address;
-                /**
                  * @type {number}
                  */
                 this.ERROR_DISPLAY_INTERVAL = 3;
@@ -143,16 +139,7 @@
 
                 this.receive(dexDataService.chooseOrderBook, ({ type, price, amount }) => {
                     this.expand(type);
-                    switch (type) {
-                        case 'buy':
-                            this._onClickBuyOrder(price, amount);
-                            break;
-                        case 'sell':
-                            this._onClickSellOrder(price, amount);
-                            break;
-                        default:
-                            throw new Error('Wrong order type!');
-                    }
+                    this._onClickSellOrder(price, amount);
                     $scope.$digest();
                 });
 
@@ -226,6 +213,7 @@
                 $element.on('mousedown touchstart', '.body', (e) => {
                     e.stopPropagation();
                 });
+                this.successExchange = null;
             }
 
             expand(type) {
@@ -276,9 +264,9 @@
                 this._setDirtyAmount(this._getMaxAmountForSell());
             }
 
-            setMaxPrice() {
-                this._setDirtyAmount(this._getMaxAmountForBuy());
-            }
+            /*   setMaxPrice() {
+                  this._setDirtyAmount(this._getMaxAmountForBuy());
+              } */
 
             setBidPrice() {
                 this._setDirtyPrice(this.priceBalance.cloneWithTokens(String(this.bid.price)));
@@ -296,10 +284,6 @@
              * @return {*}
              */
             createOrder($event) {
-                if (this.idDemo) {
-                    return this._showDemoModal();
-                }
-
                 const form = this.order;
                 $event.preventDefault();
                 const notify = $element.find('.js-order-notification');
@@ -320,17 +304,33 @@
 
                         this._createTxData(data)
                             .then((txData) => ds.createOrder(txData))
-                            .then(() => {
+                            .then((dataTx) => {
                                 notify.addClass('success');
                                 this.createOrderFailed = false;
                                 const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Success`, pair);
+                                this.successExchange = `You have exchanged pair ${pair}.
+                                                        You sold ${dataTx['0'].amount._coins.c['0'] / 1e8} ACRYL
+                                                        and bought ${dataTx['0'].total._coins.c['0'] / 1e8}
+                                                        BTC successfylly.
+                                                        Price of the exchange is
+                                                        ${dataTx['0'].price._coins.c['0'] / 1e8}
+                                                        Commission DEX ${this.fee.toFormat()}`;
+
+                                notification.success({
+                                    ns: 'app.exchanger',
+                                    title: {
+                                        literal: 'directives.createOrder.notifications.success.title'
+                                    },
+                                    body: {
+                                        literal: this.successExchange
+                                    }
+                                }, -1);
                                 dexDataService.createOrder.dispatch();
                             })
                             .catch(e => {
                                 const error = utils.parseError(e);
                                 notification.error({
-                                    ns: 'app.dex',
+                                    ns: 'app.exchanger',
                                     title: {
                                         literal: 'directives.createOrder.notifications.error.title'
                                     },
@@ -340,11 +340,10 @@
                                 }, -1);
                                 this.createOrderFailed = true;
                                 notify.addClass('error');
-                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
-                                analytics.push('DEX', `DEX.${WavesApp.type}.Order.${this.type}.Error`, pair);
 
                             })
                             .finally(() => {
+                                this.amount = null;
                                 ExchangerCtrl._animateNotification(notify);
                             });
                     });
@@ -432,45 +431,6 @@
                     });
             }
 
-            _showDemoModal() {
-                return modalManager.showDialogModal({
-                    iconClass: 'open-main-dex-account-info',
-                    message: { literal: 'modal.createOrder.message' },
-                    buttons: [
-                        {
-                            success: false,
-                            classes: 'big',
-                            text: { literal: 'modal.createOrder.cancel' },
-                            click: () => $state.go('create')
-                        },
-                        {
-                            success: true,
-                            classes: 'big submit',
-                            text: { literal: 'modal.createOrder.ok' },
-                            click: () => $state.go('welcome')
-                        }
-                    ]
-                })
-                    .catch(() => null)
-                    .then(() => {
-                        const form = this.order;
-                        this.amount = null;
-                        form.$setUntouched();
-                        form.$setPristine();
-                    });
-            }
-
-            /**
-             * @param {string} price
-             * @param {string} amount
-             * @private
-             */
-            _onClickBuyOrder(price, amount) {
-                const minAmount = this.amountBalance.cloneWithTokens(this.priceBalance.getTokens().div(price));
-                this._setDirtyAmount(entities.Money.min(this.amountBalance.cloneWithTokens(amount), minAmount));
-                this._setDirtyPrice(this.priceBalance.cloneWithTokens(price));
-            }
-
             /**
              * @param {string} price
              * @param {string} amount
@@ -490,26 +450,6 @@
                 const fee = this.fee;
                 const balance = this.amountBalance;
                 return balance.safeSub(fee).toNonNegative();
-            }
-
-            /**
-             * @return {Money}
-             * @private
-             */
-            _getMaxAmountForBuy() {
-                if (!this.price || this.price.getTokens().eq(0)) {
-                    return this.amountBalance.cloneWithTokens('0');
-                }
-
-                const fee = this.fee;
-
-                return this.amountBalance.cloneWithTokens(
-                    this.priceBalance.safeSub(fee)
-                        .toNonNegative()
-                        .getTokens()
-                        .div(this.price.getTokens())
-                        .dp(this.amountBalance.asset.precision)
-                );
             }
 
             /**
@@ -561,24 +501,12 @@
              * @private
              */
             _getBalances() {
-                if (!this.idDemo) {
-                    return ds.api.pairs.get(this._assetIdPair.amount, this._assetIdPair.price).then((pair) => {
-                        return utils.whenAll([
-                            waves.node.assets.balance(pair.amountAsset.id),
-                            waves.node.assets.balance(pair.priceAsset.id)
-                        ]).then(([amountMoney, priceMoney]) => ({
-                            amountBalance: amountMoney.available,
-                            priceBalance: priceMoney.available
-                        }));
-                    });
-                } else {
-                    return ds.api.pairs.get(this._assetIdPair.amount, this._assetIdPair.price).then((pair) => {
-                        return {
-                            amountBalance: entities.Money.fromTokens(10, pair.amountAsset),
-                            priceBalance: entities.Money.fromTokens(10, pair.priceAsset)
-                        };
-                    });
-                }
+                return ds.api.pairs.get(this._assetIdPair.amount, this._assetIdPair.price).then((pair) => {
+                    return {
+                        amountBalance: entities.Money.fromTokens(10, pair.amountAsset),
+                        priceBalance: entities.Money.fromTokens(10, pair.priceAsset)
+                    };
+                });
             }
 
             /**
@@ -678,7 +606,7 @@
 
             static _animateNotification($element) {
                 return utils.animate($element, { t: 100 }, {
-                    duration: 1200,
+                    duration: 4200,
                     step: function (tween) {
                         const progress = ease.bounceOut(tween / 100);
                         $element.css('transform', `translate(0, ${-100 + progress * 100}%)`);
