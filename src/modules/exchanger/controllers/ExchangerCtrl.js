@@ -117,6 +117,7 @@
                  * @type {[]}
                  */
                 this.hasScript = user.hasScript();
+                this.orderBook = null;
                 /**
                  *
                  * @type {boolean}
@@ -307,7 +308,7 @@
                             .then((dataTx) => {
                                 notify.addClass('success');
                                 this.createOrderFailed = false;
-                                const pair = `${this.amountBalance.asset.id}/${this.priceBalance.asset.id}`;
+                                const pair = `${this.amountDisplayName} / ${this.priceDisplayName}`;
                                 this.successExchange = `You have exchanged pair ${pair}.
                                                         You sold ${dataTx['0'].amount._coins.c['0'] / 1e8} ACRYL
                                                         and bought ${dataTx['0'].total._coins.c['0'] / 1e8}
@@ -344,7 +345,6 @@
                             })
                             .finally(() => {
                                 this.amount = null;
-                                ExchangerCtrl._animateNotification(notify);
                             });
                     });
             }
@@ -449,7 +449,8 @@
             _getMaxAmountForSell() {
                 const fee = this.fee;
                 const balance = this.amountBalance;
-                return balance.safeSub(fee).toNonNegative();
+                const pureBalance = balance.safeSub(fee).toNonNegative();
+                return pureBalance;
             }
 
             /**
@@ -471,14 +472,9 @@
                 if (!this.amountBalance || !this.fee || !this.priceBalance) {
                     return null;
                 }
+                this.maxAmountBalance = this._getMaxAmountForSell();
+                this.maxPriceBalance = null;
 
-                if (this.type === 'sell') {
-                    this.maxAmountBalance = this._getMaxAmountForSell();
-                    this.maxPriceBalance = null;
-                } else {
-                    this.maxAmountBalance = null;
-                    this.maxPriceBalance = this.priceBalance.safeSub(this.fee).toNonNegative();
-                }
             }
 
             /**
@@ -531,10 +527,16 @@
 
                 if (!this.price || !this.amount) {
                     this.totalPrice = this.priceBalance.cloneWithTokens('0');
+                } else if (this.amount._tokens.c['0'] !== 0) {
+                    this._defineMinPrice(this.amount._tokens.c['0']);
+                    const sellPrice = this.price.getTokens();
+                    const quantity = sellPrice.times(this.amount.getTokens());
+                    this.totalPrice = this.priceBalance.cloneWithTokens(
+                        quantity
+                    );
                 } else {
                     this.totalPrice = this.priceBalance.cloneWithTokens(
-                        this._defineAvgPrice(this.amount.getTokens())
-                        // this.price.getTokens().times(this.amount.getTokens())
+                        this.price.getTokens().times(this.amount.getTokens())
                     );
                 }
             }
@@ -564,7 +566,7 @@
                     .then(({ bids, asks, spread }) => {
                         const [lastAsk] = asks;
                         const [firstBid] = bids;
-
+                        this.orderBook = bids;
                         return { lastAsk, firstBid, spread };
                     });
             }
@@ -605,46 +607,22 @@
                 this.order.$setDirty();
             }
 
-            _defineAvgPrice(sellVolume) {
-                let avgPrice = 0;
-                let totalSum = 0;
-                let lastAmount = sellVolume;
+            _defineMinPrice(sellVolume) {
+                let lastAmount = sellVolume / 1e14;
 
                 const lengthBook = this.orderBook.length;
 
                 for (let i = 0; i < lengthBook; i++) {
-                    if (lastAmount) {
+                    if (lastAmount > 0) {
                         if ((lastAmount - Number(this.orderBook[i].amount)) >= 0) {
                             lastAmount -= Number(this.orderBook[i].amount);
-                            totalSum += Number(this.orderBook[i].total);
+                            this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
+                            this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
                         } else {
-                            totalSum += lastAmount * Number(this.orderBook[i].price);
                             lastAmount = 0;
                         }
                     }
                 }
-                avgPrice = (totalSum / sellVolume).toFixed(8);
-                return avgPrice;
-            }
-
-            static _animateNotification($element) {
-                return utils.animate($element, { t: 100 }, {
-                    duration: 4200,
-                    step: function (tween) {
-                        const progress = ease.bounceOut(tween / 100);
-                        $element.css('transform', `translate(0, ${-100 + progress * 100}%)`);
-                    }
-                })
-                    .then(() => utils.wait(700))
-                    .then(() => {
-                        return utils.animate($element, { t: 0 }, {
-                            duration: 500,
-                            step: function (tween) {
-                                const progress = ease.linear(tween / 100);
-                                $element.css('transform', `translate(0, ${(-((1 - progress) * 100))}%)`);
-                            }
-                        });
-                    });
             }
 
         }

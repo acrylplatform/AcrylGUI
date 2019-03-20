@@ -14,18 +14,17 @@
                 <div class="expandable">
                     <form class="fields" novalidate name="$ctrl.order">
                         <div class="split-half field-label">
-                            <div class="caption-2 basic-600" w-i18n="directives.createOrder.amountField"></div>
-                            <div ng-click="$ctrl.setMaxAmount()">
+                            <div class="basic-600" w-i18n="directives.createOrder.amountField"></div>
+                            <button ng-click="$ctrl.setMaxAmount()" class="max-amount-btn">
                                 MAX <span w-i18n="money-currency" params="{money: $ctrl.maxAmountBalance}"></span>
-                            </div>
+                            </button>
 
                         </div>
 
                         <div class="amount">
-
                             <w-input-container ng-class="{'invalid': $ctrl.isAmountInvalid()}">
-                                <div class="input-like tiny">
-                                    <w-input tabindex="1" class="tiny embed no-validate-icons" type="text" ng-focus="$ctrl.focusedInputName = 'amount'"
+                                <div class="input-like ">
+                                    <w-input tabindex="1" class=" embed no-validate-icons" type="text" ng-focus="$ctrl.focusedInputName = 'amount'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validate w-validator-asset="{{$ctrl.amountBalance.asset}}"
                                         w-validator-lte="{{$ctrl.maxAmountBalance}}" w-validator-gt="{{$ctrl.fee}}"
                                         name="amount" ng-model="$ctrl.amount" required></w-input>
@@ -55,8 +54,8 @@
                             </div>
 
                             <w-input-container ng-class="{'invalid': $ctrl.isPriceInvalid()}">
-                                <div class="input-like tiny">
-                                    <w-input class="tiny embed no-validate-icons" tabindex="2" type="text" ng-focus="$ctrl.focusedInputName = 'price'"
+                                <div class="input-like ">
+                                    <w-input class=" embed no-validate-icons" tabindex="2" type="text" ng-focus="$ctrl.focusedInputName = 'price'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validate w-validator-asset="{{$ctrl.priceBalance.asset}}"
                                         w-validator-gt="0" name="price" ng-model="$ctrl.price" required></w-input>
                                     <div class="asset-name-wrap">
@@ -76,10 +75,10 @@
                         </div>
 
                         <div class="total">
-                            <div class="field-label caption-2 basic-600" w-i18n="directives.createOrder.total"></div>
+                            <div class="field-label basic-600" w-i18n="directives.createOrder.total"></div>
                             <w-input-container ng-class="{ 'invalid': $ctrl.isTotalInvalid() }">
-                                <div class="input-like tiny">
-                                    <w-input class="tiny embed no-validate-icons" tabindex="3" type="text" name="total"
+                                <div class="input-like ">
+                                    <w-input class=" embed no-validate-icons" tabindex="3" type="text" name="total"
                                         ng-model="$ctrl.totalPrice" w-validate ng-focus="$ctrl.focusedInputName = 'total'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validator-asset="{{$ctrl.priceBalance.asset}}"
                                         w-validator-custom="{{$ctrl.canBuyOrder}}" w-validator-gt="0" required></w-input>
