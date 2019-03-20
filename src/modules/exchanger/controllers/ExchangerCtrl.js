@@ -25,7 +25,6 @@
 
         class ExchangerCtrl extends Base {
 
-
             /**
              * @return {string}
              */
@@ -118,6 +117,7 @@
                  */
                 this.hasScript = user.hasScript();
                 this.orderBook = null;
+                this._balance = null;
                 /**
                  *
                  * @type {boolean}
@@ -180,8 +180,8 @@
                         this.price = this._getCurrentPrice();
                     }
                 });
-
                 this.observe(['amountBalance', 'type', 'fee', 'priceBalance'], this._updateMaxAmountOrPriceBalance);
+                this._updateMaxAmountOrPriceBalance();
 
                 this.observe('_assetIdPair', () => {
                     this.amount = null;
@@ -196,6 +196,7 @@
                     if (lastTraderPoll) {
                         lastTraderPoll.restart();
                     }
+
                     this.observeOnce(['bid', 'ask'], utils.debounce(() => {
                         if (this.type) {
                             this.amount = this.amountBalance.cloneWithTokens('0');
@@ -204,9 +205,6 @@
                         }
                     }));
                 });
-
-                // this.observe(['priceBalance', 'totalPrice'], this._setIfCanBuyOrder);
-
                 this.observe(['amount', 'price', 'type'], this._currentTotal);
                 this.observe('totalPrice', this._currentAmount);
 
@@ -264,10 +262,6 @@
             setMaxAmount() {
                 this._setDirtyAmount(this._getMaxAmountForSell());
             }
-
-            /*   setMaxPrice() {
-                  this._setDirtyAmount(this._getMaxAmountForBuy());
-              } */
 
             setBidPrice() {
                 this._setDirtyPrice(this.priceBalance.cloneWithTokens(String(this.bid.price)));
@@ -450,6 +444,7 @@
                 const fee = this.fee;
                 const balance = this.amountBalance;
                 const pureBalance = balance.safeSub(fee).toNonNegative();
+                // const pureBalance = this.amountBalance.available.getTokens().lt(this.fee.getTokens());
                 return pureBalance;
             }
 

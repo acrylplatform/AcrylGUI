@@ -16,7 +16,7 @@
                         <div class="split-half field-label">
                             <div class="basic-600" w-i18n="directives.createOrder.amountField"></div>
                             <button ng-click="$ctrl.setMaxAmount()" class="max-amount-btn">
-                                MAX <span w-i18n="money-currency" params="{money: $ctrl.maxAmountBalance}"></span>
+                                MAX <!-- <span w-i18n="money-currency" params="{money: $ctrl.maxAmountBalance}"></span> -->
                             </button>
 
                         </div>
@@ -57,7 +57,7 @@
                                 <div class="input-like ">
                                     <w-input class=" embed no-validate-icons" tabindex="2" type="text" ng-focus="$ctrl.focusedInputName = 'price'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validate w-validator-asset="{{$ctrl.priceBalance.asset}}"
-                                        w-validator-gt="0" name="price" ng-model="$ctrl.price" required></w-input>
+                                        w-validator-gt="0" name="price" ng-model="$ctrl.price" required disabled></w-input>
                                     <div class="asset-name-wrap">
                                         <div class="caption-1 basic-500">{{$ctrl.priceDisplayName}}</div>
                                     </div>
