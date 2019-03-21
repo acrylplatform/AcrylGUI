@@ -8,6 +8,7 @@
         "success": "Ордер создан!"
       }
     },
+    "balance": "Ваш баланс: {{maxAmountBalance}}",
     "directives": {
       "sign": {
         "confirmRequestLedger": {

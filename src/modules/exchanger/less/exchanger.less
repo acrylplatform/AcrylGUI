@@ -8,11 +8,22 @@ body.exchanger {
   w-header {
     display: none;
   }
+
+  .head {
+    display: flex;
+    justify-content: space-between;
+    flex-flow: wrap;
+  }
+  .amount {
+    justify-content: end;
+  }
   .max-amount-btn {
     background-color: @color-basic-50;
     border-radius: @border-radius;
     font-size: @font-size-caption-1;
-    color: @color-basic-700;
+    color: @color-basic-700;   
+    border-color: @custom-asset-marker-border;
+    margin: 5px;
   }
 
   w-button.inactive-order-button {
@@ -322,6 +333,10 @@ body.exchanger {
               }
             }
 
+            .price-disable {
+              background: @custom-asset-marker-border;
+            }
+
             .input-like {
               padding: 0;
               display: flex;
@@ -346,7 +361,7 @@ body.exchanger {
                 background-color: @color-basic-50;
                 border-top-right-radius: @border-radius;
                 border-bottom-right-radius: @border-radius;
-                text-align: right;
+                text-align: center;
               }
             }
 

@@ -8,6 +8,7 @@
       "success": "The order is created"
     }
   },
+  "balance": "Your balance : {{maxAmountBalance}}",
   "directives": {
     "sign": {
       "confirmRequestLedger": {

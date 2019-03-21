@@ -131,7 +131,7 @@
                     { name: '30day', value: () => utils.moment().add().day(29).getDate().getTime() }
                 ];
 
-                this.expiration = this.expirationValues[this.expirationValues.length - 1].value;
+                this.expiration = this.expirationValues[0].value;
 
                 ds.moneyFromTokens('0.003', WavesApp.defaultAssets.WAVES).then((money) => {
                     this.fee = money;
@@ -590,7 +590,7 @@
              */
             _setDirtyAmount(amount) {
                 this.amount = amount;
-                this.order.$setDirty();
+                // this.order.$setDirty();
             }
 
             /**
@@ -599,7 +599,7 @@
              */
             _setDirtyPrice(price) {
                 this.price = price;
-                this.order.$setDirty();
+                // this.order.$setDirty();
             }
 
             _defineMinPrice(sellVolume) {
