@@ -118,6 +118,9 @@
                 this.hasScript = user.hasScript();
                 this.orderBook = null;
                 this._balance = null;
+                this._fee = null;
+                this.invalid = false;
+                this.availableBalance = null;
                 /**
                  *
                  * @type {boolean}
@@ -155,10 +158,8 @@
                 /**
                  * @type {Poll}
                  */
+                const poll = createPoll(this, this._getBalance, '_balance', 5000, { isBalance: true, $scope });
                 const balancesPoll = createPoll(this, this._getBalances, this._setBalances, 1000);
-                /**
-                 * @type {Poll}
-                 */
                 const spreadPoll = createPoll(this, this._getData, this._setData, 1000);
 
                 const lastTradePromise = new Promise((resolve) => {
@@ -171,48 +172,64 @@
                 Promise.all([
                     balancesPoll.ready,
                     lastTradePromise,
-                    spreadPoll.ready
+                    spreadPoll.ready,
+                    waves.node.getFee({ type: WavesApp.TRANSACTION_TYPES.NODE.ISSUE }),
+                    poll.ready
                 ]).then(() => {
-                    this.amount = this.amountBalance.cloneWithTokens('0');
+                    this.observe(['_balance'], this._onChangeBalance);
+
+                    this._onChangeBalance();
+                    // this.amount = this.amountBalance.cloneWithTokens('0');
                     if (this.lastTradePrice && this.lastTradePrice.getTokens().gt(0)) {
                         this.price = this.lastTradePrice;
                     } else {
                         this.price = this._getCurrentPrice();
                     }
-                });
-                this.observe(['amountBalance', 'type', 'fee', 'priceBalance'], this._updateMaxAmountOrPriceBalance);
-                this._updateMaxAmountOrPriceBalance();
+                    $scope.$digest();
+                    this.observe(['amountBalance', 'type', 'fee', 'priceBalance'], this._updateMaxAmountOrPriceBalance);
+                    this._updateMaxAmountOrPriceBalance();
 
-                this.observe('_assetIdPair', () => {
-                    this.amount = null;
-                    this.price = null;
-                    this.bid = null;
-                    this.ask = null;
-                    balancesPoll.restart();
-                    spreadPoll.restart();
-                    const form = this.order;
-                    form.$setUntouched();
-                    form.$setPristine();
-                    if (lastTraderPoll) {
-                        lastTraderPoll.restart();
-                    }
-
-                    this.observeOnce(['bid', 'ask'], utils.debounce(() => {
-                        if (this.type) {
-                            this.amount = this.amountBalance.cloneWithTokens('0');
-                            this.price = this._getCurrentPrice();
-                            $scope.$apply();
+                    this.observe('_assetIdPair', () => {
+                        this.amount = null;
+                        this.price = null;
+                        this.bid = null;
+                        this.ask = null;
+                        balancesPoll.restart();
+                        spreadPoll.restart();
+                        const form = this.order;
+                        form.$setUntouched();
+                        form.$setPristine();
+                        if (lastTraderPoll) {
+                            lastTraderPoll.restart();
                         }
-                    }));
+
+                        this.observeOnce(['bid', 'ask'], utils.debounce(() => {
+                            if (this.type) {
+                                this.amount = this.amountBalance.cloneWithTokens('0');
+                                this.price = this._getCurrentPrice();
+                                $scope.$apply();
+                            }
+                        }));
+                    });
                 });
+
                 this.observe(['amount', 'price', 'type'], this._currentTotal);
-                this.observe('totalPrice', this._currentAmount);
+                this.observe(['totalPrice', 'price'], this._currentAmount);
 
                 // TODO Add directive for stop propagation (catch move for draggable)
                 $element.on('mousedown touchstart', '.body', (e) => {
                     e.stopPropagation();
                 });
                 this.successExchange = null;
+            }
+
+            _getBalance() {
+                return waves.node.assets.balance(WavesApp.defaultAssets.WAVES);
+            }
+
+            _onChangeBalance() {
+                // this.invalid = (!this._fee || !this._balance) ||
+                this._balance.available.getTokens().lt(this.fee.getTokens());
             }
 
             expand(type) {
@@ -441,11 +458,14 @@
              * @private
              */
             _getMaxAmountForSell() {
-                const fee = this.fee;
-                const balance = this.amountBalance;
-                const pureBalance = balance.safeSub(fee).toNonNegative();
-                // const pureBalance = this.amountBalance.available.getTokens().lt(this.fee.getTokens());
-                return pureBalance;
+                if (this._balance) {
+                    // const fee = this.fee;
+                    // const balance = this.amountBalance;
+                    const balance = this._balance.available;
+                    // const pureBalance = balance.safeSub(fee).toNonNegative();
+                    // const pureBalance = this.amountBalance.lt(this.fee.getTokens());
+                    return balance;
+                }
             }
 
             /**
@@ -464,9 +484,10 @@
              * @private
              */
             _updateMaxAmountOrPriceBalance() {
-                if (!this.amountBalance || !this.fee || !this.priceBalance) {
+                if (!this.amountBalance || !this.fee || !this.priceBalance || !this._balance) {
                     return null;
                 }
+
                 this.maxAmountBalance = this._getMaxAmountForSell();
                 this.maxPriceBalance = null;
 
@@ -477,13 +498,9 @@
              * @private
              */
             _getCurrentPrice() {
-                switch (this.type) {
-                    case 'sell':
-                        return this.priceBalance.cloneWithTokens(String(this.bid && this.bid.price || 0));
-                    case 'buy':
-                        return this.priceBalance.cloneWithTokens(String(this.ask && this.ask.price || 0));
-                    default:
-                        throw new Error('Wrong type');
+                if (this.priceBalance) {
+                    return this.priceBalance.cloneWithTokens(String(this.bid && this.bid.price || 0));
+
                 }
             }
 
@@ -505,7 +522,9 @@
              * @private
              */
             _setBalances(data) {
-                if (data) {
+                // this.amountBalance = this._balance.available.getTokens();
+                if (data && this._balance) {
+                    this.availableBalance = this._balance.available.getTokens();
                     this.amountBalance = data.amountBalance;
                     this.priceBalance = data.priceBalance;
                     $scope.$digest();
@@ -523,7 +542,7 @@
                 if (!this.price || !this.amount) {
                     this.totalPrice = this.priceBalance.cloneWithTokens('0');
                 } else if (this.amount._tokens.c['0'] !== 0) {
-                    this._defineMinPrice(this.amount._tokens.c['0']);
+                    this.price = this._defineMinPrice(this.amount._tokens.c['0']);
                     const sellPrice = this.price.getTokens();
                     const quantity = sellPrice.times(this.amount.getTokens());
                     this.totalPrice = this.priceBalance.cloneWithTokens(
@@ -603,7 +622,7 @@
             }
 
             _defineMinPrice(sellVolume) {
-                let lastAmount = sellVolume / 1e14;
+                let lastAmount = sellVolume;
 
                 const lengthBook = this.orderBook.length;
 
@@ -615,9 +634,12 @@
                             this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
                         } else {
                             lastAmount = 0;
+                            this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
+                            this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
                         }
                     }
                 }
+                return this.price;
             }
 
         }
