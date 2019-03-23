@@ -179,7 +179,6 @@
                     this.observe(['_balance'], this._onChangeBalance);
 
                     this._onChangeBalance();
-                    // this.amount = this.amountBalance.cloneWithTokens('0');
                     if (this.lastTradePrice && this.lastTradePrice.getTokens().gt(0)) {
                         this.price = this.lastTradePrice;
                     } else {
@@ -213,7 +212,7 @@
                     });
                 });
 
-                this.observe(['amount', 'price', 'type'], this._currentTotal);
+                this.observe(['amount', 'price', 'type', 'totalPrice'], this._currentTotal);
                 this.observe(['totalPrice', 'price'], this._currentAmount);
 
                 // TODO Add directive for stop propagation (catch move for draggable)
@@ -228,7 +227,6 @@
             }
 
             _onChangeBalance() {
-                // this.invalid = (!this._fee || !this._balance) ||
                 this._balance.available.getTokens().lt(this.fee.getTokens());
             }
 
@@ -278,18 +276,6 @@
 
             setMaxAmount() {
                 this._setDirtyAmount(this._getMaxAmountForSell());
-            }
-
-            setBidPrice() {
-                this._setDirtyPrice(this.priceBalance.cloneWithTokens(String(this.bid.price)));
-            }
-
-            setAskPrice() {
-                this._setDirtyPrice(this.priceBalance.cloneWithTokens(String(this.ask.price)));
-            }
-
-            setLastPrice() {
-                this._setDirtyPrice(this.lastTradePrice);
             }
 
             /**
@@ -461,7 +447,7 @@
                 if (this._balance) {
                     // const fee = this.fee;
                     // const balance = this.amountBalance;
-                    const balance = this._balance.available;
+                    const balance = this._balance.available.sub(this.fee);
                     // const pureBalance = balance.safeSub(fee).toNonNegative();
                     // const pureBalance = this.amountBalance.lt(this.fee.getTokens());
                     return balance;
@@ -539,18 +525,14 @@
                     return null;
                 }
 
-                if (!this.price || !this.amount) {
+                if (!this.price && this.priceBalance) {
                     this.totalPrice = this.priceBalance.cloneWithTokens('0');
-                } else if (this.amount._tokens.c['0'] !== 0) {
-                    this.price = this._defineMinPrice(this.amount._tokens.c['0']);
+                } else if (this.amount) {
+                    this.price = this._defineMinPrice(this.amount._coins.c['0'] / 1e8);
                     const sellPrice = this.price.getTokens();
                     const quantity = sellPrice.times(this.amount.getTokens());
                     this.totalPrice = this.priceBalance.cloneWithTokens(
                         quantity
-                    );
-                } else {
-                    this.totalPrice = this.priceBalance.cloneWithTokens(
-                        this.price.getTokens().times(this.amount.getTokens())
                     );
                 }
             }
@@ -609,7 +591,6 @@
              */
             _setDirtyAmount(amount) {
                 this.amount = amount;
-                // this.order.$setDirty();
             }
 
             /**
@@ -618,7 +599,6 @@
              */
             _setDirtyPrice(price) {
                 this.price = price;
-                // this.order.$setDirty();
             }
 
             _defineMinPrice(sellVolume) {
