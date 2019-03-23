@@ -202,13 +202,11 @@
                             lastTraderPoll.restart();
                         }
 
-                        this.observeOnce(['bid', 'ask'], utils.debounce(() => {
-                            if (this.type) {
+                        /* this.observeOnce(['bid', 'ask'], utils.debounce(() => {
                                 this.amount = this.amountBalance.cloneWithTokens('0');
                                 this.price = this._getCurrentPrice();
                                 $scope.$apply();
-                            }
-                        }));
+                        })); */
                     });
                 });
 
@@ -517,6 +515,10 @@
                 }
             }
 
+            _getFee() {
+                return this.fee;
+            }
+
             /**
              * @private
              */
@@ -524,10 +526,7 @@
                 if (this.focusedInputName === 'total') {
                     return null;
                 }
-
-                if (!this.price && this.priceBalance) {
-                    this.totalPrice = this.priceBalance.cloneWithTokens('0');
-                } else if (this.amount) {
+                if (this.amount) {
                     this.price = this._defineMinPrice(this.amount._coins.c['0'] / 1e8);
                     const sellPrice = this.price.getTokens();
                     const quantity = sellPrice.times(this.amount.getTokens());
