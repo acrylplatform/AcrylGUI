@@ -201,12 +201,6 @@
                         if (lastTraderPoll) {
                             lastTraderPoll.restart();
                         }
-
-                        /* this.observeOnce(['bid', 'ask'], utils.debounce(() => {
-                                this.amount = this.amountBalance.cloneWithTokens('0');
-                                this.price = this._getCurrentPrice();
-                                $scope.$apply();
-                        })); */
                     });
                 });
 
@@ -505,7 +499,6 @@
              * @private
              */
             _setBalances(data) {
-                // this.amountBalance = this._balance.available.getTokens();
                 if (data && this._balance) {
                     this.availableBalance = this._balance.available.getTokens();
                     this.amountBalance = data.amountBalance;
