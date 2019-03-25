@@ -20,10 +20,20 @@
 
     <i class="wallet-toggler" w-toggle-class="wallet-items-hide"></i>
 
-    <div class="menu-list"
-         ng-repeat="menu in $ctrl.menuList track by menu.id"
-         ng-include="'modules/ui/directives/leftMenu/reqursiveMenuItem.html'">
+    <div class="menu-list" ng-repeat="menu in $ctrl.menuList track by menu.id" ng-include="'modules/ui/directives/leftMenu/reqursiveMenuItem.html'">
     </div>
+    <w-responsive-menu-item>
+        <a ng-click="$ctrl.open('main.exchanger')" class="exch menu-item ">
+            <span w-i18n="header.exchanger"></span>
+        </a>
+    </w-responsive-menu-item>
+
+   <!-- <w-responsive-menu-item value="exchanger" active-by-state="true" class="ng-scope ng-isolate-scope">
+        <div class="responsive-menu-item-content" ng-transclude="">
+            <a ng-click="$ctrl.open('main.exchanger')" class="menu-item exchanger">
+                <span w-i18n="header.exchanger"></span></a>
+        </div>
+    </w-responsive-menu-item> -->
 
     <w-responsive-menu-item class="settings" ng-click="$ctrl.settings()">
         <div class="menu-item settings">

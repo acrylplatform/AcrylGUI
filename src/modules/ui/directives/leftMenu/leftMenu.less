@@ -114,11 +114,6 @@ w-left-menu {
           display: block;
           background-position: (-@default-icon-size * 2) 0;
         }
-        
-        &.exchanger::after {
-          display: block;
-          background-position: (-@default-icon-size * 4) 0;
-        }
 
         &.settings::after {
           display: block;
@@ -134,6 +129,11 @@ w-left-menu {
           display: block;
           background-position: (-@default-icon-size * 4) -@default-icon-size;
         }
+      }
+
+      .exch {
+        display: block;
+       background-image:  url("/img/icons/dark/exchanger.svg");
       }
 
       @media screen and (min-width: 769px) {
