@@ -46,7 +46,7 @@
             }
 
             get loaded() {
-                return this.amountBalance && this.priceBalance;
+                return this.amountBalance && this.priceBalance && this.price;
             }
 
             constructor() {
@@ -443,11 +443,7 @@
              */
             _getMaxAmountForSell() {
                 if (this._balance) {
-                    // const fee = this.fee;
-                    // const balance = this.amountBalance;
                     const balance = this._balance.available.sub(this.fee);
-                    // const pureBalance = balance.safeSub(fee).toNonNegative();
-                    // const pureBalance = this.amountBalance.lt(this.fee.getTokens());
                     return balance;
                 }
             }
@@ -461,7 +457,10 @@
                     amountAsset: this._assetIdPair.amount,
                     priceAsset: this._assetIdPair.price,
                     limit: 1
-                }).then(([tx]) => tx && tx.price || null);
+                }).then(([tx]) => {
+                    this.price = tx.price;
+                    return tx && tx.price || null;
+                });
             }
 
             /**
@@ -601,24 +600,25 @@
             }
 
             _defineMinPrice(sellVolume) {
-                let lastAmount = sellVolume;
+                if (this.price) {
+                    let lastAmount = sellVolume;
+                    const lengthBook = this.orderBook.length;
 
-                const lengthBook = this.orderBook.length;
-
-                for (let i = 0; i < lengthBook; i++) {
-                    if (lastAmount > 0) {
-                        if ((lastAmount - Number(this.orderBook[i].amount)) >= 0) {
-                            lastAmount -= Number(this.orderBook[i].amount);
-                            this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
-                            this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
-                        } else {
-                            lastAmount = 0;
-                            this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
-                            this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
+                    for (let i = 0; i < lengthBook; i++) {
+                        if (lastAmount > 0) {
+                            if ((lastAmount - Number(this.orderBook[i].amount)) >= 0) {
+                                lastAmount -= Number(this.orderBook[i].amount);
+                                this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
+                                this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
+                            } else {
+                                lastAmount = 0;
+                                this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
+                                this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
+                            }
                         }
                     }
+                    return this.price;
                 }
-                return this.price;
             }
 
         }
