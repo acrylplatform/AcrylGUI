@@ -56,11 +56,7 @@
                  * @type {Money}
                  */
                 this.maxAmountBalance = null;
-                /**
-                 * Has price balance for buy amount
-                 * @type {boolean}
-                 */
-                this.canBuyOrder = true;
+
                 /**
                  * Amount asset balance
                  * @type {Money}
@@ -578,6 +574,7 @@
              * @private
              */
             _setDirtyAmount(amount) {
+                amount._tokens = amount._tokens.minus(0.001);
                 this.amount = amount;
             }
 

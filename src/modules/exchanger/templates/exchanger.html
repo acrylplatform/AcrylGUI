@@ -79,11 +79,11 @@
                         <div class="total">
                             <div class="field-label basic-600" w-i18n="directives.createOrder.total" w-i18n-ns="app.exchanger"></div>
                             <w-input-container ng-class="{ 'invalid': $ctrl.isTotalInvalid() }">
-                                <div class="input-like ">
+                                <div class="input-like price-disable">
                                     <w-input class=" embed no-validate-icons" tabindex="3" type="text" name="total"
                                         ng-model="$ctrl.totalPrice" w-validate ng-focus="$ctrl.focusedInputName = 'total'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validator-asset="{{$ctrl.priceBalance.asset}}"
-                                        w-validator-custom="{{$ctrl.canBuyOrder}}" w-validator-gt="0" required></w-input>
+                                        w-validator-gt="0" required disabled></w-input>
                                     <div class="asset-name-wrap">
                                         <div class="caption-1 basic-500">{{$ctrl.priceDisplayName}}</div>
                                     </div>
