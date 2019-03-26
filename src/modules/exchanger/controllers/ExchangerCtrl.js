@@ -477,7 +477,6 @@
             _getCurrentPrice() {
                 if (this.priceBalance) {
                     return this.priceBalance.cloneWithTokens(String(this.bid && this.bid.price || 0));
-
                 }
             }
 
@@ -519,7 +518,7 @@
                     return null;
                 }
                 if (this.amount) {
-                    this.price = this._defineMinPrice(this.amount._coins.c['0'] / 1e8);
+                    this.price = this._defineMinPrice(this.amount.toFormat());
                     const sellPrice = this.price.getTokens();
                     const quantity = sellPrice.times(this.amount.getTokens());
                     this.totalPrice = this.priceBalance.cloneWithTokens(
@@ -540,9 +539,7 @@
                 if (!this.totalPrice || !this.price || this.price.getTokens().eq('0')) {
                     return null;
                 }
-
-                const amount = this.totalPrice.getTokens().div(this.price.getTokens());
-                this._setDirtyAmount(this.amountBalance.cloneWithTokens(amount));
+                this._setDirtyPrice(this.price.getTokens());
             }
 
             /**
@@ -602,11 +599,11 @@
                             if ((lastAmount - Number(this.orderBook[i].amount)) >= 0) {
                                 lastAmount -= Number(this.orderBook[i].amount);
                                 this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
-                                this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
+                                this.price._coins.c['0'] = Math.round(this.price.toFormat());
                             } else {
                                 lastAmount = 0;
                                 this.price._tokens.c['0'] = Math.round(this.orderBook[i].price * 1e14);
-                                this.price._coins.c['0'] = Math.round(this.price._tokens.c['0'] / 1e8);
+                                this.price._coins.c['0'] = Math.round(this.price._tokens.toFormat());
                             }
                         }
                     }
