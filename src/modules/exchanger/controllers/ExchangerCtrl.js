@@ -52,10 +52,16 @@
             constructor() {
                 super();
                 /**
-                 * Max amount (with fee)
+                 * Max amount
                  * @type {Money}
                  */
                 this.maxAmountBalance = null;
+
+                /**
+                 * Max amount
+                 * @type {Money}
+                 */
+                this.minAmountBalance = null;
 
                 /**
                  * Amount asset balance
@@ -132,14 +138,15 @@
 
                 this.expiration = this.expirationValues[0].value;
 
+                // set fee value
                 ds.moneyFromTokens('0.003', WavesApp.defaultAssets.WAVES).then((money) => {
                     this.fee = money;
                     $scope.$digest();
                 });
 
-                this.receive(dexDataService.chooseOrderBook, ({ type, price, amount }) => {
-                    this.expand(type);
-                    this._onClickSellOrder(price, amount);
+                // set min  amount value
+                ds.moneyFromTokens('0.001', WavesApp.defaultAssets.WAVES).then((money) => {
+                    this.minAmountBalance = money;
                     $scope.$digest();
                 });
 
@@ -216,16 +223,6 @@
 
             _onChangeBalance() {
                 this._balance.available.getTokens().lt(this.fee.getTokens());
-            }
-
-            expand(type) {
-                this.type = type;
-                if (!this.price || this.price.getTokens().eq('0')) {
-                    this.price = this._getCurrentPrice();
-                }
-
-                // todo: refactor after getting rid of Layout-DEX coupling.
-                $element.parent().parent().parent().parent().parent().addClass('expanded');
             }
 
             closeCreateOrder() {
@@ -417,17 +414,6 @@
             }
 
             /**
-             * @param {string} price
-             * @param {string} amount
-             * @private
-             */
-            _onClickSellOrder(price, amount) {
-                const amountMoney = this.amountBalance.cloneWithTokens(amount);
-                this._setDirtyAmount(entities.Money.min(amountMoney, this._getMaxAmountForSell()));
-                this._setDirtyPrice(this.priceBalance.cloneWithTokens(price));
-            }
-
-            /**
              * @return {Money}
              * @private
              */
@@ -574,8 +560,7 @@
              * @private
              */
             _setDirtyAmount(amount) {
-                amount._tokens = amount._tokens.minus(0.001);
-                this.amount = amount;
+                this.amount = amount.sub(this.minAmountBalance);
             }
 
             /**
