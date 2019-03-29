@@ -48,6 +48,51 @@
                 this.step--;
             }
 
+            onReadQrCode(url) {
+                const routeData = utils.getRouterParams(utils.getUrlForRoute(url));
+
+                if (!routeData || routeData.name !== 'SEND_ASSET') {
+                    return null;
+                }
+
+                const result = routeData.data;
+
+                this.tx.recipient = result.recipient;
+
+                analytics.push('Send', `Send.QrCodeRead.${WavesApp.type}`, `Send.QrCodeRead.${WavesApp.type}.Success`);
+
+                if (result) {
+
+                    const applyAmount = () => {
+                        if (result.amount) {
+                            this.tx.amount = this.moneyHash[this.assetId].cloneWithTokens(result.amount);
+                            this._fillMirror();
+                        }
+                        $scope.$apply();
+                    };
+
+                    result.assetId = result.asset || result.assetId;
+
+                    if (result.assetId) {
+                        waves.node.assets.balance(result.assetId).then(({ available }) => {
+                            this.moneyHash[available.asset.id] = available;
+
+                            if (this.assetId !== available.asset.id) {
+                                const myAssetId = this.assetId;
+                                this.assetId = available.asset.id;
+                                this.canChooseAsset = true;
+                                // TODO fix (hack for render asset avatar)
+                                this.choosableMoneyList = [this.moneyHash[myAssetId], available];
+                            }
+
+                            applyAmount();
+                        }, applyAmount);
+                    } else {
+                        applyAmount();
+                    }
+                }
+            }
+
             sign() {
                 const tx = waves.node.transactions.createTransaction({
                     recipient: this.recipient,

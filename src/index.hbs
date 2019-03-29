@@ -362,8 +362,8 @@
             matcherSignInterval: { count: 20, timeType: 'day' },
             scam: Object.create(null),
             dex: {
-                resolutions: ['15', '30', '60', '240', '1440'], // TODO : add months
-                defaultResolution: '60'
+                resolutions: ['15', '30', '60', '180', '1440'], // TODO : add months
+                defaultResolution: '1440'
             },
             modules: [],
             oracle: '{{oracle}}',
@@ -506,11 +506,11 @@
     <img src="/img/no-preload/connection-error.svg" class="margin-3"/>
     <div class="connection-problem__headline">We couldn't connect to the server</div>
         <div class="connection-problem__description">Check your internet connection and try again.</div>
-        <div class="connection-problem__description">
-            <div>If you have been using the Waves Desktop app and refreshing does</div>
+        <!-- <div class="connection-problem__description">
+            <div>If you have been using the Acryl Desktop app and refreshing does</div>
             <div>not help, try reinstalling the app. Download the latest version from</div>
             <div>the official Acryl site.</div>
-        </div>
+        </div> -->
     <button class="submit big submit connetion-problem__button" onclick="WavesApp.reload();">Refresh page</button>
 </div>
 
