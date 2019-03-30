@@ -541,6 +541,13 @@
                 return num.isNaN() ? new BigNumber(0) : num;
             },
 
+            parseNumberWithComa(data) {
+                if (data instanceof BigNumber) {
+                    return data;
+                }
+                return new BigNumber(data, 10).toFormat(8);
+            },
+
             /**
              * @name app.utils#loadOrTimeout
              * @param {Window} target

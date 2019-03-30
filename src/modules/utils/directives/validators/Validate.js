@@ -15,6 +15,7 @@
         'byteGt',
         'byteGte',
         'number',
+        'decimal',
         'asset',
         'compare',
         'alias',
@@ -31,7 +32,8 @@
             const decimal = WavesApp.getLocaleData().separators.decimal;
             return `\\d*\\${decimal}?\\d*`;
         },
-        INTEGER: '\\d*'
+        INTEGER: '\\d*',
+        DECIMAL: '\\d*\\.?\\d*'
     };
 
     /**
@@ -192,6 +194,9 @@
                                     break;
                                 case 'number':
                                     this._validators[name] = this._createBigNumberValidator(name);
+                                    break;
+                                case 'decimal':
+                                    this._validators[name] = this._createDecimalValidator(name);
                                     break;
                                 case 'alias':
                                 case 'address':
@@ -594,6 +599,22 @@
                             };
                         }
 
+                        _createDecimalValidator(name) {
+                            this._addInputPattern(PATTERNS.DECIMAL);
+
+                            return {
+                                name,
+                                handler: () => true,
+                                parser: (value) => {
+                                    if (value === '') {
+                                        return;
+                                    }
+                                    return Validate._toNumber(value);
+                                },
+                                formatter: Validate._toString
+                            };
+                        }
+
 
                         /**
                          * @param name
@@ -663,6 +684,16 @@
                         static _toBigNumber(value) {
                             try {
                                 return new BigNumber(utils.parseNiceNumber(value));
+                            } catch (e) {
+                                return null;
+                            }
+                        }
+
+                        static _toNumber(value) {
+                            try {
+                                const num = utils.parseNumberWithComa(value);
+                                const inputCount = Number(num);
+                                return inputCount;
                             } catch (e) {
                                 return null;
                             }
