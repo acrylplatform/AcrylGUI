@@ -16,7 +16,7 @@
                 <div class="expandable">
                     <form class="fields" novalidate name="$ctrl.order">
                         <div class="split-half field-label">
-                            <div class="basic-600" w-i18n="directives.createOrder.amountField"></div>
+                            <div class="basic-600" w-i18n="createOrder.amountField"></div>
                             <button ng-click="$ctrl.setMaxAmount()" class="max-amount-btn">
                                 MAX
                             </button>
@@ -36,23 +36,23 @@
                                 </div>
 
                                 <w-input-error message="required" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.required"></span>
+                                    <span w-i18n="createOrder.errors.required"></span>
                                 </w-input-error>
                                 <w-input-error message="gt" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.required"></span>
+                                    <span w-i18n="createOrder.errors.required"></span>
                                 </w-input-error>
                                 <w-input-error message="precision" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.precision" params="{precision: $ctrl.amountBalance.asset.precision}"></span>
+                                    <span w-i18n="createOrder.errors.precision" params="{precision: $ctrl.amountBalance.asset.precision}"></span>
                                 </w-input-error>
                                 <w-input-error message="lte" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.balance" params="{name: $ctrl.amountBalance.asset.displayName}"></span>
+                                    <span w-i18n="createOrder.errors.balance" params="{name: $ctrl.amountBalance.asset.displayName}"></span>
                                 </w-input-error>
                             </w-input-container>
                         </div>
 
                         <div class="price">
                             <div class="split-half field-label">
-                                <div class="basic-600" w-i18n="directives.createOrder.priceField" w-i18n-ns="app.exchanger"></div>
+                                <div class="basic-600" w-i18n="createOrder.priceField" w-i18n-ns="app.exchanger"></div>
                             </div>
 
                             <w-input-container ng-class="{'invalid': $ctrl.isPriceInvalid()}">
@@ -65,19 +65,19 @@
                                     </div>
                                 </div>
                                 <w-input-error message="precision" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.precision" params="{precision: $ctrl.priceBalance.asset.precision}"></span>
+                                    <span w-i18n="createOrder.errors.precision" params="{precision: $ctrl.priceBalance.asset.precision}"></span>
                                 </w-input-error>
                                 <w-input-error message="gt" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.required"></span>
+                                    <span w-i18n="createOrder.errors.required"></span>
                                 </w-input-error>
                                 <w-input-error message="required" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.required"></span>
+                                    <span w-i18n="createOrder.errors.required"></span>
                                 </w-input-error>
                             </w-input-container>
                         </div>
 
                         <div class="total">
-                            <div class="field-label basic-600" w-i18n="directives.createOrder.total" w-i18n-ns="app.exchanger"></div>
+                            <div class="field-label basic-600" w-i18n="createOrder.total" w-i18n-ns="app.exchanger"></div>
                             <w-input-container ng-class="{ 'invalid': $ctrl.isTotalInvalid() }">
                                 <div class="input-like price-disable">
                                     <w-input class=" embed no-validate-icons" tabindex="3" type="text" name="total"
@@ -89,28 +89,28 @@
                                     </div>
                                 </div>
                                 <w-input-error message="custom" hide-within="$ctrl.ERROR_DISPLAY_INTERVAL">
-                                    <span w-i18n="directives.createOrder.errors.balance" params="{name: $ctrl.priceBalance.asset.displayName}"></span>
+                                    <span w-i18n="createOrder.errors.balance" params="{name: $ctrl.priceBalance.asset.displayName}"></span>
                                 </w-input-error>
                             </w-input-container>
                         </div>
 
                         <div class="expiration">
-                            <div params="{fee: $ctrl.fee.toFormat()}" w-i18n="directives.createOrder.fee"></div>
+                            <div params="{fee: $ctrl.fee.toFormat()}" w-i18n="createOrder.fee"></div>
                         </div>
                         <w-button ng-if="$ctrl.hasScript" class="inactive-order-button footnote-1">
-                            <span w-i18n="directives.createOrder.hasScript" params="{name: $ctrl.amountBalance.asset.displayName}"></span>
+                            <span w-i18n="createOrder.hasScript" params="{name: $ctrl.amountBalance.asset.displayName}"></span>
                         </w-button>
 
                         <w-permit name="CAN_CREATE_ORDER" mode="on">
                             <w-button ng-if="!$ctrl.hasScript" disabled="$ctrl.order.$invalid || $ctrl.order.$pristine"
                                 class="place-order small footnote-3" on-click="$ctrl.createOrder($event, order)">
-                                <span ng-if="$ctrl.type === 'sell'" w-i18n="directives.createOrder.placeSellOrder"
+                                <span ng-if="$ctrl.type === 'sell'" w-i18n="exchangeButton"
                                     params="{name: $ctrl.amountBalance.asset.displayName}"></span>
                             </w-button>
                         </w-permit>
                         <w-permit name="CAN_CREATE_ORDER" mode="off">
                             <div class="note-plate body-3 basic-700 margin-top-1">
-                                <w-permit-message literal="directives.createOrder.createOrderNotPermitted"></w-permit-message>
+                                <w-permit-message literal="createOrder.createOrderNotPermitted"></w-permit-message>
                             </div>
                         </w-permit>
                     </form>
