@@ -66,21 +66,21 @@
                             case 'priceId':
                                 return tx.price && tx.price.asset.id || '';
                             case 'amountTicker':
-                                return tx.amount && tx.amount.asset.ticker || '';
+                                return tx.amount && this._setAcrylName(tx.amount.asset.ticker) || '';
                             case 'amountName':
                                 return tx.amount && tx.amount.asset.name || '';
                             case 'amountValue':
                                 return tx.amount && tx.amount.toFormat() || '';
                             case 'amountId':
-                                return tx.amount && tx.amount.asset.id || '';
+                                return tx.amount && this._setAcrylName(tx.amount.asset.id) || '';
                             case 'feeTicker':
-                                return tx.fee && tx.fee.asset.ticker || '';
+                                return tx.fee && this._setAcrylName(tx.fee.asset.ticker) || '';
                             case 'feeName':
                                 return tx.fee && tx.fee.asset.name || '';
                             case 'feeValue':
                                 return tx.fee && tx.fee.toFormat() || '';
                             case 'feeId':
-                                return tx.fee && tx.fee.asset.id || '';
+                                return tx.fee && this._setAcrylName(tx.fee.asset.id) || '';
                             default:
                                 return value == null ? '' : String(value);
                         }
@@ -102,6 +102,10 @@
                 } else {
                     TransactionsCsvGen._download(csv, fileName);
                 }
+            }
+
+            _setAcrylName(nameAsset) {
+                return (nameAsset === 'WAVES') ? 'ACRYL' : nameAsset;
             }
 
             /**
