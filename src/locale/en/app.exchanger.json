@@ -8,45 +8,45 @@
       "success": "The order is created"
     }
   },
+  "exchangeButton": "Exchange {{name}}",
   "balance": "Your balance : {{maxAmountBalance}}",
+  "createOrder": {
+    "1day": "1 day",
+    "1hour": "1 hour",
+    "1week": "1 week",
+    "30day": "29 days",
+    "30min": "30 min",
+    "5min": "5 min",
+    "amountField": "Amount",
+    "createOrderNotPermitted": "Orders is temporarily unavailable",
+    "errors": {
+      "balance": "Not enough {{name}}",
+      "precision": "Exceeded maximum of {{precision}} decimal places",
+      "required": "This field is required"
+    },
+    "priceField": "Price of exchange",
+    "total": "Total",
+    "expiration": "Expiration",
+    "fee": "Fee {{fee}} ACRYL",
+    "notifications": {
+      "error": {
+        "title": "Error message"
+      },
+      "success": {
+        "title": "Success the exchange"
+      },
+      "isCreated": "The order is created",
+      "notEnoughBalance": "Not enough tradable balance",
+      "somethingWentWrong": "Something went wrong"
+    },
+    "hasScript": "Cancel [script](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html) to trade"
+  },
   "directives": {
     "sign": {
       "confirmRequestLedger": {
         "waiting": "Waiting for confirmation on Ledger Nano S…"
       }
-    },
-    "createOrder": {
-      "1day": "1 day",
-      "1hour": "1 hour",
-      "1week": "1 week",
-      "30day": "29 days",
-      "30min": "30 min",
-      "5min": "5 min",
-      "amountField": "Amount",
-      "placeSellOrder": "Exchange {{name}}",
-      "createOrderNotPermitted": "Orders is temporarily unavailable",
-      "errors": {
-        "balance": "Not enough {{name}}",
-        "precision": "Exceeded maximum of {{precision}} decimal places",
-        "required": "This field is required"
-      },
-      "priceField": "Limit price",
-      "total": "Total",
-      "expiration": "Expiration",
-      "fee": "Fee {{fee}} ACRYL",
-      "notifications": {
-        "error": {
-          "title": "Error message"
-        },
-        "success": {
-          "title": "Success the exchange"
-        },
-        "isCreated": "The order is created",
-        "notEnoughBalance": "Not enough tradable balance",
-        "somethingWentWrong": "Something went wrong"
-      },
-      "hasScript": "Cancel [script](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html) to trade"
-    }
+    }    
   },
   "sendAssets": "Send assets",
   "recieveAssets": "Recieve assets",

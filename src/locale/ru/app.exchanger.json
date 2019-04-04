@@ -8,43 +8,43 @@
         "success": "Ордер создан!"
       }
     },
+    "exchangeButton": "Обменять {{name}}",
     "balance": "Ваш баланс: {{maxAmountBalance}}",
+    "createOrder": {
+      "1day": "1 day",
+      "1hour": "1 hour",
+      "1week": "1 week",
+      "30day": "29 days",
+      "30min": "30 min",
+      "5min": "5 min",
+      "amountField": "Количество",
+      "createOrderNotPermitted": "Ордера временно не доступны",
+      "errors": {
+        "balance": "Не достаточное количество {{name}}",
+        "precision": "Exceeded maximum of {{precision}} decimal places",
+        "required": "Это поле обязательно заполнить"
+      },
+      "priceField": "Цена обмена",
+      "total": "Всего",
+      "expiration": "Экспирация",
+      "fee": "Комиссия {{fee}} ACRYL",
+      "notifications": {
+        "error": {
+          "title": "Ошибка при создании транзакции"
+        },
+        "success": {
+          "title": "Успешный обмен"
+        },
+        "isCreated": "Ордер создан",
+        "notEnoughBalance": "Не достаточный торговый баланс",
+        "somethingWentWrong": "Что-то пошло не так"
+      },
+      "hasScript": "Cancel [script](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html) to trade"
+    },
     "directives": {
       "sign": {
         "confirmRequestLedger": {
           "waiting": "Waiting for confirmation on Ledger Nano S…"
-        },
-        "createOrder": {
-          "1day": "1 day",
-          "1hour": "1 hour",
-          "1week": "1 week",
-          "30day": "29 days",
-          "30min": "30 min",
-          "5min": "5 min",
-          "amountField": "Счёт",
-          "placeSellOrder": "Обменять {{name}}",
-          "createOrderNotPermitted": "Ордера временно не доступны",
-          "errors": {
-            "balance": "Не достаточное количество {{name}}",
-            "precision": "Exceeded maximum of {{precision}} decimal places",
-            "required": "Это поле обязательно заполнить"
-          },
-          "priceField": "Лимит цены",
-          "total": "Всего",
-          "expiration": "Экспирация",
-          "fee": "Комиссия {{fee}} ACRYL",
-          "notifications": {
-            "error": {
-              "title": "Ошибка при создании транзакции"
-            },
-            "success": {
-              "title": "Успешный обмен"
-            },
-            "isCreated": "The order is created",
-            "notEnoughBalance": "Not enough tradable balance",
-            "somethingWentWrong": "Something went wrong"
-          },
-          "hasScript": "Cancel [script](https://docs.acrylplatform.com/en/acryl-client/advanced_features/script_transaction.html) to trade"
         }
       }
     },
