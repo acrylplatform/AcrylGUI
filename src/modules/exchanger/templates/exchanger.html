@@ -51,13 +51,13 @@
                         </div>
 
                         <div class="price">
-                            <div class="split-half field-label">
-                                <div class="basic-600" w-i18n="createOrder.priceField" w-i18n-ns="app.exchanger"></div>
+                            <div class="split-half">
+                                <div class="field-label basic-600" w-i18n="createOrder.priceField" w-i18n-ns="app.exchanger"></div>
                             </div>
 
                             <w-input-container ng-class="{'invalid': $ctrl.isPriceInvalid()}">
                                 <div class="input-like price-disable">
-                                    <w-input class=" embed no-validate-icons" tabindex="2" type="text" ng-focus="$ctrl.focusedInputName = 'price'"
+                                    <w-input class="embed no-validate-icons" tabindex="2" type="text" ng-focus="$ctrl.focusedInputName = 'price'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validate w-validator-asset="{{$ctrl.priceBalance.asset}}"
                                         w-validator-gt="0" name="price" ng-model="$ctrl.price" required disabled></w-input>
                                     <div class="asset-name-wrap">
@@ -80,7 +80,7 @@
                             <div class="field-label basic-600" w-i18n="createOrder.total" w-i18n-ns="app.exchanger"></div>
                             <w-input-container ng-class="{ 'invalid': $ctrl.isTotalInvalid() }">
                                 <div class="input-like price-disable">
-                                    <w-input class=" embed no-validate-icons" tabindex="3" type="text" name="total"
+                                    <w-input class="embed no-validate-icons" tabindex="3" type="text" name="total"
                                         ng-model="$ctrl.totalPrice" w-validate ng-focus="$ctrl.focusedInputName = 'total'"
                                         ng-blur="$ctrl.focusedInputName = null" w-validator-asset="{{$ctrl.priceBalance.asset}}"
                                         w-validator-gt="0" required disabled></w-input>
