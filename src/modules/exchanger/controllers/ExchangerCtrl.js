@@ -261,6 +261,7 @@
 
             setMaxAmount() {
                 this._setDirtyAmount(this._getMaxAmountForSell());
+                this.order.$pristine = false;
             }
 
             /**
