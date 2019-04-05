@@ -146,6 +146,7 @@
             _onChangeAssetPair() {
                 if (this._chartReady) {
                     this._setChartPair();
+                    this._resetTradingView();
                 } else {
                     this._assetIdPairWasChanged = true;
                 }

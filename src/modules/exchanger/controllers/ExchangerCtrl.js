@@ -123,6 +123,7 @@
                 this._fee = null;
                 this.invalid = false;
                 this.availableBalance = null;
+                this.order = null;
                 /**
                  *
                  * @type {boolean}
@@ -198,9 +199,11 @@
                         this.ask = null;
                         balancesPoll.restart();
                         spreadPoll.restart();
-                        const form = this.order;
-                        form.$setUntouched();
-                        form.$setPristine();
+                        if (this.order) {
+                            const form = this.order;
+                            form.$setUntouched();
+                            form.$setPristine();
+                        }
                         if (lastTraderPoll) {
                             lastTraderPoll.restart();
                         }
