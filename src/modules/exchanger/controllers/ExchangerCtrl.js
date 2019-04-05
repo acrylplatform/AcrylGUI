@@ -104,7 +104,7 @@
                  * @type {{amount: string, price: string}}
                  * @private
                  */
-                this._assetIdPair = null;
+                this._assetIdPair = { amount: WavesApp.defaultAssets.WAVES, price: WavesApp.defaultAssets.BTC };
                 /**
                  * @type {Money}
                  * @private
@@ -123,6 +123,7 @@
                 this._fee = null;
                 this.invalid = false;
                 this.availableBalance = null;
+                this.order = null;
                 /**
                  *
                  * @type {boolean}
@@ -148,10 +149,6 @@
                 ds.moneyFromTokens('0.001', WavesApp.defaultAssets.WAVES).then((money) => {
                     this.minAmountBalance = money;
                     $scope.$digest();
-                });
-
-                this.syncSettings({
-                    _assetIdPair: 'dex.assetIdPair'
                 });
 
                 /**
@@ -198,9 +195,11 @@
                         this.ask = null;
                         balancesPoll.restart();
                         spreadPoll.restart();
-                        const form = this.order;
-                        form.$setUntouched();
-                        form.$setPristine();
+                        if (this.order) {
+                            const form = this.order;
+                            form.$setUntouched();
+                            form.$setPristine();
+                        }
                         if (lastTraderPoll) {
                             lastTraderPoll.restart();
                         }
