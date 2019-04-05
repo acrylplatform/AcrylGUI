@@ -104,7 +104,7 @@
                  * @type {{amount: string, price: string}}
                  * @private
                  */
-                this._assetIdPair = null;
+                this._assetIdPair = { amount: WavesApp.defaultAssets.WAVES, price: WavesApp.defaultAssets.BTC };
                 /**
                  * @type {Money}
                  * @private
@@ -149,10 +149,6 @@
                 ds.moneyFromTokens('0.001', WavesApp.defaultAssets.WAVES).then((money) => {
                     this.minAmountBalance = money;
                     $scope.$digest();
-                });
-
-                this.syncSettings({
-                    _assetIdPair: 'dex.assetIdPair'
                 });
 
                 /**
