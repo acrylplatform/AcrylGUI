@@ -57,8 +57,8 @@
                         const priceName = priceInfo.ticker ? priceInfo.ticker : priceInfo.name;
                         amountName = (amountName === 'WAVES') ? 'ACRYL' : amountName;
                         const ticker = `${amountInfo.id}/${priceInfo.id}`;
-                        const symbolName = `${amountName}/${priceName}`;
-
+                        let symbolName = `${amountName}/${priceName}`;
+                        symbolName = symbolName.includes('WAVES') ? symbolName.replace('WAVES', 'ACRYL') : symbolName;
                         return {
                             ...DEFAULT_SYMBOL_INFO,
                             pricescale: Math.pow(10, price.precision),
