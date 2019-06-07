@@ -4,29 +4,29 @@
 @mobile-leftmenu-height: 60px;
 
 w-left-menu {
-  width: @width-left-menu;
-  position: absolute;
-  left: 0;
-  top: 0;
-  height: 100%;
-  bottom: 0;
-  display: block;
+  width           : @width-left-menu;
+  position        : absolute;
+  left            : 0;
+  top             : 0;
+  height          : 100%;
+  bottom          : 0;
+  display         : block;
   background-color: @color-white;
-  z-index: 30;
-  box-shadow: @shadow-menu-left;
+  z-index         : 30;
+  box-shadow      : @shadow-menu-left;
 
   .avatar-container {
-    margin: 15px auto 20px auto;
+    margin  : 15px auto 20px auto;
     position: relative;
-    width: 40px;
+    width   : 40px;
 
     w-avatar[type='scripted'],
     w-avatar[type='ledger'],
     w-avatar[type='wavesKeeper'] {
       display: block;
-      width: 40px;
-      height: 40px;
-      margin: 0 auto;
+      width  : 40px;
+      height : 40px;
+      margin : 0 auto;
     }
 
     w-avatar:hover .avatar-options-list {
@@ -43,21 +43,22 @@ w-left-menu {
   }
 
   w-responsive-menu {
-    width: 100%;
-    position: relative;
-    height: calc(100vh ~'- 90px');
+    width     : 100%;
+    position  : relative;
+    height    : calc(100vh ~'- 90px');
     min-height: 280px;
 
     w-responsive-menu-item.settings {
       position: absolute;
-      left: 10px;
-      bottom: 50px;
+      left    : 10px;
+      bottom  : 50px;
     }
+
     w-responsive-menu-item.logout,
     w-responsive-menu-item.login {
       position: absolute;
-      left: 10px;
-      bottom: 0;
+      left    : 10px;
+      bottom  : 0;
     }
 
     .navigation-menu {
@@ -72,68 +73,73 @@ w-left-menu {
       }
 
       .menu-item {
-        display: block;
-        width: 50px;
-        height: 50px;
-        border-radius: @border-radius;
-        background-color: transparent;
+        display            : block;
+        width              : 50px;
+        height             : 50px;
+        border-radius      : @border-radius;
+        background-color   : transparent;
         background-position: center center;
-        background-repeat: no-repeat;
-        margin: 0 auto 5px auto;
-        font-size: 0;
-        cursor: pointer;
-        position: relative;
+        background-repeat  : no-repeat;
+        margin             : 0 auto 5px auto;
+        font-size          : 0;
+        cursor             : pointer;
+        position           : relative;
 
         &::after {
-          display: none;
-          content: '';
-          position: absolute;
-          top: 50%;
-          left: 50%;
-          width: @default-icon-size;
-          height: @default-icon-size;
-          transform: translate(-50%, -50%);
-          background-image: @menu-icons;
-          background-repeat: no-repeat;
+          display            : none;
+          content            : '';
+          position           : absolute;
+          top                : 50%;
+          left               : 50%;
+          width              : @default-icon-size;
+          height             : @default-icon-size;
+          transform          : translate(-50%, -50%);
+          background-image   : @menu-icons;
+          background-repeat  : no-repeat;
           background-position: center;
-          background-size: auto;
-          transition: none;
+          background-size    : auto;
+          transition         : none;
         }
 
         &.wallet::after {
-          display: block;
+          display            : block;
           background-position: 0 0;
         }
 
         &.dex::after {
-          display: block;
+          display            : block;
           background-position: -@default-icon-size 0;
         }
 
         &.tokens::after {
-          display: block;
+          display            : block;
           background-position: (-@default-icon-size * 2) 0;
         }
 
         &.settings::after {
-          display: block;
+          display            : block;
           background-position: (-@default-icon-size * 3) 0;
         }
 
         &.logout::after {
-          display: block;
+          display            : block;
           background-position: (-@default-icon-size * 4) 0;
         }
 
         &.login::after {
-          display: block;
+          display            : block;
           background-position: (-@default-icon-size * 4) -@default-icon-size;
         }
       }
 
       .exchanger {
-        display: block;
-       background-image:  url("/img/icons/dark/exchanger.svg");
+        display         : block;
+        background-image: url("/img/icons/dark/exchanger.svg");
+      }
+
+      .shop {
+        display         : block;
+        background-image: url("/img/icons/dark/shop.svg");
       }
 
       @media screen and (min-width: 769px) {
@@ -154,9 +160,11 @@ w-left-menu {
           &.wallet::after {
             background-position: 0 calc(-@default-icon-size~'- 1px');
           }
+
           &.dex::after {
             background-position: -@default-icon-size -@default-icon-size;
           }
+
           &.tokens::after {
             background-position: (-@default-icon-size * 2) -@default-icon-size;
           }
@@ -176,56 +184,57 @@ w-left-menu {
   .avatar-container.has-helper {
     w-help-icon {
       position: absolute;
-      left: 100%;
-      top: 0;
+      left    : 100%;
+      top     : 0;
 
       .help-icon {
         &__icon {
           &::after {
-            left: 19px;
-            top: 50%;
+            left      : 19px;
+            top       : 50%;
             margin-top: -5px;
           }
         }
 
         &__content {
           left: 6px;
-          top: 31px;
+          top : 31px;
         }
       }
     }
   }
+
   // end
 }
 
 @media screen and (max-width: 768px) {
 
   w-left-menu {
-    width: 100%;
-    height: auto;
-    min-height: 60px;
-    min-width: 320px;
-    bottom: auto;
-    display: flex;
+    width       : 100%;
+    height      : auto;
+    min-height  : 60px;
+    min-width   : 320px;
+    bottom      : auto;
+    display     : flex;
     border-right: 0 none;
-    position: fixed;
-    box-shadow: @shadow-menu-top;
+    position    : fixed;
+    box-shadow  : @shadow-menu-top;
 
     .avatar-container {
       margin: @padding-main-layout;
     }
 
     .wallet-toggler {
-      background: @dropdown-icon no-repeat;
+      background         : @dropdown-icon no-repeat;
       background-position: 20px center;
-      transform: rotate(180deg);
-      width: 100%;
-      height: 60px;
-      position: absolute;
-      left: 0;
-      top: 0;
-      cursor: pointer;
-      z-index: 10;
+      transform          : rotate(180deg);
+      width              : 100%;
+      height             : 60px;
+      position           : absolute;
+      left               : 0;
+      top                : 0;
+      cursor             : pointer;
+      z-index            : 10;
 
       &:hover {
         opacity: .6;
@@ -233,12 +242,12 @@ w-left-menu {
     }
 
     w-responsive-menu {
-      width: 100%;
-      top: 60px;
+      width     : 100%;
+      top       : 60px;
       max-height: calc(100vh ~'- 60px');
-      height: auto;
-      position: absolute;
-      z-index: 16;
+      height    : auto;
+      position  : absolute;
+      z-index   : 16;
       box-shadow: 0 5px 5px @color-basic-50;
       margin-top: -1px;
       min-height: auto;
@@ -246,12 +255,12 @@ w-left-menu {
       &.wallet-items-hide {
 
         .wallet-toggler {
-          transform: rotate(0deg);
+          transform          : rotate(0deg);
           background-position: calc(100% ~'- 20px') center
         }
 
         w-responsive-menu-item[value="wallet"] .child-menu-list {
-          height: 0;
+          height  : 0;
           overflow: hidden;
         }
 
@@ -269,29 +278,29 @@ w-left-menu {
       }
 
       .navigation-menu {
-        margin: 0;
-        height: 0;
-        position: relative;
-        overflow-x: hidden;
-        overflow-y: auto;
-        opacity: 0;
+        margin      : 0;
+        height      : 0;
+        position    : relative;
+        overflow-x  : hidden;
+        overflow-y  : auto;
+        opacity     : 0;
         border-color: @color-accent-50;
 
         &.active {
-          opacity: 1;
-          display: flex;
-          height: auto;
+          opacity      : 1;
+          display      : flex;
+          height       : auto;
           border-bottom: 1px solid @color-accent-50;
-          border-top: 1px solid @color-accent-50;
+          border-top   : 1px solid @color-accent-50;
 
-          & + w-button + .navigation-menu-overlay {
-            display: block;
-            position: fixed;
-            height: 5000px;
-            z-index: -1;
-            top: 60px;
-            left: 0;
-            width: 100%;
+          &+w-button+.navigation-menu-overlay {
+            display   : block;
+            position  : fixed;
+            height    : 5000px;
+            z-index   : -1;
+            top       : 60px;
+            left      : 0;
+            width     : 100%;
             background: rgba(0, 0, 0, 0.3);
           }
 
@@ -305,33 +314,33 @@ w-left-menu {
         }
 
         w-responsive-menu-item {
-          display: block;
+          display     : block;
           border-color: @color-accent-50;
-          background: @color-white;
+          background  : @color-white;
 
           .child-menu-list {
-            display: flex;
-            flex-direction: column;
+            display         : flex;
+            flex-direction  : column;
             background-color: @color-basic-50;
           }
 
           .menu-item {
-            background-color: transparent;
-            white-space: nowrap;
-            font-size: 15px;
-            margin: 0;
-            padding-left: 50px;
-            width: 100%;
+            background-color   : transparent;
+            white-space        : nowrap;
+            font-size          : 15px;
+            margin             : 0;
+            padding-left       : 50px;
+            width              : 100%;
             background-position: 10px center;
-            margin-left: @padding-main-layout;
-            display: flex;
-            align-items: center;
-            height: 60px;
-            color: @color-basic-700;
+            margin-left        : @padding-main-layout;
+            display            : flex;
+            align-items        : center;
+            height             : 60px;
+            color              : @color-basic-700;
 
             &::after {
               transform: translate(0, -50%);
-              left: 7px;
+              left     : 7px;
             }
           }
 
@@ -356,8 +365,8 @@ w-left-menu {
           &.logout,
           &.settings {
             position: relative;
-            bottom: auto;
-            left: auto;
+            bottom  : auto;
+            left    : auto;
           }
         }
       }
@@ -365,14 +374,14 @@ w-left-menu {
       &.wallet-items-hide {
 
         .wallet-toggler {
-          transform: rotate(0deg);
+          transform          : rotate(0deg);
           background-position: calc(100% ~'- 20px') center
         }
 
         w-responsive-menu-item[value="wallet"] .child-menu-list {
           transition: .3s;
-          height: 0;
-          overflow: hidden;
+          height    : 0;
+          overflow  : hidden;
         }
 
         w-responsive-menu-item.has-active[value="wallet"] {
@@ -381,37 +390,43 @@ w-left-menu {
       }
 
       w-button.nav-toggler {
-        & > button.nav-toggler {
-          right: 16px;
-          top: -40px;
-          display: block;
-          width: 21px;
-          height: 17px;
+        &>button.nav-toggler {
+          right   : 16px;
+          top     : -40px;
+          display : block;
+          width   : 21px;
+          height  : 17px;
           overflow: visible;
+
           &:hover {
             opacity: .7;
           }
+
           .dots {
-            width: 21px;
-            height: 17px;
-            position: relative;
-            transition: .3s;
+            width           : 21px;
+            height          : 17px;
+            position        : relative;
+            transition      : .3s;
             transform-origin: center;
+
             .dot {
-              width: 21px;
-              height: 1px;
-              display: block;
-              position: absolute;
+              width           : 21px;
+              height          : 1px;
+              display         : block;
+              position        : absolute;
               background-color: @color-info-500;
-              border-radius: 0;
-              transition: .3s;
+              border-radius   : 0;
+              transition      : .3s;
               transform-origin: center;
+
               &:first-child {
                 top: 3px;
               }
-              &:first-child + .dot {
+
+              &:first-child+.dot {
                 top: 8px;
               }
+
               &:last-child {
                 bottom: 3px;
               }
@@ -420,21 +435,24 @@ w-left-menu {
         }
       }
 
-      .navigation-menu.active + w-button.nav-toggler {
-        & > button.nav-toggler {
+      .navigation-menu.active+w-button.nav-toggler {
+        &>button.nav-toggler {
           .dots {
             transform: rotate(-180deg);
+
             .dot {
               &:first-child {
-                top: 8px;
+                top      : 8px;
                 transform: rotate(135deg);
               }
-              &:first-child + .dot {
+
+              &:first-child+.dot {
                 opacity: 0;
               }
+
               &:last-child {
                 transform: rotate(-135deg);
-                bottom: 8px;
+                bottom   : 8px;
               }
             }
           }
@@ -446,34 +464,35 @@ w-left-menu {
 }
 
 @media screen and (max-width: 1024px) {
+
   body.dex,
   body.dex-demo {
     w-left-menu {
-      width: 100%;
-      height: auto;
-      min-height: 60px;
-      bottom: auto;
-      display: flex;
+      width       : 100%;
+      height      : auto;
+      min-height  : 60px;
+      bottom      : auto;
+      display     : flex;
       border-right: 0 none;
-      position: fixed;
-      box-shadow: @shadow-menu-left;
-      border: none;
+      position    : fixed;
+      box-shadow  : @shadow-menu-left;
+      border      : none;
 
       .avatar-container {
         margin: @padding-main-layout;
       }
 
       .wallet-toggler {
-        background: @dropdown-icon no-repeat;
+        background         : @dropdown-icon no-repeat;
         background-position: 20px center;
-        transform: rotate(180deg);
-        width: 100%;
-        height: 60px;
-        position: absolute;
-        left: 0;
-        top: 0;
-        cursor: pointer;
-        z-index: 10;
+        transform          : rotate(180deg);
+        width              : 100%;
+        height             : 60px;
+        position           : absolute;
+        left               : 0;
+        top                : 0;
+        cursor             : pointer;
+        z-index            : 10;
 
         &:hover {
           opacity: .6;
@@ -481,12 +500,12 @@ w-left-menu {
       }
 
       w-responsive-menu {
-        width: 100%;
-        top: 60px;
+        width     : 100%;
+        top       : 60px;
         max-height: calc(100vh ~'- 60px');
-        height: auto;
-        position: absolute;
-        z-index: 16;
+        height    : auto;
+        position  : absolute;
+        z-index   : 16;
         box-shadow: @shadow-menu-top;
         margin-top: -1px;
         min-height: auto;
@@ -494,12 +513,12 @@ w-left-menu {
         &.wallet-items-hide {
 
           .wallet-toggler {
-            transform: rotate(0deg);
+            transform          : rotate(0deg);
             background-position: calc(100% ~'- 20px') center
           }
 
           w-responsive-menu-item[value="wallet"] .child-menu-list {
-            height: 0;
+            height  : 0;
             overflow: hidden;
           }
 
@@ -517,29 +536,29 @@ w-left-menu {
         }
 
         .navigation-menu {
-          margin: 0;
-          height: 0;
-          position: relative;
-          overflow-x: hidden;
-          overflow-y: auto;
-          opacity: 0;
+          margin      : 0;
+          height      : 0;
+          position    : relative;
+          overflow-x  : hidden;
+          overflow-y  : auto;
+          opacity     : 0;
           border-color: @color-accent-50;
 
           &.active {
-            opacity: 1;
-            display: flex;
-            height: auto;
+            opacity      : 1;
+            display      : flex;
+            height       : auto;
             border-bottom: 1px solid @color-accent-50;
-            border-top: 1px solid @color-accent-50;
+            border-top   : 1px solid @color-accent-50;
 
-            & + w-button + .navigation-menu-overlay {
-              display: block;
-              position: fixed;
-              height: 5000px;
-              z-index: -1;
-              top: 60px;
-              left: 0;
-              width: 100%;
+            &+w-button+.navigation-menu-overlay {
+              display   : block;
+              position  : fixed;
+              height    : 5000px;
+              z-index   : -1;
+              top       : 60px;
+              left      : 0;
+              width     : 100%;
               background: rgba(0, 0, 0, 0.3);
             }
 
@@ -553,34 +572,34 @@ w-left-menu {
           }
 
           w-responsive-menu-item {
-            display: block;
-            width: 100%;
+            display     : block;
+            width       : 100%;
             border-color: @color-accent-50;
-            background: @color-white;
+            background  : @color-white;
 
             .child-menu-list {
-              display: flex;
-              flex-direction: column;
+              display         : flex;
+              flex-direction  : column;
               background-color: @color-basic-50;
             }
 
             .menu-item {
-              background-color: transparent;
-              white-space: nowrap;
-              font-size: 15px;
-              margin: 0;
-              padding-left: 50px;
-              width: 100%;
+              background-color   : transparent;
+              white-space        : nowrap;
+              font-size          : 15px;
+              margin             : 0;
+              padding-left       : 50px;
+              width              : 100%;
               background-position: 10px center;
-              margin-left: @padding-main-layout;
-              display: flex;
-              align-items: center;
-              height: 60px;
-              color: @color-basic-700;
+              margin-left        : @padding-main-layout;
+              display            : flex;
+              align-items        : center;
+              height             : 60px;
+              color              : @color-basic-700;
 
               &::after {
                 transform: translate(0, -50%);
-                left: 7px;
+                left     : 7px;
               }
             }
 
@@ -606,8 +625,8 @@ w-left-menu {
             &.logout,
             &.settings {
               position: relative;
-              bottom: auto;
-              left: auto;
+              bottom  : auto;
+              left    : auto;
             }
 
           }
@@ -616,18 +635,19 @@ w-left-menu {
         &.wallet-items-hide {
 
           .wallet-toggler {
-            transform: rotate(0deg);
+            transform          : rotate(0deg);
             background-position: calc(100% ~'- 20px') center
           }
 
           w-responsive-menu-item[value="wallet"] .child-menu-list {
             transition: .3s;
-            height: 0;
-            overflow: hidden;
+            height    : 0;
+            overflow  : hidden;
           }
 
           w-responsive-menu-item.has-active[value="wallet"] {
             background: @color-submit-400;
+
             .menu-item {
               color: @white-only;
             }
@@ -635,37 +655,43 @@ w-left-menu {
         }
 
         w-button.nav-toggler {
-          & > button.nav-toggler {
-            right: 16px;
-            top: -40px;
-            display: block;
-            width: 17px;
-            height: 17px;
+          &>button.nav-toggler {
+            right   : 16px;
+            top     : -40px;
+            display : block;
+            width   : 17px;
+            height  : 17px;
             overflow: visible;
+
             &:hover {
               opacity: .7;
             }
+
             .dots {
-              width: 17px;
-              height: 17px;
-              position: relative;
-              transition: .3s;
+              width           : 17px;
+              height          : 17px;
+              position        : relative;
+              transition      : .3s;
               transform-origin: center;
+
               .dot {
-                width: 17px;
-                height: 1px;
-                display: block;
-                position: absolute;
+                width           : 17px;
+                height          : 1px;
+                display         : block;
+                position        : absolute;
                 background-color: @color-info-500;
-                border-radius: 0;
-                transition: .3s;
+                border-radius   : 0;
+                transition      : .3s;
                 transform-origin: center;
+
                 &:first-child {
                   top: 3px;
                 }
-                &:first-child + .dot {
+
+                &:first-child+.dot {
                   top: 8px;
                 }
+
                 &:last-child {
                   bottom: 3px;
                 }
@@ -674,21 +700,24 @@ w-left-menu {
           }
         }
 
-        .navigation-menu.active + w-button.nav-toggler {
-          & > button.nav-toggler {
+        .navigation-menu.active+w-button.nav-toggler {
+          &>button.nav-toggler {
             .dots {
               transform: rotate(-180deg);
+
               .dot {
                 &:first-child {
-                  top: 8px;
+                  top      : 8px;
                   transform: rotate(135deg);
                 }
-                &:first-child + .dot {
+
+                &:first-child+.dot {
                   opacity: 0;
                 }
+
                 &:last-child {
                   transform: rotate(-135deg);
-                  bottom: 8px;
+                  bottom   : 8px;
                 }
               }
             }
