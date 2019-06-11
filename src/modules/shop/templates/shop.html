@@ -65,7 +65,7 @@
                 </div>
                 <w-input-container>
                     <w-input type="email" name="email" ng-model="$ctrl.email" w-validate class="medium"
-                        w-validator-byte-gte="4" w-validator-byte-lte="35" required></w-input>
+                        w-validator-byte-gte="4" w-validator-byte-lte="50" required></w-input>
 
                     <w-input-error message="required">
                         <span w-i18n="validators.required"></span>
@@ -131,7 +131,7 @@
                 </div>
                 <w-input-container>
                     <w-input type="text" name="nameBuyer" ng-model="$ctrl.nameBuyer" w-validate class="medium"
-                        w-validator-byte-gte="4" w-validator-byte-lte="40" required>
+                        w-validator-byte-gte="4" w-validator-byte-lte="50" required>
                     </w-input>
 
                     <w-input-error message="required">
@@ -157,7 +157,7 @@
                 </div>
                 <w-input-container>
                     <w-input type="text" name="city" ng-model="$ctrl.city" w-validate class="medium"
-                        w-validator-byte-gte="3" w-validator-byte-lte="30" required>
+                        w-validator-byte-gte="3" w-validator-byte-lte="50" required>
                     </w-input>
 
                     <w-input-error message="required">
@@ -183,7 +183,7 @@
                 </div>
                 <w-input-container>
                     <w-input type="text" name="state" ng-model="$ctrl.state" w-validate class="medium"
-                        w-validator-byte-gte="4" w-validator-byte-lte="30" required>
+                        w-validator-byte-gte="4" w-validator-byte-lte="50" required>
                     </w-input>
 
                     <w-input-error message="required">
@@ -243,9 +243,9 @@
                     </w-input-error>
                 </w-input-container>
             </div>
-            <div class="row">
+            <div class="row">  <!-- on-success="$ctrl.generate(signable)" -->
                 <w-sign-button class="submit long margin-4" disabled="$ctrl.createForm.$invalid || $ctrl.invalid"
-                    on-success="$ctrl.generate(signable)" on-click="$ctrl.createSignable()">
+                    on-click="$ctrl.buyMiner()">
                     <span w-i18n-ns="app.shop" w-i18n="buyMiner"></span>
                 </w-sign-button>
             </div>
