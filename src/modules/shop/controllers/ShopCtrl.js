@@ -108,57 +108,84 @@
                 this.observe('countOfMiners', this._onChangeCountOfMiners);
             }
 
-            generate(signable) {
-                // console.log('signable._forSign.data.partAttacment :', signable._forSign.data.partAttacment);
-                // console.log('signable._forSign.data.partAttacmen :', this.descriptionOrderChunk[0].length);
-                modalManager.showConfirmTx(signable);
-                // .then(() => {
-                this._processAfterConfirmation(+signable._forSign.data.partAttacment);
-                // });
-            }
-
             buyMiner() {
                 this._splitAttachmentString();
-                const partsAttachmentMessage = this.descriptionOrderChunk.length;
-                for (let i = 0; i < partsAttachmentMessage; i++) {
-                    this.createSignable(i);
-                    // console.log('i :', i);
-                }
+                const txData = waves.node.transactions.createTransaction({
+                    data: [
+                        {
+                            key: 'address user',
+                            type: 'string',
+                            value: this.descriptionOrderChunk
+                        }
+                    ],
+                    fee: this._fee,
+                    shop: true
+                });
+                this.createSign(txData, SIGN_TYPE.DATA);
             }
 
-            createSignable(indexAttacment) {
-                // console.log('indexAttacment :', this.descriptionOrderChunk[indexAttacment].length);
-                // console.log('this.descriptionOrderChunk.length :', this.descriptionOrderChunk[indexAttacment]);
+            createMinerSignable(txDataTx) {
                 const tx = waves.node.transactions.createTransaction({
                     type: SIGN_TYPE.TRANSFER,
                     recipient: this.sellerData.sellerAddress,
-                    attachment: this.descriptionOrderChunk[indexAttacment],
-                    amount: (indexAttacment === 0) ? this.sumInMoney : this._fee,
-                    fee: this._fee,
-                    shop: true,
-                    partAttacment: indexAttacment
-                });
+                    attachment: txDataTx,
+                    amount: this.sumInMoney,
+                    fee: this._fee
 
-                const signable = ds.signature.getSignatureApi().makeSignable({
-                    type: tx.type,
-                    data: tx
                 });
-                this.generate(signable);
+                return ds.signature
+                    .getSignatureApi()
+                    .makeSignable({
+                        type: tx.type,
+                        data: tx
+                    });
             }
 
-            _processAfterConfirmation(indexAttacment) {
-                if (indexAttacment === (this.descriptionOrderChunk.length - 1)) {
-                    return this._reset();
-                }
+            onSignTx(signable) {
+                this.signable = signable;
+            }
+
+            createSign(tx, typeTx) {
+                const signable = ds.signature
+                    .getSignatureApi()
+                    .makeSignable({
+                        type: typeTx,
+                        data: tx
+                    });
+                modalManager.showConfirmShopTx(signable)
+                    .then(() => {
+                        return signable.getDataForApi();
+                    })
+                    .then(ds.broadcast)
+                    .then(() => {
+                        return signable.getId();
+                    })
+                    .then(id => {
+                        return this.createMinerSignable(id);
+                    })
+                    .then((signableShop) => {
+                        return signableShop.getDataForApi();
+                    })
+                    .then(ds.broadcast)
+                    .then(() => {
+                        modalManager.showShopReport();
+                    })
+                    .then(() => {
+                        this._reset();
+                    })
+                    .catch(e => {
+                        return Promise.reject(e);
+                    }
+                    );
             }
 
             _splitAttachmentString() {
-                const regexChunk = new RegExp(`.{1,${110}}`, 'g');
                 const userOrder = `${this.country}${':'}${this.state}${':'}
-                    ${this.city}${':'}${this.address}${':'}${this.phone}${':'}${this.nameBuyer}${':'}                
-                    ${this.email}${':'}${this.zip}${':'}${this.countOfMiners.toNumber()}`;
-                this.descriptionOrderChunk = userOrder.match(regexChunk);
-                // console.log('this.descriptionOrderChunk.length :', this.descriptionOrderChunk.length);
+                    ${this.city}${':'}${this.address}${':'}
+                    ${this.phone}${':'}${this.nameBuyer}${':'}                
+                    ${this.email}${':'}${this.zip}${':'}
+                    ${this.countOfMiners.toNumber()}`;
+                this.descriptionOrderChunk = userOrder;
                 return this.descriptionOrderChunk;
             }
 
@@ -171,25 +198,22 @@
             }
 
             _setFee(fee) {
-                ds.moneyFromTokens(fee, WavesApp.defaultAssets.WAVES)
-                    .then(money => {
-                        this._fee = money;
-                        $scope.$digest();
-                    });
+                ds.moneyFromTokens(fee, WavesApp.defaultAssets.WAVES).then(money => {
+                    this._fee = money;
+                    $scope.$digest();
+                });
             }
 
             _getMinerPrice() {
-                return fetch(WavesApp.network.shop)
-                    .then((resp) => {
-                        this.sellerData = JSON.parse(resp);
-                        this._setFee(this.sellerData.fee);
-                        return this.sellerData;
-                    });
+                return fetch(WavesApp.network.shop).then(resp => {
+                    this.sellerData = JSON.parse(resp);
+                    this._setFee(this.sellerData.fee);
+                    return this.sellerData;
+                });
             }
 
             _onChangeCountOfMiners({ value }) {
                 const clearBalance = this._balance.available.getTokens();
-                // console.log('this.sellerData :', this.sellerData);
                 const sum = value ? value.times(+this.sellerData.priceMiner) : 0;
                 if (value && value.toNumber() && clearBalance.gt(sum)) {
                     this.sumOrder = sum;
@@ -232,6 +256,7 @@
             }
 
         }
+
         return new ShopCtrl();
     };
 

@@ -89,7 +89,7 @@
                     </w-help-icon>
                 </div>
                 <w-input-container>
-                    <w-input type="tel" name="phone" ng-model="$ctrl.phone" w-validator-byte-gte="13"
+                    <w-input type="tel" name="phone" ng-model="$ctrl.phone" w-validator-byte-gte="12"
                         w-validator-byte-lte="13" w-validate w-validator-pattern="^\+?\d{0,13}" class="medium" required>
                     </w-input>
 
@@ -243,9 +243,9 @@
                     </w-input-error>
                 </w-input-container>
             </div>
-            <div class="row">  <!-- on-success="$ctrl.generate(signable)" -->
+            <div class="row">
                 <w-sign-button class="submit long margin-4" disabled="$ctrl.createForm.$invalid || $ctrl.invalid"
-                    on-click="$ctrl.buyMiner()">
+                    on-click="$ctrl.buyMiner()" on-success="$ctrl.onSignTx(signable)">
                     <span w-i18n-ns="app.shop" w-i18n="buyMiner"></span>
                 </w-sign-button>
             </div>

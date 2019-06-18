@@ -266,5 +266,6 @@
       "txJson": "Base64 script"
     }
   },
-  "whitespace": "&nbsp;"
+  "whitespace": "&nbsp;",
+  "close": "close"
 }

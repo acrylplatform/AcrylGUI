@@ -384,6 +384,27 @@
                 });
             }
 
+            showConfirmShopTx(signable, showValidationErrors) {
+                return this._getModal({
+                    id: 'shop-tx',
+                    mod: 'shop-tx',
+                    ns: 'app.ui',
+                    locals: { signable, showValidationErrors },
+                    controller: 'ShopTxCtrl',
+                    contentUrl: 'modules/utils/modals/shopTx/shopTx.modal.html'
+                });
+            }
+
+            showShopReport() {
+                return this._getModal({
+                    id: 'shop-report',
+                    mod: 'shop-report',
+                    ns: 'app.ui',
+                    controller: 'ShopReportCtrl',
+                    contentUrl: 'modules/utils/modals/shopReport/shopReport.modal.html'
+                });
+            }
+
             showBurnModal(assetId) {
                 return $injector.get('waves').node.assets.balance(assetId).then(({ available }) => this._getModal({
                     id: 'token-burn',

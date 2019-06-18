@@ -26,6 +26,7 @@
             txId = null;
             templatePostfix = '';
             needShowMirror = true;
+            shop = false;
 
             constructor($scope) {
                 super();
@@ -43,11 +44,14 @@
 
                 const transaction = waves.node.transactions.createTransaction(this.signable.getTxData());
                 this.transaction = transaction;
-
                 this.signable.getId().then(id => {
                     this.txId = id;
                     this.$scope.$apply();
                 });
+
+                if (this.signable._forSign.data) {
+                    this.shop = this.signable._forSign.data.shop;
+                }
 
                 this.templateUrl = `${PATH}/${transaction.templateType}${this.templatePostfix}.html`;
                 this.datetime = $filter('date')(transaction.timestamp, 'dd.MM.yyyy, HH:mm');

@@ -16,6 +16,7 @@
                  * @type {string}
                  */
                 this.txId = null;
+                this.shop = false;
 
                 this.templatePostfix = '-header';
             }
