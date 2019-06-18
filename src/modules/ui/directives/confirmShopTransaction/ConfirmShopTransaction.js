@@ -23,7 +23,6 @@
 
             constructor() {
                 super($scope);
-
                 this.observe(['showValidationErrors', 'signable'], this._showErrors);
             }
 
@@ -43,10 +42,6 @@
                 if (this.tx) {
                     this.permissionName = ConfirmShopTransaction._getPermissionNameByTx(this.tx);
                 }
-            }
-
-            getSignable() {
-                return this.signable;
             }
 
             nextStep() {

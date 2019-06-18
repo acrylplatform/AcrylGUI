@@ -119,7 +119,7 @@
             }
 
             confirmModal() {
-                $mdDialog.hide();
+                return $mdDialog.hide();
             }
 
             showTxInfo() {

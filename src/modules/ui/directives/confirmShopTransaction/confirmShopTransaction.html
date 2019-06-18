@@ -3,12 +3,12 @@
         <w-step>
             <w-permit name="{{::$ctrl.permissionName}}" mode="on">
                 <w-transaction-info-shop is-confirm="::true" signable="$ctrl.signable"></w-transaction-info-shop>
-                <div class="buttons-wrapper margin-top-3" ng-if="!$ctrl.loadingSignFromDevice">
-                    <w-button ng-if="!$ctrl.noBackButton" class="big" on-click="$ctrl.onClickBack()">
+                <div class="buttons-wrapper margin-top-3">
+                    <w-button class="big" on-click="$ctrl.onClickBack()">
                         <span w-i18n="confirmTransaction.back"></span>
                     </w-button>
 
-                    <w-button on-success="$ctrl.nextStep()" class="big submit" on-click="$ctrl.getSignable()">
+                    <w-button class="big submit" on-click="$ctrl.nextStep()">
                         <span w-i18n="confirmTransaction.sign"></span>
                     </w-button>
                 </div>
