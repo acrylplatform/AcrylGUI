@@ -180,12 +180,18 @@
             }
 
             _splitAttachmentString() {
-                const userOrder = `${this.country}${':'}${this.state}${':'}
-                    ${this.city}${':'}${this.address}${':'}
-                    ${this.phone}${':'}${this.nameBuyer}${':'}                
-                    ${this.email}${':'}${this.zip}${':'}
-                    ${this.countOfMiners.toNumber()}`;
-                this.descriptionOrderChunk = userOrder;
+                const userOrder = {
+                    phone: this.phone,
+                    email: this.email,
+                    name: this.nameBuyer,
+                    country: this.country,
+                    state: this.state,
+                    sity: this.city,
+                    address: this.address,
+                    postCode: this.zip,
+                    countMiners: this.countOfMiners.toNumber()
+                };
+                this.descriptionOrderChunk = JSON.stringify(userOrder);
                 return this.descriptionOrderChunk;
             }
 
