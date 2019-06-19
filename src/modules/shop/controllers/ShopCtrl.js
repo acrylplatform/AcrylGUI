@@ -9,10 +9,9 @@
      * @param {Waves} waves
      * @return {ShopCtrl}
      */
-    const controller = function (Base, $scope, modalManager, createPoll, waves) {
+    const controller = function (Base, $scope, modalManager, createPoll, waves, crypto) {
         const { SIGN_TYPE } = require('@waves/signature-adapter');
         const ds = require('data-service');
-        const { fetch } = require('data-service');
 
         class ShopCtrl extends Base {
 
@@ -21,80 +20,21 @@
              * @type {form.FormController}
              */
             createForm = null;
-            /**
-             * @type {string}
-             */
             country = '';
-            /**
-             * @type {string}
-             */
             email = '';
-            /**
-             * @type {string}
-             */
             phone = '';
-            /**
-             * @type {string}
-             */
             address = '';
             nameBuyer = '';
             city = '';
             state = '';
             zip = null;
-            /**
-             * @type {BigNumber}
-             */
             countOfMiners = null;
-            /**
-             * @type {BigNumber}
-             */
             sumOrder = null;
             sumInMoney = null;
             sellerData = {};
             descriptionOrderChunk = '';
-            /**
-             * Token name
-             * @type {string}
-             */
-            name = '';
-            /**
-             * Token description
-             * @type {string}
-             */
-            description = '';
-            /**
-             * Can reissue this token
-             * @type {boolean}
-             */
-            issue = true;
-            /**
-             * Count of Miners
-             * @type {BigNumber}
-             */
-            count = null;
-            /**
-             * Precision of token
-             * @type {BigNumber}
-             */
-            precision = null;
-            /**
-             * @type {BigNumber}
-             */
-            maxCoinsCount = null;
-            /**
-             * Has money for fee
-             * @type {boolean}
-             */
             invalid = false;
-            /**
-             * @type {Money}
-             * @private
-             */
             _balance = null;
-            /**
-             * @type {Money}
-             * @private
-             */
             _fee = null;
 
             constructor() {
@@ -191,14 +131,10 @@
                     postCode: this.zip,
                     countMiners: this.countOfMiners.toNumber()
                 };
-                this.descriptionOrderChunk = JSON.stringify(userOrder);
+                this.descriptionOrderChunk = crypto.encrypt(userOrder);
                 return this.descriptionOrderChunk;
             }
 
-            /**
-             * @return {Promise<Money>}
-             * @private
-             */
             _getBalance() {
                 return waves.node.assets.balance(WavesApp.defaultAssets.WAVES);
             }
@@ -211,7 +147,7 @@
             }
 
             _getMinerPrice() {
-                return fetch(WavesApp.network.shop).then(resp => {
+                return ds.fetch(WavesApp.network.shop).then(resp => {
                     this.sellerData = JSON.parse(resp);
                     this._setFee(this.sellerData.fee);
                     return this.sellerData;
@@ -236,10 +172,6 @@
                     });
             }
 
-            /**
-             * Current can i send transaction (balance gt fee)
-             * @private
-             */
             _onChangeBalance() {
                 this.invalid =
                     !this._fee ||
@@ -271,7 +203,8 @@
         '$scope',
         'modalManager',
         'createPoll',
-        'waves'
+        'waves',
+        'crypto'
     ];
 
     angular.module('app.shop').controller('ShopCtrl', controller);
