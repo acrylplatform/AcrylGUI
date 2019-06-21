@@ -1,4 +1,6 @@
 {
+  "price-string": "{{$ctrl.sellerData.priceMiner}} ACRYL",
+  "annonce": "Price of the device",
   "nameBuyer": "Name of buyer",
   "city": "City",
   "state": "State",
@@ -47,14 +49,6 @@
       "reissuable": "Reissuability allows for additional tokens creation that will be added to the total token supply of asset."
     }
   },
-  "modal": {
-    "title": "{{name}} Generation",
-    "titleSuccess": "{{name}} Generation Complete"
-  },
-  "name": "Name of your asset",
-  "notifications": {
-    "isNotCreated": "Token has not been created"
-  },
   "pageTitle": "Buy the miner",
   "placeholders": {
     "description": "You can not change the description later",
@@ -62,23 +56,17 @@
     "count": "Must be more then 0",
     "address": "Enter address delivery",
     "nameBuyer": "Name of buyer"
-  },
-  "precision": "Decimals",
-  "preview": "Preview",
-  "reissuable": {
-    "false": "Not reissuable",
-    "true": "Reissuable"
-  },
+  },  
   "success": {
     "description": "You generated {{amount}} {{name}}",
     "done": "Open Portfolio",
     "title": "Your transaction is on the way!"
   },
   "validators": {
-    "phone": "Must be 12 numbers with symbol +",
+    "phone": "Must be 12 numbers with symbols +",
     "byte": {
-      "gte": "Asset name must be between 4 and 16 bytes long",
-      "lte": "Asset name must be between 4 and 16 bytes long"
+      "gte": "Asset name must be between 4 and 16 symbols long",
+      "lte": "Asset name must be between 4 and 16 symbols long"
     },
     "descriptionLen": "The address is too long. It must be no more than 1,000 bytes.",
     "maxValueCount": "Entered number is too large",

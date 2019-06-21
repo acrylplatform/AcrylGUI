@@ -36,6 +36,7 @@
             invalid = false;
             _balance = null;
             _fee = null;
+            visibleWhenHideCombobox = true;
 
             constructor() {
                 super($scope);
@@ -46,8 +47,12 @@
                 });
                 this.sellerData = this._getMinerPrice();
                 this.observe('countOfMiners', this._onChangeCountOfMiners);
+
             }
 
+            hideHelpIcon(flag) {
+                this.visibleWhenHideCombobox = flag;
+            }
             buyMiner() {
                 this._splitAttachmentString();
                 const txData = waves.node.transactions.createTransaction({
@@ -150,6 +155,9 @@
                 return ds.fetch(WavesApp.network.shop).then(resp => {
                     this.sellerData = JSON.parse(resp);
                     this._setFee(this.sellerData.fee);
+                    if (!this.countOfMiners) {
+                        this.countOfMiners = new BigNumber(1);
+                    }
                     return this.sellerData;
                 });
             }

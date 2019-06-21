@@ -1,8 +1,15 @@
 <div w-i18n-ns="app.shop" class="shop-page">
-    <div class="page-title headline-4 basic-700" w-i18n="pageTitle"></div>
+    <div class="page-title headline-4 basic-700">
+        <div>
+            <div w-i18n="pageTitle"></div>
+            <div w-i18n="annonce"></div>
+            <h1>{{$ctrl.sellerData.priceMiner}} ACRYL</h1>
+        </div>
+        <div class="miner-img"></div>
+    </div>
+
     <div class="shop-page__content">
         <form class="generate-form" name="$ctrl.createForm" novalidate>
-
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="countOfMiners"></span>
@@ -114,8 +121,8 @@
                         </div>
                     </w-help-icon>
                 </div>
-                <w-input-container>
-                    <w-input type="text" class="medium" required>
+                <w-input-container ng-click="$ctrl.hideHelpIcon(false)" ng-blur="$ctrl.hideHelpIcon(true)">
+                    <w-input type="text" class="medium" required > 
                     </w-input>
                     <w-change-country on-change="$ctrl.country"></w-change-country>
                 </w-input-container>
@@ -123,7 +130,7 @@
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="nameBuyer"></span>
-                    <w-help-icon>
+                    <w-help-icon ng-show="$ctrl.visibleWhenHideCombobox">
                         <div class="help-icon__row headline-3">
                             <span w-i18n="helpIcon.nameBuyer"></span>
                         </div>
@@ -134,13 +141,13 @@
                         w-validator-byte-gte="4" w-validator-byte-lte="50" required>
                     </w-input>
 
-                    <w-input-error message="required">
+                    <w-input-error message="required" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.required"></span>
                     </w-input-error>
-                    <w-input-error message="byteLte">
+                    <w-input-error message="byteLte" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.byte.lte"></span>
                     </w-input-error>
-                    <w-input-error message="byteGte">
+                    <w-input-error message="byteGte" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.byte.gte"></span>
                     </w-input-error>
                 </w-input-container>
@@ -149,7 +156,7 @@
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="city"></span>
-                    <w-help-icon>
+                    <w-help-icon ng-show="$ctrl.visibleWhenHideCombobox">
                         <div class="help-icon__row headline-3">
                             <span w-i18n="helpIcon.city"></span>
                         </div>
@@ -160,13 +167,13 @@
                         w-validator-byte-gte="3" w-validator-byte-lte="50" required>
                     </w-input>
 
-                    <w-input-error message="required">
+                    <w-input-error message="required" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.required"></span>
                     </w-input-error>
-                    <w-input-error message="byteLte">
+                    <w-input-error message="byteLte" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.byte.lte"></span>
                     </w-input-error>
-                    <w-input-error message="byteGte">
+                    <w-input-error message="byteGte" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.byte.gte"></span>
                     </w-input-error>
                 </w-input-container>
