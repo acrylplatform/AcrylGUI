@@ -22,7 +22,6 @@
                     { code: 'ru', name: 'Россия' },
                     { code: 'tr', name: 'Turkey' },
                     { code: 'ch', name: 'China' },
-                    { code: 'ge', name: 'Germany' },
                     { code: 'pl', name: 'Poland' }
                 ];
 

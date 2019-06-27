@@ -1,15 +1,53 @@
 <div w-i18n-ns="app.shop" class="shop-page">
     <div class="page-title headline-4 basic-700">
-        <div>
-            <div w-i18n="pageTitle"></div>
-            <div w-i18n="annonce"></div>
-            <h1>{{$ctrl.sellerData.priceMiner}} ACRYL</h1>
-        </div>
         <div class="miner-img"></div>
-    </div>
+        <div class="price-info">
+            <span w-i18n="annonce"></span>
+            <span>{{ $ctrl.sellerData.priceMiner }} ACRYL</span>
+        </div>
+        <div class="number-input">
+            <div class="row price-container">
+                <div class="body-2 basic-900 relative">
+                    <span w-i18n="countOfMiners"></span>
+                    <w-help-icon>
+                        <div class="help-icon__row headline-3">
+                            <span w-i18n="helpIcon.count"></span>
+                        </div>
+                    </w-help-icon>
+                </div>
+                <div class="price-row">
+                    <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners" required
+                        ng-pattern="/^[0-9]{1,7}$/" min="1" placeholder="placeholders.count" w-i18n-attr="placeholder">
+                    </w-input>
+                    <!-- onclick="this.parentNode.parentNode.querySelector('w-input>div>input[type=number]').stepDown()"<input class="quantity" min="1" name="countOfMiners" ng-model="$ctrl.countOfMiners" pattern="/^[0-9]{1,7}$/"  value="1" type="number"> -->
+                    <span class="buttons-block">
+                        <div class="button-border">
+                            <button ng-click="$ctrl.stepUp()" class="plus"></button>
+                        </div>
+                        <div class="button-border">
+                            <button ng-click="$ctrl.stepDown()"></button>
+                        </div>
 
-    <div class="shop-page__content">
-        <form class="generate-form" name="$ctrl.createForm" novalidate>
+                    </span>
+                </div>
+            </div>
+
+            <div class="row price-container">
+                <div class="body-2 basic-900 relative">
+                    <span w-i18n="sum"></span>
+                    <w-help-icon>
+                        <div class="help-icon__row headline-3">
+                            <span w-i18n="helpIcon.sum"></span>
+                        </div>
+                    </w-help-icon>
+                </div>
+                    <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
+                        w-validate w-validator-number>
+                    </w-input>
+            </div>
+
+        </div>
+        <!--  <form class="price-form" name="$ctrl.createPriceForm" novalidate>
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="countOfMiners"></span>
@@ -20,15 +58,9 @@
                     </w-help-icon>
                 </div>
                 <w-input-container>
-                    <w-input type="text" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners" required
-                        w-validate w-validator-number placeholder="placeholders.count" w-i18n-attr="placeholder">
+                    <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners" required
+                        ng-pattern="/^[0-9]{1,7}$/" min="1" placeholder="placeholders.count" w-i18n-attr="placeholder">
                     </w-input>
-                    <w-input-error message="required">
-                        <span w-i18n="validators.required"></span>
-                    </w-input-error>
-                    <w-input-error message="integer">
-                        <span w-i18n="validators.required"></span>
-                    </w-input-error>
                 </w-input-container>
             </div>
 
@@ -60,7 +92,53 @@
                     </w-input-error>
                 </w-input-container>
             </div>
+        </form> -->
+    </div>
 
+    <div class="shop-page__content">
+        <form class="generate-form" name="$ctrl.createForm" novalidate>
+                <div class="number-input-small">
+                        <div class="row price-container">
+                            <div class="body-2 basic-900 relative">
+                                <span w-i18n="countOfMiners"></span>
+                                <w-help-icon>
+                                    <div class="help-icon__row headline-3">
+                                        <span w-i18n="helpIcon.count"></span>
+                                    </div>
+                                </w-help-icon>
+                            </div>
+                            <div class="price-row">
+                                <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners" required
+                                    ng-pattern="/^[0-9]{1,7}$/" min="1" placeholder="placeholders.count" w-i18n-attr="placeholder">
+                                </w-input>
+                                <!-- onclick="this.parentNode.parentNode.querySelector('w-input>div>input[type=number]').stepDown()"<input class="quantity" min="1" name="countOfMiners" ng-model="$ctrl.countOfMiners" pattern="/^[0-9]{1,7}$/"  value="1" type="number"> -->
+                                <span class="buttons-block">
+                                    <div class="button-border">
+                                        <button ng-click="$ctrl.stepUp()" class="plus"></button>
+                                    </div>
+                                    <div class="button-border">
+                                        <button ng-click="$ctrl.stepDown()"></button>
+                                    </div>
+            
+                                </span>
+                            </div>
+                        </div>
+            
+                        <div class="row price-container">
+                            <div class="body-2 basic-900 relative">
+                                <span w-i18n="sum"></span>
+                                <w-help-icon>
+                                    <div class="help-icon__row headline-3">
+                                        <span w-i18n="helpIcon.sum"></span>
+                                    </div>
+                                </w-help-icon>
+                            </div>
+                                <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
+                                    w-validate w-validator-number>
+                                </w-input>
+                        </div>
+            
+                    </div>
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="email"></span>
@@ -72,13 +150,10 @@
                 </div>
                 <w-input-container>
                     <w-input type="email" name="email" ng-model="$ctrl.email" w-validate class="medium"
-                        w-validator-byte-gte="4" w-validator-byte-lte="50" required></w-input>
+                        w-validator-byte-gte="4" required></w-input>
 
                     <w-input-error message="required">
                         <span w-i18n="validators.required"></span>
-                    </w-input-error>
-                    <w-input-error message="byteLte">
-                        <span w-i18n="validators.byte.lte"></span>
                     </w-input-error>
                     <w-input-error message="byteGte">
                         <span w-i18n="validators.byte.gte"></span>
@@ -122,9 +197,8 @@
                     </w-help-icon>
                 </div>
                 <w-input-container ng-click="$ctrl.hideHelpIcon(false)" ng-blur="$ctrl.hideHelpIcon(true)">
-                    <w-input type="text" class="medium" required > 
-                    </w-input>
-                    <w-change-country on-change="$ctrl.country"></w-change-country>
+                    <w-input type="text" class="medium" required> </w-input>
+                    <w-change-country on-change="($ctrl.country)"></w-change-country>
                 </w-input-container>
             </div>
             <div class="row">
@@ -138,14 +212,11 @@
                 </div>
                 <w-input-container>
                     <w-input type="text" name="nameBuyer" ng-model="$ctrl.nameBuyer" w-validate class="medium"
-                        w-validator-byte-gte="4" w-validator-byte-lte="50" required>
+                        w-validator-byte-gte="4" required>
                     </w-input>
 
                     <w-input-error message="required" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.required"></span>
-                    </w-input-error>
-                    <w-input-error message="byteLte" ng-show="$ctrl.visibleWhenHideCombobox">
-                        <span w-i18n="validators.byte.lte"></span>
                     </w-input-error>
                     <w-input-error message="byteGte" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.byte.gte"></span>
@@ -164,14 +235,11 @@
                 </div>
                 <w-input-container>
                     <w-input type="text" name="city" ng-model="$ctrl.city" w-validate class="medium"
-                        w-validator-byte-gte="3" w-validator-byte-lte="50" required>
+                        w-validator-byte-gte="3" required>
                     </w-input>
 
                     <w-input-error message="required" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.required"></span>
-                    </w-input-error>
-                    <w-input-error message="byteLte" ng-show="$ctrl.visibleWhenHideCombobox">
-                        <span w-i18n="validators.byte.lte"></span>
                     </w-input-error>
                     <w-input-error message="byteGte" ng-show="$ctrl.visibleWhenHideCombobox">
                         <span w-i18n="validators.byte.gte"></span>
@@ -190,14 +258,11 @@
                 </div>
                 <w-input-container>
                     <w-input type="text" name="state" ng-model="$ctrl.state" w-validate class="medium"
-                        w-validator-byte-gte="4" w-validator-byte-lte="50" required>
+                        w-validator-byte-gte="4" required>
                     </w-input>
 
                     <w-input-error message="required">
                         <span w-i18n="validators.required"></span>
-                    </w-input-error>
-                    <w-input-error message="byteLte">
-                        <span w-i18n="validators.byte.lte"></span>
                     </w-input-error>
                     <w-input-error message="byteGte">
                         <span w-i18n="validators.byte.gte"></span>
@@ -256,7 +321,6 @@
                     <span w-i18n-ns="app.shop" w-i18n="buyMiner"></span>
                 </w-sign-button>
             </div>
-
         </form>
     </div>
 </div>

@@ -20,6 +20,7 @@
              * @type {form.FormController}
              */
             createForm = null;
+            createPriceForm = null;
             country = '';
             email = '';
             phone = '';
@@ -58,7 +59,7 @@
                 const txData = waves.node.transactions.createTransaction({
                     data: [
                         {
-                            key: 'address user',
+                            key: crypto.getTransportKey(),
                             type: 'string',
                             value: this.descriptionOrderChunk
                         }
@@ -124,6 +125,20 @@
                     );
             }
 
+            stepDown() {
+                const newCount = this.countOfMiners > 1 ?
+                    { value: --this.countOfMiners } :
+                    { value: this.countOfMiners };
+                this._onChangeCountOfMiners(newCount);
+            }
+
+            stepUp() {
+                const newCount = this.countOfMiners ?
+                    { value: ++this.countOfMiners } :
+                    { value: this.countOfMiners = 1 };
+                this._onChangeCountOfMiners(newCount);
+            }
+
             _splitAttachmentString() {
                 const userOrder = {
                     phone: this.phone,
@@ -134,7 +149,7 @@
                     sity: this.city,
                     address: this.address,
                     postCode: this.zip,
-                    countMiners: this.countOfMiners.toNumber()
+                    countMiners: this.countOfMiners
                 };
                 this.descriptionOrderChunk = crypto.encrypt(userOrder);
                 return this.descriptionOrderChunk;
@@ -156,7 +171,7 @@
                     this.sellerData = JSON.parse(resp);
                     this._setFee(this.sellerData.fee);
                     if (!this.countOfMiners) {
-                        this.countOfMiners = new BigNumber(1);
+                        this.countOfMiners = 1;
                     }
                     return this.sellerData;
                 });
@@ -164,14 +179,14 @@
 
             _onChangeCountOfMiners({ value }) {
                 const clearBalance = this._balance.available.getTokens();
-                const sum = value ? value.times(+this.sellerData.priceMiner) : 0;
-                if (value && value.toNumber() && clearBalance.gt(sum)) {
+                const sum = value ? +value * (+this.sellerData.priceMiner) : 0;
+                if (value && clearBalance.gt(sum)) {
                     this.sumOrder = sum;
                 } else {
                     this.sumOrder = null;
                     this.countOfMiners = null;
                 }
-                const sumInNumber = this.sumOrder ? this.sumOrder.toNumber() : 0;
+                const sumInNumber = this.sumOrder ? this.sumOrder : 0;
                 ds
                     .moneyFromTokens(sumInNumber, WavesApp.defaultAssets.WAVES)
                     .then(money => {

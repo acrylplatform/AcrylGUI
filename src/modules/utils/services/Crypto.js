@@ -5,7 +5,7 @@
         const { fetch } = require('data-service');
         /* const CryptoJS = require('crypto-js');
         const JSEncrypt = require('jsencrypt'); */
-        const { utils } = require('@waves/signature-generator');
+        const { utils, libs } = require('@waves/signature-generator');
 
         class Crypto {
 
@@ -22,26 +22,33 @@
                     return resp;
                 });
             }
+            getTransportKey() {
+                const { privateKey, publicKey } = utils.crypto.buildKeyPair(
+                    `cabbage waste medal hidden actress attract subject daring
+                     sheriff force clock habit enrich upper client`);
+                /*   const aPrivateKey = libs.base58.encode(privateKey);
+                const bPublicKey = libs.base58.decode(publicKey); */
+                const sharedKey = libs.axlsign.sharedKey(privateKey, publicKey);
+                const encSharedKey = libs.base58.encode(sharedKey);
+                return encSharedKey;
+            }
 
             encrypt(dataObject) {
-
                 // Create a new encryption key (with a specified length)
                 // const key = this._generateKey(50);
                 // convert data to a json string
                 const dataAsString = JSON.stringify(dataObject);
                 // encrypt the data symmetrically
                 // (the cryptojs library will generate its own 256bit key!!)
-                const aesEncrypted = utils.crypto.encryptSeed(dataAsString, this.sellerPublicKey);
+                const aesEncrypted = utils.crypto.encryptSeed(dataAsString, this.getTransportKey(), 5000);
                 // get the symmetric key and initialization vector from
                 // (hex encoded) and concatenate them into one string
                 // const aesKey = `${aesEncrypted.key}:::${aesEncrypted.iv}`;
                 // the data is base64 encoded
                 const encryptedMessage = aesEncrypted.toString();
-                // const decryptData = utils.crypto.decryptSeed(encryptedMessage, this.sellerPublicKey);
-
+                // const decryptData = utils.crypto.decryptSeed(encryptedMessage, this.getTransportKey());
                 // we create a new JSEncrypt object for rsa encryption
                 // const rsaEncrypt = new JSEncrypt();
-
                 // we set the public key (which we passed into the function)
                 // rsaEncrypt.setPublicKey(publicKey);
                 // now we encrypt the key & iv with our public key
