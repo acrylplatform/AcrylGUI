@@ -123,8 +123,7 @@
         "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
       },
       "shop": "https://raw.githubusercontent.com/spreadzp/acryl/master/sellerData.json",
-      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem",
-      "privKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-private-key.pem"
+      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem"
     },
     "mainnet": {
       "oracle":  "",
@@ -145,8 +144,7 @@
         "BTC": "68X83bfvSSQauL81fcfqA3Vne9s4y2BRAG36DGRcv4V2"
       },
       "shop": "https://raw.githubusercontent.com/spreadzp/acryl/master/sellerData.json",
-      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem",
-      "privKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-private-key.pem"
+      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem"
     }
   }
 }
