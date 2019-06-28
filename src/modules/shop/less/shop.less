@@ -7,6 +7,7 @@ body.shop {
   .number-input-small {
     display: none;
   }
+
   w-header {
     display: none;
   }
@@ -71,6 +72,7 @@ body.shop {
       align-items    : center;
       padding-left   : 20px;
       width          : 40%;
+
       .miner-img {
         background-image     : @miner;
         background-position-x: 50%;
@@ -80,9 +82,9 @@ body.shop {
       }
 
       .price-info {
-        margin-top: 20px;
+        margin-top : 20px;
         margin-left: -5px;
-      }      
+      }
     }
 
     .generate-form {
@@ -95,6 +97,23 @@ body.shop {
         margin-top: 20px;
       }
     }
+  }
+}
+
+@media screen and (max-height: 420px) {
+  .miner-img {
+    background-position-y: 50%;
+    background-size      : 150px 200px !important;
+    height               : 220px !important;
+  }
+  .number-input {
+    display: none;
+  }
+  .number-input-small {
+    display: inline !important;
+  }
+  .generate-form {
+    width: 300px !important;
   }
 }
 
@@ -122,22 +141,25 @@ body.shop {
 
 @media screen and (max-width: 420px) {
   .shop-page {
-    display: flex;
+    display       : flex;
     flex-direction: column;
     overflow      : auto !important;
+
     .number-input {
       display: none;
-    } 
-    .number-input-small {
-      display: inline !important;
     }
+
+    .number-input-small {
+      display: inline;
+    }
+
     .page-title {
       width : 100% !important;
-      height: 60%; 
+      height: 60%;
 
       .miner-img {
         background-size: 125px 180px !important;
-        height: 60% !important;
+        height         : 60% !important;
       }
     }
 
@@ -193,19 +215,20 @@ input[type=number]::-webkit-outer-spin-button {
   }
 }
 
-.number-input button, .number-input-small button {
-    outline           : none;
-    -webkit-appearance: none;
-    background-color  : transparent;
-    border            : none;
-    align-items       : center;
-    justify-content   : center;
-    width             : 1rem;
-    height            : 1rem;
-    cursor            : pointer;
-    margin            : 0;
-    position          : relative; 
-} 
+.number-input button,
+.number-input-small button {
+  outline           : none;
+  -webkit-appearance: none;
+  background-color  : transparent;
+  border            : none;
+  align-items       : center;
+  justify-content   : center;
+  width             : 1rem;
+  height            : 1rem;
+  cursor            : pointer;
+  margin            : 0;
+  position          : relative;
+}
 
 .number-input button:before,
 .number-input button:after,
