@@ -99,13 +99,15 @@ body.shop {
     }
   }
 }
-
-@media screen and (max-height: 420px) {
+@media screen and (max-height: 620px) {
   .miner-img {
     background-position-y: 50%;
     background-size      : 150px 200px !important;
     height               : 220px !important;
   }
+}
+
+@media screen and (max-height: 420px) and (orientation: landscape) {
   .number-input {
     display: none;
   }
@@ -139,7 +141,7 @@ body.shop {
   }
 }
 
-@media screen and (max-width: 420px) {
+@media screen and (max-width: 520px) {
   .shop-page {
     display       : flex;
     flex-direction: column;
@@ -150,7 +152,7 @@ body.shop {
     }
 
     .number-input-small {
-      display: inline;
+      display: inline !important;
     }
 
     .page-title {

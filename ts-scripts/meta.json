@@ -2,6 +2,7 @@
   "vendors": [
     "node_modules/@waves/oracle-data/dist/oracle-data.min.js",
     "node_modules/parse-json-bignumber/dist/parse-json-bignumber.min.js",
+    "node_modules/node-forge/dist/forge.min.js",
     "node_modules/worker-wrapper/dist/WorkerWrapper.min.js",
     "node_modules/handlebars/dist/handlebars.min.js",
     "node_modules/ramda/dist/ramda.min.js",
@@ -34,6 +35,7 @@
     "node_modules/worker-wrapper/dist/WorkerWrapper.min.js",
     "node_modules/i18next/dist/umd/i18next.js",
     "node_modules/n3-charts/build/LineChart.min.js"
+    
   ],
   "exportPageVendors": [
     "node_modules/ts-utils/dist/ts-utils.min.js",
@@ -123,7 +125,8 @@
         "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
       },
       "shop": "https://raw.githubusercontent.com/spreadzp/acryl/master/sellerData.json",
-      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem"
+      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem",
+      "privKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-private-key.pem"
     },
     "mainnet": {
       "oracle":  "",
@@ -144,7 +147,8 @@
         "BTC": "68X83bfvSSQauL81fcfqA3Vne9s4y2BRAG36DGRcv4V2"
       },
       "shop": "https://raw.githubusercontent.com/spreadzp/acryl/master/sellerData.json",
-      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem"
+      "pubKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-public-key.pem",
+      "privKey": "https://raw.githubusercontent.com/spreadzp/acryl/master/seller-private-key.pem"
     }
   }
 }

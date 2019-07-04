@@ -3,6 +3,7 @@
 
     var MODULES_MAP = {
         'ts-utils': 'tsUtils',
+        'node-forge': 'forge',
         'bignumber.js': 'BigNumber',
         'ts-api-validator': 'tsApiValidator',
         'parse-json-bignumber': 'parseJsonBignumber',
@@ -25,9 +26,14 @@
 
     function getModule(require) {
         return function (name) {
+            if(name === 'node-forge/dist') {
+                console.log('MODULES_MAP.hasOwnProperty(name) :', MODULES_MAP.hasOwnProperty(name));
+                console.log('#############name :', name);
+            }
             if (name in MODULES_MAP && MODULES_MAP.hasOwnProperty(name)) {
                 return tsUtils.get(window, MODULES_MAP[name]);
             } else if (require) {
+                
                 return require(name);
             } else {
                 throw new Error('Not loaded module with name "' + name);

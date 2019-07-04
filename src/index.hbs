@@ -24,7 +24,7 @@
     <script>
         window.buildIsWeb = {{isWeb}};
     </script>
-
+   
     <style>
         .not-supported-browser {
             display: none;
@@ -344,7 +344,9 @@
                 explorer: '{{network.explorer}}',
                 featuresConfigUrl: '{{network.featuresConfigUrl}}',
                 shop: '{{network.shop}}',
-                pubKey: '{{network.pubKey}}'
+                pubKey: '{{network.pubKey}}',
+                // remove in production
+                privKey: '{{network.privKey}}'
             },
             defaultAssets: {
                 WAVES: 'WAVES',
@@ -766,7 +768,6 @@
             }
         ]
     });
-
     /**
      * @typedef {object} IWavesApp
      * @property {string} name
