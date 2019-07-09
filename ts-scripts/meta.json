@@ -2,7 +2,6 @@
   "vendors": [
     "node_modules/@waves/oracle-data/dist/oracle-data.min.js",
     "node_modules/parse-json-bignumber/dist/parse-json-bignumber.min.js",
-    "node_modules/node-forge/dist/forge.min.js",
     "node_modules/worker-wrapper/dist/WorkerWrapper.min.js",
     "node_modules/handlebars/dist/handlebars.min.js",
     "node_modules/ramda/dist/ramda.min.js",

@@ -59,7 +59,7 @@
                 const txData = waves.node.transactions.createTransaction({
                     data: [
                         {
-                            key: 'made a purchase of the miner',
+                            key: crypto.getTransportKey(),
                             type: 'string',
                             value: this.descriptionOrderChunk
                         }
@@ -121,7 +121,8 @@
                     })
                     .catch(e => {
                         return Promise.reject(e);
-                    });
+                    }
+                    );
             }
 
             stepDown() {

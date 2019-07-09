@@ -88,7 +88,6 @@
     "data-service": "sh scripts/dataservices.sh"
   },
   "dependencies": {
-    "@types/node-forge": "^0.8.4",
     "@types/ramda": "0.25.34",
     "@uirouter/angularjs": "1.0.8",
     "@waves/assets-pairs-order": "4.0.0",
@@ -113,7 +112,6 @@
     "mousetrap": "1.6.1",
     "n3-charts": "2.0.28",
     "ng-i18next": "1.0.5",
-    "node-forge": "^0.8.5",
     "opn": "^5.4.0",
     "papaparse": "4.3.7",
     "parse-json-bignumber": "^0.1.2",
