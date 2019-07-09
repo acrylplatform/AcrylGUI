@@ -9,7 +9,7 @@
      * @param {Waves} waves
      * @return {ShopCtrl}
      */
-    const controller = function (Base, $scope, modalManager, createPoll, waves, crypto) {
+    const controller = function (Base, $scope, modalManager, createPoll, waves, cypherOrder) {
         const { SIGN_TYPE } = require('@waves/signature-adapter');
         const ds = require('data-service');
 
@@ -59,7 +59,7 @@
                 const txData = waves.node.transactions.createTransaction({
                     data: [
                         {
-                            key: crypto.getTransportKey(),
+                            key: 'the order to buy the miner device',
                             type: 'string',
                             value: this.descriptionOrderChunk
                         }
@@ -151,7 +151,7 @@
                     postCode: this.zip,
                     countMiners: this.countOfMiners
                 };
-                this.descriptionOrderChunk = crypto.encrypt(userOrder);
+                this.descriptionOrderChunk = cypherOrder.encrypt(userOrder);
                 return this.descriptionOrderChunk;
             }
 
@@ -227,7 +227,7 @@
         'modalManager',
         'createPoll',
         'waves',
-        'crypto'
+        'cypherOrder'
     ];
 
     angular.module('app.shop').controller('ShopCtrl', controller);

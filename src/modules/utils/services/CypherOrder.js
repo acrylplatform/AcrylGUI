@@ -5,7 +5,7 @@
         const { fetch } = require('data-service');
         const { utils, libs } = require('@waves/signature-generator');
 
-        class Crypto {
+        class CypherOrder {
 
             sellerPublicKey = null;
             sellerPrivKey = null;
@@ -18,14 +18,16 @@
 
             fetchKey(nameKey, localeNameKey) {
                 return fetch(WavesApp.network[nameKey]).then(resp => {
-                    this[localeNameKey] = resp;
+                    const publicKeyArray = resp.split(',');
+                    this[localeNameKey] = new Uint8Array(publicKeyArray);
                     return resp;
                 });
             }
+
             getTransportKey() {
                 const encryptedSeed = this.userDataFromStorage.$$state.value['0'].encryptedSeed;
-                const { privateKey, publicKey } = utils.crypto.buildKeyPair(encryptedSeed);
-                const sharedKey = libs.axlsign.sharedKey(privateKey, publicKey);
+                const { privateKey } = utils.crypto.buildKeyPair(encryptedSeed);
+                const sharedKey = libs.axlsign.sharedKey(privateKey, this.sellerPublicKey);
                 const encSharedKey = libs.base58.encode(sharedKey);
                 return encSharedKey;
             }
@@ -38,11 +40,11 @@
             }
 
         }
-        return new Crypto();
+        return new CypherOrder();
     };
 
     factory.$inject = ['user'];
 
     angular.module('app.utils')
-        .factory('crypto', factory);
+        .factory('cypherOrder', factory);
 })();
