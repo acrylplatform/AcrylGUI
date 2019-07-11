@@ -15,6 +15,7 @@
                  * @type {function}
                  */
                 this.onChange = null;
+                this.language = null;
                 /**
                  * @type {string[]}
                  */
@@ -412,13 +413,17 @@
 
                 this.countryForDelivery = '';
                 this.observe('active', this._onChangeCountry);
+                this.observe('language', this._switchLanguage);
                 this._switchLanguage();
             }
 
             _switchLanguage() {
                 if (i18next.language) {
                     this.list = (i18next.language === 'ru') ? this.ruList : this.enList;
+                    this.active = this.list[0].code;
+                    // this._onChangeCountry();
                 }
+                return i18next.language;
             }
 
             _onChangeCountry() {
@@ -426,11 +431,16 @@
                 this.countryForDelivery = this._getNameCountry(this.active);
                 if (active) {
                     this.onChange = this.countryForDelivery;
+                } else {
+                    this.active = this.list[0].code;
+                    this.onChange = this._getNameCountry(this.active);
                 }
             }
 
             _getNameCountry(codeCountry) {
-                return this.list.find(item => item.code === codeCountry).name;
+                const selectedCountry = this.list.find(item => item.code === codeCountry);
+                const searchedCountry = (selectedCountry) ? selectedCountry.name : this.list[0].name;
+                return searchedCountry;
             }
 
         }
@@ -442,7 +452,8 @@
 
     angular.module('app.ui').component('wChangeCountry', {
         bindings: {
-            onChange: '='
+            onChange: '=',
+            language: '='
         },
         templateUrl: 'modules/ui/directives/changeCountry/changeCountry.html',
         transclude: false,

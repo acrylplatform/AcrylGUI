@@ -133,7 +133,6 @@
                 if (active) {
                     this.setActive(active);
                 } else {
-                    this.setActive(this._options.first());
                     $scope.$apply();
                 }
             }

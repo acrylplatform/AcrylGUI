@@ -143,7 +143,7 @@
 
             <div class="row">
                 <div class="body-2 basic-900 relative">
-                    <span w-i18n="country"></span>
+                    <span w-i18n="country" id="countryLabel"></span>
                     <w-help-icon>
                         <div class="help-icon__row headline-3">
                             <span w-i18n="helpIcon.country"></span>
@@ -152,7 +152,7 @@
                 </div>
                 <w-input-container ng-click="$ctrl.hideHelpIcon(false)" ng-blur="$ctrl.hideHelpIcon(true)">
                     <w-input type="text" class="medium" required> </w-input>
-                    <w-change-country on-change="($ctrl.country)"></w-change-country>
+                    <w-change-country language="$ctrl.language" on-change="($ctrl.country)" id="countryList"></w-change-country>
                 </w-input-container>
             </div>
             <div class="row">

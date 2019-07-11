@@ -38,22 +38,24 @@
             _balance = null;
             _fee = null;
             visibleWhenHideCombobox = true;
+            language = null;
 
             constructor() {
                 super($scope);
 
-                createPoll(this, this._getBalance, '_balance', 5000, {
+                createPoll(this, this._getBalance, '_balance', 100, {
                     isBalance: true,
                     $scope
                 });
+
                 this.sellerData = this._getMinerPrice();
                 this.observe('countOfMiners', this._onChangeCountOfMiners);
-
             }
 
             hideHelpIcon(flag) {
                 this.visibleWhenHideCombobox = flag;
             }
+
             buyMiner() {
                 this._splitAttachmentString();
                 const txData = waves.node.transactions.createTransaction({
@@ -156,6 +158,9 @@
             }
 
             _getBalance() {
+                if (this.language !== document.getElementById('countryLabel').innerText) {
+                    this.language = document.getElementById('countryLabel').innerText;
+                }
                 return waves.node.assets.balance(WavesApp.defaultAssets.WAVES);
             }
 
