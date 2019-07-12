@@ -1,8 +1,7 @@
 { 
   "price-string": "{{$ctrl.sellerData.priceMiner}} ACRYL",
-  "annonce": "Цена за 1 майнер",
-  "nameBuyer": "Имя покупателя",
-  "city": "Город/населённый пункт",
+  "annonce": "Цена за 1 майнер: ",
+  "userBalance": "Ваш баланс: ",
   "state": "Область",
   "zip": "Почтовый индекс",
   "country": "Страна",
@@ -42,7 +41,7 @@
   "placeholders": {
     "description": "Описание нельзя изменить позже",
     "precision": "От 0 до 8",
-    "count": "Должно быть больше чем 0",
+    "count": "Должно быть больше чем 0 {{$ctrl.availableBalance}}",
     "address": "Введите адрес доставки"
   },
  

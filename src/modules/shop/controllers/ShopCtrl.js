@@ -35,7 +35,8 @@
             sellerData = {};
             descriptionOrderChunk = '';
             invalid = false;
-            _balance = null;
+            balance = null;
+            availableBalance = null;
             _fee = null;
             visibleWhenHideCombobox = true;
             language = null;
@@ -43,7 +44,7 @@
             constructor() {
                 super($scope);
 
-                createPoll(this, this._getBalance, '_balance', 100, {
+                createPoll(this, this._getBalance, 'balance', 100, {
                     isBalance: true,
                     $scope
                 });
@@ -183,9 +184,9 @@
             }
 
             _onChangeCountOfMiners({ value }) {
-                const clearBalance = this._balance.available.getTokens();
+                this.availableBalance = this.balance.available.getTokens();
                 const sum = value ? +value * (+this.sellerData.priceMiner) : 0;
-                if (value && clearBalance.gt(sum)) {
+                if (value && this.availableBalance.gt(sum)) {
                     this.sumOrder = sum;
                 } else {
                     this.sumOrder = null;
@@ -203,8 +204,8 @@
             _onChangeBalance() {
                 this.invalid =
                     !this._fee ||
-                    !this._balance ||
-                    this._balance.available.getTokens().lt(this._fee.getTokens());
+                    !this.balance ||
+                    this.balance.available.getTokens().lt(this._fee.getTokens());
             }
 
             _reset() {

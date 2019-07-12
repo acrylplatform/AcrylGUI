@@ -5,6 +5,10 @@
             <span w-i18n="annonce"></span>
             <span>{{ $ctrl.sellerData.priceMiner }} ACRYL</span>
         </div>
+        <div class="balance-info">
+            <span w-i18n="userBalance"></span>
+            <span>{{ $ctrl.availableBalance}} ACRYL</span>
+        </div>
         <div class="number-input">
             <div class="row price-container">
                 <div class="body-2 basic-900 relative">
@@ -16,19 +20,19 @@
                     </w-help-icon>
                 </div>
                 <div class="price-row">
-                    <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners" required
-                        ng-pattern="/^[0-9]{1,7}$/" min="1" placeholder="placeholders.count" w-i18n-attr="placeholder">
-                    </w-input>
-                    <!-- onclick="this.parentNode.parentNode.querySelector('w-input>div>input[type=number]').stepDown()"<input class="quantity" min="1" name="countOfMiners" ng-model="$ctrl.countOfMiners" pattern="/^[0-9]{1,7}$/"  value="1" type="number"> -->
-                    <span class="buttons-block">
-                        <div class="button-border">
-                            <button ng-click="$ctrl.stepUp()" class="plus"></button>
-                        </div>
-                        <div class="button-border">
-                            <button ng-click="$ctrl.stepDown()"></button>
-                        </div>
+                        <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners"
+                            required ng-pattern="/^[0-9]{1,7}$/" min="1"
+                            placeholder="placeholders.count" w-i18n-attr="placeholder">
+                        </w-input>
+                        <span class="buttons-block">
+                            <div class="button-border">
+                                <button ng-click="$ctrl.stepUp()" class="plus"></button>
+                            </div>
+                            <div class="button-border">
+                                <button ng-click="$ctrl.stepDown()"></button>
+                            </div>
 
-                    </span>
+                        </span>
                 </div>
             </div>
 
@@ -41,9 +45,9 @@
                         </div>
                     </w-help-icon>
                 </div>
-                    <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
-                        w-validate w-validator-number>
-                    </w-input>
+                <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
+                    w-validate w-validator-number>
+                </w-input>
             </div>
 
         </div>
@@ -51,48 +55,49 @@
 
     <div class="shop-page__content">
         <form class="generate-form" name="$ctrl.createForm" novalidate>
-                <div class="number-input-small">
-                        <div class="row price-container">
-                            <div class="body-2 basic-900 relative">
-                                <span w-i18n="countOfMiners"></span>
-                                <w-help-icon>
-                                    <div class="help-icon__row headline-3">
-                                        <span w-i18n="helpIcon.count"></span>
-                                    </div>
-                                </w-help-icon>
+            <div class="number-input-small">
+                <div class="row price-container">
+                    <div class="body-2 basic-900 relative">
+                        <span w-i18n="countOfMiners"></span>
+                        <w-help-icon>
+                            <div class="help-icon__row headline-3">
+                                <span w-i18n="helpIcon.count"></span>
                             </div>
-                            <div class="price-row">
-                                <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners" required
-                                    ng-pattern="/^[0-9]{1,7}$/" min="1" placeholder="placeholders.count" w-i18n-attr="placeholder">
-                                </w-input>
-                                <!-- onclick="this.parentNode.parentNode.querySelector('w-input>div>input[type=number]').stepDown()"<input class="quantity" min="1" name="countOfMiners" ng-model="$ctrl.countOfMiners" pattern="/^[0-9]{1,7}$/"  value="1" type="number"> -->
-                                <span class="buttons-block">
-                                    <div class="button-border">
-                                        <button ng-click="$ctrl.stepUp()" class="plus"></button>
-                                    </div>
-                                    <div class="button-border">
-                                        <button ng-click="$ctrl.stepDown()"></button>
-                                    </div>
-            
-                                </span>
-                            </div>
-                        </div>
-            
-                        <div class="row price-container">
-                            <div class="body-2 basic-900 relative">
-                                <span w-i18n="sum"></span>
-                                <w-help-icon>
-                                    <div class="help-icon__row headline-3">
-                                        <span w-i18n="helpIcon.sum"></span>
-                                    </div>
-                                </w-help-icon>
-                            </div>
-                                <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
-                                    w-validate w-validator-number>
-                                </w-input>
-                        </div>
-            
+                        </w-help-icon>
                     </div>
+                    <div class="price-row">
+                        <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners"
+                            required ng-pattern="/^[0-9]{1,7}$/" min="1" placeholder="placeholders.count"
+                            w-i18n-attr="placeholder">
+                        </w-input>
+                        <!-- onclick="this.parentNode.parentNode.querySelector('w-input>div>input[type=number]').stepDown()"<input class="quantity" min="1" name="countOfMiners" ng-model="$ctrl.countOfMiners" pattern="/^[0-9]{1,7}$/"  value="1" type="number"> -->
+                        <span class="buttons-block">
+                            <div class="button-border">
+                                <button ng-click="$ctrl.stepUp()" class="plus"></button>
+                            </div>
+                            <div class="button-border">
+                                <button ng-click="$ctrl.stepDown()"></button>
+                            </div>
+
+                        </span>
+                    </div>
+                </div>
+
+                <div class="row price-container">
+                    <div class="body-2 basic-900 relative">
+                        <span w-i18n="sum"></span>
+                        <w-help-icon>
+                            <div class="help-icon__row headline-3">
+                                <span w-i18n="helpIcon.sum"></span>
+                            </div>
+                        </w-help-icon>
+                    </div>
+                    <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
+                        w-validate w-validator-number>
+                    </w-input>
+                </div>
+
+            </div>
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="email"></span>
@@ -152,7 +157,8 @@
                 </div>
                 <w-input-container ng-click="$ctrl.hideHelpIcon(false)" ng-blur="$ctrl.hideHelpIcon(true)">
                     <w-input type="text" class="medium" required> </w-input>
-                    <w-change-country language="$ctrl.language" on-change="($ctrl.country)" id="countryList"></w-change-country>
+                    <w-change-country language="$ctrl.language" on-change="($ctrl.country)" id="countryList">
+                    </w-change-country>
                 </w-input-container>
             </div>
             <div class="row">

@@ -1,6 +1,7 @@
 {
   "price-string": "{{$ctrl.sellerData.priceMiner}} ACRYL",
-  "annonce": "Price of the device",
+  "annonce": "Price of the device: ",
+  "userBalance": "Your balance: ",
   "nameBuyer": "Name of buyer",
   "city": "City",
   "state": "State",
@@ -53,7 +54,7 @@
   "placeholders": {
     "description": "You can not change the description later",
     "precision": "From 0 to 8",
-    "count": "Must be more then 0",
+    "count": "Must be more then 0 {{$ctrl.sellerData.priceMiner}}",
     "address": "Enter address delivery",
     "nameBuyer": "Name of buyer"
   },  
