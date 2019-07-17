@@ -1,5 +1,5 @@
-<w-select ng-model="$ctrl.active">
-    <w-option ng-repeat="country in $ctrl.list">
-        <div class="lng-item"><span>{{ ::country.name }}</span></div>
+<w-select ng-model="$ctrl.active" id="listOfCountries" class="country-select">
+    <w-option ng-repeat="country in $ctrl.list" value="::country.code">
+        <div class="lng-country"><span>{{ country.name }}</span></div>
     </w-option>
 </w-select>

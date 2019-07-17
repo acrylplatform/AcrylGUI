@@ -267,5 +267,15 @@
     }
   },
   "whitespace": "&nbsp;",
-  "close": "close"
+  "close": "close",
+  "orderInfo": "Your order data",
+  "nameBuyer": "Name: ",
+  "buyerEmail": "Email: ",
+  "buyerPhone": "Phone: ",
+  "buyerCountry": "Country: ",
+  "buyerState": "State: ",
+  "buyerSity": "City: ",
+  "buyerAddress": "Address: ",
+  "buyerPostCode": "Post code: ",
+  "buyerCountMiners": "Count of miners"
 }

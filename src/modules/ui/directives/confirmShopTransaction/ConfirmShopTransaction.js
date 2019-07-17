@@ -23,7 +23,7 @@
 
             constructor() {
                 super($scope);
-                this.observe(['showValidationErrors', 'signable'], this._showErrors);
+                this.observe(['showValidationErrors', 'signable', 'userOrder'], this._showErrors);
             }
 
             $postLink() {
@@ -146,6 +146,7 @@
     angular.module('app.ui').component('wConfirmShopTransaction', {
         bindings: {
             signable: '<',
+            userOrder: '<',
             onClickBack: '&',
             onTxSent: '&',
             noBackButton: '<',

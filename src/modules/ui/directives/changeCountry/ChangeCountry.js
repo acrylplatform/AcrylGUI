@@ -14,8 +14,11 @@
                 /**
                  * @type {function}
                  */
+                this.active = null;
                 this.onChange = null;
                 this.language = null;
+                this.flag = false;
+                this.list = [];
                 /**
                  * @type {string[]}
                  */
@@ -414,14 +417,20 @@
                 this.countryForDelivery = '';
                 this.observe('active', this._onChangeCountry);
                 this.observe('language', this._switchLanguage);
+
+                this.listenEventEmitter(i18next, 'languageChanged', this._switchLanguage.bind(this));
                 this._switchLanguage();
+                this._onChangeCountry();
             }
 
             _switchLanguage() {
-                if (i18next.language) {
-                    this.list = (i18next.language === 'ru') ? this.ruList : this.enList;
-                    this.active = this.list[0].code;
-                    // this._onChangeCountry();
+                if (i18next.language && this) {
+                    if (!this.list) {
+                        this.list = (i18next.language === 'ru') ? this.ruList : this.enList;
+                        this.active = this.list[0].code;
+                    } else {
+                        this.list = (i18next.language === 'ru') ? [...this.ruList] : [...this.enList];
+                    }
                 }
                 return i18next.language;
             }

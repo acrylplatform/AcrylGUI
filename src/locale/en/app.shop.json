@@ -2,13 +2,13 @@
   "price-string": "{{$ctrl.sellerData.priceMiner}} ACRYL",
   "annonce": "Price of the device: ",
   "userBalance": "Your balance: ",
-  "nameBuyer": "Name of buyer",
+  "nameBuyer": "Full name of buyer",
   "city": "City",
   "state": "State",
   "zip": "Zip postal code",
   "country": "Country",
   "countOfMiners": "Count of miners",
-  "sum": "Total sum in ACRYL",
+  "sum": "Total sum with fee in ACRYL",
   "email": "Email",
   "phone": "Phone",
   "address": "Address for the delivery",
@@ -51,10 +51,11 @@
     }
   },
   "pageTitle": "Buy the miner",
+  "countMinerPlaceholder": "It is not a valid number of miners",
   "placeholders": {
     "description": "You can not change the description later",
     "precision": "From 0 to 8",
-    "count": "Must be more then 0 {{$ctrl.sellerData.priceMiner}}",
+    "count": "Must be more than 0",
     "address": "Enter address delivery",
     "nameBuyer": "Name of buyer"
   },  
@@ -64,18 +65,19 @@
     "title": "Your transaction is on the way!"
   },
   "validators": {
-    "phone": "Must be 12 numbers with symbols +",
+    "phone": "Must be 12 numbers with symbols + for example +123456789123",
     "byte": {
       "gte": "Asset name must be between 4 and 16 symbols long",
       "lte": "Asset name must be between 4 and 16 symbols long"
     },
     "descriptionLen": "The address is too long. It must be no more than 1,000 bytes.",
-    "maxValueCount": "Entered number is too large",
+    "maxValueCount": "Entered number more than available your balance",
     "maxValuePrecision": "Invalid number. Enter number from 0 to 8",
     "minValueCount": "Entered number must be greater than zero",
     "minValuePrecision": "Invalid number. Enter number from 0 to 8",
     "noMoney": "Your balance is not enough to pay transaction fees",
     "precisionCount": "Total asset count cannot have more decimal places than specified in the Decimals field",
-    "required": "This field must be filled"
+    "required": "This field must be filled",
+    "email": "Must be as email type for example: abc@abc.abc"
   }
 }

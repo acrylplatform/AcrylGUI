@@ -37,9 +37,11 @@
             invalid = false;
             balance = null;
             availableBalance = null;
-            _fee = null;
             visibleWhenHideCombobox = true;
             language = null;
+            userOrder = null;
+            maxMinerCount = null;
+            _fee = null;
 
             constructor() {
                 super($scope);
@@ -51,6 +53,9 @@
 
                 this.sellerData = this._getMinerPrice();
                 this.observe('countOfMiners', this._onChangeCountOfMiners);
+                if (i18next) {
+                    this.country = (i18next.language === 'ru') ? 'Россия' : 'Russia';
+                }
             }
 
             hideHelpIcon(flag) {
@@ -58,7 +63,8 @@
             }
 
             buyMiner() {
-                this._splitAttachmentString();
+                this.userOrder = this._splitAttachmentString();
+                this.descriptionOrderChunk = cypherOrder.encrypt(this.userOrder);
                 const txData = waves.node.transactions.createTransaction({
                     data: [
                         {
@@ -101,7 +107,7 @@
                         type: typeTx,
                         data: tx
                     });
-                modalManager.showConfirmShopTx(signable)
+                modalManager.showConfirmShopTx(signable, this.userOrder)
                     .then(() => {
                         return signable.getDataForApi();
                     })
@@ -154,8 +160,12 @@
                     postCode: this.zip,
                     countMiners: this.countOfMiners
                 };
-                this.descriptionOrderChunk = cypherOrder.encrypt(userOrder);
-                return this.descriptionOrderChunk;
+                return userOrder;
+            }
+
+            _setMaxCountMiner() {
+                const bal = this.balance.available.getTokens() - +this.sellerData.fee;
+                this.maxMinerCount = Math.floor(bal / (+this.sellerData.priceMiner));
             }
 
             _getBalance() {
@@ -179,13 +189,15 @@
                     if (!this.countOfMiners) {
                         this.countOfMiners = 1;
                     }
+                    this._setMaxCountMiner();
                     return this.sellerData;
                 });
             }
 
             _onChangeCountOfMiners({ value }) {
                 this.availableBalance = this.balance.available.getTokens();
-                const sum = value ? +value * (+this.sellerData.priceMiner) : 0;
+                const sumWithFee = +value * (+this.sellerData.priceMiner) + +this.sellerData.fee;
+                const sum = value ? sumWithFee : 0;
                 if (value && this.availableBalance.gt(sum)) {
                     this.sumOrder = sum;
                 } else {
@@ -220,6 +232,12 @@
 
                 this.createForm.$setPristine();
                 this.createForm.$setUntouched();
+                this.userOrder = null;
+                setTimeout(() => {
+                    this._getBalance();
+                    this.stepUp();
+                    this.availableBalance = this.balance.available.getTokens();
+                }, 25000);
             }
 
         }

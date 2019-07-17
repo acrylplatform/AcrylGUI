@@ -11,9 +11,10 @@
 
         class ShopTxCtrl extends Base {
 
-            constructor({ signable, showValidationErrors }) {
+            constructor({ signable, userOrder, showValidationErrors }) {
                 super($scope);
                 this.signable = signable;
+                this.userOrder = userOrder;
                 this.showValidationErrors = showValidationErrors;
             }
 

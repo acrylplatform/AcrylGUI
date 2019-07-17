@@ -8,7 +8,6 @@
         class CypherOrder {
 
             sellerPublicKey = null;
-            sellerPrivKey = null;
             userDataFromStorage = null;
 
             constructor() {

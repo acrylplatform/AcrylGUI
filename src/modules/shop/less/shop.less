@@ -39,6 +39,10 @@ body.shop {
       white-space: nowrap;
     }
 
+    .country-select>.select>.title>.title-content>.lng-country>.ng-binding {
+      display: none !important;
+    }
+
     .shop-page__content {
       width   : 60%;
       overflow: auto;
@@ -81,7 +85,8 @@ body.shop {
         background-repeat    : no-repeat;
       }
 
-      .price-info, .balance-info {
+      .price-info,
+      .balance-info {
         margin-top : 20px;
         margin-left: -5px;
       }
@@ -99,6 +104,7 @@ body.shop {
     }
   }
 }
+
 @media screen and (max-height: 620px) {
   .miner-img {
     background-position-y: 50%;
@@ -111,9 +117,11 @@ body.shop {
   .number-input {
     display: none;
   }
+
   .number-input-small {
     display: inline !important;
   }
+
   .generate-form {
     width: 300px !important;
   }

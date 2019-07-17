@@ -259,5 +259,15 @@
       "txJson": "Base64 скрипт"
     }
   },
-  "close": "закрыть"
+  "close": "закрыть",
+  "orderInfo": "Данные Вашей заявки: ",
+  "nameBuyer": "Имя: ",
+  "buyerEmail": "Email: ",
+  "buyerPhone": "Телефон: ",
+  "buyerCountry": "Страна: ",
+  "buyerState": "Область: ",
+  "buyerSity": "Город: ",
+  "buyerAddress": "Адрес: ",
+  "buyerPostCode": "Почтовый код: ",
+  "buyerCountMiners": "Число майнеров: "
 }

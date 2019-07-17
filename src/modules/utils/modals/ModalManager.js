@@ -384,12 +384,12 @@
                 });
             }
 
-            showConfirmShopTx(signable, showValidationErrors) {
+            showConfirmShopTx(signable, userOrder, showValidationErrors) {
                 return this._getModal({
                     id: 'shop-tx',
                     mod: 'shop-tx',
                     ns: 'app.ui',
-                    locals: { signable, showValidationErrors },
+                    locals: { signable, userOrder, showValidationErrors },
                     controller: 'ShopTxCtrl',
                     contentUrl: 'modules/utils/modals/shopTx/shopTx.modal.html'
                 });

@@ -3,6 +3,35 @@
         <w-step>
             <w-permit name="{{::$ctrl.permissionName}}" mode="on">
                 <w-transaction-info-shop is-confirm="::true" signable="$ctrl.signable"></w-transaction-info-shop>
+               <hr>
+               <div  w-i18n="orderInfo"></div>
+               <div>
+                    <span w-i18n="nameBuyer"></span><span>{{$ctrl.userOrder.name}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerEmail"></span><span>{{$ctrl.userOrder.email}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerPhone"></span><span>{{$ctrl.userOrder.phone}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerCountry"></span><span>{{$ctrl.userOrder.country}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerState"></span><span>{{$ctrl.userOrder.state}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerSity"></span><span>{{$ctrl.userOrder.sity}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerAddress"></span><span>{{$ctrl.userOrder.address}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerPostCode"></span><span>{{$ctrl.userOrder.postCode}}</span>
+               </div>
+               <div>
+                    <span w-i18n="buyerCountMiners"></span><span>{{$ctrl.userOrder.countMiners}}</span>
+               </div>
                 <div class="buttons-wrapper margin-top-3">
                     <w-button class="big" on-click="$ctrl.onClickBack()">
                         <span w-i18n="confirmTransaction.back"></span>
