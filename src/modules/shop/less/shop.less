@@ -53,24 +53,37 @@ body.shop {
         height : 40px;
       }
     }
-
+    .help-icon__content {
+      border-bottom: 5px solid @color-submit-300 !important;
+      border-top   : 1px solid @color-disabled-300 !important;
+      margin-top   : -85px !important;
+    }
     .help-icon {
       display      : none;
       z-index      : 19;
       position     : absolute;
       color        : @color-disabled-900;
       background   : @color-white;
-      border-bottom: 5px solid @color-submit-300;
-      border-top   : 1px solid @color-disabled-300;
+      border-bottom: 5px solid @color-submit-300 !important;
+      border-top   : 1px solid @color-disabled-300 !important;
       border-radius: 4px;
       box-shadow   : 0 1px 3px 0 @color-disabled-300;
       padding      : 15px;
-      margin-top   : 4px;
-      left         : 60px;
-      bottom       : 25px;
+      
+      left: 40px;
+      //bottom       : 25px;
       width        : calc(100% - 80px);
+      &:after {
+        left: 30px;
+        top: 0px;
+        position: absolute;
+        content: '';
+      }
     }
-
+    .help-icon__icon:after {
+      top: -12px !important;
+    }
+    
     .page-title {
       justify-content: center;
       align-items    : center;
