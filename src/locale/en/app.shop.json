@@ -14,23 +14,7 @@
   "address": "Address for the delivery",
   "buyMiner": "Buy miner",
   "count": "Total tokens",
-  "create": "Generate",
-  "description": "Description",
-  "directives": {
-    "sign": {
-      "confirmRequestLedger": {
-        "waiting": "Waiting for confirmation on Ledger Nano S…"
-      }
-    }
-  },
   "fee": "Fee 1 ACRYL",
-  "help": {
-    "country": "Choose a country for the delivery",
-    "email": "abc@abc.abc",
-    "phone": "+123456789123",
-    "sum": "Total sum the order",
-    "address": "Country, Region, Sity, street, name of buyer"
-  },
   "helpIcon": {
     "nameBuyer": "Enter first name, last name",
     "city": "Enter city",

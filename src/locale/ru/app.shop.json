@@ -14,13 +14,7 @@
   "address": "Адрес доставки",
   "buyMiner": "Купить майнер",
   "count": "Всего токенов",
-  "create": "Выпустить",
-  "description": "Описание",
   "fee": "Комиссия 1 ACRYL",
-  "help": {
-    "name": "Пожалуйста, используйте только латинские буквы",
-    "address": "Country, Region, Sity, street, name of buyer"
-  },
   "helpIcon": {
     "nameBuyer": "Введите имя покупателя",
     "city": "Введите название населённого пункта",
