@@ -2,6 +2,7 @@
     "count": "Всего токенов",
     "exchange": "Обменять",
     "description": "Описание",
+    "max": "Макс.",
     "create": {
       "order": {
         "failed": "Что-то пошло не так ",

@@ -2,6 +2,7 @@
   "count": "Total tokens",
   "exchange": "Exchange",
   "description": "Description",
+  "max": "Max",
   "create": {
     "order": {
       "failed": "Something went wrong",

@@ -17,10 +17,9 @@
                     <form class="fields" novalidate name="$ctrl.order">
                         <div class="split-half field-label">
                             <div class="basic-600" w-i18n="createOrder.amountField"></div>
-                            <button ng-click="$ctrl.setMaxAmount()" class="max-amount-btn">
-                                MAX
-                            </button>
-
+                            <div ng-click="$ctrl.setMaxAmount()" class="caption-2 disabled-900 underline-dashed">
+                                <span w-i18n="max"></span>
+                            </div>
                         </div>
 
                         <div class="amount">
