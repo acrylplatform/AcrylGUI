@@ -42,7 +42,7 @@
                 <w-radio-wrap class="toolbar-balance-radio" mode="tab-mode" ng-model="$ctrl.activeChartAssetId">
                     <w-radio ng-repeat="balance in $ctrl.chartBalanceList track by balance.asset.id" value="balance.asset.id">
                         <span class="radio-name">{{::balance.asset.name}}<span class="radio-dot">•</span></span>
-                        <span class="radio-symb">&#x0e3f;&nbsp;</span>
+                        <span class="radio-symb">&dollar;&nbsp;</span>
                         <w-change-rate asset-id="balance.asset.id"></w-change-rate>
                     </w-radio>
                 </w-radio-wrap>
@@ -61,7 +61,7 @@
         <div class="chart-rate">
             <div class="price-field">
                 <h1>
-                        &#x0e3f;&nbsp;<w-change-rate asset-id="$ctrl.activeChartAssetId"></w-change-rate>
+                        &dollar;&nbsp;<w-change-rate asset-id="$ctrl.activeChartAssetId"></w-change-rate>
                 </h1>
                 <div class="tag-1 info-500">
                     <span w-i18n="price" params="{currency: $ctrl.activeChartBalance.asset.name.toUpperCase()}"></span>
