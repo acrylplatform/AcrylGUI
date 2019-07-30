@@ -346,7 +346,8 @@
             },
             defaultAssets: {
                 WAVES: 'WAVES',
-                BTC: '{{network.assets.BTC}}'
+                BTC: '{{network.assets.BTC}}',
+                USD: '{{network.assets.USD}}'
             },
 
             ALWAYS_PINNED_ASSETS: ['WAVES'],
@@ -357,7 +358,8 @@
                 WNET: '{{network.assets.WNET}}'
             },
             remappedAssetNames: {
-                '{{network.assets.BTC}}': 'Bitcoin'
+                '{{network.assets.BTC}}': 'Bitcoin',
+                '{{network.assets.USD}}': 'USD'
             },
             matcherSignInterval: { count: 20, timeType: 'day' },
             scam: Object.create(null),

@@ -40,7 +40,7 @@
                     hasBackup: true,
                     termsAccepted: true,
                     // baseAssetId: WavesApp.defaultAssets.USD,
-                    baseAssetId: WavesApp.defaultAssets.BTC,
+                    baseAssetId: WavesApp.defaultAssets.USD,
                     assetsOracle: WavesApp.oracle,
                     events: Object.create(null),
                     lng: 'ru',
@@ -50,8 +50,9 @@
                     orderLimit: 0.05,
                     pinnedAssetIdList: [
                         WavesApp.defaultAssets.WAVES,
-                        WavesApp.defaultAssets.BTC
-                        // WavesApp.defaultAssets.ETH,
+                        WavesApp.defaultAssets.BTC,
+                        WavesApp.defaultAssets.USD
+                        // WavesApp.defaultAssets.ETH
                         // WavesApp.defaultAssets.USD,
                         // WavesApp.defaultAssets.EUR
                         // WavesApp.defaultAssets.LTC,
@@ -84,12 +85,12 @@
                         chartCropRate: 1.5,
                         assetIdPair: {
                             amount: WavesApp.defaultAssets.WAVES,
-                            price: WavesApp.defaultAssets.BTC
+                            price: WavesApp.defaultAssets.USD
                         },
                         watchlist: {
                             showOnlyFavorite: false,
                             favourite: [
-                                [WavesApp.defaultAssets.WAVES, WavesApp.defaultAssets.BTC]
+                                [WavesApp.defaultAssets.WAVES, WavesApp.defaultAssets.USD]
                             ],
                             activeTab: 'all',
                             list: Object.values(WavesApp.defaultAssets)
