@@ -763,7 +763,8 @@
         "1_0_5": "{span.line}[1. Trade volume scale has been added on DEX charts.]\n{span.line}[2. Additional minor bugs have been fixed.]",
         "1_0_6": "{span.line}[1. Authorisation via Acryl Desktop Client has been added.]",
         "1_0_7": "{span.line}[1. Some desktop-client crashes were fixed.]\n{span.line}[2. Optimized switching between TX and Portfolio pages, with a big amount of content.]\n{span.line}[3. Spam-tokens names are hidden on TX list.]\n{span.line}[4. Error messages output has been reworked.]",
-        "1_0_8": "{span.line}[1. Ledger Nano S support has been added.]\n{span.line}[2. A new option for saving your choice of Authorisation method has been added.]"
+        "1_0_8": "{span.line}[1. Ledger Nano S support has been added.]\n{span.line}[2. A new option for saving your choice of Authorisation method has been added.]",
+        "1_0_9": "{span.line}[1. AUSD support has been added.]"
       },
       "title": "What's new in this update {{version}}"
     }
