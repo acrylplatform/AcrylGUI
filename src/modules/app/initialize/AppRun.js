@@ -54,10 +54,11 @@
      * @param {app.utils.decorators} decorators
      * @param {Waves} waves
      * @param {ModalRouter} ModalRouter
+     * @param {ConfigService} configService
      * @return {AppRun}
      */
     const run = function ($rootScope, utils, user, $state, state, modalManager, storage,
-                          notification, decorators, waves, ModalRouter) {
+                          notification, decorators, waves, ModalRouter, configService) {
 
         const phone = WavesApp.device.phone();
         const tablet = WavesApp.device.tablet();
@@ -213,6 +214,9 @@
              */
             _initializeLogin() {
 
+                const blackList = ds.config.get('SETTINGS.REFERERS.BLACK_LIST') || [];
+                const documentReferer = new URL(document.referrer);
+
                 let needShowTutorial = false;
 
                 this._listenChangeLanguage();
@@ -237,6 +241,11 @@
 
                     if (waiting) {
                         return null;
+                    }
+
+                    console.log('document referrer', documentReferer);
+                    if (blackList.include(documentReferer.hostname)) {
+                        modalManager.showRefererModal();
                     }
 
                     if (needShowTutorial && toState.name !== 'dex-demo') {
