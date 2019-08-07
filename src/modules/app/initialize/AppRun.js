@@ -230,10 +230,6 @@
              * @private
              */
             _initializeLogin() {
-                // const blackList = configService.get('SETTINGS.REFERERS.BLACK_LIST') || [];
-                // const documentReferer = new URL('https://acrylnode.com/');
-                // document.referrer ? new URL(document.referrer) : null;
-                // let isShowRefererModal = false;
                 let needShowTutorial = false;
 
                 this._listenChangeLanguage();
