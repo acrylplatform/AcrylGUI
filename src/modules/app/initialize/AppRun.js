@@ -98,6 +98,11 @@
                  * @private
                  */
                 this._modalRouter = new ModalRouter();
+                
+                /**
+                 * @type {Boolean}
+                 */
+                this.showRefererModal = false;
 
                 /**
                  * Configure library generation avatar by address
@@ -107,6 +112,7 @@
                 this._setHandlers();
                 this._stopLoader();
                 this._initializeLogin();
+                this._checkReferers();
                 this._initializeOutLinks();
 
                 if (WavesApp.isDesktop()) {
@@ -170,6 +176,7 @@
              * @private
              */
             _setHandlers() {
+                configService.change.on(this._checkReferers, this);
                 $rootScope.$on('$stateChangeSuccess', this._onChangeStateSuccess.bind(this));
             }
 
@@ -209,14 +216,24 @@
                 localStorage.setItem('lng', i18next.language);
             }
 
+            _checkReferers() {
+                const blackList = configService.get('SETTINGS.REFERERS.BLACK_LIST') || [];
+                const documentReferer = document.referrer ? new URL(document.referrer) : null;
+
+                if (!this.showRefererModal && documentReferer && blackList.includes(documentReferer.hostname)) {
+                    modalManager.showRefererModal();
+                    this.showRefererModal = true;
+                }
+            }
+
             /**
              * @private
              */
             _initializeLogin() {
-
-                const blackList = configService.get('SETTINGS.REFERERS.BLACK_LIST') || [];
-                const documentReferer = document.referrer ? new URL(document.referrer) : null;
-
+                // const blackList = configService.get('SETTINGS.REFERERS.BLACK_LIST') || [];
+                // const documentReferer = new URL('https://acrylnode.com/');
+                // document.referrer ? new URL(document.referrer) : null;
+                // let isShowRefererModal = false;
                 let needShowTutorial = false;
 
                 this._listenChangeLanguage();
@@ -241,12 +258,6 @@
 
                     if (waiting) {
                         return null;
-                    }
-
-                    console.log('document referrer', documentReferer);
-                    console.log('black list', blackList);
-                    if (documentReferer && blackList.includes(documentReferer.hostname)) {
-                        modalManager.showRefererModal();
                     }
 
                     if (needShowTutorial && toState.name !== 'dex-demo') {
@@ -296,6 +307,9 @@
                                 })
                                 .then(() => {
                                     this._modalRouter.initialize();
+                                })
+                                .then(() => {
+                                    this._checkReferers();
                                 });
 
                             $rootScope.$on('$stateChangeStart', (event, current) => {
