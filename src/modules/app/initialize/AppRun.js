@@ -98,7 +98,7 @@
                  * @private
                  */
                 this._modalRouter = new ModalRouter();
-                
+
                 /**
                  * @type {Boolean}
                  */
