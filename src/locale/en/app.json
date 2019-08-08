@@ -67,6 +67,10 @@
     }
   },
   "modal": {
+    "referer": {
+      "title": "Attention!",
+      "message": "If you see this window, then you came to our Client from a scam site. The official site of Acryl Platform is https://acrylplatform.com/ and https://acrylminer.com/. The official website of our store is https://shop.acrylminer.com"
+    },
     "enterPassword": {
       "ok": "OK",
       "title": "Enter Password"

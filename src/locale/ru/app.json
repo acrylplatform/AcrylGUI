@@ -67,6 +67,10 @@
     }
   },
   "modal": {
+    "referer": {
+      "title": "Внимание!",
+      "message": "Вы видите это окно, потому что перешли на наш клиент с мошеннического сайта. Официальный сайты платформы Acryl: https://acrylplatform.com/ и https://acrylminer.com/. Официальный сайт нашего магазина https://shop.acrylminer.com"
+    },
     "enterPassword": {
       "ok": "OK",
       "title": "Введите пароль"

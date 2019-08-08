@@ -194,6 +194,17 @@
                 });
             }
 
+            showRefererModal() {
+                return this._getModal({
+                    id: 'referer-modals',
+                    title: 'modal.referer.title',
+                    templateUrl: 'modules/utils/modals/referers/template.html',
+                    // content: 'modal.referer.message',
+                    clickOutsideToClose: true,
+                    escapeToClose: true
+                });
+            }
+
             showSeedBackupModal() {
                 const api = ds.signature.getSignatureApi();
 

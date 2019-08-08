@@ -80,5 +80,7 @@
  * @property {object} PERMISSIONS
  * @property {object} SETTINGS
  * @property {object} SETTINGS.DEX
+ * @property {object} SETTINGS.REFERERS
  * @property {Array<string>} SETTINGS.DEX.WATCH_LIST_PAIRS
+ * @property {Array<string>} SETTINGS.REFERERS.BLACK_LIST
  */

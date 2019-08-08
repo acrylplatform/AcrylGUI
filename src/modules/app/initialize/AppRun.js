@@ -54,10 +54,11 @@
      * @param {app.utils.decorators} decorators
      * @param {Waves} waves
      * @param {ModalRouter} ModalRouter
+     * @param {ConfigService} configService
      * @return {AppRun}
      */
     const run = function ($rootScope, utils, user, $state, state, modalManager, storage,
-                          notification, decorators, waves, ModalRouter) {
+                          notification, decorators, waves, ModalRouter, configService) {
 
         const phone = WavesApp.device.phone();
         const tablet = WavesApp.device.tablet();
@@ -99,6 +100,11 @@
                 this._modalRouter = new ModalRouter();
 
                 /**
+                 * @type {Boolean}
+                 */
+                this.showRefererModal = false;
+
+                /**
                  * Configure library generation avatar by address
                  */
                 identityImg.config({ rows: 8, cells: 8 });
@@ -106,6 +112,7 @@
                 this._setHandlers();
                 this._stopLoader();
                 this._initializeLogin();
+                this._checkReferers();
                 this._initializeOutLinks();
 
                 if (WavesApp.isDesktop()) {
@@ -169,6 +176,7 @@
              * @private
              */
             _setHandlers() {
+                configService.change.on(this._checkReferers, this);
                 $rootScope.$on('$stateChangeSuccess', this._onChangeStateSuccess.bind(this));
             }
 
@@ -208,11 +216,20 @@
                 localStorage.setItem('lng', i18next.language);
             }
 
+            _checkReferers() {
+                const blackList = configService.get('SETTINGS.REFERERS.BLACK_LIST') || [];
+                const documentReferer = document.referrer ? new URL(document.referrer) : null;
+
+                if (!this.showRefererModal && documentReferer && blackList.includes(documentReferer.hostname)) {
+                    modalManager.showRefererModal();
+                    this.showRefererModal = true;
+                }
+            }
+
             /**
              * @private
              */
             _initializeLogin() {
-
                 let needShowTutorial = false;
 
                 this._listenChangeLanguage();
@@ -286,6 +303,9 @@
                                 })
                                 .then(() => {
                                     this._modalRouter.initialize();
+                                })
+                                .then(() => {
+                                    this._checkReferers();
                                 });
 
                             $rootScope.$on('$stateChangeStart', (event, current) => {

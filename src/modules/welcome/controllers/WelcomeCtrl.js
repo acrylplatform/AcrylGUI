@@ -64,6 +64,10 @@
                 return modalManager.showTutorialModals();
             }
 
+            showRefererModals() {
+                return modalManager.showRefererModals();
+            }
+
             _updatePassword() {
                 if (this.password) {
                     this.showPasswordError = false;
