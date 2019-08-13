@@ -1,9 +1,22 @@
 language: node_js
-branches:
-  only: master
-cache:
-  npm: false
 install:
   - npm install
 script:
   - npm run build
+deploy:
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: "client.acrylplatform.com"
+    skip_cleanup: true
+    local_dir: dist/web/mainnet/min
+    on:
+      branch: master
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: "clienttestnet.acrylplatform.com"
+    skip_cleanup: true
+    local_dir: dist/web/testnet/min
+    on:
+      branch: testnet
