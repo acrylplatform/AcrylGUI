@@ -12,6 +12,7 @@ deploy:
     bucket: "client.acrylplatform.com"
     skip_cleanup: true
     local_dir: dist/web/mainnet/min
+    region: eu-central-1
     on:
       branch: master
   - provider: s3
@@ -20,5 +21,6 @@ deploy:
     bucket: "clienttestnet.acrylplatform.com"
     skip_cleanup: true
     local_dir: dist/web/testnet/min
+    region: eu-central-1
     on:
       branch: testnet
