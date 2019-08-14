@@ -256,10 +256,6 @@
                         return null;
                     }
 
-                    promise.then(() => {
-                        this._checkReferers();
-                    });
-
                     if (needShowTutorial && toState.name !== 'dex-demo') {
                         modalManager.showTutorialModals();
                         needShowTutorial = false;
