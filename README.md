@@ -1,8 +1,6 @@
 # Acryl Client
 
-[**Website**](https://wavesplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.acrylplatform.com/) | [**Documentation**](https://docs.wavesplatform.com)
-
-[![Acryl App Promo](https://raw.githubusercontent.com/wavesplatform/WavesGUI/dev/README_IMG_01.png)](https://acrylplatform.com/product)
+[**Website**](https://acrylplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.acrylplatform.com/) | [**Documentation**](https://docs.acrylplatform.com/)
 
 Acryl Client is the official wallet software designed with mass adoption in mind. It allows to access your Acryl account, handle financial operations, issue tokens, and trade on DEX.
 
@@ -30,12 +28,12 @@ Keep up with the latest news and articles, and find out all about events happeni
 
 * [Community Forum](https://forum.wavesplatform.com/)
 * [Community Portal](https://wavescommunity.com/)
-* [Waves Docs](https://docs.acrylplatform.com/)
-* [Waves Blog](https://blog.acrylplatform.com/)
+* [Acryl Docs](https://docs.acrylplatform.com/)
+* [Acryl Blog](https://blog.acrylplatform.com/)
 * [Support](https://support.acrylplatform.com/)
 
 ##
 
 _Please see the [issues](https://github.com/acrylplatform/AcrylGUI/issues) section to report any bugs or feature requests and to see the list of known issues._
 
-[<img src="https://cdn.worldvectorlogo.com/logos/waves-6.svg" width="113px" alt="Waves Logo" />](https://wavesplatform.com)
+[<img src="src/img/ico/android-chrome-512x512.png" width="70px" alt="Acryl Logo" />](https://acrylplatform.com/)
