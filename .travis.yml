@@ -1,6 +1,10 @@
 language: node_js
 node_js:
   - "10"
+branches:
+  only:
+  - master
+  - testnet
 install:
   - npm install
 script:
