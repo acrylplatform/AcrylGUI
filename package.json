@@ -1,6 +1,6 @@
 {
   "name": "acryl-client",
-  "version": "1.0.12",
+  "version": "1.0.14",
   "description": "The official client application for the Acryl platform",
   "private": true,
   "repository": {
@@ -59,7 +59,7 @@
     "gulp-copy": "4.0.1",
     "gulp-htmlmin": "3.0.0",
     "gulp-zip": "4.0.0",
-    "handlebars": "4.0.10",
+    "handlebars": "4.0.14",
     "html-minifier": "3.5.7",
     "less": "2.7.2",
     "mime": "2.0.3",
@@ -106,7 +106,7 @@
     "i18next": "9.1.0",
     "i18next-locize-backend": "1.2.1",
     "identity-img": "1.0.0",
-    "jquery": "3.2.1",
+    "jquery": "3.4.1",
     "js-cookie": "2.2.0",
     "mobile-detect": "^1.4.1",
     "mousetrap": "1.6.1",
