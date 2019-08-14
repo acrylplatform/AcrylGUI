@@ -4,6 +4,7 @@ node_js:
 install:
   - npm install
 script:
+  - npm run data-service
   - npm run build
 deploy:
   - provider: s3
