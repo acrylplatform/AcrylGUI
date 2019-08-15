@@ -112,7 +112,6 @@
                 this._setHandlers();
                 this._stopLoader();
                 this._initializeLogin();
-                this._checkReferers();
                 this._initializeOutLinks();
 
                 if (WavesApp.isDesktop()) {
@@ -221,8 +220,8 @@
                 const documentReferer = document.referrer ? new URL(document.referrer) : null;
 
                 if (!this.showRefererModal && documentReferer && blackList.includes(documentReferer.hostname)) {
-                    modalManager.showRefererModal();
                     this.showRefererModal = true;
+                    return modalManager.showRefererModal();
                 }
             }
 
@@ -274,12 +273,13 @@
                         needShowTutorial = canOpenTutorial && !oldVersion;
                     });
 
-                    promise.then(() => {
-                        this._checkReferers();
-                        if (needShowTutorial && toState.name !== 'dex-demo') {
-                            modalManager.showTutorialModals();
-                            needShowTutorial = false;
-                        }
+                    this._checkReferers().finally(() => {
+                        promise.then(() => {
+                            if (needShowTutorial && toState.name !== 'dex-demo') {
+                                modalManager.showTutorialModals();
+                                needShowTutorial = false;
+                            }
+                        });
                     });
 
                     waiting = true;
