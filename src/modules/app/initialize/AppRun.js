@@ -222,6 +222,8 @@
                 if (!this.showRefererModal && documentReferer && blackList.includes(documentReferer.hostname)) {
                     this.showRefererModal = true;
                     return modalManager.showRefererModal();
+                } else {
+                    return false;
                 }
             }
 
@@ -273,14 +275,24 @@
                         needShowTutorial = canOpenTutorial && !oldVersion;
                     });
 
-                    this._checkReferers().finally(() => {
+                    const checkReferer = this._checkReferers();
+                    if (checkReferer) {
+                        checkReferer.finally(() => {
+                            promise.then(() => {
+                                if (needShowTutorial && toState.name !== 'dex-demo') {
+                                    modalManager.showTutorialModals();
+                                    needShowTutorial = false;
+                                }
+                            });
+                        });
+                    } else {
                         promise.then(() => {
                             if (needShowTutorial && toState.name !== 'dex-demo') {
                                 modalManager.showTutorialModals();
                                 needShowTutorial = false;
                             }
                         });
-                    });
+                    }
 
                     waiting = true;
 
