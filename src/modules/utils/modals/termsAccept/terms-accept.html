@@ -13,14 +13,10 @@
                     <w-checkbox-submit id="security" ng-model="$ctrl.security"></w-checkbox-submit>
                     <label for="security" w-i18n="modal.termsAccept.body.security"></label>
                 </div>
+                
                 <div class="row">
                     <w-checkbox-submit id="backup" ng-model="$ctrl.backup"></w-checkbox-submit>
                     <label for="backup" w-i18n="modal.termsAccept.body.backup"></label>
-                </div>
-
-                <div class="row">
-                    <w-checkbox-submit id="shareAnalytics" ng-model="$ctrl.shareAnalytics"></w-checkbox-submit>
-                    <label for="shareAnalytics" w-i18n="modal.termsAccept.body.analytics"></label>
                 </div>
 
                 <w-button class="submit long big" on-click="$ctrl.confirm()"

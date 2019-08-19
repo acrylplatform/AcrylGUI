@@ -646,7 +646,6 @@
     "termsAccept": {
       "body": {
         "advancedMode": "Advanced features",
-        "analytics": "I would like to help improve the Acryl platform by sending anonymous usage statistics to the developers.",
         "backup": "I understand that if this app is moved to another device or deleted, my Acryl can only be recovered with the backup phrase.",
         "ok": "Confirm and Begin",
         "read": "I have read, understood and agree to the",
