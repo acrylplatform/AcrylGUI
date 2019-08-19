@@ -112,7 +112,6 @@
                 this._setHandlers();
                 this._stopLoader();
                 this._initializeLogin();
-                this._checkReferers();
                 this._initializeOutLinks();
 
                 if (WavesApp.isDesktop()) {
@@ -176,7 +175,6 @@
              * @private
              */
             _setHandlers() {
-                configService.change.on(this._checkReferers, this);
                 $rootScope.$on('$stateChangeSuccess', this._onChangeStateSuccess.bind(this));
             }
 
@@ -221,8 +219,10 @@
                 const documentReferer = document.referrer ? new URL(document.referrer) : null;
 
                 if (!this.showRefererModal && documentReferer && blackList.includes(documentReferer.hostname)) {
-                    modalManager.showRefererModal();
                     this.showRefererModal = true;
+                    return modalManager.showRefererModal();
+                } else {
+                    return false;
                 }
             }
 
@@ -275,10 +275,20 @@
                     });
 
                     promise.then(() => {
-                        if (needShowTutorial && toState.name !== 'dex-demo') {
-                            modalManager.showTutorialModals();
-                            needShowTutorial = false;
-                        }
+                        configService.change.once(() => {
+                            const checkReferer = this._checkReferers();
+                            if (checkReferer) {
+                                checkReferer.finally(() => {
+                                    if (needShowTutorial && toState.name !== 'dex-demo') {
+                                        modalManager.showTutorialModals();
+                                        needShowTutorial = false;
+                                    }
+                                });
+                            } else if (needShowTutorial && toState.name !== 'dex-demo') {
+                                modalManager.showTutorialModals();
+                                needShowTutorial = false;
+                            }
+                        }, this);
                     });
 
                     waiting = true;
