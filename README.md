@@ -1,6 +1,6 @@
 # Acryl Client
 
-[**Website**](https://acrylplatform.com/) | [**Discord**](https://discord.gg/cnFmDyA) | [**Forum**](https://forum.wavesplatform.com/) | [**Support**](https://support.acrylplatform.com/) | [**Documentation**](https://docs.acrylplatform.com/)
+[**Website**](https://acrylplatform.com/) | [**Support**](https://support.acrylplatform.com/) | [**Documentation**](https://docs.acrylplatform.com/)
 
 Acryl Client is the official wallet software designed with mass adoption in mind. It allows to access your Acryl account, handle financial operations, issue tokens, and trade on DEX.
 
@@ -26,8 +26,6 @@ The server will be launched at [https://localhost:8080](https://localhost:8080).
 
 Keep up with the latest news and articles, and find out all about events happening on the [Acryl Platform](https://acrylplatform.com/).
 
-* [Community Forum](https://forum.wavesplatform.com/)
-* [Community Portal](https://wavescommunity.com/)
 * [Acryl Docs](https://docs.acrylplatform.com/)
 * [Acryl Blog](https://blog.acrylplatform.com/)
 * [Support](https://support.acrylplatform.com/)
