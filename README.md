@@ -1,3 +1,4 @@
+[![Build Status](https://travis-ci.com/acrylplatform/AcrylGUI.svg?branch=master)](https://travis-ci.com/acrylplatform/AcrylGUI)
 # Acryl Client
 
 [**Website**](https://acrylplatform.com/) | [**Support**](https://support.acrylplatform.com/) | [**Documentation**](https://docs.acrylplatform.com/)
