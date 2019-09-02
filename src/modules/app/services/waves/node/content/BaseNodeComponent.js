@@ -63,7 +63,6 @@
                         case TYPES.TRANSFER:
                             return transfer();
                         case TYPES.BURN:
-                        case TYPES.CREATE_ALIAS:
                         case TYPES.LEASE:
                         case TYPES.CANCEL_LEASING:
                             return Promise.all([
@@ -80,6 +79,7 @@
                         case TYPES.SPONSORSHIP:
                         case TYPES.ISSUE:
                         case TYPES.REISSUE:
+                        case TYPES.CREATE_ALIAS:
                             return Promise.all([
                                 getFee('1')
                             ]);
