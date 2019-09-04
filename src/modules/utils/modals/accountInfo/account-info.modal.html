@@ -16,8 +16,8 @@
             <w-copy-wrap class="body-1 basic-900"
                          ng-repeat="alias in $ctrl.aliases"
                          ng-click="$ctrl.onCopyAlias()"
-                         info="::alias">
-                {{::alias}}
+                         info="'https://acrylminer.com/?utm_source='+alias">
+                <a href="https://acrylminer.com/?utm_source={{::alias}}">{{::alias}}</a>
             </w-copy-wrap>
             <w-step-by-step active-step="$ctrl.createAliasStep">
                 <w-step>
