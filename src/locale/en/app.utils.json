@@ -753,7 +753,7 @@
         "1_0_15": "{span.line}[1. Issues with confirmation on Ledger have been fixed.]\n{span.line}[2. Increased waiting time for confirmation from Ledger.]\n{span.line}[3. Detailed information has been added to Error messages.]",
         "1_0_18": "{span.line}[1. You can now set a script for your account.]\n{span.line}[2. Additional minor bugs have been fixed.]",
         "1_0_20": "{span.line}[1. Changed price to create new alias]",
-        "1_0_21": "{span.line}[1. Fixed authorisation confirmation via Ledger.]\n{span.line}[2. Numerous minor bugs fixed.]",
+        "1_0_21": "{span.line}[1. Added referral link for aliases.]",
         "1_0_22": "{span.line}[1. Added advanced features to work with scripted accounts.]",
         "1_0_25": "{span.line}[1. [Acryl Keeper](https://chrome.google.com/webstore/detail/acryl-keeper/lpilbniiabackdjcionkobglmddfbcjo?hl=en) support has been added.]",
         "1_0_27": "{span.line}[1. Added \"My assets\" category in Portfolio.]\n{span.line}[2. Minor bugs have been fixed.]",
