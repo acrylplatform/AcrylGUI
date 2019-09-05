@@ -4,7 +4,13 @@
         <w-avatar size="30" address="$ctrl.address"></w-avatar>
         <div class="body-1 basic-900 mobile-low-fsize">{{::$ctrl.address}}</div>
     </w-copy-wrap>
-
+    <div w-toggle-class-container class="qr-wrapper center">
+        <div class="body-2 basic-900">Отсканируйте QR код</div>
+        <w-qr-code w-toggle-class="zoomed-in" size="200" url="$ctrl.address"></w-qr-code>
+        <div class="pointer center footnote-1 margin-top-1 basic-500"
+             w-toggle-class="zoomed-in">Нажмите чтобы увеличить/уменьшить</div>
+        <!-- <w-loader ng-if="!$ctrl.qrData"></w-loader> -->
+    </div>
     <div class="row">
         <span class="body-2 basic-900 modal-header" w-i18n="modal.account.aliases"></span>
         <w-help-icon>
