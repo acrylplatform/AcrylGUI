@@ -331,6 +331,11 @@
             }
 
             onReadQrCode(url) {
+                if (!url.includes('https://')) {
+                    this.tx.recipient = url;
+                    $scope.$apply();
+                    return null;
+                }
                 const routeData = utils.getRouterParams(utils.getUrlForRoute(url));
 
                 if (!routeData || routeData.name !== 'SEND_ASSET') {
@@ -347,7 +352,7 @@
 
                     const applyAmount = () => {
                         if (result.amount) {
-                            this.tx.amount = this.moneyHash[this.assetId].cloneWithTokens(result.amount);
+                            this.tx.amount = this.balance.cloneWithTokens(result.amount);
                             this._fillMirror();
                         }
                         $scope.$apply();
