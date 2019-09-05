@@ -120,7 +120,7 @@
         </div>
     </div>
     <div class="row">
-        <span class="body-2 basic-900 modal-header" w-i18n="modal.account.referal"></span>
+        <span ng-if="$ctrl.aliases" class="body-2 basic-900 modal-header" w-i18n="modal.account.referal"></span>
         <div class="alias-list">
             <w-copy-wrap class="body-1 basic-900"
                          ng-repeat="alias in $ctrl.aliases"
