@@ -16,8 +16,8 @@
             <w-copy-wrap class="body-1 basic-900"
                          ng-repeat="alias in $ctrl.aliases"
                          ng-click="$ctrl.onCopyAlias()"
-                         info="'https://acrylminer.com/?utm_source='+alias">
-                <a href="https://acrylminer.com/?utm_source={{::alias}}">{{::alias}}</a>
+                         info="::alias">
+                {{::alias}}
             </w-copy-wrap>
             <w-step-by-step active-step="$ctrl.createAliasStep">
                 <w-step>
@@ -111,6 +111,17 @@
                     </form>
                 </w-step>
             </w-step-by-step>
+        </div>
+    </div>
+    <div class="row">
+        <span class="body-2 basic-900 modal-header" w-i18n="modal.account.referal"></span>
+        <div class="alias-list">
+            <w-copy-wrap class="body-1 basic-900"
+                         ng-repeat="alias in $ctrl.aliases"
+                         ng-click="$ctrl.onCopyAlias()"
+                         info="'https://acrylminer.com/?utm_source='+alias">
+                https://acrylminer.com/?utm_source={{::alias}}
+            </w-copy-wrap>
         </div>
     </div>
 </div>

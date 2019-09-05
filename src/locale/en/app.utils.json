@@ -76,6 +76,7 @@
     "account": {
       "address": "Your address",
       "aliases": "Aliases",
+      "referal": "Referral links",
       "aliasesWarning": "Alias functionality is temporarily unavailable",
       "cancel": "Create an account",
       "create": "Create new",
@@ -754,7 +755,7 @@
         "1_0_18": "{span.line}[1. You can now set a script for your account.]\n{span.line}[2. Additional minor bugs have been fixed.]",
         "1_0_20": "{span.line}[1. Changed price to create new alias]",
         "1_0_21": "{span.line}[1. Referral link added for aliases and function copy referral link.]",
-        "1_0_22": "{span.line}[1. Added advanced features to work with scripted accounts.]",
+        "1_0_22": "{span.line}[1. Changed display of referral links for aliases.]",
         "1_0_25": "{span.line}[1. [Acryl Keeper](https://chrome.google.com/webstore/detail/acryl-keeper/lpilbniiabackdjcionkobglmddfbcjo?hl=en) support has been added.]",
         "1_0_27": "{span.line}[1. Added \"My assets\" category in Portfolio.]\n{span.line}[2. Minor bugs have been fixed.]",
         "1_0_28": "{span.line}[1. Added pairing function to import existing accounts to mobile.]\n{span.line}[2. Minor bugs have been fixed.]",
