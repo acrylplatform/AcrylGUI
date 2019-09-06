@@ -5,10 +5,10 @@
         <div class="body-1 basic-900 mobile-low-fsize">{{::$ctrl.address}}</div>
     </w-copy-wrap>
     <div w-toggle-class-container class="qr-wrapper center">
-        <div class="body-2 basic-900">Отсканируйте QR код</div>
+        <div class="body-2 basic-900"><span w-i18n="modal.account.qr_scan"></span></div>
         <w-qr-code w-toggle-class="zoomed-in" size="200" url="$ctrl.address"></w-qr-code>
         <div class="pointer center footnote-1 margin-top-1 basic-500"
-             w-toggle-class="zoomed-in">Нажмите чтобы увеличить/уменьшить</div>
+             w-toggle-class="zoomed-in"><span w-i18n="modal.account.click_zoom"></span></div>
         <!-- <w-loader ng-if="!$ctrl.qrData"></w-loader> -->
     </div>
     <div class="row">
