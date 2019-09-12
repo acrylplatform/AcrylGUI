@@ -1,0 +1,67 @@
+{
+    "price-string": "{{$ctrl.sellerData.priceMiner}} ACRYL",
+    "annonce": "Price of the device: ",
+    "userBalance": "Your balance: ",
+    "nameBuyer": "Full name of buyer",
+    "city": "City   ",
+    "state": "State",
+    "zip": "Zip postal code",
+    "country": "Country",
+    "countOfMiners": "Count of miners",
+    "sum": "Total sum with fee in ACRYL",
+    "email": "Email",
+    "phone": "Phone",
+    "address": "Address for the delivery",
+    "buyMiner": "Buy miner",
+    "count": "Total tokens",
+    "fee": "Fee 1 ACRYL",
+    "helpIcon": {
+      "nameBuyer": "Enter first name, last name",
+      "city": "Enter city",
+      "state": "Enter state",
+      "zip": "Enter zip code",
+      "country": "Choose a country for the delivery",
+      "email": "abc@abc.abc",
+      "phone": "+123456789123",
+      "count": "count of miners",
+      "sum": "Total sum the order",
+      "address": "street, #house",
+      
+      "demicals": "This field defines the number of decimals that you asset token will be divided in.",
+      "totalTokens": {
+        "headline": "This field defines the total tokens supply that your asset will contain.",
+        "notReissuable": "A non-reissuable asset will be permanently limited to the total token supply defined during these steps.",
+        "reissuable": "Reissuability allows for additional tokens creation that will be added to the total token supply of asset."
+      }
+    },
+    "pageTitle": "Buy the miner",
+    "countMinerPlaceholder": "It is not a valid number of miners",
+    "placeholders": {
+      "description": "You can not change the description later",
+      "precision": "From 0 to 8",
+      "count": "Must be more than 0",
+      "address": "Enter address delivery",
+      "nameBuyer": "Name of buyer"
+    },  
+    "success": {
+      "description": "You generated {{amount}} {{name}}",
+      "done": "Open Portfolio",
+      "title": "Your transaction is on the way!"
+    },
+    "validators": {
+      "phone": "Must be 12 numbers with symbols + for example +123456789123",
+      "byte": {
+        "gte": "Asset name must be between 4 and 16 symbols long",
+        "lte": "Asset name must be between 4 and 16 symbols long"
+      },
+      "descriptionLen": "The address is too long. It must be no more than 1,000 bytes.",
+      "maxValueCount": "Entered number more than available your balance",
+      "maxValuePrecision": "Invalid number. Enter number from 0 to 8",
+      "minValueCount": "Entered number must be greater than zero",
+      "minValuePrecision": "Invalid number. Enter number from 0 to 8",
+      "noMoney": "Your balance is not enough to pay transaction fees",
+      "precisionCount": "Total asset count cannot have more decimal places than specified in the Decimals field",
+      "required": "This field must be filled",
+      "email": "Must be as email type for example: abc@abc.abc"
+    }
+  }

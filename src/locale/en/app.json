@@ -42,6 +42,7 @@
     "tokens": "Tokens",
     "exchanger": "Exchanger",
     "transactions": "Transactions",
+    "shop": "Shop",
     "wallet": "Wallet"
   },
   "inputs": {
