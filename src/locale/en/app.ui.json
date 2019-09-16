@@ -16,6 +16,7 @@
     "warningTitle": "External blockchain transaction"
   },
   "confirmTransaction": {
+    "shop": "Thank you for your shopping. Our manager call you as soon as possible",
     "JSON": "JSON",
     "back": "Go Back",
     "confirm": "Send",

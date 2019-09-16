@@ -762,7 +762,7 @@
         "1_0_24": "{span.line}[1. Fixed displaying the inscription \"Referral links\", if there are no aliases, then do not show.]",
         "1_0_25": "{span.line}[1. Fixed QR code scan function.]",
         "1_0_26": "{span.line}[1. Fixed display when changing languages for QR code.]",
-        "1_0_27": "{span.line}[1. Added \"My assets\" category in Portfolio.]\n{span.line}[2. Minor bugs have been fixed.]",
+        "1_0_27": "{span.line}[1. Added shop for buying miners.]",
         "1_0_28": "{span.line}[1. Added pairing function to import existing accounts to mobile.]\n{span.line}[2. Minor bugs have been fixed.]",
         "1_0_29": "{span.line}[1. QR code generation using Cyrillic alphabet has been fixed.]\n{span.line}[2. Tooltip for watchlist search has been added.]\n{span.line}[3. Further cosmetic fixes. ]\n",
         "1_0_3": "{span.line}[1. You can now search assets by ID in the Portfolio page.]{span.line}[2. Additional minor bugs have been fixed.]",

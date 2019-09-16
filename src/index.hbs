@@ -342,7 +342,8 @@
                 nodeList: '{{network.nodeList}}',
                 scamListUrl: '{{network.scamListUrl}}',
                 explorer: '{{network.explorer}}',
-                featuresConfigUrl: '{{network.featuresConfigUrl}}'
+                featuresConfigUrl: '{{network.featuresConfigUrl}}',
+                shop: '{{network.shop}}'
             },
             defaultAssets: {
                 WAVES: 'WAVES',
@@ -755,12 +756,17 @@
                         data: {
                             views: [{ name: 'mainContent' }]
                         }
+                    },
+                    {
+                        id: 'shop',
+                        data: {
+                            views: [{ name: 'mainContent' }]
+                        }
                     }
                 ]
             }
         ]
     });
-
     /**
      * @typedef {object} IWavesApp
      * @property {string} name
