@@ -61,8 +61,10 @@
                 try {
                     if (localStorage.getItem('utm_source') !== null) {
                         this.referal = localStorage.getItem('utm_source');
-                    } 
-                } catch (e) { console.error('(Shop_ctrl) Error with get data from Local Storage: ', e); }
+                    }
+                } catch (e) {
+                    return e;
+                }
             }
 
             hideHelpIcon(flag) {
