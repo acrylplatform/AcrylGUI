@@ -40,6 +40,13 @@
             </div>
 
         </div>
+
+        <!-- Information about delivery -->
+        <div style="margin-top: 20px;" class="row">
+            <h4 w-i18n="deliveryHeader"></h4>
+            <p w-i18n="deliveryDescription"></p>
+            <a w-i18n="deliveryLink" href='https://www.cdek.ru/' target="_blank"></a>
+        </div>
     </div>
 
     <div class="shop-page__content">
@@ -75,8 +82,8 @@
                         w-validate w-validator-number>
                     </w-input>
                 </div>
-
             </div>
+
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="nameBuyer"></span>
@@ -133,8 +140,8 @@
                     </w-help-icon>
                 </div>
                 <w-input-container>
-                    <w-input type="tel" name="phone" ng-model="$ctrl.phone" w-validator-byte-gte="12"
-                        w-validator-byte-lte="13" w-validate w-validator-pattern="^\+?\d{0,13}" class="medium" required>
+                    <w-input type="tel" name="phone" ng-model="$ctrl.phone" w-validator-byte-gte="10"
+                        w-validator-byte-lte="15" w-validate w-validator-pattern="^\+?\d{0,15}" class="medium" required>
                     </w-input>
 
                     <w-input-error message="required">
@@ -160,7 +167,7 @@
                     </w-help-icon>
                 </div>
                 <w-input-container ng-click="$ctrl.hideHelpIcon(false)" ng-blur="$ctrl.hideHelpIcon(true)">
-                    <w-input type="text" class="medium" required readonly ng-model="$ctrl.country" > </w-input>
+                    <w-input type="text" class="medium" required ng-model="$ctrl.country" > </w-input>
                     <w-change-country language="$ctrl.language" on-change="($ctrl.country)" id="countryList">
                     </w-change-country>
                 </w-input-container>

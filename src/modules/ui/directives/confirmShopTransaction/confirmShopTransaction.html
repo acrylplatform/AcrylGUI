@@ -4,33 +4,33 @@
             <w-permit name="{{::$ctrl.permissionName}}" mode="on">
                 <w-transaction-info-shop is-confirm="::true" signable="$ctrl.signable"></w-transaction-info-shop>
                <hr>
-               <div  w-i18n="orderInfo"></div>
+               <h3 w-i18n="orderInfo"></h3>
                <div>
-                    <span w-i18n="nameBuyer"></span><span>{{$ctrl.userOrder.name}}</span>
+                    <span class="orderInfoItem" w-i18n="nameBuyer"></span><span class="orderInfoItem" >{{$ctrl.userOrder.name}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerEmail"></span><span>{{$ctrl.userOrder.email}}</span>
+                    <span class="orderInfoItem" w-i18n="buyerEmail"></span><span class="orderInfoItem">{{$ctrl.userOrder.email}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerPhone"></span><span>{{$ctrl.userOrder.phone}}</span>
+                    <span class="orderInfoItem" w-i18n="buyerPhone"></span><span class="orderInfoItem">{{$ctrl.userOrder.phone}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerCountry"></span><span>{{$ctrl.userOrder.country}}</span>
+                    <span class="orderInfoItem" w-i18n="buyerCountry"></span><span class="orderInfoItem">{{$ctrl.userOrder.country}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerState"></span><span>{{$ctrl.userOrder.state}}</span>
+                    <span class="orderInfoItem" w-i18n="buyerState"></span><span class="orderInfoItem">{{$ctrl.userOrder.state}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerSity"></span><span>{{$ctrl.userOrder.sity}}</span>
+                    <span class="orderInfoItem"w-i18n="buyerSity"></span><span class="orderInfoItem">{{$ctrl.userOrder.sity}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerAddress"></span><span>{{$ctrl.userOrder.address}}</span>
+                    <span class="orderInfoItem" w-i18n="buyerAddress"></span><span class="orderInfoItem">{{$ctrl.userOrder.address}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerPostCode"></span><span>{{$ctrl.userOrder.postCode}}</span>
+                    <span class="orderInfoItem" w-i18n="buyerPostCode"></span><span class="orderInfoItem">{{$ctrl.userOrder.postCode}}</span>
                </div>
                <div>
-                    <span w-i18n="buyerCountMiners"></span><span>{{$ctrl.userOrder.countMiners}}</span>
+                    <span class="orderInfoItem" w-i18n="buyerCountMiners"></span><span class="orderInfoItem">{{$ctrl.userOrder.countMiners}}</span>
                </div>
                 <div class="buttons-wrapper margin-top-3">
                     <w-button class="big" on-click="$ctrl.onClickBack()">

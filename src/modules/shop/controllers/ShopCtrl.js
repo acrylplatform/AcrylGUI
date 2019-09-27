@@ -54,9 +54,6 @@
 
                 this.sellerData = this._getMinerPrice();
                 this.observe('countOfMiners', this._onChangeCountOfMiners);
-                if (i18next) {
-                    this.country = (i18next.language === 'ru') ? 'Россия' : 'Russia';
-                }
 
                 try {
                     if (localStorage.getItem('utm_source') !== null) {
