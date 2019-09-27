@@ -42,6 +42,7 @@
             userOrder = null;
             maxMinerCount = null;
             _fee = null;
+            referal = null;
 
             constructor() {
                 super($scope);
@@ -55,6 +56,14 @@
                 this.observe('countOfMiners', this._onChangeCountOfMiners);
                 if (i18next) {
                     this.country = (i18next.language === 'ru') ? 'Россия' : 'Russia';
+                }
+
+                try {
+                    if (localStorage.getItem('utm_source') !== null) {
+                        this.referal = localStorage.getItem('utm_source');
+                    }
+                } catch (e) {
+                    return e;
                 }
             }
 
@@ -158,7 +167,8 @@
                     sity: this.city,
                     address: this.address,
                     postCode: this.zip,
-                    countMiners: this.countOfMiners
+                    countMiners: this.countOfMiners,
+                    referal: this.referal
                 };
                 return userOrder;
             }
