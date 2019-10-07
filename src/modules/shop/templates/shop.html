@@ -16,9 +16,9 @@
                 </div>
                 <div class="price-row">
                     <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners" required
-                        ng-pattern="/^[0-9]{1,7}$/" min="1" w-i18n-attr="placeholder"
-                        placeholder="countMinerPlaceholder">
+                        ng-pattern="/^[0-9]{1,7}$/" min="1">
                     </w-input>
+
                     <span class="buttons-block">
                         <div class="button-border">
                             <button ng-click="$ctrl.stepUp()" class="plus"></button>
@@ -35,7 +35,9 @@
                     <span w-i18n="sum"></span>
                 </div>
                 <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
-                    w-validate w-validator-number>
+                    w-validate w-validator-number
+                    w-i18n-attr="placeholder"
+                    placeholder="countMinerPlaceholder">
                 </w-input>
             </div>
 
@@ -141,7 +143,7 @@
                 </div>
                 <w-input-container>
                     <w-input type="tel" name="phone" ng-model="$ctrl.phone" w-validator-byte-gte="10"
-                        w-validator-byte-lte="15" w-validate w-validator-pattern="^\+?\d{0,15}" class="medium" required>
+                        w-validator-byte-lte="15" w-validate w-validator-pattern="\+\d{0,15}" class="medium" required>
                     </w-input>
 
                     <w-input-error message="required">
@@ -253,9 +255,11 @@
                 </div>
                 <w-input-container>
                     <w-input type="text" class="no-validate-icons" name="address" ng-model="$ctrl.address"
-                        placeholder="placeholders.address" w-validate w-validator-byte-lte="1000"
-                        w-i18n-attr="placeholder"></w-input>
+                        w-validate w-validator-byte-lte="1000" required></w-input>
 
+                    <w-input-error message="required" ng-show="$ctrl.visibleWhenHideCombobox">
+                        <span w-i18n="validators.required"></span>
+                    </w-input-error>
                     <w-input-error message="byteLte">
                         <span w-i18n="validators.descriptionLen"></span>
                     </w-input-error>
