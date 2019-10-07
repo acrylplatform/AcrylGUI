@@ -170,7 +170,7 @@
                     name: this.nameBuyer,
                     country: this.country,
                     state: this.state,
-                    sity: this.city,
+                    city: this.city,
                     address: this.address,
                     postCode: this.zip,
                     countMiners: this.countOfMiners,
@@ -241,6 +241,7 @@
                 this.phone = '';
                 this.address = '';
                 this.nameBuyer = '';
+                this.country = '';
                 this.city = '';
                 this.state = '';
                 this.zip = null;
