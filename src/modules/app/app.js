@@ -96,6 +96,7 @@
         'ui.router',
         'ui.router.state.events',
         'n3-line-chart',
+
         'app.templates',
         'app.utils',
         'app.ui',
@@ -109,8 +110,7 @@
         'app.wallet',
         'app.dex',
         'app.tokens',
-        'app.exchanger',
-        'app.shop'
+        'app.exchanger'
     ]);
 })();
 

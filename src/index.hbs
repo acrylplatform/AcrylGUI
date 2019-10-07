@@ -24,37 +24,7 @@
     <script>
         window.buildIsWeb = {{isWeb}};
     </script>
-    <script>
-        function GetURLParameter(sParam)
-	    {
-            var sPageURL = window.location.search.substring(1);
-            var sURLVariables = sPageURL.split('&');
-            for (var i = 0; i < sURLVariables.length; i++)
-            {
-                var sParameterName = sURLVariables[i].split('=');
-                if (sParameterName[0] == sParam)
-                {
-                    return sParameterName[1];
-                }
-            }
-	    }
-        try {
-            if (GetURLParameter('utm_source')) {
-                if (localStorage.getItem('utm_source') !== null) {
-                    source = localStorage.getItem('utm_source');
-                } else {
-                    source = GetURLParameter("utm_source");
-                    if (source !== "default") {
-                        localStorage.setItem("utm_source", GetURLParameter("utm_source"));
-                    }
-                }
-            } else {
-                if (localStorage.getItem('utm_source')) {
-                    source = localStorage.getItem('utm_source');
-                }
-            }
-        } catch (e) {}
-    </script>
+
     <style>
         .not-supported-browser {
             display: none;
@@ -372,8 +342,7 @@
                 nodeList: '{{network.nodeList}}',
                 scamListUrl: '{{network.scamListUrl}}',
                 explorer: '{{network.explorer}}',
-                featuresConfigUrl: '{{network.featuresConfigUrl}}',
-                shop: '{{network.shop}}'
+                featuresConfigUrl: '{{network.featuresConfigUrl}}'
             },
             defaultAssets: {
                 WAVES: 'WAVES',
@@ -786,17 +755,12 @@
                         data: {
                             views: [{ name: 'mainContent' }]
                         }
-                    },
-                    {
-                        id: 'shop',
-                        data: {
-                            views: [{ name: 'mainContent' }]
-                        }
                     }
                 ]
             }
         ]
     });
+
     /**
      * @typedef {object} IWavesApp
      * @property {string} name

@@ -118,10 +118,6 @@
                 });
             }
 
-            confirmModal() {
-                return $mdDialog.hide();
-            }
-
             showTxInfo() {
                 this.signable.getId().then(id => {
                     $mdDialog.hide();
