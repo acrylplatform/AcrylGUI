@@ -130,7 +130,6 @@ body.shop {
   .number-input {
     display: none;
   }
-
   .number-input-small {
     display: inline !important;
   }
@@ -162,7 +161,23 @@ body.shop {
   }
 }
 
-@media screen and (max-width: 520px) {
+@media screen and (max-width: 768px) {
+  .deliveryInform{
+    margin-left: 20px;
+    margin-right: 20px;
+  }
+  w-input[name="sumOrder"]{
+    width: 100% !important;
+  }
+  
+  w-input[name="countOfMiners"]{
+    width: 100% !important;
+  }
+
+  .buttons-block {
+    width: 15px !important;
+  }
+
   .shop-page {
     display       : flex;
     flex-direction: column;
@@ -173,21 +188,28 @@ body.shop {
     }
 
     .number-input-small {
-      display: inline !important;
+      width: 90%;
+      margin: auto;
+      display: block !important;
+
+      .miner-img {
+        background-image     : @miner;
+        background-size: 125px 180px !important;
+        height         : 180px !important;
+        background-position-x: 50%;
+        background-repeat    : no-repeat;
+      }
     }
 
     .page-title {
       width : 100% !important;
       height: 75%;
+      display: none;
 
-      .miner-img {
-        background-size: 125px 180px !important;
-        height         : 60% !important;
-      }
     }
 
     .shop-page__content {
-      margin-top: -60px;
+      margin-top: 20px;
     }
 
     .generate-form {
@@ -292,12 +314,4 @@ input[type=number]::-webkit-outer-spin-button {
     width       : 88%;
     margin-right: 10px;
   }
-}
-
-w-input[name="sumOrder"]{
-  width: 260px !important;
-}
-
-w-input[name="countOfMiners"]{
-  width: 260px;
 }
