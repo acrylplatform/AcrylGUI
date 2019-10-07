@@ -35,7 +35,7 @@
     }
   },
   "pageTitle": "Buy the miner",
-  "countMinerPlaceholder": "It is not a valid number of miners",
+  "countMinerPlaceholder": "Not enough ACRYL",
   "placeholders": {
     "description": "You can not change the description later",
     "precision": "From 0 to 8",
