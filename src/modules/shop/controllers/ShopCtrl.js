@@ -141,19 +141,10 @@
             }
 
             stepDown() {
-                if (this.countOfMiners > 1) {
-                    const newCount = { value: --this.countOfMiners };
-                    this._onChangeCountOfMiners(newCount);
-                } else if (this.countOfMiners === 1) {
-                    const newCount = { value: this.countOfMiners = 1 };
-                    this._onChangeCountOfMiners(newCount);
-                } else if (this.countOfMiners === 0) {
-                    const newCount = { value: this.countOfMiners = 1 };
-                    this._onChangeCountOfMiners(newCount);
-                } else {
-                    const newCount = { value: this.countOfMiners = this.maxMinerCount };
-                    this._onChangeCountOfMiners(newCount);
-                }
+                const newCount = this.countOfMiners > 1 ?
+                    { value: --this.countOfMiners } :
+                    { value: this.countOfMiners };
+                this._onChangeCountOfMiners(newCount);
             }
 
             stepUp() {
@@ -212,13 +203,13 @@
 
             _onChangeCountOfMiners({ value }) {
                 this.availableBalance = this.balance.available.getTokens();
-                const sumWithFee = (+value * (+this.sellerData.priceMiner) + +this.sellerData.fee).toFixed(8);
+                const sumWithFee = +value * (+this.sellerData.priceMiner) + +this.sellerData.fee;
                 const sum = value ? sumWithFee : 0;
                 if (value && this.availableBalance.gt(sum)) {
                     this.sumOrder = sum;
                 } else {
                     this.sumOrder = null;
-                    // this.countOfMiners = 0;
+                    this.countOfMiners = null;
                 }
                 const sumInNumber = this.sumOrder ? this.sumOrder : 0;
                 ds
