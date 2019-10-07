@@ -34,7 +34,7 @@
     }
   }, 
   "pageTitle": "Купить майнер",
-  "countMinerPlaceholder": "Недостаточно ACRYL",
+  "countMinerPlaceholder": "Не допустимое число майнеров",
   "placeholders": {
     "description": "Описание нельзя изменить позже",
     "precision": "От 0 до 8",
