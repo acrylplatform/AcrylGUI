@@ -1,15 +1,15 @@
 <div w-i18n-ns="app.shop" class="shop-page">
     <div class="page-title headline-4 basic-700">
+        <div class="miner-img"></div>
+        <div class="balance-info">
+            <span w-i18n="userBalance"></span>
+            <span>{{ $ctrl.availableBalance}} ACRYL</span>
+        </div>
+        <div class="price-info">
+            <span w-i18n="annonce"></span>
+            <span>{{ $ctrl.sellerData.priceMiner}} ACRYL</span>
+        </div>
         <div class="number-input">
-            <div class="miner-img"></div>
-            <div class="balance-info">
-                <span w-i18n="userBalance"></span>
-                <span>{{ $ctrl.availableBalance}} ACRYL</span>
-            </div>
-            <div class="price-info">
-                <span w-i18n="annonce"></span>
-                <span>{{ $ctrl.sellerData.priceMiner}} ACRYL</span>
-            </div>
             <div class="row price-container">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="countOfMiners"></span>
@@ -40,34 +40,28 @@
                     placeholder="countMinerPlaceholder">
                 </w-input>
             </div>
-            <!-- Information about delivery -->
-            <div class="deliveryInform" class="row">
-                <h4 w-i18n="deliveryHeader"></h4>
-                <p w-i18n="deliveryDescription"></p>
-                <a w-i18n="deliveryLink" href='https://www.cdek.ru/' target="_blank"></a>
-            </div>
+
+        </div>
+
+        <!-- Information about delivery -->
+        <div style="margin-top: 20px;" class="row">
+            <h4 w-i18n="deliveryHeader"></h4>
+            <p w-i18n="deliveryDescription"></p>
+            <a w-i18n="deliveryLink" href='https://www.cdek.ru/' target="_blank"></a>
         </div>
     </div>
 
     <div class="shop-page__content">
+        <form class="generate-form" name="$ctrl.createForm" novalidate>
             <div class="number-input-small">
-                <div class="miner-img"></div>
-                <div class="balance-info">
-                    <span w-i18n="userBalance"></span>
-                    <span>{{ $ctrl.availableBalance}} ACRYL</span>
-                </div>
-                <div class="price-info">
-                    <span w-i18n="annonce"></span>
-                    <span>{{ $ctrl.sellerData.priceMiner}} ACRYL</span>
-                </div>
-                
                 <div class="row price-container">
                     <div class="body-2 basic-900 relative">
                         <span w-i18n="countOfMiners"></span>                       
                     </div>
                     <div class="price-row">
                         <w-input type="number" class="medium" name="countOfMiners" ng-model="$ctrl.countOfMiners"
-                            required ng-pattern="/^[0-9]{1,7}$/" min="1" >
+                            required ng-pattern="/^[0-9]{1,7}$/" min="1" w-i18n-attr="placeholder"
+                            placeholder="countMinerPlaceholder">
                         </w-input>
                         <!-- onclick="this.parentNode.parentNode.querySelector('w-input>div>input[type=number]').stepDown()"<input class="quantity" min="1" name="countOfMiners" ng-model="$ctrl.countOfMiners" pattern="/^[0-9]{1,7}$/"  value="1" type="number"> -->
                         <span class="buttons-block">
@@ -87,13 +81,11 @@
                         <span w-i18n="sum"></span>                        
                     </div>
                     <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
-                        w-validate w-validator-number
-                        w-i18n-attr="placeholder"
-                        placeholder="countMinerPlaceholder">
+                        w-validate w-validator-number>
                     </w-input>
                 </div>
             </div>
-        <form class="generate-form" name="$ctrl.createForm" novalidate>
+
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="nameBuyer"></span>
@@ -280,13 +272,5 @@
                 </w-sign-button>
             </div>
         </form>
-        <div class="number-input-small">
-            <!-- Information about delivery -->
-            <div class="deliveryInform" class="row">
-                <h4 w-i18n="deliveryHeader"></h4>
-                <p w-i18n="deliveryDescription"></p>
-                <a w-i18n="deliveryLink" href='https://www.cdek.ru/' target="_blank"></a>
-            </div>
-        </div>
     </div>
 </div>
