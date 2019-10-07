@@ -16,6 +16,7 @@
     "warningTitle": "Транзакция во внешний блокчейн"
   },
   "confirmTransaction": {
+    "shop": "Спасибо за покупку. В ближайшее время с Вами свяжется наш специалист",
     "back": "Назад",
     "confirm": "Отправить",
     "description": {
@@ -257,5 +258,16 @@
     "script": {
       "txJson": "Base64 скрипт"
     }
-  }
+  },
+  "close": "закрыть",
+  "orderInfo": "Данные Вашей заявки: ",
+  "nameBuyer": "Имя: ",
+  "buyerEmail": "Email: ",
+  "buyerPhone": "Телефон: ",
+  "buyerCountry": "Страна: ",
+  "buyerState": "Область: ",
+  "buyerSity": "Город: ",
+  "buyerAddress": "Адрес: ",
+  "buyerPostCode": "Почтовый код: ",
+  "buyerCountMiners": "Число майнеров: "
 }
