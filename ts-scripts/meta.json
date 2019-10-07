@@ -122,8 +122,7 @@
       "featuresConfigUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-client-config/master/testnet.config.json",
       "assets": {
         "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
-      },
-      "shop": "https://raw.githubusercontent.com/acrylplatform/ShopKeys/master/sellerDataTestnet.json"
+      }
     },
     "mainnet": {
       "oracle":  "",
@@ -143,8 +142,7 @@
       "assets": {
         "BTC": "68X83bfvSSQauL81fcfqA3Vne9s4y2BRAG36DGRcv4V2",
         "USD": "4vN61TPpk5qKidGt5RYgd1To4nzxsoDyAL5buBk37hwF"
-      },
-      "shop": "https://raw.githubusercontent.com/acrylplatform/ShopKeys/master/sellerDataMainnet.json"
+      }
     }
   }
 }
