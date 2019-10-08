@@ -266,7 +266,7 @@
   "buyerPhone": "Телефон: ",
   "buyerCountry": "Страна: ",
   "buyerState": "Область: ",
-  "buyerSity": "Город: ",
+  "buyerCity": "Город: ",
   "buyerAddress": "Адрес: ",
   "buyerPostCode": "Почтовый код: ",
   "buyerCountMiners": "Число майнеров: "
