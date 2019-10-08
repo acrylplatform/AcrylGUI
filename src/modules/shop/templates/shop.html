@@ -34,7 +34,7 @@
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="sum"></span>
                 </div>
-                <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
+                <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required disabled
                     w-validate w-validator-number
                     w-i18n-attr="placeholder"
                     placeholder="countMinerPlaceholder">
@@ -86,7 +86,7 @@
                     <div class="body-2 basic-900 relative">
                         <span w-i18n="sum"></span>                        
                     </div>
-                    <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required
+                    <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required disabled
                         w-validate w-validator-number
                         w-i18n-attr="placeholder"
                         placeholder="countMinerPlaceholder">
@@ -94,6 +94,16 @@
                 </div>
             </div>
         <form class="generate-form" name="$ctrl.createForm" novalidate>
+            <div class="row price-container disabledFormClass">
+                <div class="body-2 basic-900 relative">
+                    <span w-i18n="sum"></span>
+                </div>
+                <w-input type="text" class="medium" name="sumOrder" ng-model="$ctrl.sumOrder" readonly required disabled
+                    w-validate w-validator-number
+                    w-i18n-attr="placeholder"
+                    placeholder="countMinerPlaceholder">
+                </w-input>
+            </div>
             <div class="row">
                 <div class="body-2 basic-900 relative">
                     <span w-i18n="nameBuyer"></span>

@@ -218,7 +218,6 @@
                     this.sumOrder = sum;
                 } else {
                     this.sumOrder = null;
-                    // this.countOfMiners = 0;
                 }
                 const sumInNumber = this.sumOrder ? this.sumOrder : 0;
                 ds
@@ -245,7 +244,7 @@
                 this.city = '';
                 this.state = '';
                 this.zip = null;
-                this.countOfMiners = null;
+                this.countOfMiners = 1;
 
                 this.createForm.$setPristine();
                 this.createForm.$setUntouched();
