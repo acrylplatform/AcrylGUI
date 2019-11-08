@@ -26,3 +26,4 @@ package-lock.json
 npm-debug.log
 .vscode/
 /mobile/acryl/platforms/android/.idea/
+/mobileClient

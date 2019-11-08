@@ -210,6 +210,75 @@ export function prepareHTML(param: IPrepareHTMLOptions): Promise<string> {
         });
 }
 
+export function prepareHTMLMobile(param: IPrepareHTMLOptions): Promise<string> {
+    const filter = moveTo(param.target);
+    return Promise.all([
+        readFile(join(__dirname, '../src/indexMobile.hbs'), 'utf8') as Promise<string>,
+        readJSON(join(__dirname, '../package.json')) as Promise<IPackageJSON>,
+        readJSON(join(__dirname, './meta.json')) as Promise<IMetaJSON>,
+        readJSON(join(__dirname, '../src/themeConfig/theme.json'))
+    ])
+        .then(([file, pack, meta, themesConf]) => {
+            const { themes } = themesConf;
+            const connectionTypes = ['mainnet', 'testnet'];
+
+            if (!param.scripts) {
+                const sourceFiles = getFilesFrom(join(__dirname, '../src'), '.js', function (name, path) {
+                    return !name.includes('.spec') && !path.includes('/test/');
+                });
+                const cacheKiller = `?v${pack.version}`;
+                param.scripts = meta.vendors.map((i) => join(__dirname, '..', i)).concat(sourceFiles);
+                meta.debugInjections.forEach((path) => {
+                    param.scripts.unshift(join(__dirname, '../', path));
+                });
+                param.scripts = param.scripts.map((path) => `${path}${cacheKiller}`);
+            }
+
+            if (!param.styles) {
+                const styles = meta.stylesheets.concat(getFilesFrom(join(__dirname, '../src'), '.less'));
+                param.styles = [];
+                for (const style of styles) {
+                    for (const theme of themes) {
+                        const name = filter(style);
+
+                        if (!isLess(style)) {
+                            param.styles.push({ name: `/${name}`, theme: null });
+                            break;
+                        }
+                        param.styles.push({ name: `/${name}`, theme, hasGet: true });
+                    }
+                }
+            }
+
+            const networks = connectionTypes.reduce((result, connection) => {
+                result[connection] = meta.configurations[connection];
+                return result;
+            }, Object.create(null));
+
+            const fileTpl = compile(file)({
+                pack: pack,
+                isWeb: param.type === 'web',
+                isProduction: param.buildType && param.buildType === 'min',
+                domain: meta.domain,
+                matcherPriorityList: JSON.stringify(param.connection === 'mainnet' ? MAINNET_DATA : TESTNET_DATA, null, 4),
+                bankRecipient: meta.configurations[param.connection].bankRecipient,
+                origin: meta.configurations[param.connection].origin,
+                build: {
+                    type: param.type
+                },
+                network: networks[param.connection],
+                themesConf: JSON.stringify(themesConf),
+                langList: JSON.stringify(meta.langList),
+                oracle: meta.configurations[param.connection].oracle
+            });
+
+            return replaceStyles(fileTpl, param.styles);
+        })
+        .then((file) => {
+            return replaceScripts(file, param.scripts.map(filter));
+        });
+}
+
 export function download(url: string, filePath: string): Promise<void> {
     return new Promise<void>((resolve) => {
 

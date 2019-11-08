@@ -132,6 +132,22 @@ md-dialog.modal-send {
       }
     }
 
+    w-button.w-qr-code-button{
+      position: absolute;
+      right: 1px;
+      top: 1px;
+      height: 40px;
+      width: 46px;
+      button.w-qr-code-button{
+        border: none !important;
+        width: 24px;
+        height: 40px;
+        background-image: @qr-code-big-icon !important;
+        background-size: 100% 100%;
+        background-position: center 3px;
+      }
+    }
+
     w-qr-code {
       display: block;
     }
@@ -178,6 +194,13 @@ md-dialog.modal-send {
 
     .read-address-wrap w-input:not(.no-validate) .w-input-wrap::after {
       right: 70px;
+    }
+    
+    .read-address-wrap-mobile {
+      display: flex;
+      flex-direction: row;
+      flex-flow: row nowrap;
+      position: relative;
     }
 
     .read-address-wrap {

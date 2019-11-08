@@ -50,6 +50,13 @@
             }
 
             /**
+             * @return {boolean}
+             */
+            get isMobile() {
+                return WavesApp.mobile;
+            }
+
+            /**
              * @return {ISingleSendTx}
              */
             get tx() {
@@ -328,6 +335,16 @@
                     this._fillMirror();
                 }
                 this.focus = '';
+            }
+
+            readQrCodeFunction() {
+                // eslint-disable-next-line no-use-before-define
+                cordova.plugins.barcodeScanner.scan((result) => {
+                    this.tx.recipient = result.text;
+                },
+                (error) => {
+                    console.log(JSON.stringify(error));
+                });
             }
 
             onReadQrCode(url) {

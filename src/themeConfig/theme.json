@@ -1,5 +1,5 @@
 {
-  "themes": ["default", "black"],
+  "themes": ["default", "black", "blackMobile"],
 
   "black": {
     "tradingView": {

@@ -6,3 +6,4 @@ Gruntfile.js
 karma.conf.js
 hooks/
 src/modules/dex/services/CandlesService.js
+src/modules/utils/modals/sendAsset/components/singleSend/SingleSend.js

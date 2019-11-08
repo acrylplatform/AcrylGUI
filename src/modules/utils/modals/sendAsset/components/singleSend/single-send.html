@@ -34,7 +34,18 @@
         </div>
 
         <w-input-container ng-if="!$ctrl.toBankMode">
-            <div class="read-address-wrap">
+            <div class="read-address-wrap-mobile" ng-if="$ctrl.isMobile">
+                <w-input type="text"
+                            name="recipient"
+                            ng-model="$ctrl.state.singleSend.recipient"
+                            placeholder="modal.send.placeholderRecipient"
+                            w-i18n-attr="placeholder"
+                            w-validate
+                            w-validator-any-address="{{$ctrl.state.assetId}}"
+                            required></w-input>
+                <w-button on-click="$ctrl.readQrCodeFunction(text)" class="w-qr-code-button"></w-button>
+            </div>
+            <div class="read-address-wrap" ng-if="!$ctrl.isMobile">
                 <w-input type="text"
                          name="recipient"
                          ng-model="$ctrl.state.singleSend.recipient"
