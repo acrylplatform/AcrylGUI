@@ -1,1 +1,2 @@
-cd mobileClient && cordova run android
+#!/usr/bin/env bash
+cd mobile && cordova run android
