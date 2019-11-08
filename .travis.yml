@@ -34,7 +34,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "mobileclient.acrylplatform.com"
     skip_cleanup: true
-    local_dir: dist/mobile/mainet/min
+    local_dir: dist/mobile/mainnet/min
     region: eu-central-1
     on:
       branch: master
