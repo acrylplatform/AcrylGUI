@@ -1,0 +1,1 @@
+cp -a cordova/. dist/mobile/testnet/min && cp -a cordova/. dist/mobile/testnet/normal && cp -a cordova/. dist/mobile/mainnet/min && cp -a cordova/. dist/mobile/mainnet/normal

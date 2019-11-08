@@ -7,20 +7,21 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, height=device-height, initial-scale=1, user-scalable=no viewport-fit=fit">
     <title>Acryl Client</title>
-    <link rel="icon" href="{{domain}}/img/favicon.ico" type="image/x-icon"/>
+    <link rel="icon" href=".{{domain}}/img/favicon.ico" type="image/x-icon"/>
     <meta name="robots" content="noindex, nofollow" />
-    <link rel="apple-touch-icon" sizes="180x180" href="/img/ico/apple-touch-icon.png">
-    <link rel="icon" type="image/png" sizes="32x32" href="/img/ico/favicon-32x32.png">
-    <link rel="icon" type="image/png" sizes="192x192" href="/img/ico/android-chrome-192x192.png">
-    <link rel="icon" type="image/png" sizes="16x16" href="/img/ico/favicon-16x16.png">
-    <link rel="manifest" href="manifest.json">
-    <link rel="mask-icon" href="/img/ico/safari-pinned-tab.svg" color="#ff5940">
+    <link rel="apple-touch-icon" sizes="180x180" href="./img/ico/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="./img/ico/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="192x192" href="./img/ico/android-chrome-192x192.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="./img/ico/favicon-16x16.png">
+    <link rel="manifest" href="./manifest.json">
+    <link rel="mask-icon" href="./img/ico/safari-pinned-tab.svg" color="#ff5940">
     <meta name="apple-mobile-web-app-title" content="Acryl Client">
     <meta name="application-name" content="Acryl Client">
     <meta name="msapplication-TileColor" content="#2d2d2d">
-    <meta name="msapplication-TileImage" content="/img/ico/mstile-144x144.png">
+    <meta name="msapplication-TileImage" content="./img/ico/mstile-144x144.png">
     <meta name="msapplication-config" content="browserconfig.xml">
     <meta name="theme-color" content="#2d2d2d">
+    <script type="text/javascript" src="cordova.js"></script>
     <script>
         window.buildIsWeb = {{isWeb}};
     </script>
@@ -112,7 +113,7 @@
         .connection-problem .waves-logo {
             width: 100px;
             height: 21px;
-            background: url(/img/icons/waves_logo.svg) no-repeat;
+            background: url(../img/icons/waves_logo.svg) no-repeat;
             display: block;
             margin: 0 auto 80px auto;
         }
@@ -179,7 +180,7 @@
 
         .loader span::before {
             content: '';
-            background-color: #FF5E39; // for preloader color
+            background-color: #FF5E39; /*for preloader color*/
             position: absolute;
             left: 0;
             top: 0;
@@ -207,7 +208,7 @@
             -moz-animation-delay: 0.3s;
             -webkit-animation-delay: 0.3s;
             animation-delay: 0.3s;
-            background-color: #FF5E39;  // for preloader color
+            background-color: #FF5E39;  /*for preloader color*/
         }
 
         .loader .leaf3 {
@@ -221,7 +222,7 @@
             -moz-animation-delay: 0.9s;
             -webkit-animation-delay: 0.9s;
             animation-delay: 0.9s;
-            background-color: #FF5E39;  // for preloader color
+            background-color: #FF5E39;  /*for preloader color*/
         }
 
         .loader .leaf4 {
@@ -235,7 +236,7 @@
             -moz-animation-delay: 0.6s;
             -webkit-animation-delay: 0.6s;
             animation-delay: 0.6s;
-            background-color: #FF5E39;  // for preloader color
+            background-color: #FF5E39;  /*for preloader color*/
         }
 
         @keyframes loader-transition {
@@ -380,7 +381,7 @@
                 BTC: '{{network.assets.BTC}}',
                 USD: '{{network.assets.USD}}'
             },
-            mobile: false,
+            mobile: true,
             ALWAYS_PINNED_ASSETS: ['WAVES'],
 
             otherAssetsWithIcons: {
@@ -481,7 +482,7 @@
 
     <!-- CSS -->
 
-    {{#if isWeb}}
+    {{#if true}}
         <base href="/">{{/if}}
 
     <script>
@@ -519,7 +520,7 @@
                     return el.getAttribute('theme');
                 })
                 .forEach(function (el) {
-                    el.disabled = el.getAttribute('theme') !== 'black';
+                    el.disabled = el.getAttribute('theme') !== 'blackMobile';
                 });
     </script>
 </head>
@@ -535,8 +536,8 @@
 </div>
 
 <div class="connection-problem">
-    <div class="waves-logo"><img src="/img/icons/waves_logo.svg"/></div>
-    <img src="/img/no-preload/connection-error.svg" class="margin-3"/>
+    <div class="waves-logo"><img src="./img/icons/waves_logo.svg"/></div>
+    <img src="./img/no-preload/connection-error.svg" class="margin-3"/>
     <div class="connection-problem__headline">We couldn't connect to the server</div>
         <div class="connection-problem__description">Check your internet connection and try again.</div>
         <!-- <div class="connection-problem__description">
@@ -557,22 +558,22 @@
         </div>
         <div class="browsers-icons">
             <div class="browser-icon-block">
-                <img src="/img/no-preload/chrome-icon.svg"/>
+                <img src="./img/no-preload/chrome-icon.svg"/>
                 <div>Chrome</div>
                 <div><a href="https://www.google.com/chrome/index.html" target="_blank">Install or update</a></div>
             </div>
             <div class="browser-icon-block">
-                <img src="/img/no-preload/firefox-icon.svg"/>
+                <img src="./img/no-preload/firefox-icon.svg"/>
                 <div>Firefox</div>
                 <div><a href="https://www.mozilla.org/en-US/firefox/" target="_blank">Install or update</a></div>
             </div>
             <div class="browser-icon-block">
-                <img src="/img/no-preload/safari-icon.svg"/>
+                <img src="./img/no-preload/safari-icon.svg"/>
                 <div>Safari</div>
                 <div><a href="https://support.apple.com/downloads/safari" target="_blank">Install or update</a></div>
             </div>
             <div class="browser-icon-block">
-                <img src="/img/no-preload/opera-icon.svg"/>
+                <img src="./img/no-preload/opera-icon.svg"/>
                 <div>Opera</div>
                 <div><a href="http://www.opera.com/" target="_blank">Install or update</a></div>
             </div>

@@ -496,7 +496,7 @@
              * @private
              */
             _getImagesReadyPromise() {
-                return $.ajax({ url: `/img/images-list.json?v=${WavesApp.version}`, dataType: 'json' })
+                return $.ajax({ url: `./img/images-list.json?v=${WavesApp.version}`, dataType: 'json' })
                     .then((list) => {
                         return Promise.all(list.map(AppRun.getLoadImagePromise(list.length)));
                     });
