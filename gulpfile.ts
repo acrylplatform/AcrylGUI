@@ -154,11 +154,11 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                 indexPromise
                     .then(() => {
 
-                        const styles = [{ name: join('./css', vendorCssName), theme: null }];
+                        const styles = [{ name: join('/css', vendorCssName), theme: null }];
 
                         for (const theme of THEMES) {
                             styles.push({
-                                name: join('./css', `${theme}-${cssName}`), theme
+                                name: join('/css', `${theme}-${cssName}`), theme
                             });
                         }
 
@@ -180,11 +180,11 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                     indexMobilePromise
                         .then(() => {
 
-                            const styles = [{ name: join('./css', vendorCssName), theme: null }];
+                            const styles = [{ name: join('/css', vendorCssName), theme: null }];
 
                             for (const theme of THEMES) {
                                 styles.push({
-                                    name: join('./css', `${theme}-${cssName}`), theme
+                                    name: join('/css', `${theme}-${cssName}`), theme
                                 });
                             }
 
