@@ -1,0 +1,1 @@
+cd mobileClient && cordova run android

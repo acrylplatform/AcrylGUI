@@ -86,7 +86,6 @@
     "electron": "gulp all && npm run electron:linux && npm run electron:win && npm run electron:osx",
     "electron-debug": "tsc && gulp electron-debug && node_modules/.bin/electron dist/desktop/electron-debug/ --ignore-ssl-error --no-replace-desktop --inspect",
     "data-service": "sh scripts/dataservices.sh",
-    "build-with-cordova": "tsc -p ./ && gulp all && sh ./scripts/cordova-cp.sh",
     "cordova-install": "sh scripts/cordova-install.sh",
     "cordova-android-run": "sh scripts/cordova-android-run.sh"
   },
