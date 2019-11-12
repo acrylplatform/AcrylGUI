@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-rm -rf mobile
-cordova create mobile
-cd mobile
-cordova platform add android
+cd mobile/mainnet
+npm i
+cd ../testnet
+npm i
