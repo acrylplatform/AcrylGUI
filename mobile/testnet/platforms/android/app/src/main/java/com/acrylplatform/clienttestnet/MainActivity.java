@@ -17,7 +17,7 @@
        under the License.
  */
 
-package com.codesundar.barcodescanner;
+package com.acrylplatform.clienttestnet;
 
 import android.os.Bundle;
 import org.apache.cordova.*;

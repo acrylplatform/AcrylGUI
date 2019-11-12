@@ -1,6 +1,6 @@
 <?xml version='1.0' encoding='utf-8'?>
-<widget id="com.acrylplatform.client" version="1.0.0">
-    <name>ACRYL Testnet</name>
+<widget id="com.acrylplatform.client" version="1.0.0" xmlns="http://www.w3.org/ns/widgets">
+    <name>ACRYL</name>
     <description>
         Acryl client.
     </description>
@@ -8,7 +8,7 @@
         Acrylplatfotm Team
     </author>
     <icon src="res/icon.png" />
-    <content src="https://mobileclient.acrylplatform.com/" />
+    <content src="http://mobileclient.acrylplatform.com/" />
     <plugin name="cordova-plugin-whitelist" spec="1" />
     <plugin name="phonegap-plugin-barcodescanner" />
     <access origin="*" />
@@ -18,7 +18,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="https://mobileclient.acrylplatform.com/*" />
+    <allow-navigation href="http://mobileclient.acrylplatform.com/*" />
     <preference name="orientation" value="portrait" />
     <platform name="android">
         <allow-intent href="market:*" />
