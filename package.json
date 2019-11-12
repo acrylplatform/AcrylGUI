@@ -78,7 +78,7 @@
     "postversion": "sh scripts/postversion.sh",
     "watchts": "sh scripts/watch-typescript.sh",
     "lessc": "sh scripts/lessc",
-    "build": "tsc -p ./ && gulp all && sh ./scripts/cordova-cp.sh",
+    "build": "tsc -p ./ && gulp all && sh ./scripts/cordova-cp.sh && sh ./scripts/cordova-install.sh",
     "server": "npm run build && node server",
     "electron:linux": "electron-packager ./dist/desktop/mainnet/min/ --icon=./electron/icons/icon.png --platform=linux --out=./dist/linux",
     "electron:win": "electron-packager ./dist/desktop/mainnet/min/ --icon=./electron/icons/icon.ico --platform=win32 --out=./dist/win",
