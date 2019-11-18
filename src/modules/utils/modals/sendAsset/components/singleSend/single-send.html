@@ -165,7 +165,7 @@
                              fee="$ctrl.feeList"
                              input-classes="big"
                              disabled="$ctrl.toBankMode && (!$ctrl.isVerified || !$ctrl.termsAccepted)"
-                             min="$ctrl.minAmount"
+                             min-gte="$ctrl.minAmount"
                              on-focus="$ctrl.focus = 'amount'"
                              on-blur="$ctrl.focus = ''"
                              amount="$ctrl.state.singleSend.amount">
@@ -184,17 +184,16 @@
             </w-balance-input>
 
         </div>
-
         <div class="like-input-error multiline "
              ng-if="$ctrl.send.amount.$touched && $ctrl.send.amount.$invalid && $ctrl.focus !== 'amount'">
             <div class="error">
             <span ng-if="$ctrl.send.amount.$error.required"
                   class="error-list-row"
                   w-i18n="inputs.errors.required"></span>
-                <span ng-if="$ctrl.send.amount.$error.gt && $ctrl.tx.amount.getTokens().eq(0)"
+                <span ng-if="$ctrl.send.amount.$error.gte && $ctrl.tx.amount.getTokens().eq(0)"
                       class="error-list-row"
                       w-i18n="inputs.errors.required"></span>
-                <span ng-if="$ctrl.send.amount.$error.gt && $ctrl.tx.amount.getTokens().gt(0)"
+                <span ng-if="$ctrl.send.amount.$error.gte && $ctrl.tx.amount.getTokens().gt(0)"
                       class="error-list-row"
                       w-i18n="inputs.errors.gtGatewayMin"
                       params="{min: $ctrl.minimumAmount, assetName: $ctrl.tx.amount.asset.displayName}"></span>
