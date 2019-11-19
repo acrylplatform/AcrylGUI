@@ -25,4 +25,8 @@ WavesGUI.iml
 package-lock.json
 npm-debug.log
 .vscode/
+/mobile
 /mobile/acryl/platforms/android/.idea/
+/mobile/mainnet/node_modules/
+/mobile/testnet/node_modules/
+/mobileClient

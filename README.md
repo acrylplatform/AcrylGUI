@@ -36,3 +36,27 @@ Keep up with the latest news and articles, and find out all about events happeni
 _Please see the [issues](https://github.com/acrylplatform/AcrylGUI/issues) section to report any bugs or feature requests and to see the list of known issues._
 
 [<img src="src/img/ico/android-chrome-512x512.png" width="70px" alt="Acryl Logo" />](https://acrylplatform.com/)
+
+## Install mobile client
+
+To install the mobile version of the client, you will need to install globally CORDOVA, and then use the build script of the mobile application.
+
+```
+npm install -g cordova
+npm run cordova-install
+```
+To run the application on an android emulator or smartphone, you need to go to the directory of the assembly you need and then run the CORDOVA launch command on the android platform.
+
+```
+cd mobile/mainnet
+```
+or
+
+```
+cd mobile/testnet
+```
+
+```
+cordova run android
+```
+

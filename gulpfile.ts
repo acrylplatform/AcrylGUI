@@ -2,7 +2,7 @@ import * as gulp from 'gulp';
 import * as concat from 'gulp-concat';
 import * as babel from 'gulp-babel';
 import { exec, execSync } from 'child_process';
-import { download, getAllLessFiles, getFilesFrom, prepareHTML, run, task } from './ts-scripts/utils';
+import { download, getAllLessFiles, getFilesFrom, prepareHTML, run, task, prepareHTMLMobile } from './ts-scripts/utils';
 import { basename, extname, join, sep } from 'path';
 import {
     copy,
@@ -59,8 +59,9 @@ const getFileName = (name, type) => {
 
 
 const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: 'utf8' });
+const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), { encoding: 'utf8' });
 
-['web', 'desktop'].forEach((buildName: TPlatform) => {
+['web', 'desktop', 'mobile'].forEach((buildName: TPlatform) => {
 
     configurations.forEach((configName: TConnection) => {
 
@@ -124,7 +125,7 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
                         }),
                         copy(tmpCssPath, join(targetPath, 'css')),
                         copy('LICENSE', join(`${targetPath}`, 'LICENSE')),
-                        copy('src/manifest.json', join(`${targetPath}`, 'manifest.json')),
+                        copy('src/manifest'+buildName+configName+'.json', join(`${targetPath}`, 'manifest.json')),
                         copy('src/browserconfig.xml', join(`${targetPath}`, 'browserconfig.xml')),
                     ].concat(forCopy)).then(() => {
                         done();
@@ -149,6 +150,7 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
                     });
                 }
 
+                if ( buildName != 'mobile' ) {
                 indexPromise
                     .then(() => {
 
@@ -172,6 +174,33 @@ const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: '
                     })
                     .then((file) => outputFile(`${targetPath}/index.html`, file))
                     .then(() => done());
+                }
+
+                if ( buildName === 'mobile' ) {
+                    indexMobilePromise
+                        .then(() => {
+
+                            const styles = [{ name: join('/css', vendorCssName), theme: null }];
+
+                            for (const theme of THEMES) {
+                                styles.push({
+                                    name: join('/css', `${theme}-${cssName}`), theme
+                                });
+                            }
+
+                            return prepareHTMLMobile({
+                                buildType: type,
+                                target: targetPath,
+                                connection: configName,
+                                scripts: scripts,
+                                type: 'web',
+                                styles,
+                                themes: THEMES
+                            });
+                        })
+                        .then((file) => outputFile(`${targetPath}/index.html`, file))
+                        .then(() => done());
+                }
             });
             taskHash.html.push(`html-${taskPostfix}`);
 
