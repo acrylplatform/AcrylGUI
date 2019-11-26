@@ -773,6 +773,7 @@
         "1_0_34": "{span.line}[1. Fixed QrCode reading function in application.]",
         "1_0_35": "{span.line}[1. Fixed default asset in DEX section.]",
         "1_0_36": "{span.line}[1. Add files for cordova app.]",
+        "1_0_37": "{span.line}[1. Added the formation of a referral link to the wallet address.]",
         "1_0_5": "{span.line}[1. Trade volume scale has been added on DEX charts.]\n{span.line}[2. Additional minor bugs have been fixed.]",
         "1_0_6": "{span.line}[1. Authorisation via Acryl Desktop Client has been added.]",
         "1_0_7": "{span.line}[1. Some desktop-client crashes were fixed.]\n{span.line}[2. Optimized switching between TX and Portfolio pages, with a big amount of content.]\n{span.line}[3. Spam-tokens names are hidden on TX list.]\n{span.line}[4. Error messages output has been reworked.]",
