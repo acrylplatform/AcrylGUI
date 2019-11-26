@@ -123,6 +123,11 @@
         <span ng-if="$ctrl.aliases" class="body-2 basic-900 modal-header" w-i18n="modal.account.referal"></span>
         <div class="alias-list">
             <w-copy-wrap class="body-1 basic-900"
+                         ng-click="$ctrl.onCopyAlias()"
+                         info="'https://acrylminer.com/?utm_source='+$ctrl.address">
+                https://acrylminer.com/?utm_source={{::$ctrl.address}}
+            </w-copy-wrap>
+            <w-copy-wrap class="body-1 basic-900"
                          ng-repeat="alias in $ctrl.aliases"
                          ng-click="$ctrl.onCopyAlias()"
                          info="'https://acrylminer.com/?utm_source='+alias">
