@@ -61,7 +61,7 @@ const getFileName = (name, type) => {
 const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: 'utf8' });
 const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), { encoding: 'utf8' });
 
-['web', 'desktop', 'mobile'].forEach((buildName: TPlatform) => {
+['web', 'desktop', 'mobile_ios', 'mobile_android'].forEach((buildName: TPlatform) => {
 
     configurations.forEach((configName: TConnection) => {
 
@@ -150,7 +150,7 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                     });
                 }
 
-                if ( buildName != 'mobile' ) {
+                if ( buildName != 'mobile_ios' && buildName != 'mobile_android' ) {
                 indexPromise
                     .then(() => {
 
@@ -176,7 +176,33 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                     .then(() => done());
                 }
 
-                if ( buildName === 'mobile' ) {
+                if ( buildName === 'mobile_ios' ) {
+                    indexMobilePromise
+                        .then(() => {
+
+                            const styles = [{ name: join('/css', vendorCssName), theme: null }];
+
+                            for (const theme of THEMES) {
+                                styles.push({
+                                    name: join('/css', `${theme}-${cssName}`), theme
+                                });
+                            }
+
+                            return prepareHTMLMobile({
+                                buildType: type,
+                                target: targetPath,
+                                connection: configName,
+                                scripts: scripts,
+                                type: 'web',
+                                styles,
+                                themes: THEMES
+                            });
+                        })
+                        .then((file) => outputFile(`${targetPath}/index.html`, file))
+                        .then(() => done());
+                }
+
+                if ( buildName === 'mobile_android' ) {
                     indexMobilePromise
                         .then(() => {
 

@@ -34,7 +34,7 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "mobileclient.acrylplatform.com"
     skip_cleanup: true
-    local_dir: dist/mobile/mainnet/min
+    local_dir: dist/mobile_android/mainnet/min
     region: eu-central-1
     on:
       branch: master
@@ -43,7 +43,25 @@ deploy:
     secret_access_key: $AWS_SECRET_ACCESS_KEY
     bucket: "mobileclienttestnet.acrylplatform.com"
     skip_cleanup: true
-    local_dir: dist/mobile/testnet/min
+    local_dir: dist/mobile_android/testnet/min
+    region: eu-central-1
+    on:
+      branch: testnet
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: "mobileclientios.acrylplatform.com"
+    skip_cleanup: true
+    local_dir: dist/mobile_ios/mainnet/min
+    region: eu-central-1
+    on:
+      branch: master
+  - provider: s3
+    access_key_id: $AWS_ACCESS_KEY_ID
+    secret_access_key: $AWS_SECRET_ACCESS_KEY
+    bucket: "mobileclientiostestnet.acrylplatform.com"
+    skip_cleanup: true
+    local_dir: dist/mobile_ios/testnet/min
     region: eu-central-1
     on:
       branch: testnet

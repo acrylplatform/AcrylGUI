@@ -69,7 +69,7 @@ export interface IConfItem {
 
 export type TConnection = 'mainnet' | 'testnet';
 export type TBuild = 'dev' | 'normal' | 'min';
-export type TPlatform = 'web' | 'desktop' | 'mobile';
+export type TPlatform = 'web' | 'desktop' | 'mobile_ios' | 'mobile_android';
 
 export interface ITaskFunction {
     (name: string, deps: Array<string>): void;
