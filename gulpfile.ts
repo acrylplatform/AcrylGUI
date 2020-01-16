@@ -127,6 +127,8 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                         copy('LICENSE', join(`${targetPath}`, 'LICENSE')),
                         copy('src/manifest'+buildName+configName+'.json', join(`${targetPath}`, 'manifest.json')),
                         copy('src/browserconfig.xml', join(`${targetPath}`, 'browserconfig.xml')),
+                        copy('src/sw-toolbox.js', join(`${targetPath}`, 'sw-toolbox.js')),
+                        copy('src/sw.js', join(`${targetPath}`, 'sw.js')),
                     ].concat(forCopy)).then(() => {
                         done();
                     }, (e) => {

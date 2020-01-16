@@ -1,6 +1,11 @@
 {
     "name": "Acryl Client",
     "short_name": "Acryl Client",
+    "lang": "ru-RU",
+    "theme_color": "#2d2d2d",
+    "background_color": "#2d2d2d",
+    "start_url": "https://mobileclient.acrylplatform.com/",
+    "display": "standalone",
     "icons": [
         {
             "src": "/img/ico/android-chrome-36x36.png",
@@ -47,9 +52,5 @@
             "sizes": "512x512",
             "type": "image/png"
         }
-    ],
-    "theme_color": "#2d2d2d",
-    "background_color": "#2d2d2d",
-    "start_url": "https://mobileclient.acrylplatform.com/",
-    "display": "standalone"
+    ]
 }
