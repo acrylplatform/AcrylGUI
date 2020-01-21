@@ -7,7 +7,7 @@
     <author email="app@acrylplatform.com" href="https://acrylplatform.com">
         Acryl Team
     </author>
-    <content src="https://mobileclient.acrylplatform.com/" />
+    <content src="https://mobileclienttestnet.acrylplatform.com/" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
     <allow-intent href="https://*/*" />
@@ -15,7 +15,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
-    <allow-navigation href="https://mobileclient.acrylplatform.com/*" />
+    <allow-navigation href="https://mobileclienttestnet.acrylplatform.com/*" />
     <preference name="orientation" value="portrait" />
     <platform name="android">
         <allow-intent href="market:*" />
