@@ -17,6 +17,13 @@
 
         class StartLeasingCtrl extends Base {
 
+            /**
+             * @return {boolean}
+             */
+            get isMobile() {
+                return WavesApp.mobile;
+            }
+
             constructor() {
                 super($scope);
                 this.step = 0;
@@ -48,7 +55,23 @@
                 this.step--;
             }
 
+            readQrCodeFunction() {
+                // eslint-disable-next-line no-use-before-define,no-undef
+                cordova.plugins.barcodeScanner.scan((result) => {
+                    this.recipient = result.text;
+                },
+                (error) => {
+                    // eslint-disable-next-line no-console
+                    console.log(JSON.stringify(error));
+                });
+            }
+
             onReadQrCode(url) {
+                if (!url.includes('https://')) {
+                    this.recipient = url;
+                    $scope.$apply();
+                    return null;
+                }
                 const routeData = utils.getRouterParams(utils.getUrlForRoute(url));
 
                 if (!routeData || routeData.name !== 'SEND_ASSET') {
@@ -57,7 +80,7 @@
 
                 const result = routeData.data;
 
-                this.tx.recipient = result.recipient;
+                this.recipient = result.recipient;
 
                 analytics.push('Send', `Send.QrCodeRead.${WavesApp.type}`, `Send.QrCodeRead.${WavesApp.type}.Success`);
 

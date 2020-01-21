@@ -338,11 +338,12 @@
             }
 
             readQrCodeFunction() {
-                // eslint-disable-next-line no-use-before-define
+                // eslint-disable-next-line no-use-before-define,no-undef
                 cordova.plugins.barcodeScanner.scan((result) => {
                     this.tx.recipient = result.text;
                 },
                 (error) => {
+                    // eslint-disable-next-line no-console
                     console.log(JSON.stringify(error));
                 });
             }

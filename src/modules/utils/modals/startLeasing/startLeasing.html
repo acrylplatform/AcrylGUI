@@ -31,33 +31,40 @@
                                 <span ></span>
                             </a>
                         </div>
-
                         <w-input-container>
-
-                        <div class="read-address-wrap">
-                            <w-input class="big"
-                                     type="text"
-                                     w-validate
-                                     w-validator-waves-address="no-self"
-                                     name="recipient"
-                                     ng-model="$ctrl.recipient"
-                                     required></w-input>
-                            <w-qr-code-read on-read="$ctrl.onReadQrCode(text)" max-width="415"
-                            max-height="310"></w-qr-code-read>
-                        </div>
-                        <w-input-error message="wavesAddress">
-                            <span w-i18n="modal.send.errors.address"></span>
-                        </w-input-error>
-                        <w-input-error message="required">
-                            <span w-i18n="modal.send.errors.required"></span>
-                        </w-input-error>
-                    </w-input-container>
-                </div>
-                <div class="row">
+                            <div class="read-address-wrap-mobile" ng-if="$ctrl.isMobile">
+                                <w-input class="big"
+                                         type="text"
+                                         w-validate
+                                         w-validator-waves-address="no-self"
+                                         name="recipient"
+                                         ng-model="$ctrl.recipient"
+                                         required></w-input>
+                                <w-button on-click="$ctrl.readQrCodeFunction(text)" class="w-qr-code-button"></w-button>
+                                </div>
+                            <div class="read-address-wrap" ng-if="!$ctrl.isMobile">
+                                <w-input class="big"
+                                         type="text"
+                                         w-validate
+                                         w-validator-waves-address="no-self"
+                                         name="recipient"
+                                         ng-model="$ctrl.recipient"
+                                         required></w-input>
+                                <w-qr-code-read on-read="$ctrl.onReadQrCode(text)" max-width="415"
+                                max-height="310"></w-qr-code-read>
+                            </div>
+                            <w-input-error message="wavesAddress">
+                                <span w-i18n="modal.send.errors.address"></span>
+                            </w-input-error>
+                            <w-input-error message="required">
+                                <span w-i18n="modal.send.errors.required"></span>
+                            </w-input-error>
+                        </w-input-container>
+                    </div>
+                    <div class="row">
 
                         <div class="body-2 basic-900" w-i18n="modal.startLease.amount"></div>
-
-                <w-input-container>
+                        <w-input-container>
                                 <w-balance-input name="amount"
                                                 asset-id="$ctrl.assetId"
                                                 max-balance="$ctrl.balance"
