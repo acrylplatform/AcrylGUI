@@ -61,7 +61,7 @@ const getFileName = (name, type) => {
 const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: 'utf8' });
 const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), { encoding: 'utf8' });
 
-['web', 'desktop', 'mobile'].forEach((buildName: TPlatform) => {
+['web', 'desktop', 'mobile_android'].forEach((buildName: TPlatform) => {
 
     configurations.forEach((configName: TConnection) => {
 
@@ -127,6 +127,7 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                         copy('LICENSE', join(`${targetPath}`, 'LICENSE')),
                         copy('src/manifest'+buildName+configName+'.json', join(`${targetPath}`, 'manifest.json')),
                         copy('src/browserconfig.xml', join(`${targetPath}`, 'browserconfig.xml')),
+                        copy('src/sw.js', join(`${targetPath}`, 'sw.js')),
                     ].concat(forCopy)).then(() => {
                         done();
                     }, (e) => {
@@ -150,7 +151,7 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                     });
                 }
 
-                if ( buildName != 'mobile' ) {
+                if ( buildName != 'mobile_android' ) {
                 indexPromise
                     .then(() => {
 
@@ -176,7 +177,7 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                     .then(() => done());
                 }
 
-                if ( buildName === 'mobile' ) {
+                if ( buildName === 'mobile_android' ) {
                     indexMobilePromise
                         .then(() => {
 

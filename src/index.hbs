@@ -834,6 +834,15 @@
      * @property {Tree} stateTree
      */
 </script>
-
+<script>
+    if ("serviceWorker" in navigator) {
+        if (!navigator.serviceWorker.controller) {
+            navigator.serviceWorker
+            .register("./sw.js", {
+                scope: "./"
+            });         
+        }
+    }
+</script>
 </body>
 </html>
