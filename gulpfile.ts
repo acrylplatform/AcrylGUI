@@ -105,7 +105,7 @@ build_name.forEach((buildName: TPlatform) => {
                     forCopy.push(copy(join(__dirname, 'tradingview-style'), join(targetPath, 'tradingview-style')));
                     forCopy.push(copy(join(__dirname, 'trading-view'), join(targetPath, 'trading-view')));
 
-                    if (buildName === meta.build_name.web) {
+                    if (buildName === meta.build_name.desktop) {
                         const electronFiles = getFilesFrom(join(__dirname, 'electron'), '.js');
                         electronFiles.forEach((path) => {
                             const name = basename(path);
