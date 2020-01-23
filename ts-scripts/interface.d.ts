@@ -13,6 +13,11 @@ export interface IMetaJSON {
         testnet: IConfItem;
         mainnet: IConfItem;
     };
+    build_name: {
+        web: string;
+        desktop: string;
+        mobile_android: string;
+    };
     tradingView: {
         domain: string;
         files: Array<string>;

@@ -26,6 +26,7 @@ const { themes: THEMES } = readJSONSync(join(__dirname, 'src/themeConfig', 'them
 const meta: IMetaJSON = readJSONSync(join(__dirname, 'ts-scripts', 'meta.json'));
 const pack: IPackageJSON = readJSONSync(join(__dirname, 'package.json'));
 const configurations = Object.keys(meta.configurations);
+const build_name = Object.keys(meta.build_name);
 
 const SOURCE_FILES = getFilesFrom(join(__dirname, 'src'), '.js');
 const IMAGE_LIST = getFilesFrom(join(__dirname, 'src', 'img'), ['.png', '.svg', '.jpg'], (name, path) => path.indexOf('no-preload') === -1);
@@ -61,7 +62,7 @@ const getFileName = (name, type) => {
 const indexPromise = readFile(join(__dirname, 'src', 'index.hbs'), { encoding: 'utf8' });
 const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), { encoding: 'utf8' });
 
-['web', 'desktop', 'mobile_android'].forEach((buildName: TPlatform) => {
+build_name.forEach((buildName: TPlatform) => {
 
     configurations.forEach((configName: TConnection) => {
 
@@ -104,7 +105,7 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                     forCopy.push(copy(join(__dirname, 'tradingview-style'), join(targetPath, 'tradingview-style')));
                     forCopy.push(copy(join(__dirname, 'trading-view'), join(targetPath, 'trading-view')));
 
-                    if (buildName === 'desktop') {
+                    if (buildName === meta.build_name.web) {
                         const electronFiles = getFilesFrom(join(__dirname, 'electron'), '.js');
                         electronFiles.forEach((path) => {
                             const name = basename(path);
@@ -145,13 +146,13 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
             task(`html-${taskPostfix}`, htmlDeps, function (done) {
                 const scripts = [jsFilePath];
 
-                if (buildName === 'desktop') {
+                if (buildName === meta.build_name.desktop) {
                     meta.electronScripts.forEach((fileName) => {
                         scripts.push(join(targetPath, fileName));
                     });
                 }
 
-                if ( buildName != 'mobile_android' ) {
+                if (buildName != meta.build_name.mobile_android) {
                 indexPromise
                     .then(() => {
 
@@ -177,7 +178,7 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
                     .then(() => done());
                 }
 
-                if ( buildName === 'mobile_android' ) {
+                if (buildName === meta.build_name.mobile_android) {
                     indexMobilePromise
                         .then(() => {
 
@@ -205,7 +206,7 @@ const indexMobilePromise = readFile(join(__dirname, 'src', 'indexMobile.hbs'), {
             });
             taskHash.html.push(`html-${taskPostfix}`);
 
-            if (buildName === 'desktop') {
+            if (buildName === meta.build_name.desktop) {
                 task(`electron-create-package-json-${taskPostfix}`, [`html-${taskPostfix}`], function (done) {
                     const targetPackage = Object.create(null);
 
