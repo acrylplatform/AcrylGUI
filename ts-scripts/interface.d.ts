@@ -13,6 +13,11 @@ export interface IMetaJSON {
         testnet: IConfItem;
         mainnet: IConfItem;
     };
+    build_name: {
+        web: string;
+        desktop: string;
+        mobile_android: string;
+    };
     tradingView: {
         domain: string;
         files: Array<string>;
@@ -69,7 +74,7 @@ export interface IConfItem {
 
 export type TConnection = 'mainnet' | 'testnet';
 export type TBuild = 'dev' | 'normal' | 'min';
-export type TPlatform = 'web' | 'desktop' | 'mobile';
+export type TPlatform = 'web' | 'desktop' | 'mobile_android';
 
 export interface ITaskFunction {
     (name: string, deps: Array<string>): void;

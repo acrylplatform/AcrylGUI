@@ -104,6 +104,11 @@
     },
     "server": "desktop.acrylplatform.com"
   },
+  "build_name": {
+    "web": "web",
+    "desktop": "desktop",
+    "mobile_android": "mobile_android"
+  },
   "configurations": {
     "testnet": {
       "oracle": "",
