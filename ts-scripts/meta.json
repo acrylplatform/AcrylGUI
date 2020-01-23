@@ -116,7 +116,7 @@
       "code": "K",
       "bankRecipient": "",
       "node": "https://nodestestnet.acrylplatform.com",
-      "matcher": "https://nodestestnet.acrylplatform.com/matcher",
+      "matcher": "https://matchertestnet.acrylplatform.com/matcher",
       "api": "https://api.acrylplatform.com",
       "explorer": "https://explorertestnet.acrylplatform.com",
       "coinomat": "https://localhost:8080/coinomat",
@@ -126,7 +126,8 @@
       "origin": "https://testnet.acrylplatform.com",
       "featuresConfigUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-client-config/master/testnet.config.json",
       "assets": {
-        "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy"
+        "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy",
+        "USD": "C9yUPJmYNWBUDb6NFq75gxz6JfUf6F7ZCx3392EvLQQg"
       },
       "shop": "https://raw.githubusercontent.com/acrylplatform/ShopKeys/master/sellerDataTestnet.json"
     },
