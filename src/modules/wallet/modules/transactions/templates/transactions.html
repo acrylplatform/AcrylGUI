@@ -53,6 +53,15 @@
             <w-option value="::1000">
                 <span w-i18n="filter.value3" w-i18n-ns="app.wallet.transactions" params="{count: 1000}"></span>
             </w-option>
+            <w-option value="::2000">
+                <span w-i18n="filter.value4" w-i18n-ns="app.wallet.transactions" params="{count: 2000}"></span>
+            </w-option>
+            <w-option value="::3000">
+                <span w-i18n="filter.value5" w-i18n-ns="app.wallet.transactions" params="{count: 3000}"></span>
+            </w-option>
+            <w-option value="::5000">
+                <span w-i18n="filter.value6" w-i18n-ns="app.wallet.transactions" params="{count: 5000}"></span>
+            </w-option>
         </w-select>
 
         <w-button disabled="$ctrl.pending" class="download interface" on-click="$ctrl.exportTransactions()">
