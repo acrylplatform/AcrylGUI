@@ -69,7 +69,7 @@ body.shop {
       border-radius: 4px;
       box-shadow   : 0 1px 3px 0 @color-disabled-300;
       padding      : 15px;
-      
+
       left: 40px;
       //bottom       : 25px;
       width        : calc(100% - 80px);
@@ -93,7 +93,7 @@ body.shop {
       .miner-img {
         background-image     : @miner;
         background-position-x: 50%;
-        background-size      : 200px 270px;
+        background-size      : contain;
         height               : 250px;
         background-repeat    : no-repeat;
       }
@@ -121,7 +121,7 @@ body.shop {
 @media screen and (max-height: 620px) {
   .miner-img {
     background-position-y: 50%;
-    background-size      : 150px 200px !important;
+    background-size      : contain;
     height               : 185px !important;
   }
 }
@@ -166,7 +166,7 @@ body.shop {
   w-input[name="sumOrder"]{
     width: 100% !important;
   }
-  
+
   w-input[name="countOfMiners"]{
     width: 100% !important;
   }
@@ -176,9 +176,9 @@ body.shop {
   }
 
   .shop-page {
-    display       : flex;
+    display: flex;
     flex-direction: column;
-    overflow      : auto !important;
+    overflow: auto !important;
 
     .number-input {
       display: none;
@@ -190,11 +190,11 @@ body.shop {
       display: block !important;
 
       .miner-img {
-        background-image     : @miner;
-        background-size: 125px 180px !important;
-        height         : 180px !important;
+        background-image: @miner;
+        background-size: contain;
+        height: 180px !important;
         background-position-x: 50%;
-        background-repeat    : no-repeat;
+        background-repeat: no-repeat;
       }
     }
 
@@ -210,7 +210,7 @@ body.shop {
     }
 
     .generate-form {
-      width      : 90% !important;
+      width: 90% !important;
       padding-top: 0px !important;
     }
 
