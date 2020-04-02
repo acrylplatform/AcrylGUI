@@ -66,7 +66,7 @@
       justify-content: space-evenly;
       display: flex;
       align-items: center;
-     
+
 
       .toggler {
         display: flex;
@@ -83,7 +83,7 @@
       }
       .miner {
         display: flex;
-        flex-direction: row; 
+        flex-direction: row;
         @media screen and (max-width: 1300px) {
           flex-basis: @asset-block-wide;
           max-width: @asset-block-wide;
@@ -98,25 +98,25 @@
         }
         /* ----------- iPad Pro ----------- */
         /* Portrait and Landscape */
-        @media only screen 
-        and (min-width: 1024px) 
-        and (max-height: 1366px) 
+        @media only screen
+        and (min-width: 1024px)
+        and (max-height: 1366px)
         and (-webkit-min-device-pixel-ratio: 1.5) {
         }
 
          /* Portrait */
-        @media only screen 
-        and (min-width: 1024px) 
-        and (max-height: 1366px) 
-        and (orientation: portrait) 
+        @media only screen
+        and (min-width: 1024px)
+        and (max-height: 1366px)
+        and (orientation: portrait)
         and (-webkit-min-device-pixel-ratio: 1.5) {
         }
 
          /* Landscape */
-        @media only screen 
-        and (min-width: 1024px) 
-        and (max-height: 1366px) 
-        and (orientation: landscape) 
+        @media only screen
+        and (min-width: 1024px)
+        and (max-height: 1366px)
+        and (orientation: landscape)
         and (-webkit-min-device-pixel-ratio: 1.5) {
 
          }
@@ -125,7 +125,7 @@
        .miner-img {
         background-image: @miner;
         background-position: center center;
-        background-size: 100%;
+        background-size: 80%;
         width: 30vh;
         height: 45vh;
         background-repeat: no-repeat;
