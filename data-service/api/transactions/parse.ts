@@ -30,6 +30,8 @@ import { IHash, TOrderType } from '../../interface';
 import { factory, IFactory } from '../matcher/getOrders';
 import { getSignatureApi } from '../../sign';
 
+const SET_ASSET_SCRIPT = 15;
+const SCRIPT_INVOCATION_NUMBER = 16;
 
 const getFactory = (isTokens: boolean): IFactory => {
     if (isTokens) {
@@ -84,11 +86,28 @@ export function parseTx(transactions: Array<T_API_TX>, isUTX: boolean, isTokens?
                         return parseSponsorshipTx(transaction, hash, isUTX);
                     case TRANSACTION_TYPE_NUMBER.SET_SCRIPT:
                         return parseScriptTx(transaction, hash, isUTX);
+                    case SET_ASSET_SCRIPT:
+                        return parseAssetScript(transaction, hash, isUTX);
+                    case SCRIPT_INVOCATION_NUMBER:
+                        return parseInvocationTx(transaction, hash, isUTX);
                     default:
                         return transaction;
                 }
             });
         });
+}
+
+export function parseAssetScript(tx, assetsHash: IHash<Asset>, isUTX?: boolean) {
+    const fee = new Money(tx.fee, assetsHash[WAVES_ID]);
+    const script = tx.script || '';
+    return { ...tx, fee, isUTX, script };
+}
+
+export function parseInvocationTx(tx, assetsHash: IHash<Asset>, isUTX: boolean) {
+    const fee = new Money(tx.fee, assetsHash[WAVES_ID]);
+    const dApp = normalizeRecipient(tx.dApp);
+    const payment = tx.payment.map(payment => new Money(payment.amount, assetsHash[normalizeAssetId(payment.assetId)]));
+    return { ...tx, fee, payment, isUTX, dApp };
 }
 
 export function getAssetsHashFromTx(transaction: T_API_TX, hash = Object.create(null)): IHash<boolean> {
