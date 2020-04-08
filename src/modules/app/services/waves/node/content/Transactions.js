@@ -192,6 +192,10 @@
                         return Transactions._getScriptType(tx);
                     case 14:
                         return Transactions._getSponsorshipType(tx);
+                    case 15:
+                        return TYPES.SET_ASSET_SCRIPT;
+                    case 16:
+                        return TYPES.SCRIPT_INVOCATION;
                     default:
                         return TYPES.UNKNOWN;
                 }
@@ -229,6 +233,8 @@
                         return 13;
                     case WavesApp.TRANSACTION_TYPES.NODE.SPONSORSHIP:
                         return 14;
+                    case WavesApp.TRANSACTION_TYPES.NODE.SCRIPT_INVOCATION:
+                        return 16;
                     default:
                         throw new Error('Wrong tx name!');
                 }
@@ -323,6 +329,8 @@
                         return 'sponsorship';
                     case TYPES.SPONSORSHIP_FEE:
                         return 'sponsorship_fee';
+                    case TYPES.SCRIPT_INVOCATION:
+                        return 'script-invocation';
                     case TYPES.UNKNOWN:
                         return 'unknown';
                     default:
@@ -347,6 +355,7 @@
                     case TYPES.LEASE_IN:
                     case TYPES.CREATE_ALIAS:
                     case TYPES.SPONSORSHIP_FEE:
+                    case TYPES.SCRIPT_INVOCATION:
                         return sender;
                     default:
                         return recipient;

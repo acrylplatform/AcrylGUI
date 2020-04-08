@@ -15,10 +15,11 @@
      * @param {BaseAssetService} baseAssetService
      * @param {DexService} dexService
      * @param {$rootScope.Scope} $scope
+     * @param {ExplorerLinks} explorerLinks
      * @return {Transaction}
      */
     const controller = function (Base, $filter, modalManager, notification,
-                                 waves, user, baseAssetService, dexService, $scope) {
+                                 waves, user, baseAssetService, dexService, $scope, explorerLinks) {
 
         const { SIGN_TYPE } = require('@waves/signature-adapter');
 
@@ -129,7 +130,12 @@
             }
 
             showTransaction() {
-                modalManager.showTransactionInfo(this.transaction.id);
+                this.explorerLink = explorerLinks.getTxLink(this.transaction.id);
+                if (this.typeName === 'script-invocation' || this.typeName === 'set-asset-script') {
+                    window.open(this.explorerLink);
+                } else {
+                    modalManager.showTransactionInfo(this.transaction.id);
+                }
             }
 
             /**
@@ -204,7 +210,8 @@
         'user',
         'baseAssetService',
         'dexService',
-        '$scope'
+        '$scope',
+        'explorerLinks'
     ];
 
     angular.module('app.ui')

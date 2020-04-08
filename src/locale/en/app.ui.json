@@ -192,6 +192,7 @@
       "mass-send": "Sent {{name}}",
       "receive": "Received {{name}}",
       "reissue": "{{name}} Token Reissue",
+      "script-invocation": "Script Invocation",
       "send": "Sent {{name}}",
       "set-script": "Set Script Transaction",
       "set-script-cancel": "Cancel Script Transaction",
@@ -252,6 +253,7 @@
       "mass-send": "{{time}}",
       "receive": "{{time}}{span.locale-address}[, from address {{address}}]",
       "reissue": "{{time}}",
+      "script-invocation": "{{time}}{span.locale-address}[, to address {{address}}]",
       "send": "{{time}}{span.locale-address}[, to address {{address}}]",
       "sponsorship-fee": "{{time}} from address {{address}}",
       "unknown": "{{time}}"

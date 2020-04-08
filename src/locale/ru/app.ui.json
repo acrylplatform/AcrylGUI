@@ -188,6 +188,7 @@
       "mass-send": "Отправка {{name}}",
       "receive": "Получение {{name}}",
       "reissue": "Перевыпуск токена \"{{name}}\"",
+      "script-invocation": "Вызов скрипта",
       "send": "Отправка {{name}}",
       "set-script": "Транзакция установки скрипта",
       "set-script-cancel": "Отмена скрипта",
@@ -246,6 +247,7 @@
       "mass-send": "{{time}}",
       "receive": "{{time}}{span.locale-address}[, с адреса {{address}}]",
       "reissue": "{{time}}",
+      "script-invocation": "{{time}}{span.locale-address}[, на адрес {{address}}]",
       "send": "{{time}}{span.locale-address}[, на адрес {{address}}]",
       "unknown": "{{time}}"
     }
