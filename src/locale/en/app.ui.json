@@ -253,7 +253,7 @@
       "mass-send": "{{time}}",
       "receive": "{{time}}{span.locale-address}[, from address {{address}}]",
       "reissue": "{{time}}",
-      "script-invocation": "{{time}}{span.locale-address}[, to address {{address}}]",
+      "script-invocation": "{{time}}",
       "send": "{{time}}{span.locale-address}[, to address {{address}}]",
       "sponsorship-fee": "{{time}} from address {{address}}",
       "unknown": "{{time}}"
