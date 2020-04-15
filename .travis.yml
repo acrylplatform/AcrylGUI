@@ -56,4 +56,4 @@ deploy:
     local_dir: dist/web/testnet/min
     region: eu-central-1
     on:
-      branch: testnet
+      branch: stagenet
