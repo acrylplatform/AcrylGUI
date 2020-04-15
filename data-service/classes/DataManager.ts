@@ -56,7 +56,8 @@ export class DataManager {
         const WavesApp = (window as any).WavesApp;
 
         const gateways = {
-            [WavesApp.defaultAssets.BTC]: true
+            [WavesApp.defaultAssets.BTC]: true,
+            [WavesApp.defaultAssets.USDT]: true
         };
 
         const descriptionHash = {

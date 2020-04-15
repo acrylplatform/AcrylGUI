@@ -39,7 +39,6 @@
                     savePassword: true,
                     hasBackup: true,
                     termsAccepted: true,
-                    // baseAssetId: WavesApp.defaultAssets.USD,
                     baseAssetId: WavesApp.defaultAssets.USD,
                     assetsOracle: WavesApp.oracle,
                     events: Object.create(null),
@@ -51,7 +50,8 @@
                     pinnedAssetIdList: [
                         WavesApp.defaultAssets.WAVES,
                         WavesApp.defaultAssets.BTC,
-                        WavesApp.defaultAssets.USD
+                        WavesApp.defaultAssets.USD,
+                        WavesApp.defaultAssets.USDT
                         // WavesApp.defaultAssets.ETH
                         // WavesApp.defaultAssets.USD,
                         // WavesApp.defaultAssets.EUR

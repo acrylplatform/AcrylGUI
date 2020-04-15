@@ -54,7 +54,7 @@
         "group": " ",
         "decimal": "."
       }
-    }   
+    }
   },
   "electronScripts": [
   ],
@@ -119,7 +119,7 @@
       "matcher": "https://matchertestnet.acrylplatform.com/matcher",
       "api": "https://api.acrylplatform.com",
       "explorer": "https://explorertestnet.acrylplatform.com",
-      "coinomat": "https://localhost:8080/coinomat",
+      "coinomat": "https://testapi.cryptomat.vip",
       "support": "https://support.acrylplatform.com",
       "nodeList": "",
       "scamListUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-community/master/Scam%20tokens%20according%20to%20the%20opinion%20of%20Acryl%20Community.csv",
@@ -127,7 +127,8 @@
       "featuresConfigUrl": "https://raw.githubusercontent.com/acrylplatform/acryl-client-config/master/testnet.config.json",
       "assets": {
         "BTC": "DxTmLjoVh5Eos7VrX8JxzAFhDXLzo8pp7ugSxbWJATfy",
-        "USD": "C9yUPJmYNWBUDb6NFq75gxz6JfUf6F7ZCx3392EvLQQg"
+        "USD": "C9yUPJmYNWBUDb6NFq75gxz6JfUf6F7ZCx3392EvLQQg",
+        "USDT": "6WyiSedm8P3XZnmrjyxEY8s4kTHMZyANb7pPS4Y4v8iZ"
       },
       "shop": "https://raw.githubusercontent.com/acrylplatform/ShopKeys/master/sellerDataTestnet.json"
     },
